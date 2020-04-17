@@ -37,7 +37,7 @@ describe('Avoids front-end JavaScript libraries with known vulnerabilities', () 
     });
     assert.equal(auditResult.score, 0);
     assert.equal(auditResult.details.items.length, 1);
-    assert.equal(auditResult.extendedInfo.jsLibs.length, 3);
+    assert.equal(auditResult.details.debugData.jsLibs.length, 3);
     expect(auditResult.details.items[0].highestSeverity).toBeDisplayString('High');
     assert.equal(auditResult.details.items[0].detectedLib.type, 'link');
     assert.equal(auditResult.details.items[0].detectedLib.text, 'angular@1.1.4');
@@ -90,7 +90,7 @@ describe('Avoids front-end JavaScript libraries with known vulnerabilities', () 
     });
     assert.equal(auditResult.score, 1);
     assert.equal(auditResult.details.items.length, 0);
-    assert.equal(auditResult.extendedInfo.jsLibs.length, 2);
+    assert.equal(auditResult.details.debugData.jsLibs.length, 2);
   });
 
   it('passes when no JS libraries are detected', () => {

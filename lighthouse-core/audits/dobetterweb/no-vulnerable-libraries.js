@@ -226,15 +226,16 @@ class NoVulnerableLibrariesAudit extends Audit {
       {key: 'highestSeverity', itemType: 'text', text: str_(UIStrings.columnSeverity)},
     ];
     const details = Audit.makeTableDetails(headings, vulnerabilityResults, {});
-
+    /** @type {LH.Audit.Details.DebugData} */
+    const debugData = {
+      type: 'debugdata',
+      jsLibs: libraryVulns,
+      vulnerabilityResults,
+    };
     return {
       score: Number(totalVulns === 0),
       displayValue,
-      extendedInfo: {
-        jsLibs: libraryVulns,
-        vulnerabilities: vulnerabilityResults,
-      },
-      details,
+      details: {...details, debugData},
     };
   }
 }

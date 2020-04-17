@@ -29,7 +29,7 @@ describe('Security: HTTPS audit', () => {
     ]), {computedCache: new Map()}).then(result => {
       assert.strictEqual(result.score, 0);
       expect(result.displayValue).toBeDisplayString('2 insecure requests found');
-      assert.strictEqual(result.extendedInfo.value.length, 2);
+      assert.strictEqual(result.details.items.length, 2);
     });
   });
 
@@ -41,7 +41,7 @@ describe('Security: HTTPS audit', () => {
     ]), {computedCache: new Map()}).then(result => {
       assert.strictEqual(result.score, 0);
       expect(result.displayValue).toBeDisplayString('1 insecure request found');
-      assert.deepEqual(result.extendedInfo.value[0], {url: 'http://insecure.com/image.jpeg'});
+      assert.deepEqual(result.details.items[0], {url: 'http://insecure.com/image.jpeg'});
     });
   });
 
