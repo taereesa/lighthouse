@@ -82,6 +82,26 @@ class Audit {
   }
 
   /**
+   * @param {LH.Audit.Details.Table['headings']|LH.Audit.Details.Opportunity['headings']} headings
+   * @param {LH.Audit.Details.Opportunity['items']|LH.Audit.Details.Table['items']} items
+   */
+  static assertHeadingKeysExist(headings, items) {
+    // If there are no items, there's nothing to check.
+    if (!items.length) return;
+    // Only do this in tests for now.
+    if (typeof describe === 'undefined' && !process.env.CI) return;
+
+    for (const heading of headings) {
+      // `null` heading key means it's a column for subrows only
+      if (heading.key === null) continue;
+
+      const key = heading.key;
+      if (items.some(item => key in item)) continue;
+      throw new Error(`"${heading.key}" is missing from items`);
+    }
+  }
+
+  /**
    * @param {LH.Audit.Details.Table['headings']} headings
    * @param {LH.Audit.Details.Table['items']} results
    * @param {LH.Audit.Details.Table['summary']=} summary
@@ -96,6 +116,8 @@ class Audit {
         summary,
       };
     }
+
+    Audit.assertHeadingKeysExist(headings, results);
 
     return {
       type: 'table',
@@ -179,6 +201,8 @@ class Audit {
    * @return {LH.Audit.Details.Opportunity}
    */
   static makeOpportunityDetails(headings, items, overallSavingsMs, overallSavingsBytes) {
+    Audit.assertHeadingKeysExist(headings, items);
+
     return {
       type: 'opportunity',
       headings: items.length === 0 ? [] : headings,

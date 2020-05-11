@@ -45,9 +45,7 @@ describe('Byte efficiency base audit', () => {
   });
 
   const baseHeadings = [
-    {key: 'totalBytes', itemType: 'bytes', displayUnit: 'kb', granularity: 1, text: ''},
     {key: 'wastedBytes', itemType: 'bytes', displayUnit: 'kb', granularity: 1, text: ''},
-    {key: 'wastedMs', itemType: 'text', text: ''},
   ];
 
   describe('#estimateTransferSize', () => {
@@ -197,7 +195,7 @@ describe('Byte efficiency base audit', () => {
     const simulator = await LoadSimulator.request({devtoolsLog, settings}, {computedCache});
     const result = ByteEfficiencyAudit.createAuditProduct(
       {
-        headings: [{key: 'value', text: 'Label'}],
+        headings: [{key: 'wastedBytes', text: 'Label'}],
         items: [
           {url: 'https://www.googletagmanager.com/gtm.js?id=GTM-Q5SW', wastedBytes: 30 * 1024},
         ],
