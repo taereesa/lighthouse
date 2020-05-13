@@ -7,7 +7,7 @@
 
 /* eslint-env jest */
 const PageExecutionTimings = require('../../audits/mainthread-work-breakdown.js');
-const assert = require('assert');
+const assert = require('assert').strict;
 const options = PageExecutionTimings.defaultOptions;
 
 const acceptableTrace = require('../fixtures/traces/progressive-app-m60.json');

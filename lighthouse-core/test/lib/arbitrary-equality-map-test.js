@@ -7,7 +7,7 @@
 
 /* eslint-env jest */
 
-const assert = require('assert');
+const assert = require('assert').strict;
 const ArbitraryEqualityMap = require('../../lib/arbitrary-equality-map.js');
 const trace = require('../fixtures/traces/progressive-app-m60.json');
 

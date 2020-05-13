@@ -19,7 +19,10 @@ const MOTOG4_EMULATION_METRICS = {
   positionX: 0,
   positionY: 0,
   scale: 1,
-  deviceScaleFactor: 3,
+  // Moto G4 is really 3, but a higher value here works against
+  // our perf recommendations.
+  // https://github.com/GoogleChrome/lighthouse/issues/10741#issuecomment-626903508
+  deviceScaleFactor: 2.625,
   screenOrientation: {
     angle: 0,
     type: 'portraitPrimary',

@@ -27,9 +27,19 @@ class JsUsage extends Gatherer {
     const driver = passContext.driver;
 
     const coverageResponse = await driver.sendCommand('Profiler.takePreciseCoverage');
+    const scriptUsages = coverageResponse.result;
     await driver.sendCommand('Profiler.stopPreciseCoverage');
     await driver.sendCommand('Profiler.disable');
-    return coverageResponse.result;
+
+    /** @type {Record<string, Array<LH.Crdp.Profiler.ScriptCoverage>>} */
+    const usageByUrl = {};
+    for (const scriptUsage of scriptUsages) {
+      const scripts = usageByUrl[scriptUsage.url] || [];
+      scripts.push(scriptUsage);
+      usageByUrl[scriptUsage.url] = scripts;
+    }
+
+    return usageByUrl;
   }
 }
 

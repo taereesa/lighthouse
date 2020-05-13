@@ -7,7 +7,7 @@
 
 /* eslint-env jest */
 
-const assert = require('assert');
+const assert = require('assert').strict;
 const UnusedCSS = require('../../computed/unused-css.js');
 
 describe('UnusedCSS computed artifact', () => {

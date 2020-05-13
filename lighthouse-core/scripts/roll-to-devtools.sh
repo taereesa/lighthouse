@@ -22,7 +22,7 @@ else
   dt_dir="$chromium_dir/third_party/devtools-frontend/src"
 fi
 
-if [[ ! -d "$dt_dir" || ! -a "$dt_dir/front_end/Runtime.js" ]]; then
+if [[ ! -d "$dt_dir" || ! -a "$dt_dir/front_end/shell.js" ]]; then
   echo -e "\033[31m✖ Error!\033[39m"
   echo "This script requires a devtools frontend folder. We didn't find one here:"
   echo "    $dt_dir"

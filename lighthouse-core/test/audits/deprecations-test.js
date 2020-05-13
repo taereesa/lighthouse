@@ -6,7 +6,7 @@
 'use strict';
 
 const DeprecationsAudit = require('../../audits/deprecations.js');
-const assert = require('assert');
+const assert = require('assert').strict;
 
 /* eslint-env jest */
 
@@ -33,7 +33,7 @@ describe('Console deprecations audit', () => {
     assert.equal(auditResult.score, 0);
     expect(auditResult.displayValue).toBeDisplayString('1 warning found');
     assert.equal(auditResult.details.items.length, 1);
-    assert.equal(auditResult.details.items[0].source, null);
+    assert.equal(auditResult.details.items[0].source, undefined);
   });
 
   it('fails when deprecation messages are found', () => {

@@ -6,7 +6,7 @@
 'use strict';
 
 const Interactive = require('../../../audits/metrics/interactive.js');
-const assert = require('assert');
+const assert = require('assert').strict;
 const options = Interactive.defaultOptions;
 
 const acceptableTrace = require('../../fixtures/traces/progressive-app-m60.json');

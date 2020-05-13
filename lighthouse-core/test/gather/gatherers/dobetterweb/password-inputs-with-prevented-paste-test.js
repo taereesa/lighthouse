@@ -9,7 +9,7 @@
 
 const PasswordInputsWithPreventedPasteGatherer =
   require('../../../../gather/gatherers/dobetterweb/password-inputs-with-prevented-paste.js');
-const assert = require('assert');
+const assert = require('assert').strict;
 let gatherer;
 
 describe('PasswordInputsWithPreventedPaste gatherer', () => {

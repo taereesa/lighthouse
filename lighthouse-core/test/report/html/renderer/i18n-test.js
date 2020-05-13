@@ -5,7 +5,7 @@
  */
 'use strict';
 
-const assert = require('assert');
+const assert = require('assert').strict;
 const Util = require('../../../../report/html/renderer/util.js');
 const I18n = require('../../../../report/html/renderer/i18n.js');
 

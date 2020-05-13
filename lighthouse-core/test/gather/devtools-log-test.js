@@ -7,7 +7,7 @@
 
 /* eslint-env jest */
 
-const assert = require('assert');
+const assert = require('assert').strict;
 const DevtoolsLog = require('../../gather/devtools-log.js');
 
 describe('DevtoolsLog', () => {

@@ -11,7 +11,7 @@ const Simulator = require('../../../../lib/dependency-graph/simulator/simulator.
 const DNSCache = require('../../../../lib/dependency-graph/simulator/dns-cache.js');
 const PageDependencyGraph = require('../../../../computed/page-dependency-graph.js');
 
-const assert = require('assert');
+const assert = require('assert').strict;
 let nextRequestId = 1;
 let nextTid = 1;
 

@@ -8,7 +8,7 @@
 /* eslint-env jest */
 
 const CriticalRequestChains = require('../../audits/critical-request-chains.js');
-const assert = require('assert');
+const assert = require('assert').strict;
 const networkRecordsToDevtoolsLog = require('../network-records-to-devtools-log.js');
 
 const FAILING_CHAIN_RECORDS = [

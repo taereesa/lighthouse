@@ -7,7 +7,7 @@
 
 /* eslint-env jest */
 
-const assert = require('assert');
+const assert = require('assert').strict;
 const devtoolsLog = require('../fixtures/traces/progressive-app-m60.devtools.log.json');
 const LoadSimulator = require('../../computed/load-simulator.js');
 const NetworkNode = require('../../lib/dependency-graph/network-node.js');

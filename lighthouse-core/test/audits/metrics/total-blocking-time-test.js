@@ -6,27 +6,56 @@
 'use strict';
 
 const TBTAudit = require('../../../audits/metrics/total-blocking-time.js');
-const options = TBTAudit.defaultOptions;
+const defaultOptions = TBTAudit.defaultOptions;
 
-const pwaTrace = require('../../fixtures/traces/progressive-app-m60.json');
+const trace = require('../../fixtures/traces/progressive-app-m60.json');
+const devtoolsLog = require('../../fixtures/traces/progressive-app-m60.devtools.log.json');
 
-function generateArtifactsWithTrace(trace) {
+const lcpTrace = require('../../fixtures/traces/lcp-m78.json');
+const lcpDevtoolsLog = require('../../fixtures/traces/lcp-m78.devtools.log.json');
+
+function generateArtifacts({trace, devtoolsLog, TestedAsMobileDevice}) {
   return {
     traces: {[TBTAudit.DEFAULT_PASS]: trace},
-    devtoolsLogs: {[TBTAudit.DEFAULT_PASS]: []},
+    devtoolsLogs: {[TBTAudit.DEFAULT_PASS]: devtoolsLog},
+    TestedAsMobileDevice,
   };
+}
+
+function generateContext({throttlingMethod}) {
+  const settings = {throttlingMethod};
+  return {options: defaultOptions, settings, computedCache: new Map()};
 }
 /* eslint-env jest */
 
 describe('Performance: total-blocking-time audit', () => {
   it('evaluates Total Blocking Time metric properly', async () => {
-    const artifacts = generateArtifactsWithTrace(pwaTrace);
-    const settings = {throttlingMethod: 'provided'};
-    const context = {options, settings, computedCache: new Map()};
-    const output = await TBTAudit.audit(artifacts, context);
+    const artifacts = generateArtifacts({trace, devtoolsLog, TestedAsMobileDevice: true});
+    const context = generateContext({throttlingMethod: 'provided'});
 
+    const output = await TBTAudit.audit(artifacts, context);
     expect(output.numericValue).toBeCloseTo(48.3, 1);
     expect(output.score).toBe(1);
     expect(output.displayValue).toBeDisplayString('50\xa0ms');
+  });
+
+  it('adjusts scoring based on form factor', async () => {
+    const artifactsMobile = generateArtifacts({trace: lcpTrace,
+      devtoolsLog: lcpDevtoolsLog, TestedAsMobileDevice: true});
+    const contextMobile = generateContext({throttlingMethod: 'provided'});
+
+    const outputMobile = await TBTAudit.audit(artifactsMobile, contextMobile);
+    expect(outputMobile.numericValue).toBeCloseTo(333, 1);
+    expect(outputMobile.score).toBe(0.85);
+    expect(outputMobile.displayValue).toBeDisplayString('330\xa0ms');
+
+    const artifactsDesktop = generateArtifacts({trace: lcpTrace,
+      devtoolsLog: lcpDevtoolsLog, TestedAsMobileDevice: false});
+    const contextDesktop = generateContext({throttlingMethod: 'provided'});
+
+    const outputDesktop = await TBTAudit.audit(artifactsDesktop, contextDesktop);
+    expect(outputDesktop.numericValue).toBeCloseTo(333, 1);
+    expect(outputDesktop.score).toBe(0.53);
+    expect(outputDesktop.displayValue).toBeDisplayString('330\xa0ms');
   });
 });

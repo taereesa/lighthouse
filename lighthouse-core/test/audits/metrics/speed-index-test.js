@@ -8,7 +8,7 @@
 /* eslint-env jest */
 
 const Audit = require('../../../audits/metrics/speed-index.js');
-const assert = require('assert');
+const assert = require('assert').strict;
 const options = Audit.defaultOptions;
 
 const pwaTrace = require('../../fixtures/traces/progressive-app-m60.json');

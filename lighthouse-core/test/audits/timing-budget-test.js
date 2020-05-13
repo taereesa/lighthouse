@@ -8,6 +8,8 @@
 const TimingBudgetAudit = require('../../audits/timing-budget.js');
 const trace = require('../fixtures/traces/progressive-app-m60.json');
 const devtoolsLog = require('../fixtures/traces/progressive-app-m60.devtools.log.json');
+const lcpTrace = require('../fixtures/traces/lcp-m78.json');
+const lcpDevtoolsLog = require('../fixtures/traces/lcp-m78.devtools.log.json');
 
 /* eslint-env jest */
 
@@ -80,30 +82,62 @@ describe('Performance: Timing budget audit', () => {
       expect(result.details.items).toHaveLength(2);
     });
 
-    it('works for all supported timing metrics', async () => {
-      const metrics = [
-        'first-contentful-paint',
-        'first-cpu-idle',
-        'interactive',
-        'first-meaningful-paint',
-        'max-potential-fid',
-        'estimated-input-latency',
-        'total-blocking-time',
-        'speed-index',
-      ];
-      await Promise.all(metrics.map(async (metric) => {
+    describe('timings metrics', () => {
+      it('work for all supported timing metrics', async () => {
+        const metrics = [
+          'first-contentful-paint',
+          'first-cpu-idle',
+          'interactive',
+          'first-meaningful-paint',
+          'max-potential-fid',
+          'estimated-input-latency',
+          'total-blocking-time',
+          'speed-index',
+          'largest-contentful-paint',
+          'cumulative-layout-shift',
+        ];
+        for (const metric of metrics) {
+          context.settings.budgets = [{
+            path: '/',
+            timings: [
+              {
+                metric: metric,
+                budget: 100,
+              },
+            ],
+          }];
+          const result = await TimingBudgetAudit.audit(artifacts, context);
+          expect(result.details.items[0].label).toBeDefined();
+          if (metric === 'largest-contentful-paint') {
+            expect(result.details.items[0].measurement).toEqual(undefined);
+          } else if (metric === 'cumulative-layout-shift') {
+            expect(result.details.items[0].measurement).toEqual(0);
+          } else {
+            expect(result.details.items[0].measurement).toBeGreaterThanOrEqual(1);
+          }
+        }
+      });
+
+      // Supplements test above. Uses a trace with a defined LCP for better test coverage.
+      it('supports Largest Contentful Paint', async () => {
+        artifacts.devtoolsLogs.defaultPass = lcpDevtoolsLog;
+        artifacts.traces.defaultPass = lcpTrace;
+
+        // Use an observed throttlingMethod so we don't have to worry about the value changing in the future.
+        context.settings.throttlingMethod = 'provided';
         context.settings.budgets = [{
           path: '/',
           timings: [
             {
-              metric: metric,
+              metric: 'largest-contentful-paint',
               budget: 100,
             },
           ],
         }];
         const result = await TimingBudgetAudit.audit(artifacts, context);
         expect(result.details.items).toHaveLength(1);
-      }));
+        expect(result.details.items[0].measurement).toEqual(1121.711);
+      });
     });
 
     it('sorts rows by descending budget overage', async () => {

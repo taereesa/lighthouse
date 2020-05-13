@@ -6,7 +6,7 @@
 'use strict';
 
 const NotificationOnStart = require('../../../audits/dobetterweb/notification-on-start.js');
-const assert = require('assert');
+const assert = require('assert').strict;
 
 /* eslint-env jest */
 

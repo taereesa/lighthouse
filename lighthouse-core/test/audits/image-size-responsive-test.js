@@ -6,7 +6,7 @@
 'use strict';
 
 const ImageSizeResponsiveAudit = require('../../audits/image-size-responsive.js');
-const assert = require('assert');
+const assert = require('assert').strict;
 
 /* eslint-env jest */
 

@@ -7,7 +7,7 @@
 
 /* eslint-env jest, browser */
 
-const assert = require('assert');
+const assert = require('assert').strict;
 const fs = require('fs');
 const jsdom = require('jsdom');
 const Util = require('../../../../report/html/renderer/util.js');
@@ -91,7 +91,10 @@ describe('PerfCategoryRenderer', () => {
     const disclamerLink = disclaimerEl.querySelector('a');
     assert.ok(disclamerLink, 'disclaimer contains coverted markdown link');
     const disclamerUrl = new URL(disclamerLink.href);
-    assert.strictEqual(disclamerUrl.hostname, 'github.com');
+    assert.strictEqual(disclamerUrl.hostname, 'web.dev');
+    const calcLink = disclaimerEl.querySelector('a.lh-calclink');
+    assert.ok(calcLink, 'disclaimer contains scorecalc link');
+    assert.strictEqual(new URL(calcLink.href).hostname, 'googlechrome.github.io');
   });
 
   it('renders the failing performance opportunities', () => {
@@ -234,13 +237,75 @@ describe('PerfCategoryRenderer', () => {
     });
   });
 
+  describe('_getScoringCalculatorHref', () => {
+    it('creates a working link given some auditRefs', () => {
+      const categoryClone = JSON.parse(JSON.stringify(category));
+
+      // CLS of 0 is both valid and falsy. Make sure it doesn't become 'null'
+      const cls = categoryClone.auditRefs.find(audit => audit.id === 'cumulative-layout-shift');
+      cls.result.numericValue = 0;
+
+      const href = renderer._getScoringCalculatorHref(categoryClone.auditRefs);
+      const url = new URL(href);
+      expect(url.hash.split('&')).toMatchInlineSnapshot(`
+        Array [
+          "#first-contentful-paint=3969.135",
+          "speed-index=4417",
+          "largest-contentful-paint=4927.278",
+          "interactive=4927.278",
+          "total-blocking-time=116.79800000000023",
+          "cumulative-layout-shift=0",
+          "first-cpu-idle=4927.278",
+          "first-meaningful-paint=3969.136",
+        ]
+      `);
+    });
+
+    it('also appends device and version number', () => {
+      Util.reportJson = {
+        configSettings: {emulatedFormFactor: 'mobile'},
+        lighthouseVersion: '6.0.0',
+      };
+      const href = renderer._getScoringCalculatorHref(category.auditRefs);
+      const url = new URL(href);
+      try {
+        expect(url.hash.split('&')).toMatchInlineSnapshot(`
+          Array [
+            "#first-contentful-paint=3969.135",
+            "speed-index=4417",
+            "largest-contentful-paint=4927.278",
+            "interactive=4927.278",
+            "total-blocking-time=116.79800000000023",
+            "cumulative-layout-shift=0.42",
+            "first-cpu-idle=4927.278",
+            "first-meaningful-paint=3969.136",
+            "device=mobile",
+            "version=6.0.0",
+          ]
+        `);
+      } finally {
+        Util.reportJson = null;
+      }
+    });
+
+    it('uses null if the metric is missing its value', () => {
+      const categoryClone = JSON.parse(JSON.stringify(category));
+      const lcp = categoryClone.auditRefs.find(audit => audit.id === 'largest-contentful-paint');
+      lcp.result.numericValue = undefined;
+      lcp.result.score = null;
+      const href = renderer._getScoringCalculatorHref(categoryClone.auditRefs);
+      expect(href).toContain('largest-contentful-paint=null');
+    });
+  });
+
   // This is done all in CSS, but tested here.
   describe('metric description toggles', () => {
     let container;
     let toggle;
     const metricsSelector = '.lh-audit-group--metrics';
     const toggleSelector = '.lh-metrics-toggle__input';
-    const magicSelector = '.lh-metrics-toggle__input:checked ~ .lh-columns .lh-metric__description';
+    const magicSelector =
+      '.lh-metrics-toggle__input:checked ~ .lh-metrics-container .lh-metric__description';
     let getDescriptionsAfterCheckedToggle;
 
     describe('works if there is a performance category', () => {

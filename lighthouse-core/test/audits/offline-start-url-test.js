@@ -5,7 +5,7 @@
  */
 'use strict';
 
-const assert = require('assert');
+const assert = require('assert').strict;
 const OfflineStartUrlAudit = require('../../audits/offline-start-url.js');
 const manifestParser = require('../../lib/manifest-parser.js');
 

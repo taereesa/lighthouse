@@ -7,7 +7,7 @@
 
 /* eslint-env jest */
 
-const assert = require('assert');
+const assert = require('assert').strict;
 const fs = require('fs');
 const pwaTrace = require('../fixtures/traces/progressive-app.json');
 const threeFrameTrace = require('../fixtures/traces/threeframes-blank_content_more.json');

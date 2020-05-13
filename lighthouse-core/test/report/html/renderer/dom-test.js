@@ -5,7 +5,7 @@
  */
 'use strict';
 
-const assert = require('assert');
+const assert = require('assert').strict;
 const fs = require('fs');
 const jsdom = require('jsdom');
 const DOM = require('../../../../report/html/renderer/dom.js');
@@ -38,7 +38,7 @@ describe('DOM', () => {
       const el = dom.createElement('div');
       assert.equal(el.localName, 'div');
       assert.equal(el.className, '');
-      assert.equal(el.className, el.attributes.length);
+      assert.equal(el.hasAttributes(), false);
     });
 
     it('creates an element from parameters', () => {

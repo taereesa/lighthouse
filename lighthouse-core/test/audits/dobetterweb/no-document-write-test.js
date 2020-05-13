@@ -6,7 +6,7 @@
 'use strict';
 
 const DocWriteUseAudit = require('../../../audits/dobetterweb/no-document-write.js');
-const assert = require('assert');
+const assert = require('assert').strict;
 
 const URL = 'https://example.com';
 

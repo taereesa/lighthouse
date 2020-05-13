@@ -9,7 +9,7 @@
 
 const {addRectTopAndBottom} = require('../../lib/rect-helpers.js');
 const {getTappableRectsFromClientRects} = require('../../lib/tappable-rects.js');
-const assert = require('assert');
+const assert = require('assert').strict;
 
 describe('getTappableRectsFromClientRects', () => {
   it('Merges rects if a smaller rect is inside a larger one', () => {

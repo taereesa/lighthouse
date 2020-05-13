@@ -12,7 +12,7 @@ const NetworkNode = require('../../../lib/dependency-graph/network-node.js');
 const CPUNode = require('../../../lib/dependency-graph/cpu-node.js');
 const Simulator = require('../../../lib/dependency-graph/simulator/simulator.js');
 const NetworkRequest = require('../../../lib/network-request.js');
-const assert = require('assert');
+const assert = require('assert').strict;
 
 const trace = require('../../fixtures/traces/progressive-app-m60.json');
 const devtoolsLog = require('../../fixtures/traces/progressive-app-m60.devtools.log.json');

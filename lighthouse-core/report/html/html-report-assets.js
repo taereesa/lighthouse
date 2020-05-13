@@ -29,7 +29,7 @@ const REPORT_JAVASCRIPT = [
 const REPORT_CSS = fs.readFileSync(__dirname + '/report-styles.css', 'utf8');
 const REPORT_TEMPLATES = fs.readFileSync(__dirname + '/templates.html', 'utf8');
 
-// Changes to this export interface should be reflected in build/dt-report-generator-bundle.js
+// Changes to this export interface should be reflected in build/build-dt-report-resources.js
 // and clients/devtools-report-assets.js
 module.exports = {
   REPORT_TEMPLATE,

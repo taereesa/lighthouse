@@ -9,7 +9,7 @@
 
 const path = require('path');
 const fs = require('fs');
-const assert = require('assert');
+const assert = require('assert').strict;
 const puppeteer = require('../../node_modules/puppeteer/index.js');
 
 const {server} = require('../../lighthouse-cli/test/fixtures/static-server.js');
@@ -192,7 +192,7 @@ describe('Lighthouse Viewer', () => {
       await viewerPage.goto(url);
 
       // Wait for report to render.
-      await viewerPage.waitForSelector('.lh-columns');
+      await viewerPage.waitForSelector('.lh-metrics-container');
 
       const interceptedUrl = new URL(interceptedRequest.url());
       expect(interceptedUrl.origin + interceptedUrl.pathname)
@@ -249,7 +249,7 @@ describe('Lighthouse Viewer', () => {
       await viewerPage.goto(url);
 
       // Wait for report to render.call out to PSI with specified categories
-      await viewerPage.waitForSelector('.lh-columns');
+      await viewerPage.waitForSelector('.lh-metrics-container');
 
       const interceptedUrl = new URL(interceptedRequest.url());
       expect(interceptedUrl.origin + interceptedUrl.pathname)

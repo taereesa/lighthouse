@@ -27,8 +27,6 @@ const UIStrings = {
     'and produce costly [layout reflows](https://developers.google.com/speed/articles/reflow). [Learn more](https://web.dev/dom-size).',
   /** Table column header for the type of statistic. These statistics describe how big the DOM is (count of DOM elements, children, depth). */
   columnStatistic: 'Statistic',
-  /** Table column header for the DOM element. Each DOM element is described with its HTML representation. */
-  columnElement: 'Element',
   /** Table column header for the observed value of the DOM statistic. */
   columnValue: 'Value',
   /** [ICU Syntax] Label for an audit identifying the number of DOM elements found in the page. */
@@ -66,11 +64,10 @@ class DOMSize extends Audit {
    */
   static get defaultOptions() {
     return {
-      // 25th and 50th percentiles HTTPArchive -> 50 and 75
       // https://bigquery.cloud.google.com/table/httparchive:lighthouse.2018_04_01_mobile?pli=1
-      // see https://www.desmos.com/calculator/vqot3wci4g
-      scorePODR: 700,
-      scoreMedian: 1400,
+      // see https://www.desmos.com/calculator/tsunbwqt3f
+      p10: 818,
+      median: 1400,
     };
   }
 
@@ -84,15 +81,14 @@ class DOMSize extends Audit {
     const stats = artifacts.DOMStats;
 
     const score = Audit.computeLogNormalScore(
-      stats.totalBodyElements,
-      context.options.scorePODR,
-      context.options.scoreMedian
+      {p10: context.options.p10, median: context.options.median},
+      stats.totalBodyElements
     );
 
     /** @type {LH.Audit.Details.Table['headings']} */
     const headings = [
       {key: 'statistic', itemType: 'text', text: str_(UIStrings.columnStatistic)},
-      {key: 'element', itemType: 'code', text: str_(UIStrings.columnElement)},
+      {key: 'element', itemType: 'code', text: str_(i18n_.UIStrings.columnElement)},
       {key: 'value', itemType: 'numeric', text: str_(UIStrings.columnValue)},
     ];
 

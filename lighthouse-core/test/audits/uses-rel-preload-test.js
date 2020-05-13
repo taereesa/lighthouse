@@ -9,7 +9,7 @@
 /* eslint-env jest */
 
 const UsesRelPreload = require('../../audits/uses-rel-preload.js');
-const assert = require('assert');
+const assert = require('assert').strict;
 
 const pwaTrace = require('../fixtures/traces/progressive-app-m60.json');
 const pwaDevtoolsLog = require('../fixtures/traces/progressive-app-m60.devtools.log.json');

@@ -17,7 +17,7 @@ const UIStrings = {
   /** Description of a Lighthouse audit that tells the user why they their manifest should have at least one maskable icon. This is displayed after a user expands the section to see more. No character length limits. 'Learn More' becomes link text to additional documentation. */
   description: 'A maskable icon ensures that the image fills the entire ' +
     'shape without being letterboxed when installing ' +
-    'the app on a device. [Learn more](https://web.dev/maskable-icon/).',
+    'the app on a device. [Learn more](https://web.dev/maskable-icon-audit/).',
 };
 
 const str_ = i18n.createMessageInstanceIdFn(__filename, UIStrings);

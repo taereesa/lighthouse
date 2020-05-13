@@ -5,12 +5,12 @@
  */
 'use strict';
 
-const assert = require('assert');
+const assert = require('assert').strict;
 const LegacyJavascript = require('../../audits/legacy-javascript.js');
 const networkRecordsToDevtoolsLog = require('../network-records-to-devtools-log.js');
 
 /**
- * @param {Array<{url: string, code: string}>} scripts
+ * @param {Array<{url: string, code: string, map?: LH.Artifacts.RawSourceMap}>} scripts
  * @return {LH.Artifacts}
  */
 const createArtifacts = (scripts) => {
@@ -21,13 +21,21 @@ const createArtifacts = (scripts) => {
   return {
     URL: {finalUrl: '', requestedUrl: ''},
     devtoolsLogs: {defaultPass: networkRecordsToDevtoolsLog(networkRecords)},
-    ScriptElements: scripts.reduce((acc, {code}, index) => {
-      acc[String(index)] = {
+    ScriptElements: scripts.map(({url, code}, index) => {
+      return {
+        src: url,
         content: code,
         requestId: String(index),
       };
+    }),
+    SourceMaps: scripts.reduce((acc, {url, map}) => {
+      if (!map) return acc;
+      acc.push({
+        scriptUrl: url,
+        map,
+      });
       return acc;
-    }, {}),
+    }, []),
   };
 };
 
@@ -163,5 +171,54 @@ describe('LegacyJavaScript audit', () => {
     const result = await LegacyJavascript.audit(artifacts, {computedCache: new Map()});
     expect(result.details.items.map(item => getCodeForUrl(item.url))).toEqual([]);
     assert.equal(result.score, 1);
+  });
+
+  it('uses source maps to identify polyfills', async () => {
+    const map = {
+      sources: [
+        'node_modules/blah/blah/es6.string.repeat.js',
+      ],
+      mappings: 'blah',
+    };
+    const script = {code: 'blah blah', url: 'https://www.example.com/0.js', map};
+    const artifacts = createArtifacts([script]);
+
+    const result = await LegacyJavascript.audit(artifacts, {computedCache: new Map()});
+    expect(result.details.items[0].signals).toEqual(['String.prototype.repeat']);
+    expect(result.details.items[0].locations).toMatchObject([{line: 0, column: 0}]);
+  });
+
+  it('uses location from pattern matching over source map', async () => {
+    const map = {
+      sources: [
+        'node_modules/blah/blah/es6.string.repeat.js',
+      ],
+      mappings: 'blah',
+    };
+    const script = {
+      code: 'some code;\nString.prototype.repeat = function() {}',
+      url: 'https://www.example.com/0.js',
+      map,
+    };
+    const artifacts = createArtifacts([script]);
+
+    const result = await LegacyJavascript.audit(artifacts, {computedCache: new Map()});
+    expect(result.details.items[0].signals).toEqual(['String.prototype.repeat']);
+    expect(result.details.items[0].locations).toMatchObject([{line: 1, column: 0}]);
+  });
+});
+
+describe('LegacyJavaScript signals', () => {
+  it('expect babel-preset-env = true variant to not have any signals', () => {
+    for (const summaryFilename of ['summary-signals.json', 'summary-signals-nomaps.json']) {
+      const signalSummary = require(`../../scripts/legacy-javascript/${summaryFilename}`);
+      const expectedMissingSignals = [
+        'core-js-2-preset-env-esmodules/true',
+        'core-js-3-preset-env-esmodules/true',
+      ];
+      for (const expectedVariant of expectedMissingSignals) {
+        expect(signalSummary.variantsMissingSignals).toContain(expectedVariant);
+      }
+    }
   });
 });

@@ -7,7 +7,7 @@
 
 const UsesResponsiveImagesAudit =
     require('../../../audits/byte-efficiency/uses-responsive-images.js');
-const assert = require('assert');
+const assert = require('assert').strict;
 
 /* eslint-env jest */
 function generateRecord(resourceSizeInKb, durationInMs, mimeType = 'image/png') {

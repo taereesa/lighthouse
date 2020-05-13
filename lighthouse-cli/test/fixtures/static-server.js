@@ -110,7 +110,11 @@ class Server {
 
         // redirect url to new url if present
         if (params.has('redirect')) {
-          return setTimeout(sendRedirect, delay, params.get('redirect'));
+          const redirectsRemaining = Math.max(Number(params.get('redirect_count') || '') - 1, 0);
+          const newRedirectsParam = `redirect_count=${redirectsRemaining}`;
+          const recursiveRedirectUrl = request.url.replace(/redirect_count=\d+/, newRedirectsParam);
+          const redirectUrl = redirectsRemaining ? recursiveRedirectUrl : params.get('redirect');
+          return setTimeout(sendRedirect, delay, redirectUrl);
         }
       }
 

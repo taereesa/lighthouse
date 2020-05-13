@@ -12,7 +12,7 @@ const NetworkRequest = require('../../lib/network-request.js');
 const sampleTrace = require('../fixtures/traces/progressive-app-m60.json');
 const sampleDevtoolsLog = require('../fixtures/traces/progressive-app-m60.devtools.log.json');
 
-const assert = require('assert');
+const assert = require('assert').strict;
 
 function createRequest(
   requestId,

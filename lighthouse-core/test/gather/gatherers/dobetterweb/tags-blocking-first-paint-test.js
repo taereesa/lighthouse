@@ -9,7 +9,7 @@
 
 const TagsBlockingFirstPaint =
     require('../../../../gather/gatherers/dobetterweb/tags-blocking-first-paint.js');
-const assert = require('assert');
+const assert = require('assert').strict;
 let tagsBlockingFirstPaint;
 const traceData = {
   networkRecords: [

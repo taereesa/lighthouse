@@ -7,7 +7,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const assert = require('assert');
+const assert = require('assert').strict;
 
 const ScreenshotThumbnailsAudit = require('../../audits/screenshot-thumbnails.js');
 const pwaTrace = require('../fixtures/traces/progressive-app-m60.json');

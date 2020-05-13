@@ -97,6 +97,8 @@ Supported timing metrics:
 - `estimated-input-latency`
 - `total-blocking-time`
 - `speed-index`
+- `largest-contentful-paint`
+- `cumulative-layout-shift`
 
 ### Resource Budgets
 

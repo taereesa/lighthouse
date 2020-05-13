@@ -8,7 +8,7 @@
 const KB = 1024;
 const ResponsesAreCompressedAudit =
   require('../../../audits/byte-efficiency/uses-text-compression.js');
-const assert = require('assert');
+const assert = require('assert').strict;
 
 function generateResponse(options) {
   return Object.assign({

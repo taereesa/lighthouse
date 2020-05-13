@@ -8,7 +8,7 @@
 /* eslint-env jest */
 
 const TapTargetsAudit = require('../../../audits/seo/tap-targets.js');
-const assert = require('assert');
+const assert = require('assert').strict;
 
 const getFakeContext = () => ({computedCache: new Map()});
 
@@ -161,7 +161,7 @@ describe('SEO: Tap targets audit', () => {
         overlapBelow: true,
       })
     );
-    assert.equal(auditResult.score.toFixed(3), 0.297);
+    assert.equal(auditResult.score.toFixed(3), '0.297');
   });
 
   it('fails when one of the client rects overlaps', async () => {
@@ -170,7 +170,7 @@ describe('SEO: Tap targets audit', () => {
         overlapSecondClientRect: true,
       })
     );
-    assert.equal(auditResult.score.toFixed(3), 0.297);
+    assert.equal(auditResult.score.toFixed(3), '0.297');
   });
 
   it('reports 2 items if a target overlapped both vertically and horizontally', async () => {

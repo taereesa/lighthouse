@@ -5,7 +5,7 @@
  */
 'use strict';
 
-const assert = require('assert');
+const assert = require('assert').strict;
 const lighthouse = require('../../index.js');
 const defaultConfig = require('../../config/default-config.js');
 

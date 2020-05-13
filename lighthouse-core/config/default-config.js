@@ -22,7 +22,7 @@ const UIStrings = {
   /** Title of the opportunity section of the Performance category. Within this section are audits with imperative titles that suggest actions the user can take to improve the loading performance of their web page. 'Suggestion'/'Optimization'/'Recommendation' are reasonable synonyms for 'opportunity' in this case. */
   loadOpportunitiesGroupTitle: 'Opportunities',
   /** Description of the opportunity section of the Performance category. 'Suggestions' could also be 'recommendations'. Within this section are audits with imperative titles that suggest actions the user can take to improve the loading performance of their web page. */
-  loadOpportunitiesGroupDescription: 'These suggestions can help your page load faster. They don\'t [directly affect](https://github.com/GoogleChrome/lighthouse/blob/d2ec9ffbb21de9ad1a0f86ed24575eda32c796f0/docs/scoring.md#how-are-the-scores-weighted) the Performance score.',
+  loadOpportunitiesGroupDescription: 'These suggestions can help your page load faster. They don\'t [directly affect](https://web.dev/performance-scoring/) the Performance score.',
   /** Title of an opportunity sub-section of the Performance category. Within this section are audits with imperative titles that suggest actions the user can take to improve the time of the first initial render of the webpage. */
   firstPaintImprovementsGroupTitle: 'First Paint Improvements',
   /** Description of an opportunity sub-section of the Performance category. Within this section are audits with imperative titles that suggest actions the user can take to improve the time of the first initial render of the webpage. */
@@ -34,7 +34,7 @@ const UIStrings = {
   /** Title of the diagnostics section of the Performance category. Within this section are audits with non-imperative titles that provide more detail on the page's page load performance characteristics. Whereas the 'Opportunities' suggest an action along with expected time savings, diagnostics do not. Within this section, the user may read the details and deduce additional actions they could take. */
   diagnosticsGroupTitle: 'Diagnostics',
   /** Description of the diagnostics section of the Performance category. Within this section are audits with non-imperative titles that provide more detail on a web page's load performance characteristics. Within this section, the user may read the details and deduce additional actions they could take to improve performance. */
-  diagnosticsGroupDescription: 'More information about the performance of your application. These numbers don\'t [directly affect](https://github.com/GoogleChrome/lighthouse/blob/d2ec9ffbb21de9ad1a0f86ed24575eda32c796f0/docs/scoring.md#how-are-the-scores-weighted) the Performance score.',
+  diagnosticsGroupDescription: 'More information about the performance of your application. These numbers don\'t [directly affect](https://web.dev/performance-scoring/) the Performance score.',
   /** Title of the Accessibility category of audits. This section contains audits focused on making web content accessible to all users. Also used as a label of a score gauge; try to limit to 20 characters. */
   a11yCategoryTitle: 'Accessibility',
   /** Description of the Accessibility category. This is displayed at the top of a list of audits focused on making web content accessible to all users. No character length limits. 'improve the accessibility of your web app' becomes link text to additional documentation. */
@@ -105,6 +105,14 @@ const UIStrings = {
   'not automatically checked by Lighthouse. They do not affect your score but it\'s important that you verify them manually.',
   /** Title of the Best Practices category of audits. This is displayed at the top of a list of audits focused on topics related to following web development best practices and accepted guidelines. Also used as a label of a score gauge; try to limit to 20 characters. */
   bestPracticesCategoryTitle: 'Best Practices',
+  /** Title of the Trust & Safety group of audits. This is displayed at the top of a list of audits focused on maintaining user trust and protecting security in web development. */
+  bestPracticesTrustSafetyGroupTitle: 'Trust and Safety',
+  /** Title of the User Experience group of the Best Practices category. Within this section are the audits related to the end user's experience of the webpage. */
+  bestPracticesUXGroupTitle: 'User Experience',
+  /** Title of the Browser Compatibility group of the Best Practices category. Within this section are the audits related to whether the page is interpreted consistently by browsers. */
+  bestPracticesBrowserCompatGroupTitle: 'Browser Compatibility',
+  /** Title of the General group of the Best Practices category. Within this section are the audits that don't belong to a specific group but are of general interest. */
+  bestPracticesGeneralGroupTitle: 'General',
   /** Title of the Fast and Reliable section of the web app category. Within this section are audits that check if the web site loaded quickly and can reliably load even if the internet connection is very slow or goes offline. */
   pwaFastReliableGroupTitle: 'Fast and reliable',
   /** Title of the Installable section of the web app category. Within this section are audits that check if Chrome supports installing the web site as an app on their device. */
@@ -151,6 +159,7 @@ const defaultConfig = {
       'seo/robots-txt',
       'seo/tap-targets',
       'accessibility',
+      'trace-elements',
     ],
   },
   {
@@ -191,7 +200,7 @@ const defaultConfig = {
     'metrics/max-potential-fid',
     'metrics/cumulative-layout-shift',
     'errors-in-console',
-    'time-to-first-byte',
+    'server-response-time',
     'metrics/first-cpu-idle',
     'metrics/interactive',
     'user-timings',
@@ -222,6 +231,8 @@ const defaultConfig = {
     'timing-budget',
     'resource-summary',
     'third-party-summary',
+    'largest-contentful-paint-element',
+    'layout-shift-elements',
     'manual/pwa-cross-browser',
     'manual/pwa-page-transitions',
     'manual/pwa-each-page-has-url',
@@ -384,6 +395,18 @@ const defaultConfig = {
       title: str_(UIStrings.seoCrawlingGroupTitle),
       description: str_(UIStrings.seoCrawlingGroupDescription),
     },
+    'best-practices-trust-safety': {
+      title: str_(UIStrings.bestPracticesTrustSafetyGroupTitle),
+    },
+    'best-practices-ux': {
+      title: str_(UIStrings.bestPracticesUXGroupTitle),
+    },
+    'best-practices-browser-compat': {
+      title: str_(UIStrings.bestPracticesBrowserCompatGroupTitle),
+    },
+    'best-practices-general': {
+      title: str_(UIStrings.bestPracticesGeneralGroupTitle),
+    },
   },
   categories: {
     'performance': {
@@ -412,7 +435,7 @@ const defaultConfig = {
         {id: 'uses-webp-images', weight: 0, group: 'load-opportunities'},
         {id: 'uses-text-compression', weight: 0, group: 'load-opportunities'},
         {id: 'uses-rel-preconnect', weight: 0, group: 'load-opportunities'},
-        {id: 'time-to-first-byte', weight: 0, group: 'load-opportunities'},
+        {id: 'server-response-time', weight: 0, group: 'load-opportunities'},
         {id: 'redirects', weight: 0, group: 'load-opportunities'},
         {id: 'uses-rel-preload', weight: 0, group: 'load-opportunities'},
         {id: 'efficient-animated-content', weight: 0, group: 'load-opportunities'},
@@ -428,6 +451,11 @@ const defaultConfig = {
         {id: 'timing-budget', weight: 0, group: 'budgets'},
         {id: 'resource-summary', weight: 0, group: 'diagnostics'},
         {id: 'third-party-summary', weight: 0, group: 'diagnostics'},
+        {id: 'largest-contentful-paint-element', weight: 0, group: 'diagnostics'},
+        {id: 'layout-shift-elements', weight: 0, group: 'diagnostics'},
+        {id: 'uses-http2', weight: 0, group: 'diagnostics'},
+        {id: 'uses-passive-event-listeners', weight: 0, group: 'diagnostics'},
+        {id: 'no-document-write', weight: 0, group: 'diagnostics'},
         // Audits past this point don't belong to a group and will not be shown automatically
         {id: 'network-requests', weight: 0},
         {id: 'network-rtt', weight: 0},
@@ -505,23 +533,24 @@ const defaultConfig = {
     'best-practices': {
       title: str_(UIStrings.bestPracticesCategoryTitle),
       auditRefs: [
-        {id: 'appcache-manifest', weight: 1},
-        {id: 'is-on-https', weight: 1},
-        {id: 'uses-http2', weight: 1},
-        {id: 'uses-passive-event-listeners', weight: 1},
-        {id: 'no-document-write', weight: 1},
-        {id: 'external-anchors-use-rel-noopener', weight: 1},
-        {id: 'geolocation-on-start', weight: 1},
-        {id: 'doctype', weight: 1},
-        {id: 'charset', weight: 1},
-        {id: 'no-vulnerable-libraries', weight: 1},
-        {id: 'js-libraries', weight: 0},
-        {id: 'notification-on-start', weight: 1},
-        {id: 'deprecations', weight: 1},
-        {id: 'password-inputs-can-be-pasted-into', weight: 1},
-        {id: 'errors-in-console', weight: 1},
-        {id: 'image-aspect-ratio', weight: 1},
-        {id: 'image-size-responsive', weight: 1},
+        // Trust & Safety
+        {id: 'is-on-https', weight: 1, group: 'best-practices-trust-safety'},
+        {id: 'external-anchors-use-rel-noopener', weight: 1, group: 'best-practices-trust-safety'},
+        {id: 'geolocation-on-start', weight: 1, group: 'best-practices-trust-safety'},
+        {id: 'notification-on-start', weight: 1, group: 'best-practices-trust-safety'},
+        {id: 'no-vulnerable-libraries', weight: 1, group: 'best-practices-trust-safety'},
+        // User Experience
+        {id: 'password-inputs-can-be-pasted-into', weight: 1, group: 'best-practices-ux'},
+        {id: 'image-aspect-ratio', weight: 1, group: 'best-practices-ux'},
+        {id: 'image-size-responsive', weight: 1, group: 'best-practices-ux'},
+        // Browser Compatibility
+        {id: 'doctype', weight: 1, group: 'best-practices-browser-compat'},
+        {id: 'charset', weight: 1, group: 'best-practices-browser-compat'},
+        // General Group
+        {id: 'appcache-manifest', weight: 1, group: 'best-practices-general'},
+        {id: 'js-libraries', weight: 0, group: 'best-practices-general'},
+        {id: 'deprecations', weight: 1, group: 'best-practices-general'},
+        {id: 'errors-in-console', weight: 1, group: 'best-practices-general'},
       ],
     },
     'seo': {

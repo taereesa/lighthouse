@@ -5,13 +5,16 @@
  */
 'use strict';
 
+const testUtils = require('../test-utils.js');
 const sampleJson = require('../results/sample_v2.json');
-const roundTripJson = require('../../../proto/sample_v2_round_trip.json');
 const preprocessor = require('../../lib/proto-preprocessor.js');
 
 /* eslint-env jest */
 
-describe('round trip JSON comparison subsets', () => {
+const {describeIfProtoExists, sampleResultsRoundtripStr} = testUtils.getProtoRoundTrip();
+const roundTripJson = sampleResultsRoundtripStr && JSON.parse(sampleResultsRoundtripStr);
+
+describeIfProtoExists('round trip JSON comparison subsets', () => {
   let processedLHR;
 
   beforeEach(() => {
@@ -51,7 +54,7 @@ describe('round trip JSON comparison subsets', () => {
   });
 });
 
-describe('round trip JSON comparison to everything', () => {
+describeIfProtoExists('round trip JSON comparison to everything', () => {
   let processedLHR;
 
   beforeEach(() => {

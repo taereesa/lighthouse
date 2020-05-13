@@ -6,7 +6,7 @@
 'use strict';
 
 const FirstMeaningfulPaint = require('../../../computed/metrics/first-meaningful-paint.js');
-const assert = require('assert');
+const assert = require('assert').strict;
 
 const TRACE_FIXTURES = '../../fixtures/traces';
 const pwaTrace = require(`${TRACE_FIXTURES}/progressive-app-m60.json`);

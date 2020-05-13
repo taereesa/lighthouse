@@ -6,7 +6,7 @@
 'use strict';
 
 const AppCacheManifestAttrAudit = require('../../../audits/dobetterweb/appcache-manifest.js');
-const assert = require('assert');
+const assert = require('assert').strict;
 
 /* eslint-env jest */
 

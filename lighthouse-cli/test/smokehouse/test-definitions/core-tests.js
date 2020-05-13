@@ -67,10 +67,6 @@ const smokeTests = [{
   expectations: require('./tricky-metrics/expectations.js'),
   config: require('./tricky-metrics/no-throttling-config.js'),
 }, {
-  id: 'mixed-content',
-  expectations: require('./mixed-content/mixed-content-expectations.js'),
-  config: require('../../../../lighthouse-core/config/mixed-content-config.js'),
-}, {
   id: 'legacy-javascript',
   expectations: require('./legacy-javascript/expectations.js'),
   config: require('./legacy-javascript/legacy-javascript-config.js'),

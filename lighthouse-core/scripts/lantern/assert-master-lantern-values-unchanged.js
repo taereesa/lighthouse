@@ -9,7 +9,7 @@
 /* eslint-disable no-console */
 
 const fs = require('fs');
-const assert = require('assert');
+const assert = require('assert').strict;
 const path = require('path');
 const constants = require('./constants.js');
 const chalk = require('chalk').default;

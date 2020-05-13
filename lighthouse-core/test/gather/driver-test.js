@@ -11,9 +11,6 @@ const LHElement = require('../../lib/lh-element.js');
 const {protocolGetVersionResponse} = require('./fake-driver.js');
 const {createMockSendCommandFn, createMockOnceFn} = require('./mock-commands.js');
 
-const redirectDevtoolsLog = /** @type {LH.Protocol.RawEventMessage[]} */ (
-  require('../fixtures/wikipedia-redirect.devtoolslog.json'));
-
 /* eslint-env jest */
 
 jest.useFakeTimers();
@@ -460,62 +457,43 @@ describe('.gotoURL', () => {
       .mockResponse('Emulation.setScriptExecutionDisabled')
       .mockResponse('Page.navigate')
       .mockResponse('Target.setAutoAttach')
-      .mockResponse('Runtime.evaluate');
+      .mockResponse('Runtime.evaluate')
+      .mockResponse('Page.getResourceTree', {frameTree: {frame: {id: 'ABC'}}});
   });
 
   it('will track redirects through gotoURL load', async () => {
-    const delay = () => new Promise(resolve => setTimeout(resolve));
+    driver.on = driver.once = createMockOnceFn();
 
-    class ReplayConnection extends Connection {
-      connect() {
-        return Promise.resolve();
-      }
-      disconnect() {
-        return Promise.resolve();
-      }
-      replayLog() {
-        redirectDevtoolsLog.forEach(msg => this.emitProtocolEvent(msg));
-      }
-      /**
-       * @param {string} method
-       * @param {any} _
-       */
-      sendCommand(method, _) {
-        const resolve = Promise.resolve();
-
-        // If navigating, wait, then replay devtools log in parallel to resolve.
-        if (method === 'Page.navigate') {
-          resolve.then(delay).then(_ => this.replayLog());
-        }
-
-        return resolve;
-      }
-    }
-    const replayConnection = new ReplayConnection();
-    const driver = new Driver(replayConnection);
-
-    // Redirect in log will go through
-    const startUrl = 'http://en.wikipedia.org/';
-    // then https://en.wikipedia.org/
-    // then https://en.wikipedia.org/wiki/Main_Page
-    const finalUrl = 'https://en.m.wikipedia.org/wiki/Main_Page';
-
+    const url = 'https://www.example.com';
     const loadOptions = {
-      waitForLoad: true,
-      /** @type {LH.Gatherer.PassContext} */
-      // @ts-ignore - we don't need the entire context for the test.
-      passContext: {
-        passConfig: {
-          pauseAfterLoadMs: 0,
-          networkQuietThresholdMs: 0,
-          cpuQuietThresholdMs: 0,
-        },
-      },
+      waitForNavigated: true,
     };
-    const loadPromise = driver.gotoURL(startUrl, loadOptions);
 
+    const loadPromise = makePromiseInspectable(driver.gotoURL(url, loadOptions));
     await flushAllTimersAndMicrotasks();
-    expect(await loadPromise).toEqual({finalUrl, timedOut: false});
+    expect(loadPromise).not.toBeDone('Did not wait for frameNavigated');
+
+    // Use `findListener` instead of `mockEvent` so we can control exactly when the promise resolves
+    const loadListener = driver.on.findListener('Page.frameNavigated');
+
+    /** @param {LH.Crdp.Page.Frame} frame */
+    const navigate = frame => driver._eventEmitter.emit('Page.frameNavigated', {frame});
+    const baseFrame = {id: 'ABC', loaderId: '', securityOrigin: '', mimeType: 'text/html'};
+    navigate({...baseFrame, url: 'http://example.com'});
+    navigate({...baseFrame, url: 'https://example.com'});
+    navigate({...baseFrame, url: 'https://www.example.com'});
+    navigate({...baseFrame, url: 'https://m.example.com'});
+    navigate({...baseFrame, id: 'ad1', url: 'https://frame-a.example.com'});
+    navigate({...baseFrame, url: 'https://m.example.com/client'});
+    navigate({...baseFrame, id: 'ad2', url: 'https://frame-b.example.com'});
+    navigate({...baseFrame, id: 'ad3', url: 'https://frame-c.example.com'});
+
+    loadListener();
+    await flushAllTimersAndMicrotasks();
+    expect(loadPromise).toBeDone('Did not resolve after frameNavigated');
+
+    const results = await loadPromise;
+    expect(results.finalUrl).toEqual('https://m.example.com/client');
   });
 
   describe('when waitForNavigated', () => {

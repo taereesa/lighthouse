@@ -5,7 +5,7 @@
  */
 'use strict';
 
-const assert = require('assert');
+const assert = require('assert').strict;
 
 const FinalScreenshotAudit = require('../../audits/final-screenshot.js');
 const pwaTrace = require('../fixtures/traces/progressive-app-m60.json');

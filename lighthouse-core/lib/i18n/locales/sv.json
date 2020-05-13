@@ -141,10 +141,10 @@
     "message": "Om en definitionslista inte har märkts upp korrekt kan den läsas upp på ett missvisande eller felaktigt sätt av skärmläsare. [Läs mer](https://web.dev/definition-list/)."
   },
   "lighthouse-core/audits/accessibility/definition-list.js | failureTitle": {
-    "message": "Det finns `<dl>`-element som inte enbart består av `<dt>`- och `<dd>`-grupper i rätt ordning, `<script>`- och `<template>`-element."
+    "message": "Det finns `<dl>`-element som inte enbart består av `<dt>`- och `<dd>`-grupper, `<script>`-, `<template>`- eller `<div>`-element."
   },
   "lighthouse-core/audits/accessibility/definition-list.js | title": {
-    "message": "Alla `<dl>`-element består enbart av `<dt>`- och `<dd>`-grupper i rätt ordning, `<script>`- eller `<template>`-element."
+    "message": "Alla `<dl>`-element består enbart av `<dt>`- och `<dd>`-grupper i rätt ordning, `<script>`-,`<template>`- eller `<div>`-element."
   },
   "lighthouse-core/audits/accessibility/dlitem.js | description": {
     "message": "Alla poster i definitionslistor (`<dt>` och `<dd>`) måste ha överordnade `<dl>`-element så att de kan presenteras korrekt av skärmläsare. [Läs mer](https://web.dev/dlitem/)."
@@ -404,6 +404,12 @@
   "lighthouse-core/audits/bootup-time.js | title": {
     "message": "Körningstid för JavaScript"
   },
+  "lighthouse-core/audits/byte-efficiency/duplicated-javascript.js | description": {
+    "message": "Ta bort stora, duplicerade JavaScript-moduler från paket så att färre onödiga byte skickas via nätverket. "
+  },
+  "lighthouse-core/audits/byte-efficiency/duplicated-javascript.js | title": {
+    "message": "Ta bort dubblettmoduler i JavaScript-paket"
+  },
   "lighthouse-core/audits/byte-efficiency/efficient-animated-content.js | description": {
     "message": "Stora GIF-filer är inte ett effektivt sätt att visa animerat innehåll. I stället för GIF kan du använda videor i MPEG4-/WebM-format för animationer och PNG-/WebP-format för statiska bilder. Då minskar antalet byte som skickas via nätverket. [Läs mer](https://web.dev/efficient-animated-content)"
   },
@@ -453,7 +459,7 @@
     "message": "Ta bort oanvänd CSS"
   },
   "lighthouse-core/audits/byte-efficiency/unused-javascript.js | description": {
-    "message": "Ta bort JavaScript som inte används så att färre byte skickas via nätverket. [Läs mer](https://developers.google.com/web/fundamentals/performance/optimizing-javascript/code-splitting)."
+    "message": "Ta bort JavaScript som inte används så att färre byte skickas via nätverket. [Läs mer](https://web.dev/remove-unused-code/)."
   },
   "lighthouse-core/audits/byte-efficiency/unused-javascript.js | title": {
     "message": "Ta bort JavaScript som inte används"
@@ -545,6 +551,15 @@
   "lighthouse-core/audits/dobetterweb/appcache-manifest.js | title": {
     "message": "Undviker programcache"
   },
+  "lighthouse-core/audits/dobetterweb/charset.js | description": {
+    "message": "En deklaration av teckenkodning krävs. Den kan lämnas med en <meta>-tagg i HTML-kodens första 1024 byte eller i HTTP-svarshuvudet för Content-Type. [Läs mer](https://www.w3.org/International/questions/qa-html-encoding-declarations)."
+  },
+  "lighthouse-core/audits/dobetterweb/charset.js | failureTitle": {
+    "message": "Deklaration av teckenuppsättning saknas eller förekommer för sent i HTML-koden"
+  },
+  "lighthouse-core/audits/dobetterweb/charset.js | title": {
+    "message": "Definierar teckenuppsättning korrekt"
+  },
   "lighthouse-core/audits/dobetterweb/doctype.js | description": {
     "message": "En doctype förhindrar att webbläsaren byter till quirks-läge. [Läs mer](https://web.dev/doctype)."
   },
@@ -565,9 +580,6 @@
   },
   "lighthouse-core/audits/dobetterweb/doctype.js | title": {
     "message": "Sidan har HTML som doctype"
-  },
-  "lighthouse-core/audits/dobetterweb/dom-size.js | columnElement": {
-    "message": "Element"
   },
   "lighthouse-core/audits/dobetterweb/dom-size.js | columnStatistic": {
     "message": "Värde"
@@ -595,6 +607,9 @@
   },
   "lighthouse-core/audits/dobetterweb/dom-size.js | title": {
     "message": "Undviker ett onödigt stort DOM-träd"
+  },
+  "lighthouse-core/audits/dobetterweb/external-anchors-use-rel-noopener.js | columnFailingAnchors": {
+    "message": "Ankare med fel"
   },
   "lighthouse-core/audits/dobetterweb/external-anchors-use-rel-noopener.js | description": {
     "message": "Lägg till `rel=\"noopener\"` eller `rel=\"noreferrer\"` i alla externa länkar för att förbättra prestanda och säkerhet. [Läs mer](https://web.dev/external-anchors-use-rel-noopener)."
@@ -630,7 +645,7 @@
     "message": "För användare med långsam anslutning kan externa skript som infogas dynamiskt via `document.write()` fördröja sidinläsningen med tiotals sekunder. [Läs mer](https://web.dev/no-document-write)."
   },
   "lighthouse-core/audits/dobetterweb/no-document-write.js | failureTitle": {
-    "message": "`document.write()` används"
+    "message": "Undvik `document.write()`"
   },
   "lighthouse-core/audits/dobetterweb/no-document-write.js | title": {
     "message": "`document.write()` undviks"
@@ -752,6 +767,24 @@
   "lighthouse-core/audits/image-aspect-ratio.js | warningCompute": {
     "message": "Ogiltig information om bildstorlek {url}"
   },
+  "lighthouse-core/audits/image-size-responsive.js | columnActual": {
+    "message": "Faktisk storlek"
+  },
+  "lighthouse-core/audits/image-size-responsive.js | columnDisplayed": {
+    "message": "Visad storlek"
+  },
+  "lighthouse-core/audits/image-size-responsive.js | columnExpected": {
+    "message": "Förväntad storlek"
+  },
+  "lighthouse-core/audits/image-size-responsive.js | description": {
+    "message": "Bildens faktiska mått ska vara proportionella mot skärmstorleken och pixelmåtten för tydligast möjliga bildvisning. [Läs mer](https://web.dev/image-size-responsive)."
+  },
+  "lighthouse-core/audits/image-size-responsive.js | failureTitle": {
+    "message": "Visar bilder i fel storlek"
+  },
+  "lighthouse-core/audits/image-size-responsive.js | title": {
+    "message": "Visar bilder i rätt storlek"
+  },
   "lighthouse-core/audits/installable-manifest.js | description": {
     "message": "Webbläsare kan i förväg uppmana användare att lägga till appen på startskärmen, vilket leder till att de använder den mer. [Läs mer](https://web.dev/installable-manifest)."
   },
@@ -775,6 +808,12 @@
   },
   "lighthouse-core/audits/is-on-https.js | title": {
     "message": "Använder HTTPS"
+  },
+  "lighthouse-core/audits/legacy-javascript.js | description": {
+    "message": "Med polyfill-koder och transformeringar går det att använda nya JavaScript-funktioner i äldre webbläsare. Många av dem behövs dock inte för moderna webbläsare. Om du har JavaScript-paket kan du använda en modern strategi för skriptimplementering där registrering av funktioner med eller utan moduler används för att minska mängden kod som skickas till moderna webbläsare, samtidigt som stöd för äldre webbläsare finns kvar. [Läs mer](https://philipwalton.com/articles/deploying-es2015-code-in-production-today/)"
+  },
+  "lighthouse-core/audits/legacy-javascript.js | title": {
+    "message": "Äldre JavaScript"
   },
   "lighthouse-core/audits/load-fast-enough-for-pwa.js | description": {
     "message": "Snabb sidinläsning i mobila nätverk ger en bra upplevelse för mobila användare. [Läs mer](https://web.dev/load-fast-enough-for-pwa)."
@@ -824,6 +863,18 @@
   "lighthouse-core/audits/manual/pwa-page-transitions.js | title": {
     "message": "Det ska inte kännas som om övergångar mellan sidor blockeras på nätverket"
   },
+  "lighthouse-core/audits/maskable-icon.js | description": {
+    "message": "En maskerbar ikon gör att bilden fyller ut hela formen utan att vara avskärmad upptill och nedtill när appen installeras på en enhet. [Läs mer](https://web.dev/maskable-icon/)."
+  },
+  "lighthouse-core/audits/maskable-icon.js | failureTitle": {
+    "message": "Manifestet har ingen maskerbar ikon"
+  },
+  "lighthouse-core/audits/maskable-icon.js | title": {
+    "message": "Manifest har en maskerbar ikon"
+  },
+  "lighthouse-core/audits/metrics/cumulative-layout-shift.js | description": {
+    "message": "Kumulativ layoutförskjutning mäter rörelsen hos synliga element inom visningsområdet. [Läs mer](https://web.dev/cls)."
+  },
   "lighthouse-core/audits/metrics/estimated-input-latency.js | description": {
     "message": "Uppskattad inmatningslatens är en uppskattning av hur lång tid (i millisekunder) det tar innan appen svarar på användarens inmatning under den mest aktiva femsekundersperioden av sidinläsningen. Om latensen är högre än 50 ms kan användarna uppfatta appen som seg. [Läs mer](https://web.dev/estimated-input-latency)."
   },
@@ -840,10 +891,7 @@
     "message": "Tiden till interaktivitet är den tid det tar innan sidan är fullständigt interaktiv. [Läs mer](https://web.dev/interactive)."
   },
   "lighthouse-core/audits/metrics/largest-contentful-paint.js | description": {
-    "message": "Största uppritningen av innehåll anger tidpunkten då den största texten eller bilden ritades upp. [Läs mer](https://web.dev/largest-contentful-paint)"
-  },
-  "lighthouse-core/audits/metrics/largest-contentful-paint.js | title": {
-    "message": "Största uppritningen av innehåll"
+    "message": "Största uppritningen av innehåll anger tidpunkten då den största texten eller bilden ritades upp. [Läs mer](https://web.dev/lighthouse-largest-contentful-paint)"
   },
   "lighthouse-core/audits/metrics/max-potential-fid.js | description": {
     "message": "Den högsta potentiella fördröjningen till första inmatningen som användarna kan få är längden på den längsta uppgiften. [Läs mer](https://web.dev/lighthouse-max-potential-fid)."
@@ -1118,18 +1166,6 @@
   "lighthouse-core/audits/third-party-summary.js | title": {
     "message": "Minimera användning av tredjepartskod"
   },
-  "lighthouse-core/audits/time-to-first-byte.js | description": {
-    "message": "Mätvärdet Tid till första byte anger när servern svarade. [Läs mer](https://web.dev/time-to-first-byte)."
-  },
-  "lighthouse-core/audits/time-to-first-byte.js | displayValue": {
-    "message": "Rotdokumentet tog {timeInMs, number, milliseconds} ms"
-  },
-  "lighthouse-core/audits/time-to-first-byte.js | failureTitle": {
-    "message": "Minska svarstiderna från servern (tid till första byte)"
-  },
-  "lighthouse-core/audits/time-to-first-byte.js | title": {
-    "message": "Servern svarar snabbt (tid till första byte)"
-  },
   "lighthouse-core/audits/timing-budget.js | columnMeasurement": {
     "message": "Mått"
   },
@@ -1168,6 +1204,9 @@
   },
   "lighthouse-core/audits/uses-rel-preconnect.js | title": {
     "message": "Föranslut till obligatoriska källor"
+  },
+  "lighthouse-core/audits/uses-rel-preconnect.js | tooManyPreconnectLinksWarning": {
+    "message": "Mer än 2 föranslutna länkar hittades. Föranslutna länkar ska användas sparsamt och bara med de viktigaste källorna."
   },
   "lighthouse-core/audits/uses-rel-preload.js | crossoriginWarning": {
     "message": "En <link> för förinläsning hittades för {preloadURL} men den användes inte av webbläsaren. Kontrollera att attributet `crossorigin` används korrekt."
@@ -1355,6 +1394,12 @@
   "lighthouse-core/config/default-config.js | seoMobileGroupTitle": {
     "message": "Mobilanpassad"
   },
+  "lighthouse-core/gather/gather-runner.js | warningRedirected": {
+    "message": "Sidan kanske inte läses in eftersom testwebbadressen ({requested}) omdirigerades till {final}. Testa den andra webbadressen direkt i stället."
+  },
+  "lighthouse-core/gather/gather-runner.js | warningTimeout": {
+    "message": "Sidan lästes in för långsamt för att slutföra sidhämtningen inom tidsgränsen. Resultatet kan vara ofullständigt."
+  },
   "lighthouse-core/lib/i18n/i18n.js | columnCacheTTL": {
     "message": "Lagringstid i cacheminnet"
   },
@@ -1370,11 +1415,17 @@
   "lighthouse-core/lib/i18n/i18n.js | columnRequests": {
     "message": "Begäranden"
   },
+  "lighthouse-core/lib/i18n/i18n.js | columnResourceSize": {
+    "message": "Resursens storlek"
+  },
   "lighthouse-core/lib/i18n/i18n.js | columnResourceType": {
     "message": "Resurstyp"
   },
   "lighthouse-core/lib/i18n/i18n.js | columnSize": {
     "message": "Storlek"
+  },
+  "lighthouse-core/lib/i18n/i18n.js | columnSource": {
+    "message": "Källa"
   },
   "lighthouse-core/lib/i18n/i18n.js | columnTimeSpent": {
     "message": "Tid som använts"
@@ -1390,6 +1441,9 @@
   },
   "lighthouse-core/lib/i18n/i18n.js | columnWastedMs": {
     "message": "Möjlig besparing"
+  },
+  "lighthouse-core/lib/i18n/i18n.js | cumulativeLayoutShiftMetric": {
+    "message": "Kumulativ layoutförskjutning"
   },
   "lighthouse-core/lib/i18n/i18n.js | displayValueByteSavings": {
     "message": "Möjlig databesparing: {wastedBytes, number, bytes} kB"
@@ -1420,6 +1474,9 @@
   },
   "lighthouse-core/lib/i18n/i18n.js | interactiveMetric": {
     "message": "Tid till interaktivt tillstånd"
+  },
+  "lighthouse-core/lib/i18n/i18n.js | largestContentfulPaintMetric": {
+    "message": "Största uppritningen av innehåll"
   },
   "lighthouse-core/lib/i18n/i18n.js | maxPotentialFIDMetric": {
     "message": "Högsta potentiella fördröjning till första inmatningen"
@@ -1514,11 +1571,38 @@
   "lighthouse-core/report/html/renderer/util.js | crcLongestDurationLabel": {
     "message": "Högsta latens för kritisk kedja:"
   },
+  "lighthouse-core/report/html/renderer/util.js | dropdownCopyJSON": {
+    "message": "Kopiera JSON"
+  },
+  "lighthouse-core/report/html/renderer/util.js | dropdownDarkTheme": {
+    "message": "Aktivera och inaktivera mörkt tema"
+  },
+  "lighthouse-core/report/html/renderer/util.js | dropdownPrintExpanded": {
+    "message": "Skriv ut utökad"
+  },
+  "lighthouse-core/report/html/renderer/util.js | dropdownPrintSummary": {
+    "message": "Skriv ut sammanfattning"
+  },
+  "lighthouse-core/report/html/renderer/util.js | dropdownSaveGist": {
+    "message": "Spara som Gist"
+  },
+  "lighthouse-core/report/html/renderer/util.js | dropdownSaveHTML": {
+    "message": "Spara som HTML"
+  },
+  "lighthouse-core/report/html/renderer/util.js | dropdownSaveJSON": {
+    "message": "Spara som JSON"
+  },
+  "lighthouse-core/report/html/renderer/util.js | dropdownViewer": {
+    "message": "Öppna i visningsprogram"
+  },
   "lighthouse-core/report/html/renderer/util.js | errorLabel": {
     "message": "Fel."
   },
   "lighthouse-core/report/html/renderer/util.js | errorMissingAuditInfo": {
     "message": "Rapportfel: ingen granskningsinformation"
+  },
+  "lighthouse-core/report/html/renderer/util.js | footerIssue": {
+    "message": "Rapportera ett problem"
   },
   "lighthouse-core/report/html/renderer/util.js | labDataTitle": {
     "message": "Labbdata"
@@ -1541,6 +1625,48 @@
   "lighthouse-core/report/html/renderer/util.js | passedAuditsGroupTitle": {
     "message": "Godkända granskningar"
   },
+  "lighthouse-core/report/html/renderer/util.js | runtimeDesktopEmulation": {
+    "message": "Emulerat skrivbord"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeMobileEmulation": {
+    "message": "Emulerad Moto G4"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeNoEmulation": {
+    "message": "Ingen emulering"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsBenchmark": {
+    "message": "CPU/minne"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsCPUThrottling": {
+    "message": "CPU-begränsning"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsChannel": {
+    "message": "Kanal"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsDevice": {
+    "message": "Enhet"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsFetchTime": {
+    "message": "Tidpunkt för hämtning"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsNetworkThrottling": {
+    "message": "Nätverksbegränsning"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsTitle": {
+    "message": "Körtidsinställningar"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsUA": {
+    "message": "Användaragent (värd)"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsUANetwork": {
+    "message": "Användaragent (nätverk)"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsUrl": {
+    "message": "Webbadress"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeUnknown": {
+    "message": "Okänd"
+  },
   "lighthouse-core/report/html/renderer/util.js | snippetCollapseButtonLabel": {
     "message": "Komprimera utdrag"
   },
@@ -1549,6 +1675,9 @@
   },
   "lighthouse-core/report/html/renderer/util.js | thirdPartyResourcesLabel": {
     "message": "Visa resurser från tredje part"
+  },
+  "lighthouse-core/report/html/renderer/util.js | throttlingProvided": {
+    "message": "Tillhandahålls av miljön"
   },
   "lighthouse-core/report/html/renderer/util.js | toplevelWarningsMessage": {
     "message": "Problem uppstod med den här körningen av Lighthouse."
@@ -1610,9 +1739,6 @@
   "stack-packs/packs/magento.js | offscreen_images": {
     "message": "Vi rekommenderar att du ändrar dina produkt- och katalogmallar för att dra nytta av webbplattformens funktion för [uppskjuten inläsning](https://web.dev/native-lazy-loading)."
   },
-  "stack-packs/packs/magento.js | time_to_first_byte": {
-    "message": "Använd Magentos [Varnish-integrering](https://devdocs.magento.com/guides/v2.3/config-guide/varnish/config-varnish.html)."
-  },
   "stack-packs/packs/magento.js | unminified_css": {
     "message": "Aktivera alternativet Minify CSS Files (minifiera CSS-filer) i butikens utvecklarinställningar. [Läs mer](https://devdocs.magento.com/guides/v2.3/performance-best-practices/configuration.html?itm_source=devdocs&itm_medium=search_page&itm_campaign=federated_search&itm_term=minify%20css%20files)."
   },
@@ -1640,9 +1766,6 @@
   "stack-packs/packs/react.js | redirects": {
     "message": "Om du använder React Router minimerar du användningen av komponenten `<Redirect>` för [navigering av dirigeringar](https://reacttraining.com/react-router/web/api/Redirect)."
   },
-  "stack-packs/packs/react.js | time_to_first_byte": {
-    "message": "Om du renderar React-komponenter på serversidan rekommenderar vi att du använder `renderToNodeStream()` eller `renderToStaticNodeStream()` till att tillåta att klienten tar emot och hydrerar olika delar av uppmärkningen i stället för alla på en gång. [Läs mer](https://reactjs.org/docs/react-dom-server.html#rendertonodestream)."
-  },
   "stack-packs/packs/react.js | unminified_css": {
     "message": "Om versionssystemet minifierar CSS-filerna automatiskt kontrollerar du att du implementerar appens produktionsversion. Du kan kontrollera detta med tillägget React Developer Tools. [Läs mer](https://reactjs.org/docs/optimizing-performance.html#use-the-production-build)."
   },
@@ -1663,9 +1786,6 @@
   },
   "stack-packs/packs/wordpress.js | render_blocking_resources": {
     "message": "Det finns ett antal pluginmoduler för WordPress som kan hjälpa dig att [lägga till kritiska tillgångar direkt på sidan](https://wordpress.org/plugins/search/critical+css/) eller [skjuta upp inläsningen av mindre viktiga resurser](https://wordpress.org/plugins/search/defer+css+javascript/). Tänk på att optimeringarna som dessa pluginmoduler gör kan leda till att funktioner i teman eller andra pluginmoduler slutar fungera, så du kan behöva ändra i koden."
-  },
-  "stack-packs/packs/wordpress.js | time_to_first_byte": {
-    "message": "Serverns svarstider påverkas av teman, pluginmoduler och serverns prestanda. Du kan använda ett mer optimerat tema, välja en optimeringsplugin och/eller uppgradera servern."
   },
   "stack-packs/packs/wordpress.js | total_byte_weight": {
     "message": "Du kan visa utdrag i inläggslistan (t.ex. via en more-tagg), minska antalet inlägg på sidan, dela upp långa inlägg på flera sidor eller använda en plugin som läser in kommentarer med lat inläsning."

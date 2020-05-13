@@ -9,7 +9,7 @@
 const EfficientAnimatedContent =
   require('../../../audits/byte-efficiency/efficient-animated-content.js');
 const NetworkRequest = require('../../../lib/network-request.js');
-const assert = require('assert');
+const assert = require('assert').strict;
 
 describe('Page uses videos for animated GIFs', () => {
   it('should flag gifs above 100kb as unoptimized', async () => {

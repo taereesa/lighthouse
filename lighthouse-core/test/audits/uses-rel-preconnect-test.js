@@ -9,7 +9,7 @@
 /* eslint-env jest */
 
 const UsesRelPreconnect = require('../../audits/uses-rel-preconnect.js');
-const assert = require('assert');
+const assert = require('assert').strict;
 const networkRecordsToDevtoolsLog = require('../network-records-to-devtools-log.js');
 
 const mainResource = {

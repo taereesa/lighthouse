@@ -6,7 +6,7 @@
 'use strict';
 
 const TotalByteWeight = require('../../../audits/byte-efficiency/total-byte-weight.js');
-const assert = require('assert');
+const assert = require('assert').strict;
 const URL = require('url').URL;
 const options = TotalByteWeight.defaultOptions;
 const networkRecordsToDevtoolsLog = require('../../network-records-to-devtools-log.js');

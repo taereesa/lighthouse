@@ -5,7 +5,7 @@
  */
 'use strict';
 
-const assert = require('assert');
+const assert = require('assert').strict;
 const ConfigPlugin = require('../../config/config-plugin.js');
 
 /* eslint-env jest */

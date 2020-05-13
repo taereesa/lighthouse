@@ -16,8 +16,10 @@ const pwaRocksExpectations = {...pwaDetailsExpectations, hasIconsAtLeast512px: f
 module.exports = [
   {
     lhr: {
-      requestedUrl: 'https://pwa.rocks',
-      finalUrl: 'https://pwa.rocks/',
+      // Archived version of https://github.com/pwarocks/pwa.rocks
+      // Fork is here: https://github.com/connorjclark/pwa.rocks
+      requestedUrl: 'https://connorjclark.github.io/pwa.rocks/',
+      finalUrl: 'https://connorjclark.github.io/pwa.rocks/',
       audits: {
         'is-on-https': {
           score: 1,

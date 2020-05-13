@@ -8,7 +8,7 @@
 /* eslint-env jest */
 
 const ManifestValues = require('../../computed/manifest-values.js');
-const assert = require('assert');
+const assert = require('assert').strict;
 
 const manifestSrc = JSON.stringify(require('../fixtures/manifest.json'));
 const manifestParser = require('../../lib/manifest-parser.js');

@@ -8,7 +8,7 @@
 const ServiceWorker = require('../../audits/service-worker.js');
 const URL = require('../../lib/url-shim.js');
 const manifestParser = require('../../lib/manifest-parser.js');
-const assert = require('assert');
+const assert = require('assert').strict;
 
 /* eslint-env jest */
 

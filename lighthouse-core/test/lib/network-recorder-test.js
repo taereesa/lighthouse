@@ -7,7 +7,7 @@
 
 const NetworkRecorder = require('../../lib/network-recorder.js');
 const networkRecordsToDevtoolsLog = require('../network-records-to-devtools-log.js');
-const assert = require('assert');
+const assert = require('assert').strict;
 const devtoolsLogItems = require('../fixtures/artifacts/perflog/defaultPass.devtoolslog.json');
 const prefetchedScriptDevtoolsLog = require('../fixtures/prefetched-script.devtoolslog.json');
 const redirectsDevtoolsLog = require('../fixtures/wikipedia-redirect.devtoolslog.json');

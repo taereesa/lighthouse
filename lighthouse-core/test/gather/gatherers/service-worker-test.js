@@ -8,7 +8,7 @@
 /* eslint-env jest */
 
 const ServiceWorkerGather = require('../../../gather/gatherers/service-worker.js');
-const assert = require('assert');
+const assert = require('assert').strict;
 
 describe('service worker gatherer', () => {
   it('obtains the active service worker registration', async () => {

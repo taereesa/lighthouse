@@ -8,7 +8,7 @@
 /* eslint-env jest */
 
 const pkg = require('../../package.json');
-const assert = require('assert');
+const assert = require('assert').strict;
 const lighthouse = require('../index.js');
 
 describe('Module Tests', function() {

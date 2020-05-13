@@ -7,6 +7,7 @@
 
 /* eslint-env jest */
 
+const fs = require('fs');
 const i18n = require('../lib/i18n/i18n.js');
 const {default: {toBeCloseTo}} = require('expect/build/matchers.js');
 
@@ -41,3 +42,42 @@ expect.extend({
     return toBeCloseTo.call(thisObj, ...args);
   },
 });
+
+/**
+ * Some tests use the result of a LHR processed by our proto serialization.
+ * Proto is an annoying dependency to setup, so we allows tests that use it
+ * to be skipped when run locally. This makes external contributions simpler.
+ *
+ * Along with the sample LHR, this function returns jest `it` and `describe`
+ * functions that will skip if the sample LHR could not be loaded.
+ */
+function getProtoRoundTrip() {
+  let sampleResultsRoundtripStr;
+  let describeIfProtoExists;
+  let itIfProtoExists;
+  try {
+    sampleResultsRoundtripStr =
+      fs.readFileSync(__dirname + '/../../proto/sample_v2_round_trip.json', 'utf-8');
+    describeIfProtoExists = describe;
+    itIfProtoExists = it;
+  } catch (err) {
+    if (process.env.GITHUB_ACTIONS) {
+      throw new Error('sample_v2_round_trip must be generated for CI proto test');
+    }
+    // Otherwise no proto roundtrip for tests, so skip them.
+    // This is fine for running the tests locally.
+
+    itIfProtoExists = it.skip;
+    describeIfProtoExists = describe.skip;
+  }
+
+  return {
+    itIfProtoExists,
+    describeIfProtoExists,
+    sampleResultsRoundtripStr,
+  };
+}
+
+module.exports = {
+  getProtoRoundTrip,
+};

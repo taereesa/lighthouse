@@ -6,7 +6,7 @@
 'use strict';
 
 const Audit = require('../../../audits/accessibility/label.js');
-const assert = require('assert');
+const assert = require('assert').strict;
 
 /* eslint-env jest */
 

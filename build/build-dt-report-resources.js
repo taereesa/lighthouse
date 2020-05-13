@@ -9,7 +9,7 @@ const browserify = require('browserify');
 const fs = require('fs');
 const path = require('path');
 const rimraf = require('rimraf');
-const assert = require('assert');
+const assert = require('assert').strict;
 
 const distDir = path.join(__dirname, '..', 'dist', 'dt-report-resources');
 const bundleOutFile = `${distDir}/report-generator.js`;
@@ -17,7 +17,7 @@ const generatorFilename = `./lighthouse-core/report/report-generator.js`;
 const htmlReportAssets = require('../lighthouse-core/report/html/html-report-assets.js');
 
 /**
- * Used to save cached resources (Root.Runtime.cachedResources).
+ * Used to save cached resources (Runtime.cachedResources).
  * @param {string} name
  * @param {string} content
  */

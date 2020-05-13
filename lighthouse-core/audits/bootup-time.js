@@ -66,10 +66,10 @@ class BootupTime extends Audit {
    */
   static get defaultOptions() {
     return {
-      // see https://www.desmos.com/calculator/rkphawothk
-      // <500ms ~= 100, >2s is yellow, >3.5s is red
-      scorePODR: 600,
-      scoreMedian: 3500,
+      // see https://www.desmos.com/calculator/ynl8fzh1wd
+      // <500ms ~= 100, >1.3s is yellow, >3.5s is red
+      p10: 1282,
+      median: 3500,
       thresholdInMs: 50,
     };
   }
@@ -200,9 +200,8 @@ class BootupTime extends Audit {
     const details = BootupTime.makeTableDetails(headings, results, summary);
 
     const score = Audit.computeLogNormalScore(
-      totalBootupTime,
-      context.options.scorePODR,
-      context.options.scoreMedian
+      {p10: context.options.p10, median: context.options.median},
+      totalBootupTime
     );
 
     return {

@@ -7,7 +7,7 @@
 
 const KB = 1024;
 const UnminifiedCssAudit = require('../../../audits/byte-efficiency/unminified-css.js');
-const assert = require('assert');
+const assert = require('assert').strict;
 
 /* eslint-env jest */
 

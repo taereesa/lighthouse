@@ -6,7 +6,7 @@
 'use strict';
 
 /* eslint-env jest */
-const assert = require('assert');
+const assert = require('assert').strict;
 const childProcess = require('child_process');
 const path = require('path');
 const indexPath = path.resolve(__dirname, '../../index.js');

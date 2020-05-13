@@ -6,7 +6,7 @@
 'use strict';
 
 const JsLibrariesAudit = require('../../../audits/dobetterweb/js-libraries.js');
-const assert = require('assert');
+const assert = require('assert').strict;
 
 /* eslint-env jest */
 describe('Returns detected front-end JavaScript libraries', () => {

@@ -13,7 +13,7 @@ const acceptableTrace = require('../../fixtures/traces/progressive-app-m60.json'
 const acceptableDevtoolsLog = require('../../fixtures/traces/progressive-app-m60.devtools.log.json'); // eslint-disable-line max-len
 const redirectTrace = require('../../fixtures/traces/site-with-redirect.json');
 
-const assert = require('assert');
+const assert = require('assert').strict;
 
 /* eslint-env jest */
 describe('FirstInteractive computed artifact:', () => {

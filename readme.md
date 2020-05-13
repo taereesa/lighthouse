@@ -92,7 +92,7 @@ Configuration:
                                  Chromium version 66.0 or later. By default, any detected Chrome Canary or Chrome (stable) will be launched.
                                                                                                                                        [default: ""]
   --port                         The port to use for the debugging protocol. Use 0 for a random port                                    [default: 0]
-  --preset                       Use a built-in configuration.                                            [choices: "full", "perf", "mixed-content"]
+  --preset                       Use a built-in configuration.                                            [choices: "experimental", "perf"]
                                  WARNING: If the --config-path flag is provided, this preset will be ignored.
   --hostname                     The hostname to use for the debugging protocol.                                              [default: "localhost"]
   --max-wait-for-load            The timeout (in milliseconds) to wait before the page is considered done loading and the run should continue.
@@ -350,6 +350,8 @@ This section details services that have integrated Lighthouse data. If you're wo
 
 * **[AwesomeTechStack](https://awesometechstack.com)** — AwesomeTechStack is a free to use website tech stack analyzer. AwesomeTechStack provides insights into the security, modernity, and performance of any website's technology stack and guidance to improve performance. Lighthouse insights are a crucial part of a website's tech stack rating.
 
+* **[Wattspeed](https://wattspeed.com/)** — Wattspeed is a free tool that generates snapshots - historical captures of your web pages that include Lighthouse scores, a list of technologies, W3C HTML validator results, DOM size, mixed content info, and more.
+
 ### Paid / Tiered
 
 * **[Automated Lighthouse Check](https://www.automated-lighthouse-check.com/)** - Lighthouse-as-a-service offering free and premium plans. Provides monitoring and historical reporting of Lighthouse audits with CircleCI, GitHub, and other integrations. Features include Slack notifications, PR comment reporting and more.
@@ -361,6 +363,8 @@ This section details services that have integrated Lighthouse data. If you're wo
 * **[Fluxguard](https://fluxguard.com/)** - Fluxguard provides website DOM change monitoring orchestrated with Google Puppeteer, and audited by Lighthouse. Fluxguard is a freemium product, with monthly monitoring of up to 75 pages for free.
 
 * **[PageSpeed Green](https://pagespeed.green/)** - Web performance monitoring service for web sites. Track PageSpeed performance indicators for unlimited web pages from multiple regions. Check all code changes for PageSpeed degradations by integrating to your CD/CI using CLI. Powered By Google Lighthouse and Puppeteer. PageSpeed Green is a paid product with a free 14-day trial.
+
+* **[SEO Guard](https://www.seo-guard.com)** — SEO Guard is a website monitoring solution. It provides metrics based on Lighthouse scores. The service is offered via free and paid premium plans.
 
 * **[SpeedCurve](https://speedcurve.com)** — SpeedCurve is a tool for continuously monitoring web performance across different browsers, devices, and regions. It can aggregate any metric including Lighthouse scores across multiple pages and sites, and allows you to set performance budgets with Slack or email alerts. SpeedCurve is a paid product with a free 30-day trial.
 
@@ -414,6 +418,18 @@ Other awesome open source projects that use Lighthouse.
 
 See [Lighthouse Architecture](./docs/architecture.md).
 
+### Why is the performance score so low? It looks fine to me.
+
+Lighthouse reports the performance metrics as they would be experienced by a typical mobile user on a 4G connection and a mid-tier ~$200 phone. Even if it loads quickly on your device and network, users in other environments will experience the site very differently.
+
+Read more in our [guide to throttling](./docs/throttling.md).
+
+### Why does the performance score change so much?
+
+Lighthouse performance scores will change due to inherent variability in web and network technologies, even if there hasn't been a code change. Test in consistent environments, run Lighthouse multiple times, and beware of variability before drawing conclusions about a performance-impacting change.
+
+Read more in our [guide to reducing variability](./docs/variability.md).
+
 ### Can I configure the lighthouse run?
 
 Yes! Details in [Lighthouse configuration](./docs/configuration.md).
@@ -429,7 +445,7 @@ Read more in our [guide to network throttling](./docs/throttling.md).
 
 ### Are results sent to a remote server?
 
-Nope. Lighthouse runs locally, auditing a page using a local version of the Chrome browser installed the
+Nope. Lighthouse runs locally, auditing a page using a local version of the Chrome browser installed on the
 machine. Report results are never processed or beaconed to a remote server.
 
 ### How do I author custom audits to extend Lighthouse?

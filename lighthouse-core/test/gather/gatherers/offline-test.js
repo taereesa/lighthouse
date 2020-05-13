@@ -8,7 +8,7 @@
 /* eslint-env jest */
 
 const OfflineGather = require('../../../gather/gatherers/offline.js');
-const assert = require('assert');
+const assert = require('assert').strict;
 const tracingData = require('../../fixtures/traces/network-records.json');
 
 const mockDriver = {

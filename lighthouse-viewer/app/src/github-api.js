@@ -22,6 +22,10 @@ class GithubApi {
     return '.lighthouse.report.json';
   }
 
+  getFirebaseAuth() {
+    return this._auth;
+  }
+
   /**
    * Creates a gist under the users account.
    * @param {LH.Result} jsonFile The gist file body.

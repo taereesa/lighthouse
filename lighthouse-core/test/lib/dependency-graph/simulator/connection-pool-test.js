@@ -7,7 +7,7 @@
 
 const ConnectionPool = require('../../../../lib/dependency-graph/simulator/connection-pool.js');
 
-const assert = require('assert');
+const assert = require('assert').strict;
 const URL = require('url').URL;
 
 /* eslint-env jest */

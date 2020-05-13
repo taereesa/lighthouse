@@ -45,6 +45,7 @@ class LighthouseReportViewer {
      */
     this._reportIsFromGist = false;
     this._reportIsFromPSI = false;
+    this._reportIsFromJSON = false;
 
     this._addEventListeners();
     this._loadFromDeepLink();
@@ -100,8 +101,9 @@ class LighthouseReportViewer {
 
     const gistId = params.get('gist');
     const psiurl = params.get('psiurl');
+    const jsonurl = params.get('jsonurl');
 
-    if (!gistId && !psiurl) return Promise.resolve();
+    if (!gistId && !psiurl && !jsonurl) return Promise.resolve();
 
     this._toggleLoadingBlur(true);
     let loadPromise = Promise.resolve();
@@ -118,6 +120,21 @@ class LighthouseReportViewer {
         this._reportIsFromGist = true;
         this._replaceReportHtml(reportJson);
       }).catch(err => logger.error(err.message));
+    } else if (jsonurl) {
+      const firebaseAuth = this._github.getFirebaseAuth();
+      loadPromise = firebaseAuth.getAccessTokenIfLoggedIn()
+        .then(token => {
+          return token
+            ? Promise.reject(new Error('Can only use jsonurl when not logged in'))
+            : null;
+        })
+        .then(() => fetch(jsonurl))
+        .then(resp => resp.json())
+        .then(json => {
+          this._reportIsFromJSON = true;
+          this._replaceReportHtml(json);
+        })
+        .catch(err => logger.error(err.message));
     }
 
     return loadPromise.finally(() => this._toggleLoadingBlur(false));
@@ -184,7 +201,7 @@ class LighthouseReportViewer {
       }
 
       // Only clear query string if current report isn't from a gist or PSI.
-      if (!this._reportIsFromGist && !this._reportIsFromPSI) {
+      if (!this._reportIsFromGist && !this._reportIsFromPSI && !this._reportIsFromJSON) {
         history.pushState({}, '', LighthouseReportViewer.APP_URL);
       }
 
@@ -196,7 +213,7 @@ class LighthouseReportViewer {
       container.textContent = '';
       throw e;
     } finally {
-      this._reportIsFromGist = this._reportIsFromPSI = false;
+      this._reportIsFromGist = this._reportIsFromPSI = this._reportIsFromJSON = false;
     }
 
     // Remove the placeholder UI once the user has loaded a report.

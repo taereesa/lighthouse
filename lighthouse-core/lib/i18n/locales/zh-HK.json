@@ -141,10 +141,10 @@
     "message": "如果定義清單的標記不正確，螢幕閱讀器可能會輸出令人混淆或不正確的內容。[瞭解詳情](https://web.dev/definition-list/)。"
   },
   "lighthouse-core/audits/accessibility/definition-list.js | failureTitle": {
-    "message": "`<dl>` 並非只包含排序正確的 `<dt>` 和 `<dd>` 群組、`<script>` 或 `<template>` 元素。"
+    "message": "`<dl>` 並非只包含排序正確的 `<dt>` 和 `<dd>` 群組、`<script>`、`<template>` 或 `<div>` 元素。"
   },
   "lighthouse-core/audits/accessibility/definition-list.js | title": {
-    "message": "`<dl>` 只包含排序正確的 `<dt>` 和 `<dd>` 群組、`<script>` 或 `<template>` 元素。"
+    "message": "`<dl>` 只包含排序正確的 `<dt>` 和 `<dd>` 群組、`<script>`、`<template>` 或 `<div>` 元素。"
   },
   "lighthouse-core/audits/accessibility/dlitem.js | description": {
     "message": "定義清單項目 (`<dt>` 和 `<dd>`) 必須納入在父 `<dl>` 元素中，才能確保螢幕閱讀器正確朗讀這些項目。[瞭解詳情](https://web.dev/dlitem/)。"
@@ -404,6 +404,12 @@
   "lighthouse-core/audits/bootup-time.js | title": {
     "message": "JavaScript 執行時間"
   },
+  "lighthouse-core/audits/byte-efficiency/duplicated-javascript.js | description": {
+    "message": "從套件中移除重複的大型 JavaScript 模組，以減少網絡活動耗用不必要的字節。 "
+  },
+  "lighthouse-core/audits/byte-efficiency/duplicated-javascript.js | title": {
+    "message": "請移除 JavaScript 套件中的重複模組"
+  },
   "lighthouse-core/audits/byte-efficiency/efficient-animated-content.js | description": {
     "message": "大型 GIF 放送動畫內容效率往往不佳。建議改用 MPEG4/WebM 格式的動畫影片和 PNG/WebP 格式的靜態圖片，以節省網絡位元組。[瞭解詳情](https://web.dev/efficient-animated-content)"
   },
@@ -453,7 +459,7 @@
     "message": "移除未使用的 CSS"
   },
   "lighthouse-core/audits/byte-efficiency/unused-javascript.js | description": {
-    "message": "移除未使用的 JavaScript，以減少網絡活動耗用的位元組。[瞭解詳情](https://developers.google.com/web/fundamentals/performance/optimizing-javascript/code-splitting)。"
+    "message": "移除未使用的 JavaScript，以減少網絡活動耗用的位元組。[瞭解詳情](https://web.dev/remove-unused-code/)。"
   },
   "lighthouse-core/audits/byte-efficiency/unused-javascript.js | title": {
     "message": "移除未使用的 JavaScript"
@@ -545,6 +551,15 @@
   "lighthouse-core/audits/dobetterweb/appcache-manifest.js | title": {
     "message": "避免使用應用程式快取"
   },
+  "lighthouse-core/audits/dobetterweb/charset.js | description": {
+    "message": "需要字元編碼宣告。可以在 HTML 的前 1024 個字節或 Content-Type HTTP 回應標題中使用 <meta> 標記宣告。[瞭解詳情](https://www.w3.org/International/questions/qa-html-encoding-declarations)。"
+  },
+  "lighthouse-core/audits/dobetterweb/charset.js | failureTitle": {
+    "message": "字元集宣告遺失或在 HTML 中太遲出現"
+  },
+  "lighthouse-core/audits/dobetterweb/charset.js | title": {
+    "message": "正確定義字元集"
+  },
   "lighthouse-core/audits/dobetterweb/doctype.js | description": {
     "message": "指定 DOCTYPE 能防止瀏覽器切換至怪異模式。[瞭解詳情](https://web.dev/doctype)。"
   },
@@ -565,9 +580,6 @@
   },
   "lighthouse-core/audits/dobetterweb/doctype.js | title": {
     "message": "網頁含有 HTML DOCTYPE"
-  },
-  "lighthouse-core/audits/dobetterweb/dom-size.js | columnElement": {
-    "message": "元素"
   },
   "lighthouse-core/audits/dobetterweb/dom-size.js | columnStatistic": {
     "message": "統計資料"
@@ -595,6 +607,9 @@
   },
   "lighthouse-core/audits/dobetterweb/dom-size.js | title": {
     "message": "避免 DOM 過大"
+  },
+  "lighthouse-core/audits/dobetterweb/external-anchors-use-rel-noopener.js | columnFailingAnchors": {
+    "message": "審核失敗的錨點"
   },
   "lighthouse-core/audits/dobetterweb/external-anchors-use-rel-noopener.js | description": {
     "message": "將 `rel=\"noopener\"` 或 `rel=\"noreferrer\"` 新增至所有外部連結，可提升效能並防範安全漏洞。[瞭解詳情](https://web.dev/external-anchors-use-rel-noopener)。"
@@ -630,7 +645,7 @@
     "message": "對於連線速度較慢的使用者，透過 `document.write()` 動態插入的外部指令碼可能會導致網頁延遲載入數十秒。[瞭解詳情](https://web.dev/no-document-write)。"
   },
   "lighthouse-core/audits/dobetterweb/no-document-write.js | failureTitle": {
-    "message": "使用 `document.write()`"
+    "message": "避免使用 `document.write()`"
   },
   "lighthouse-core/audits/dobetterweb/no-document-write.js | title": {
     "message": "避免使用 `document.write()`"
@@ -752,6 +767,24 @@
   "lighthouse-core/audits/image-aspect-ratio.js | warningCompute": {
     "message": "圖片大小資料無效 {url}"
   },
+  "lighthouse-core/audits/image-size-responsive.js | columnActual": {
+    "message": "實際大小"
+  },
+  "lighthouse-core/audits/image-size-responsive.js | columnDisplayed": {
+    "message": "顯示大小"
+  },
+  "lighthouse-core/audits/image-size-responsive.js | columnExpected": {
+    "message": "預期大小"
+  },
+  "lighthouse-core/audits/image-size-responsive.js | description": {
+    "message": "圖片自然尺寸應與顯示大小及像素比例成正比，才能令圖片達到最清晰。[瞭解詳情](https://web.dev/image-size-responsive)。"
+  },
+  "lighthouse-core/audits/image-size-responsive.js | failureTitle": {
+    "message": "顯示的圖片大小不適當"
+  },
+  "lighthouse-core/audits/image-size-responsive.js | title": {
+    "message": "顯示的圖片大小適當"
+  },
   "lighthouse-core/audits/installable-manifest.js | description": {
     "message": "瀏覽器可主動提示使用者，建議他們將您的應用程式新增至主畫面，藉此提高參與度[瞭解詳情](https://web.dev/installable-manifest)。"
   },
@@ -775,6 +808,12 @@
   },
   "lighthouse-core/audits/is-on-https.js | title": {
     "message": "使用 HTTPS"
+  },
+  "lighthouse-core/audits/legacy-javascript.js | description": {
+    "message": "Polyfill 和轉換可讓舊版瀏覽器使用新版 JavaScript 的功能。不過，有很多 Polyfill 和轉換都不是新型瀏覽器的必要項目。請使用模組/非模組的功能偵測，為 JavaScript 套件採用新型的指令碼部署策略，以減少送往新版瀏覽器的程式碼數量，同時保留對舊版瀏覽器的支援。[瞭解詳情](https://philipwalton.com/articles/deploying-es2015-code-in-production-today/)"
+  },
+  "lighthouse-core/audits/legacy-javascript.js | title": {
+    "message": "舊版 JavaScript"
   },
   "lighthouse-core/audits/load-fast-enough-for-pwa.js | description": {
     "message": "如果網頁在流動網絡中能快速載入，可為流動裝置使用者提供良好的使用體驗。[瞭解詳情](https://web.dev/load-fast-enough-for-pwa)。"
@@ -824,6 +863,18 @@
   "lighthouse-core/audits/manual/pwa-page-transitions.js | title": {
     "message": "使用者在切換頁面時不會覺得網絡速度緩慢"
   },
+  "lighthouse-core/audits/maskable-icon.js | description": {
+    "message": "在裝置上安裝應用程式時，可遮蓋的圖示可確保圖片會填滿整個形狀，不會產生上下黑邊。[瞭解詳情](https://web.dev/maskable-icon/)。"
+  },
+  "lighthouse-core/audits/maskable-icon.js | failureTitle": {
+    "message": "資訊清單沒有可遮蓋的圖示"
+  },
+  "lighthouse-core/audits/maskable-icon.js | title": {
+    "message": "資訊清單中有可遮蓋的圖示"
+  },
+  "lighthouse-core/audits/metrics/cumulative-layout-shift.js | description": {
+    "message": "累計版面配置轉移會測量檢視區內可見元素的移動。[瞭解詳情](https://web.dev/cls)。"
+  },
   "lighthouse-core/audits/metrics/estimated-input-latency.js | description": {
     "message": "預計輸入延遲時間是在頁面載入視窗最忙碌的 5 秒期間，您的應用程式對使用者輸入動作的預計回應時間 (以毫秒為單位)。如果延遲超過 50 毫秒，使用者可能會認為應用程式的速度緩慢。[瞭解詳情](https://web.dev/estimated-input-latency)。"
   },
@@ -840,10 +891,7 @@
     "message": "互動準備時間是網頁進入完整互動狀態前所花的時間。[瞭解詳情](https://web.dev/interactive)。"
   },
   "lighthouse-core/audits/metrics/largest-contentful-paint.js | description": {
-    "message": "「最大內容繪製」是指繪製最大的文字或圖片的時間。[瞭解詳情](https://web.dev/largest-contentful-paint)"
-  },
-  "lighthouse-core/audits/metrics/largest-contentful-paint.js | title": {
-    "message": "最大內容繪製"
+    "message": "「最大內容繪製」是指繪製最大的文字或圖片的時間。[瞭解詳情](https://web.dev/lighthouse-largest-contentful-paint)"
   },
   "lighthouse-core/audits/metrics/max-potential-fid.js | description": {
     "message": "使用者可以體驗到最長的「首次輸入延遲時間」就是最長的工作持續時間。[瞭解詳情](https://web.dev/lighthouse-max-potential-fid)。"
@@ -1118,18 +1166,6 @@
   "lighthouse-core/audits/third-party-summary.js | title": {
     "message": "減少第三方程式碼使用量"
   },
-  "lighthouse-core/audits/time-to-first-byte.js | description": {
-    "message": "「首個字節時間」會指出您的伺服器傳送回應的時間。[瞭解詳情](https://web.dev/time-to-first-byte)。"
-  },
-  "lighthouse-core/audits/time-to-first-byte.js | displayValue": {
-    "message": "根文件回應時間為 {timeInMs, number, milliseconds} 毫秒"
-  },
-  "lighthouse-core/audits/time-to-first-byte.js | failureTitle": {
-    "message": "縮短伺服器回應時間 (TTFB)"
-  },
-  "lighthouse-core/audits/time-to-first-byte.js | title": {
-    "message": "伺服器回應時間短 (TTFB)"
-  },
   "lighthouse-core/audits/timing-budget.js | columnMeasurement": {
     "message": "測量"
   },
@@ -1168,6 +1204,9 @@
   },
   "lighthouse-core/audits/uses-rel-preconnect.js | title": {
     "message": "預先連接至必要來源"
+  },
+  "lighthouse-core/audits/uses-rel-preconnect.js | tooManyPreconnectLinksWarning": {
+    "message": "已找到超過 2 個預先連線的連結。預先連線的連結應盡量少用，並只用於最重要的來源。"
   },
   "lighthouse-core/audits/uses-rel-preload.js | crossoriginWarning": {
     "message": "{preloadURL} 有預先載入的 <link>，但瀏覽器沒有使用。請檢查您使用 `crossorigin` 屬性的方式是否正確。"
@@ -1355,6 +1394,12 @@
   "lighthouse-core/config/default-config.js | seoMobileGroupTitle": {
     "message": "適合透過流動裝置瀏覽"
   },
+  "lighthouse-core/gather/gather-runner.js | warningRedirected": {
+    "message": "您的測試網址 ({requested}) 已重新導向至 {final}，因此頁面未必可以如預期載入。請嘗試直接測試第二個網址。"
+  },
+  "lighthouse-core/gather/gather-runner.js | warningTimeout": {
+    "message": "頁面載入過慢，無法於時限內完成，結果可能並不完整。"
+  },
   "lighthouse-core/lib/i18n/i18n.js | columnCacheTTL": {
     "message": "快取 TTL"
   },
@@ -1370,11 +1415,17 @@
   "lighthouse-core/lib/i18n/i18n.js | columnRequests": {
     "message": "要求"
   },
+  "lighthouse-core/lib/i18n/i18n.js | columnResourceSize": {
+    "message": "資源大小"
+  },
   "lighthouse-core/lib/i18n/i18n.js | columnResourceType": {
     "message": "資源類型"
   },
   "lighthouse-core/lib/i18n/i18n.js | columnSize": {
     "message": "大小"
+  },
+  "lighthouse-core/lib/i18n/i18n.js | columnSource": {
+    "message": "來源"
   },
   "lighthouse-core/lib/i18n/i18n.js | columnTimeSpent": {
     "message": "所用的時間"
@@ -1390,6 +1441,9 @@
   },
   "lighthouse-core/lib/i18n/i18n.js | columnWastedMs": {
     "message": "可節省的數據用量"
+  },
+  "lighthouse-core/lib/i18n/i18n.js | cumulativeLayoutShiftMetric": {
+    "message": "累計版面配置轉移"
   },
   "lighthouse-core/lib/i18n/i18n.js | displayValueByteSavings": {
     "message": "可節省 {wastedBytes, number, bytes} KB"
@@ -1420,6 +1474,9 @@
   },
   "lighthouse-core/lib/i18n/i18n.js | interactiveMetric": {
     "message": "可互動所需時間"
+  },
+  "lighthouse-core/lib/i18n/i18n.js | largestContentfulPaintMetric": {
+    "message": "最大內容繪製"
   },
   "lighthouse-core/lib/i18n/i18n.js | maxPotentialFIDMetric": {
     "message": "首次輸入延遲時間最長預計值"
@@ -1514,11 +1571,38 @@
   "lighthouse-core/report/html/renderer/util.js | crcLongestDurationLabel": {
     "message": "關鍵路徑延遲時間上限："
   },
+  "lighthouse-core/report/html/renderer/util.js | dropdownCopyJSON": {
+    "message": "複製 JSON"
+  },
+  "lighthouse-core/report/html/renderer/util.js | dropdownDarkTheme": {
+    "message": "切換至深色主題背景"
+  },
+  "lighthouse-core/report/html/renderer/util.js | dropdownPrintExpanded": {
+    "message": "已展開列印"
+  },
+  "lighthouse-core/report/html/renderer/util.js | dropdownPrintSummary": {
+    "message": "列印摘要"
+  },
+  "lighthouse-core/report/html/renderer/util.js | dropdownSaveGist": {
+    "message": "另存為 Gist"
+  },
+  "lighthouse-core/report/html/renderer/util.js | dropdownSaveHTML": {
+    "message": "另存為 HTML"
+  },
+  "lighthouse-core/report/html/renderer/util.js | dropdownSaveJSON": {
+    "message": "另存為 JSON"
+  },
+  "lighthouse-core/report/html/renderer/util.js | dropdownViewer": {
+    "message": "在檢視器中開啟"
+  },
   "lighthouse-core/report/html/renderer/util.js | errorLabel": {
     "message": "發生錯誤！"
   },
   "lighthouse-core/report/html/renderer/util.js | errorMissingAuditInfo": {
     "message": "報告錯誤：無審核資料"
+  },
+  "lighthouse-core/report/html/renderer/util.js | footerIssue": {
+    "message": "報告問題"
   },
   "lighthouse-core/report/html/renderer/util.js | labDataTitle": {
     "message": "實驗室數據"
@@ -1541,6 +1625,48 @@
   "lighthouse-core/report/html/renderer/util.js | passedAuditsGroupTitle": {
     "message": "已通過的審核"
   },
+  "lighthouse-core/report/html/renderer/util.js | runtimeDesktopEmulation": {
+    "message": "模擬桌面電腦"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeMobileEmulation": {
+    "message": "已模擬 Moto G4"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeNoEmulation": {
+    "message": "沒有任何模擬的裝置"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsBenchmark": {
+    "message": "CPU/記憶體效能"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsCPUThrottling": {
+    "message": "CPU 節流"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsChannel": {
+    "message": "渠道"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsDevice": {
+    "message": "裝置"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsFetchTime": {
+    "message": "擷取時間"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsNetworkThrottling": {
+    "message": "網絡節流"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsTitle": {
+    "message": "執行階段設定"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsUA": {
+    "message": "用戶代理程式 (主機)"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsUANetwork": {
+    "message": "用戶代理程式 (網絡)"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsUrl": {
+    "message": "網址"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeUnknown": {
+    "message": "不明"
+  },
   "lighthouse-core/report/html/renderer/util.js | snippetCollapseButtonLabel": {
     "message": "收合片段"
   },
@@ -1549,6 +1675,9 @@
   },
   "lighthouse-core/report/html/renderer/util.js | thirdPartyResourcesLabel": {
     "message": "顯示第三方資源"
+  },
+  "lighthouse-core/report/html/renderer/util.js | throttlingProvided": {
+    "message": "由環境提供"
   },
   "lighthouse-core/report/html/renderer/util.js | toplevelWarningsMessage": {
     "message": "導致這次 Lighthouse 無法順利執行的問題："
@@ -1610,9 +1739,6 @@
   "stack-packs/packs/magento.js | offscreen_images": {
     "message": "建議修改產品和目錄範本，以使用網絡平台的[延遲載入](https://web.dev/native-lazy-loading)功能。"
   },
-  "stack-packs/packs/magento.js | time_to_first_byte": {
-    "message": "使用 Magento 的 [Varnish 整合](https://devdocs.magento.com/guides/v2.3/config-guide/varnish/config-varnish.html)。"
-  },
   "stack-packs/packs/magento.js | unminified_css": {
     "message": "在商店的開發人員設定中啟用「壓縮 CSS 檔案」選項。[瞭解詳情](https://devdocs.magento.com/guides/v2.3/performance-best-practices/configuration.html?itm_source=devdocs&itm_medium=search_page&itm_campaign=federated_search&itm_term=minify%20css%20files)。"
   },
@@ -1640,9 +1766,6 @@
   "stack-packs/packs/react.js | redirects": {
     "message": "如果使用 React Router，請盡量避免在[路線導航](https://reacttraining.com/react-router/web/api/Redirect)使用 `<Redirect>` 組件。"
   },
-  "stack-packs/packs/react.js | time_to_first_byte": {
-    "message": "如果您在伺服器端輸出任何 React 組件，建議使用 `renderToNodeStream()` 或 `renderToStaticNodeStream()`，允許用戶端接收並混合標記的不同部分，而非同時完成。[瞭解詳情](https://reactjs.org/docs/react-dom-server.html#rendertonodestream)。"
-  },
   "stack-packs/packs/react.js | unminified_css": {
     "message": "如果您建立自動壓縮 CSS 檔案的系統，請確定部署的應用程式為正式版本。您可以使用 React Developer Tools 擴充程式執行這項檢查。[瞭解詳情](https://reactjs.org/docs/optimizing-performance.html#use-the-production-build)。"
   },
@@ -1663,9 +1786,6 @@
   },
   "stack-packs/packs/wordpress.js | render_blocking_resources": {
     "message": "部分 WordPress 外掛程式可助您[內嵌重要資產](https://wordpress.org/plugins/search/critical+css/)或[延後載入較不重要的資源](https://wordpress.org/plugins/search/defer+css+javascript/)。請注意，這些外掛程式的優化設定可能影響主題或外掛程式的功能，因此您可能需要變更程式碼。"
-  },
-  "stack-packs/packs/wordpress.js | time_to_first_byte": {
-    "message": "主題、外掛程式和伺服器規格均會影響伺服器回應時間。建議尋找更優化的主題、謹慎選擇優化外掛程式和/或升級伺服器。"
   },
   "stack-packs/packs/wordpress.js | total_byte_weight": {
     "message": "建議在文章清單中顯示摘錄 (例如加入更多標籤)、減少特定頁面顯示的文章數量、將較長的文章分為多個頁面，或使用可延遲載入留言的外掛程式。"

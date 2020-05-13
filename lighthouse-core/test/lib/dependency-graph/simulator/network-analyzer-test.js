@@ -5,7 +5,7 @@
  */
 'use strict';
 
-const assert = require('assert');
+const assert = require('assert').strict;
 
 const NetworkAnalyzer = require('../../../../lib/dependency-graph/simulator/network-analyzer.js');
 const NetworkRecords = require('../../../../computed/network-records.js');

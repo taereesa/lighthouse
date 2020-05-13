@@ -6,7 +6,7 @@
 'use strict';
 
 const HTTPStatusCodeAudit = require('../../../audits/seo/http-status-code.js');
-const assert = require('assert');
+const assert = require('assert').strict;
 const networkRecordsToDevtoolsLog = require('../../network-records-to-devtools-log.js');
 
 /* eslint-env jest */

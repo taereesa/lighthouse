@@ -26,8 +26,8 @@ const UIStrings = {
 
 const str_ = i18n.createMessageInstanceIdFn(__filename, UIStrings);
 
-/** @typedef {{count: number, size: number}} ResourceEntry */
-/** @typedef {{resourceType: LH.Budget.ResourceType, label: string, requestCount: number, size: number, sizeOverBudget: number | undefined, countOverBudget: string | undefined}} BudgetItem */
+/** @typedef {import('../computed/resource-summary.js').ResourceEntry} ResourceEntry */
+/** @typedef {{resourceType: LH.Budget.ResourceType, label: string, requestCount: number, transferSize: number, sizeOverBudget: number | undefined, countOverBudget: string | undefined}} BudgetItem */
 
 class ResourceBudget extends Audit {
   /**
@@ -65,7 +65,7 @@ class ResourceBudget extends Audit {
 
   /**
    * @param {Immutable<LH.Budget>} budget
-   * @param {Record<LH.Budget.ResourceType,ResourceEntry>} summary
+   * @param {Record<LH.Budget.ResourceType, ResourceEntry>} summary
    * @return {Array<BudgetItem>}
    */
   static tableItems(budget, summary) {
@@ -73,15 +73,15 @@ class ResourceBudget extends Audit {
     return resourceTypes.map((resourceType) => {
       const label = str_(this.getRowLabel(resourceType));
       const requestCount = summary[resourceType].count;
-      const size = summary[resourceType].size;
+      const transferSize = summary[resourceType].transferSize;
 
       let sizeOverBudget;
       let countOverBudget;
 
       if (budget.resourceSizes) {
         const sizeBudget = budget.resourceSizes.find(b => b.resourceType === resourceType);
-        if (sizeBudget && (size > (sizeBudget.budget * 1024))) {
-          sizeOverBudget = size - (sizeBudget.budget * 1024);
+        if (sizeBudget && (transferSize > (sizeBudget.budget * 1024))) {
+          sizeOverBudget = transferSize - (sizeBudget.budget * 1024);
         }
       }
       if (budget.resourceCounts) {
@@ -95,7 +95,7 @@ class ResourceBudget extends Audit {
         resourceType,
         label,
         requestCount,
-        size,
+        transferSize,
         countOverBudget,
         sizeOverBudget,
       };
@@ -135,7 +135,7 @@ class ResourceBudget extends Audit {
     const headers = [
       {key: 'label', itemType: 'text', text: str_(i18n.UIStrings.columnResourceType)},
       {key: 'requestCount', itemType: 'numeric', text: str_(i18n.UIStrings.columnRequests)},
-      {key: 'size', itemType: 'bytes', text: str_(i18n.UIStrings.columnTransferSize)},
+      {key: 'transferSize', itemType: 'bytes', text: str_(i18n.UIStrings.columnTransferSize)},
       {key: 'countOverBudget', itemType: 'text', text: ''},
       {key: 'sizeOverBudget', itemType: 'bytes', text: str_(i18n.UIStrings.columnOverBudget)},
     ];

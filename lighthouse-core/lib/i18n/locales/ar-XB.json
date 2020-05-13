@@ -141,10 +141,10 @@
     "message": "‏‮When‬‏ ‏‮definition‬‏ ‏‮lists‬‏ ‏‮are‬‏ ‏‮not‬‏ ‏‮properly‬‏ ‏‮marked‬‏ ‏‮up‬‏, ‏‮screen‬‏ ‏‮readers‬‏ ‏‮may‬‏ ‏‮produce‬‏ ‏‮confusing‬‏ ‏‮or‬‏ ‏‮inaccurate‬‏ ‏‮output‬‏. [‏‮Learn‬‏ ‏‮more‬‏](https://web.dev/definition-list/)."
   },
   "lighthouse-core/audits/accessibility/definition-list.js | failureTitle": {
-    "message": "`<dl>`'‏‮s‬‏ ‏‮do‬‏ ‏‮not‬‏ ‏‮contain‬‏ ‏‮only‬‏ ‏‮properly‬‏-‏‮ordered‬‏ `<dt>` ‏‮and‬‏ `<dd>` ‏‮groups‬‏, `<script>` ‏‮or‬‏ `<template>` ‏‮elements‬‏."
+    "message": "`<dl>`'‏‮s‬‏ ‏‮do‬‏ ‏‮not‬‏ ‏‮contain‬‏ ‏‮only‬‏ ‏‮properly‬‏-‏‮ordered‬‏ `<dt>` ‏‮and‬‏ `<dd>` ‏‮groups‬‏, `<script>`, `<template>` ‏‮or‬‏ `<div>` ‏‮elements‬‏."
   },
   "lighthouse-core/audits/accessibility/definition-list.js | title": {
-    "message": "`<dl>`'‏‮s‬‏ ‏‮contain‬‏ ‏‮only‬‏ ‏‮properly‬‏-‏‮ordered‬‏ `<dt>` ‏‮and‬‏ `<dd>` ‏‮groups‬‏, `<script>` ‏‮or‬‏ `<template>` ‏‮elements‬‏."
+    "message": "`<dl>`'‏‮s‬‏ ‏‮contain‬‏ ‏‮only‬‏ ‏‮properly‬‏-‏‮ordered‬‏ `<dt>` ‏‮and‬‏ `<dd>` ‏‮groups‬‏, `<script>`, `<template>` ‏‮or‬‏ `<div>` ‏‮elements‬‏."
   },
   "lighthouse-core/audits/accessibility/dlitem.js | description": {
     "message": "‏‮Definition‬‏ ‏‮list‬‏ ‏‮items‬‏ (`<dt>` ‏‮and‬‏ `<dd>`) ‏‮must‬‏ ‏‮be‬‏ ‏‮wrapped‬‏ ‏‮in‬‏ ‏‮a‬‏ ‏‮parent‬‏ `<dl>` ‏‮element‬‏ ‏‮to‬‏ ‏‮ensure‬‏ ‏‮that‬‏ ‏‮screen‬‏ ‏‮readers‬‏ ‏‮can‬‏ ‏‮properly‬‏ ‏‮announce‬‏ ‏‮them‬‏. [‏‮Learn‬‏ ‏‮more‬‏](https://web.dev/dlitem/)."
@@ -404,6 +404,12 @@
   "lighthouse-core/audits/bootup-time.js | title": {
     "message": "‏‮JavaScript‬‏ ‏‮execution‬‏ ‏‮time‬‏"
   },
+  "lighthouse-core/audits/byte-efficiency/duplicated-javascript.js | description": {
+    "message": "‏‮Remove‬‏ ‏‮large‬‏, ‏‮duplicate‬‏ ‏‮JavaScript‬‏ ‏‮modules‬‏ ‏‮from‬‏ ‏‮bundles‬‏ ‏‮to‬‏ ‏‮reduce‬‏ ‏‮unnecessary‬‏ ‏‮bytes‬‏ ‏‮consumed‬‏ ‏‮by‬‏ ‏‮network‬‏ ‏‮activity‬‏. "
+  },
+  "lighthouse-core/audits/byte-efficiency/duplicated-javascript.js | title": {
+    "message": "‏‮Remove‬‏ ‏‮duplicate‬‏ ‏‮modules‬‏ ‏‮in‬‏ ‏‮JavaScript‬‏ ‏‮bundles‬‏"
+  },
   "lighthouse-core/audits/byte-efficiency/efficient-animated-content.js | description": {
     "message": "‏‮Large‬‏ ‏‮GIFs‬‏ ‏‮are‬‏ ‏‮inefficient‬‏ ‏‮for‬‏ ‏‮delivering‬‏ ‏‮animated‬‏ ‏‮content‬‏. ‏‮Consider‬‏ ‏‮using‬‏ ‏‮MPEG‬‏4/‏‮WebM‬‏ ‏‮videos‬‏ ‏‮for‬‏ ‏‮animations‬‏ ‏‮and‬‏ ‏‮PNG‬‏/‏‮WebP‬‏ ‏‮for‬‏ ‏‮static‬‏ ‏‮images‬‏ ‏‮instead‬‏ ‏‮of‬‏ ‏‮GIF‬‏ ‏‮to‬‏ ‏‮save‬‏ ‏‮network‬‏ ‏‮bytes‬‏. [‏‮Learn‬‏ ‏‮more‬‏](https://web.dev/efficient-animated-content)"
   },
@@ -453,7 +459,7 @@
     "message": "‏‮Remove‬‏ ‏‮unused‬‏ ‏‮CSS‬‏"
   },
   "lighthouse-core/audits/byte-efficiency/unused-javascript.js | description": {
-    "message": "‏‮Remove‬‏ ‏‮unused‬‏ ‏‮JavaScript‬‏ ‏‮to‬‏ ‏‮reduce‬‏ ‏‮bytes‬‏ ‏‮consumed‬‏ ‏‮by‬‏ ‏‮network‬‏ ‏‮activity‬‏. [‏‮Learn‬‏ ‏‮more‬‏](https://developers.google.com/web/fundamentals/performance/optimizing-javascript/code-splitting)."
+    "message": "‏‮Remove‬‏ ‏‮unused‬‏ ‏‮JavaScript‬‏ ‏‮to‬‏ ‏‮reduce‬‏ ‏‮bytes‬‏ ‏‮consumed‬‏ ‏‮by‬‏ ‏‮network‬‏ ‏‮activity‬‏. [‏‮Learn‬‏ ‏‮more‬‏](https://web.dev/remove-unused-code/)."
   },
   "lighthouse-core/audits/byte-efficiency/unused-javascript.js | title": {
     "message": "‏‮Remove‬‏ ‏‮unused‬‏ ‏‮JavaScript‬‏"
@@ -545,6 +551,15 @@
   "lighthouse-core/audits/dobetterweb/appcache-manifest.js | title": {
     "message": "‏‮Avoids‬‏ ‏‮Application‬‏ ‏‮Cache‬‏"
   },
+  "lighthouse-core/audits/dobetterweb/charset.js | description": {
+    "message": "‏‮A‬‏ ‏‮character‬‏ ‏‮encoding‬‏ ‏‮declaration‬‏ ‏‮is‬‏ ‏‮required‬‏. ‏‮It‬‏ ‏‮can‬‏ ‏‮be‬‏ ‏‮done‬‏ ‏‮with‬‏ ‏‮a‬‏ <meta> ‏‮tag‬‏ ‏‮in‬‏ ‏‮the‬‏ ‏‮first‬‏ 1024 ‏‮bytes‬‏ ‏‮of‬‏ ‏‮the‬‏ ‏‮HTML‬‏ ‏‮or‬‏ ‏‮in‬‏ ‏‮the‬‏ ‏‮Content‬‏-‏‮Type‬‏ ‏‮HTTP‬‏ ‏‮response‬‏ ‏‮header‬‏. [‏‮Learn‬‏ ‏‮more‬‏](https://www.w3.org/International/questions/qa-html-encoding-declarations)."
+  },
+  "lighthouse-core/audits/dobetterweb/charset.js | failureTitle": {
+    "message": "‏‮Charset‬‏ ‏‮declaration‬‏ ‏‮is‬‏ ‏‮missing‬‏ ‏‮or‬‏ ‏‮occurs‬‏ ‏‮too‬‏ ‏‮late‬‏ ‏‮in‬‏ ‏‮the‬‏ ‏‮HTML‬‏"
+  },
+  "lighthouse-core/audits/dobetterweb/charset.js | title": {
+    "message": "‏‮Properly‬‏ ‏‮defines‬‏ ‏‮charset‬‏"
+  },
   "lighthouse-core/audits/dobetterweb/doctype.js | description": {
     "message": "‏‮Specifying‬‏ ‏‮a‬‏ ‏‮doctype‬‏ ‏‮prevents‬‏ ‏‮the‬‏ ‏‮browser‬‏ ‏‮from‬‏ ‏‮switching‬‏ ‏‮to‬‏ ‏‮quirks‬‏-‏‮mode‬‏. [‏‮Learn‬‏ ‏‮more‬‏](https://web.dev/doctype)."
   },
@@ -565,9 +580,6 @@
   },
   "lighthouse-core/audits/dobetterweb/doctype.js | title": {
     "message": "‏‮Page‬‏ ‏‮has‬‏ ‏‮the‬‏ ‏‮HTML‬‏ ‏‮doctype‬‏"
-  },
-  "lighthouse-core/audits/dobetterweb/dom-size.js | columnElement": {
-    "message": "‏‮Element‬‏"
   },
   "lighthouse-core/audits/dobetterweb/dom-size.js | columnStatistic": {
     "message": "‏‮Statistic‬‏"
@@ -595,6 +607,9 @@
   },
   "lighthouse-core/audits/dobetterweb/dom-size.js | title": {
     "message": "‏‮Avoids‬‏ ‏‮an‬‏ ‏‮excessive‬‏ ‏‮DOM‬‏ ‏‮size‬‏"
+  },
+  "lighthouse-core/audits/dobetterweb/external-anchors-use-rel-noopener.js | columnFailingAnchors": {
+    "message": "‏‮Failing‬‏ ‏‮Anchors‬‏"
   },
   "lighthouse-core/audits/dobetterweb/external-anchors-use-rel-noopener.js | description": {
     "message": "‏‮Add‬‏ `rel=\"noopener\"` ‏‮or‬‏ `rel=\"noreferrer\"` ‏‮to‬‏ ‏‮any‬‏ ‏‮external‬‏ ‏‮links‬‏ ‏‮to‬‏ ‏‮improve‬‏ ‏‮performance‬‏ ‏‮and‬‏ ‏‮prevent‬‏ ‏‮security‬‏ ‏‮vulnerabilities‬‏. [‏‮Learn‬‏ ‏‮more‬‏](https://web.dev/external-anchors-use-rel-noopener)."
@@ -630,7 +645,7 @@
     "message": "‏‮For‬‏ ‏‮users‬‏ ‏‮on‬‏ ‏‮slow‬‏ ‏‮connections‬‏, ‏‮external‬‏ ‏‮scripts‬‏ ‏‮dynamically‬‏ ‏‮injected‬‏ ‏‮via‬‏ `document.write()` ‏‮can‬‏ ‏‮delay‬‏ ‏‮page‬‏ ‏‮load‬‏ ‏‮by‬‏ ‏‮tens‬‏ ‏‮of‬‏ ‏‮seconds‬‏. [‏‮Learn‬‏ ‏‮more‬‏](https://web.dev/no-document-write)."
   },
   "lighthouse-core/audits/dobetterweb/no-document-write.js | failureTitle": {
-    "message": "‏‮Uses‬‏ `document.write()`"
+    "message": "‏‮Avoid‬‏ `document.write()`"
   },
   "lighthouse-core/audits/dobetterweb/no-document-write.js | title": {
     "message": "‏‮Avoids‬‏ `document.write()`"
@@ -752,6 +767,24 @@
   "lighthouse-core/audits/image-aspect-ratio.js | warningCompute": {
     "message": "‏‮Invalid‬‏ ‏‮image‬‏ ‏‮sizing‬‏ ‏‮information‬‏ {url}"
   },
+  "lighthouse-core/audits/image-size-responsive.js | columnActual": {
+    "message": "‏‮Actual‬‏ ‏‮size‬‏"
+  },
+  "lighthouse-core/audits/image-size-responsive.js | columnDisplayed": {
+    "message": "‏‮Displayed‬‏ ‏‮size‬‏"
+  },
+  "lighthouse-core/audits/image-size-responsive.js | columnExpected": {
+    "message": "‏‮Expected‬‏ ‏‮size‬‏"
+  },
+  "lighthouse-core/audits/image-size-responsive.js | description": {
+    "message": "‏‮Image‬‏ ‏‮natural‬‏ ‏‮dimensions‬‏ ‏‮should‬‏ ‏‮be‬‏ ‏‮proportional‬‏ ‏‮to‬‏ ‏‮the‬‏ ‏‮display‬‏ ‏‮size‬‏ ‏‮and‬‏ ‏‮the‬‏ ‏‮pixel‬‏ ‏‮ratio‬‏ ‏‮to‬‏ ‏‮maximize‬‏ ‏‮image‬‏ ‏‮clarity‬‏. [‏‮Learn‬‏ ‏‮more‬‏](https://web.dev/image-size-responsive)."
+  },
+  "lighthouse-core/audits/image-size-responsive.js | failureTitle": {
+    "message": "‏‮Displays‬‏ ‏‮images‬‏ ‏‮with‬‏ ‏‮inappropriate‬‏ ‏‮size‬‏"
+  },
+  "lighthouse-core/audits/image-size-responsive.js | title": {
+    "message": "‏‮Displays‬‏ ‏‮images‬‏ ‏‮with‬‏ ‏‮appropriate‬‏ ‏‮size‬‏"
+  },
   "lighthouse-core/audits/installable-manifest.js | description": {
     "message": "‏‮Browsers‬‏ ‏‮can‬‏ ‏‮proactively‬‏ ‏‮prompt‬‏ ‏‮users‬‏ ‏‮to‬‏ ‏‮add‬‏ ‏‮your‬‏ ‏‮app‬‏ ‏‮to‬‏ ‏‮their‬‏ ‏‮homescreen‬‏, ‏‮which‬‏ ‏‮can‬‏ ‏‮lead‬‏ ‏‮to‬‏ ‏‮higher‬‏ ‏‮engagement‬‏. [‏‮Learn‬‏ ‏‮more‬‏](https://web.dev/installable-manifest)."
   },
@@ -775,6 +808,12 @@
   },
   "lighthouse-core/audits/is-on-https.js | title": {
     "message": "‏‮Uses‬‏ ‏‮HTTPS‬‏"
+  },
+  "lighthouse-core/audits/legacy-javascript.js | description": {
+    "message": "‏‮Polyfills‬‏ ‏‮and‬‏ ‏‮transforms‬‏ ‏‮enable‬‏ ‏‮legacy‬‏ ‏‮browsers‬‏ ‏‮to‬‏ ‏‮use‬‏ ‏‮new‬‏ ‏‮JavaScript‬‏ ‏‮features‬‏. ‏‮However‬‏, ‏‮many‬‏ ‏‮aren‬‏'‏‮t‬‏ ‏‮necessary‬‏ ‏‮for‬‏ ‏‮modern‬‏ ‏‮browsers‬‏. ‏‮For‬‏ ‏‮your‬‏ ‏‮bundled‬‏ ‏‮JavaScript‬‏, ‏‮adopt‬‏ ‏‮a‬‏ ‏‮modern‬‏ ‏‮script‬‏ ‏‮deployment‬‏ ‏‮strategy‬‏ ‏‮using‬‏ ‏‮module‬‏/‏‮nomodule‬‏ ‏‮feature‬‏ ‏‮detection‬‏ ‏‮to‬‏ ‏‮reduce‬‏ ‏‮the‬‏ ‏‮amount‬‏ ‏‮of‬‏ ‏‮code‬‏ ‏‮shipped‬‏ ‏‮to‬‏ ‏‮modern‬‏ ‏‮browsers‬‏, ‏‮while‬‏ ‏‮retaining‬‏ ‏‮support‬‏ ‏‮for‬‏ ‏‮legacy‬‏ ‏‮browsers‬‏. [‏‮Learn‬‏ ‏‮More‬‏](https://philipwalton.com/articles/deploying-es2015-code-in-production-today/)"
+  },
+  "lighthouse-core/audits/legacy-javascript.js | title": {
+    "message": "‏‮Legacy‬‏ ‏‮JavaScript‬‏"
   },
   "lighthouse-core/audits/load-fast-enough-for-pwa.js | description": {
     "message": "‏‮A‬‏ ‏‮fast‬‏ ‏‮page‬‏ ‏‮load‬‏ ‏‮over‬‏ ‏‮a‬‏ ‏‮cellular‬‏ ‏‮network‬‏ ‏‮ensures‬‏ ‏‮a‬‏ ‏‮good‬‏ ‏‮mobile‬‏ ‏‮user‬‏ ‏‮experience‬‏. [‏‮Learn‬‏ ‏‮more‬‏](https://web.dev/load-fast-enough-for-pwa)."
@@ -824,6 +863,18 @@
   "lighthouse-core/audits/manual/pwa-page-transitions.js | title": {
     "message": "‏‮Page‬‏ ‏‮transitions‬‏ ‏‮don‬‏'‏‮t‬‏ ‏‮feel‬‏ ‏‮like‬‏ ‏‮they‬‏ ‏‮block‬‏ ‏‮on‬‏ ‏‮the‬‏ ‏‮network‬‏"
   },
+  "lighthouse-core/audits/maskable-icon.js | description": {
+    "message": "‏‮A‬‏ ‏‮maskable‬‏ ‏‮icon‬‏ ‏‮ensures‬‏ ‏‮that‬‏ ‏‮the‬‏ ‏‮image‬‏ ‏‮fills‬‏ ‏‮the‬‏ ‏‮entire‬‏ ‏‮shape‬‏ ‏‮without‬‏ ‏‮being‬‏ ‏‮letterboxed‬‏ ‏‮when‬‏ ‏‮installing‬‏ ‏‮the‬‏ ‏‮app‬‏ ‏‮on‬‏ ‏‮a‬‏ ‏‮device‬‏. [‏‮Learn‬‏ ‏‮more‬‏](https://web.dev/maskable-icon/)."
+  },
+  "lighthouse-core/audits/maskable-icon.js | failureTitle": {
+    "message": "‏‮Manifest‬‏ ‏‮doesn‬‏'‏‮t‬‏ ‏‮have‬‏ ‏‮a‬‏ ‏‮maskable‬‏ ‏‮icon‬‏"
+  },
+  "lighthouse-core/audits/maskable-icon.js | title": {
+    "message": "‏‮Manifest‬‏ ‏‮has‬‏ ‏‮a‬‏ ‏‮maskable‬‏ ‏‮icon‬‏"
+  },
+  "lighthouse-core/audits/metrics/cumulative-layout-shift.js | description": {
+    "message": "‏‮Cumulative‬‏ ‏‮Layout‬‏ ‏‮Shift‬‏ ‏‮measures‬‏ ‏‮the‬‏ ‏‮movement‬‏ ‏‮of‬‏ ‏‮visible‬‏ ‏‮elements‬‏ ‏‮within‬‏ ‏‮the‬‏ ‏‮viewport‬‏. [‏‮Learn‬‏ ‏‮more‬‏](https://web.dev/cls)."
+  },
   "lighthouse-core/audits/metrics/estimated-input-latency.js | description": {
     "message": "‏‮Estimated‬‏ ‏‮Input‬‏ ‏‮Latency‬‏ ‏‮is‬‏ ‏‮an‬‏ ‏‮estimate‬‏ ‏‮of‬‏ ‏‮how‬‏ ‏‮long‬‏ ‏‮your‬‏ ‏‮app‬‏ ‏‮takes‬‏ ‏‮to‬‏ ‏‮respond‬‏ ‏‮to‬‏ ‏‮user‬‏ ‏‮input‬‏, ‏‮in‬‏ ‏‮milliseconds‬‏, ‏‮during‬‏ ‏‮the‬‏ ‏‮busiest‬‏ 5‏‮s‬‏ ‏‮window‬‏ ‏‮of‬‏ ‏‮page‬‏ ‏‮load‬‏. ‏‮If‬‏ ‏‮your‬‏ ‏‮latency‬‏ ‏‮is‬‏ ‏‮higher‬‏ ‏‮than‬‏ 50 ‏‮ms‬‏, ‏‮users‬‏ ‏‮may‬‏ ‏‮perceive‬‏ ‏‮your‬‏ ‏‮app‬‏ ‏‮as‬‏ ‏‮laggy‬‏. [‏‮Learn‬‏ ‏‮more‬‏](https://web.dev/estimated-input-latency)."
   },
@@ -840,10 +891,7 @@
     "message": "‏‮Time‬‏ ‏‮to‬‏ ‏‮interactive‬‏ ‏‮is‬‏ ‏‮the‬‏ ‏‮amount‬‏ ‏‮of‬‏ ‏‮time‬‏ ‏‮it‬‏ ‏‮takes‬‏ ‏‮for‬‏ ‏‮the‬‏ ‏‮page‬‏ ‏‮to‬‏ ‏‮become‬‏ ‏‮fully‬‏ ‏‮interactive‬‏. [‏‮Learn‬‏ ‏‮more‬‏](https://web.dev/interactive)."
   },
   "lighthouse-core/audits/metrics/largest-contentful-paint.js | description": {
-    "message": "‏‮Largest‬‏ ‏‮Contentful‬‏ ‏‮Paint‬‏ ‏‮marks‬‏ ‏‮the‬‏ ‏‮time‬‏ ‏‮at‬‏ ‏‮which‬‏ ‏‮the‬‏ ‏‮largest‬‏ ‏‮text‬‏ ‏‮or‬‏ ‏‮image‬‏ ‏‮is‬‏ ‏‮painted‬‏. [‏‮Learn‬‏ ‏‮More‬‏](https://web.dev/largest-contentful-paint)"
-  },
-  "lighthouse-core/audits/metrics/largest-contentful-paint.js | title": {
-    "message": "‏‮Largest‬‏ ‏‮Contentful‬‏ ‏‮Paint‬‏"
+    "message": "‏‮Largest‬‏ ‏‮Contentful‬‏ ‏‮Paint‬‏ ‏‮marks‬‏ ‏‮the‬‏ ‏‮time‬‏ ‏‮at‬‏ ‏‮which‬‏ ‏‮the‬‏ ‏‮largest‬‏ ‏‮text‬‏ ‏‮or‬‏ ‏‮image‬‏ ‏‮is‬‏ ‏‮painted‬‏. [‏‮Learn‬‏ ‏‮More‬‏](https://web.dev/lighthouse-largest-contentful-paint)"
   },
   "lighthouse-core/audits/metrics/max-potential-fid.js | description": {
     "message": "‏‮The‬‏ ‏‮maximum‬‏ ‏‮potential‬‏ ‏‮First‬‏ ‏‮Input‬‏ ‏‮Delay‬‏ ‏‮that‬‏ ‏‮your‬‏ ‏‮users‬‏ ‏‮could‬‏ ‏‮experience‬‏ ‏‮is‬‏ ‏‮the‬‏ ‏‮duration‬‏ ‏‮of‬‏ ‏‮the‬‏ ‏‮longest‬‏ ‏‮task‬‏. [‏‮Learn‬‏ ‏‮more‬‏](https://web.dev/lighthouse-max-potential-fid)."
@@ -1118,18 +1166,6 @@
   "lighthouse-core/audits/third-party-summary.js | title": {
     "message": "‏‮Minimize‬‏ ‏‮third‬‏-‏‮party‬‏ ‏‮usage‬‏"
   },
-  "lighthouse-core/audits/time-to-first-byte.js | description": {
-    "message": "‏‮Time‬‏ ‏‮To‬‏ ‏‮First‬‏ ‏‮Byte‬‏ ‏‮identifies‬‏ ‏‮the‬‏ ‏‮time‬‏ ‏‮at‬‏ ‏‮which‬‏ ‏‮your‬‏ ‏‮server‬‏ ‏‮sends‬‏ ‏‮a‬‏ ‏‮response‬‏. [‏‮Learn‬‏ ‏‮more‬‏](https://web.dev/time-to-first-byte)."
-  },
-  "lighthouse-core/audits/time-to-first-byte.js | displayValue": {
-    "message": "‏‮Root‬‏ ‏‮document‬‏ ‏‮took‬‏ {timeInMs, number, milliseconds} ‏‮ms‬‏"
-  },
-  "lighthouse-core/audits/time-to-first-byte.js | failureTitle": {
-    "message": "‏‮Reduce‬‏ ‏‮server‬‏ ‏‮response‬‏ ‏‮times‬‏ (‏‮TTFB‬‏)"
-  },
-  "lighthouse-core/audits/time-to-first-byte.js | title": {
-    "message": "‏‮Server‬‏ ‏‮response‬‏ ‏‮times‬‏ ‏‮are‬‏ ‏‮low‬‏ (‏‮TTFB‬‏)"
-  },
   "lighthouse-core/audits/timing-budget.js | columnMeasurement": {
     "message": "‏‮Measurement‬‏"
   },
@@ -1168,6 +1204,9 @@
   },
   "lighthouse-core/audits/uses-rel-preconnect.js | title": {
     "message": "‏‮Preconnect‬‏ ‏‮to‬‏ ‏‮required‬‏ ‏‮origins‬‏"
+  },
+  "lighthouse-core/audits/uses-rel-preconnect.js | tooManyPreconnectLinksWarning": {
+    "message": "‏‮More‬‏ ‏‮than‬‏ 2 ‏‮preconnect‬‏ ‏‮links‬‏ ‏‮were‬‏ ‏‮found‬‏. ‏‮Preconnect‬‏ ‏‮links‬‏ ‏‮should‬‏ ‏‮be‬‏ ‏‮used‬‏ ‏‮sparingly‬‏ ‏‮and‬‏ ‏‮only‬‏ ‏‮to‬‏ ‏‮the‬‏ ‏‮most‬‏ ‏‮important‬‏ ‏‮origins‬‏."
   },
   "lighthouse-core/audits/uses-rel-preload.js | crossoriginWarning": {
     "message": "‏‮A‬‏ ‏‮preload‬‏ <link> ‏‮was‬‏ ‏‮found‬‏ ‏‮for‬‏ \"{preloadURL}\" ‏‮but‬‏ ‏‮was‬‏ ‏‮not‬‏ ‏‮used‬‏ ‏‮by‬‏ ‏‮the‬‏ ‏‮browser‬‏. ‏‮Check‬‏ ‏‮that‬‏ ‏‮you‬‏ ‏‮are‬‏ ‏‮using‬‏ ‏‮the‬‏ `crossorigin` ‏‮attribute‬‏ ‏‮properly‬‏."
@@ -1355,6 +1394,12 @@
   "lighthouse-core/config/default-config.js | seoMobileGroupTitle": {
     "message": "‏‮Mobile‬‏ ‏‮Friendly‬‏"
   },
+  "lighthouse-core/gather/gather-runner.js | warningRedirected": {
+    "message": "‏‮The‬‏ ‏‮page‬‏ ‏‮may‬‏ ‏‮not‬‏ ‏‮be‬‏ ‏‮loading‬‏ ‏‮as‬‏ ‏‮expected‬‏ ‏‮because‬‏ ‏‮your‬‏ ‏‮test‬‏ ‏‮URL‬‏ ({requested}) ‏‮was‬‏ ‏‮redirected‬‏ ‏‮to‬‏ {final}. ‏‮Try‬‏ ‏‮testing‬‏ ‏‮the‬‏ ‏‮second‬‏ ‏‮URL‬‏ ‏‮directly‬‏."
+  },
+  "lighthouse-core/gather/gather-runner.js | warningTimeout": {
+    "message": "‏‮The‬‏ ‏‮page‬‏ ‏‮loaded‬‏ ‏‮too‬‏ ‏‮slowly‬‏ ‏‮to‬‏ ‏‮finish‬‏ ‏‮within‬‏ ‏‮the‬‏ ‏‮time‬‏ ‏‮limit‬‏. ‏‮Results‬‏ ‏‮may‬‏ ‏‮be‬‏ ‏‮incomplete‬‏."
+  },
   "lighthouse-core/lib/i18n/i18n.js | columnCacheTTL": {
     "message": "‏‮Cache‬‏ ‏‮TTL‬‏"
   },
@@ -1370,11 +1415,17 @@
   "lighthouse-core/lib/i18n/i18n.js | columnRequests": {
     "message": "‏‮Requests‬‏"
   },
+  "lighthouse-core/lib/i18n/i18n.js | columnResourceSize": {
+    "message": "‏‮Resource‬‏ ‏‮Size‬‏"
+  },
   "lighthouse-core/lib/i18n/i18n.js | columnResourceType": {
     "message": "‏‮Resource‬‏ ‏‮Type‬‏"
   },
   "lighthouse-core/lib/i18n/i18n.js | columnSize": {
     "message": "‏‮Size‬‏"
+  },
+  "lighthouse-core/lib/i18n/i18n.js | columnSource": {
+    "message": "‏‮Source‬‏"
   },
   "lighthouse-core/lib/i18n/i18n.js | columnTimeSpent": {
     "message": "‏‮Time‬‏ ‏‮Spent‬‏"
@@ -1390,6 +1441,9 @@
   },
   "lighthouse-core/lib/i18n/i18n.js | columnWastedMs": {
     "message": "‏‮Potential‬‏ ‏‮Savings‬‏"
+  },
+  "lighthouse-core/lib/i18n/i18n.js | cumulativeLayoutShiftMetric": {
+    "message": "‏‮Cumulative‬‏ ‏‮Layout‬‏ ‏‮Shift‬‏"
   },
   "lighthouse-core/lib/i18n/i18n.js | displayValueByteSavings": {
     "message": "‏‮Potential‬‏ ‏‮savings‬‏ ‏‮of‬‏ {wastedBytes, number, bytes} ‏‮KB‬‏"
@@ -1420,6 +1474,9 @@
   },
   "lighthouse-core/lib/i18n/i18n.js | interactiveMetric": {
     "message": "‏‮Time‬‏ ‏‮to‬‏ ‏‮Interactive‬‏"
+  },
+  "lighthouse-core/lib/i18n/i18n.js | largestContentfulPaintMetric": {
+    "message": "‏‮Largest‬‏ ‏‮Contentful‬‏ ‏‮Paint‬‏"
   },
   "lighthouse-core/lib/i18n/i18n.js | maxPotentialFIDMetric": {
     "message": "‏‮Max‬‏ ‏‮Potential‬‏ ‏‮First‬‏ ‏‮Input‬‏ ‏‮Delay‬‏"
@@ -1514,11 +1571,38 @@
   "lighthouse-core/report/html/renderer/util.js | crcLongestDurationLabel": {
     "message": "‏‮Maximum‬‏ ‏‮critical‬‏ ‏‮path‬‏ ‏‮latency‬‏:"
   },
+  "lighthouse-core/report/html/renderer/util.js | dropdownCopyJSON": {
+    "message": "‏‮Copy‬‏ ‏‮JSON‬‏"
+  },
+  "lighthouse-core/report/html/renderer/util.js | dropdownDarkTheme": {
+    "message": "‏‮Toggle‬‏ ‏‮Dark‬‏ ‏‮Theme‬‏"
+  },
+  "lighthouse-core/report/html/renderer/util.js | dropdownPrintExpanded": {
+    "message": "‏‮Print‬‏ ‏‮Expanded‬‏"
+  },
+  "lighthouse-core/report/html/renderer/util.js | dropdownPrintSummary": {
+    "message": "‏‮Print‬‏ ‏‮Summary‬‏"
+  },
+  "lighthouse-core/report/html/renderer/util.js | dropdownSaveGist": {
+    "message": "‏‮Save‬‏ ‏‮as‬‏ ‏‮Gist‬‏"
+  },
+  "lighthouse-core/report/html/renderer/util.js | dropdownSaveHTML": {
+    "message": "‏‮Save‬‏ ‏‮as‬‏ ‏‮HTML‬‏"
+  },
+  "lighthouse-core/report/html/renderer/util.js | dropdownSaveJSON": {
+    "message": "‏‮Save‬‏ ‏‮as‬‏ ‏‮JSON‬‏"
+  },
+  "lighthouse-core/report/html/renderer/util.js | dropdownViewer": {
+    "message": "‏‮Open‬‏ ‏‮in‬‏ ‏‮Viewer‬‏"
+  },
   "lighthouse-core/report/html/renderer/util.js | errorLabel": {
     "message": "‏‮Error‬‏!"
   },
   "lighthouse-core/report/html/renderer/util.js | errorMissingAuditInfo": {
     "message": "‏‮Report‬‏ ‏‮error‬‏: ‏‮no‬‏ ‏‮audit‬‏ ‏‮information‬‏"
+  },
+  "lighthouse-core/report/html/renderer/util.js | footerIssue": {
+    "message": "‏‮File‬‏ ‏‮an‬‏ ‏‮issue‬‏"
   },
   "lighthouse-core/report/html/renderer/util.js | labDataTitle": {
     "message": "‏‮Lab‬‏ ‏‮Data‬‏"
@@ -1541,6 +1625,48 @@
   "lighthouse-core/report/html/renderer/util.js | passedAuditsGroupTitle": {
     "message": "‏‮Passed‬‏ ‏‮audits‬‏"
   },
+  "lighthouse-core/report/html/renderer/util.js | runtimeDesktopEmulation": {
+    "message": "‏‮Emulated‬‏ ‏‮Desktop‬‏"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeMobileEmulation": {
+    "message": "‏‮Emulated‬‏ ‏‮Moto‬‏ ‏‮G‬‏4"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeNoEmulation": {
+    "message": "‏‮No‬‏ ‏‮emulation‬‏"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsBenchmark": {
+    "message": "‏‮CPU‬‏/‏‮Memory‬‏ ‏‮Power‬‏"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsCPUThrottling": {
+    "message": "‏‮CPU‬‏ ‏‮throttling‬‏"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsChannel": {
+    "message": "‏‮Channel‬‏"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsDevice": {
+    "message": "‏‮Device‬‏"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsFetchTime": {
+    "message": "‏‮Fetch‬‏ ‏‮Time‬‏"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsNetworkThrottling": {
+    "message": "‏‮Network‬‏ ‏‮throttling‬‏"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsTitle": {
+    "message": "‏‮Runtime‬‏ ‏‮Settings‬‏"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsUA": {
+    "message": "‏‮User‬‏ ‏‮agent‬‏ (‏‮host‬‏)"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsUANetwork": {
+    "message": "‏‮User‬‏ ‏‮agent‬‏ (‏‮network‬‏)"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsUrl": {
+    "message": "‏‮URL‬‏"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeUnknown": {
+    "message": "‏‮Unknown‬‏"
+  },
   "lighthouse-core/report/html/renderer/util.js | snippetCollapseButtonLabel": {
     "message": "‏‮Collapse‬‏ ‏‮snippet‬‏"
   },
@@ -1549,6 +1675,9 @@
   },
   "lighthouse-core/report/html/renderer/util.js | thirdPartyResourcesLabel": {
     "message": "‏‮Show‬‏ 3‏‮rd‬‏-‏‮party‬‏ ‏‮resources‬‏"
+  },
+  "lighthouse-core/report/html/renderer/util.js | throttlingProvided": {
+    "message": "‏‮Provided‬‏ ‏‮by‬‏ ‏‮environment‬‏"
   },
   "lighthouse-core/report/html/renderer/util.js | toplevelWarningsMessage": {
     "message": "‏‮There‬‏ ‏‮were‬‏ ‏‮issues‬‏ ‏‮affecting‬‏ ‏‮this‬‏ ‏‮run‬‏ ‏‮of‬‏ ‏‮Lighthouse‬‏:"
@@ -1610,9 +1739,6 @@
   "stack-packs/packs/magento.js | offscreen_images": {
     "message": "‏‮Consider‬‏ ‏‮modifying‬‏ ‏‮your‬‏ ‏‮product‬‏ ‏‮and‬‏ ‏‮catalog‬‏ ‏‮templates‬‏ ‏‮to‬‏ ‏‮make‬‏ ‏‮use‬‏ ‏‮of‬‏ ‏‮the‬‏ ‏‮web‬‏ ‏‮platform‬‏'‏‮s‬‏ [‏‮lazy‬‏ ‏‮loading‬‏](https://web.dev/native-lazy-loading) ‏‮feature‬‏."
   },
-  "stack-packs/packs/magento.js | time_to_first_byte": {
-    "message": "‏‮Use‬‏ ‏‮Magento‬‏'‏‮s‬‏ [‏‮Varnish‬‏ ‏‮integration‬‏](https://devdocs.magento.com/guides/v2.3/config-guide/varnish/config-varnish.html)."
-  },
   "stack-packs/packs/magento.js | unminified_css": {
     "message": "‏‮Enable‬‏ ‏‮the‬‏ \"‏‮Minify‬‏ ‏‮CSS‬‏ ‏‮Files‬‏\" ‏‮option‬‏ ‏‮in‬‏ ‏‮your‬‏ ‏‮store‬‏'‏‮s‬‏ ‏‮Developer‬‏ ‏‮settings‬‏. [‏‮Learn‬‏ ‏‮more‬‏](https://devdocs.magento.com/guides/v2.3/performance-best-practices/configuration.html?itm_source=devdocs&itm_medium=search_page&itm_campaign=federated_search&itm_term=minify%20css%20files)."
   },
@@ -1640,9 +1766,6 @@
   "stack-packs/packs/react.js | redirects": {
     "message": "‏‮If‬‏ ‏‮you‬‏ ‏‮are‬‏ ‏‮using‬‏ ‏‮React‬‏ ‏‮Router‬‏, ‏‮minimize‬‏ ‏‮usage‬‏ ‏‮of‬‏ ‏‮the‬‏ `<Redirect>` ‏‮component‬‏ ‏‮for‬‏ [‏‮route‬‏ ‏‮navigations‬‏](https://reacttraining.com/react-router/web/api/Redirect)."
   },
-  "stack-packs/packs/react.js | time_to_first_byte": {
-    "message": "‏‮If‬‏ ‏‮you‬‏ ‏‮are‬‏ ‏‮server‬‏-‏‮side‬‏ ‏‮rendering‬‏ ‏‮any‬‏ ‏‮React‬‏ ‏‮components‬‏, ‏‮consider‬‏ ‏‮using‬‏ `renderToNodeStream()` ‏‮or‬‏ `renderToStaticNodeStream()` ‏‮to‬‏ ‏‮allow‬‏ ‏‮the‬‏ ‏‮client‬‏ ‏‮to‬‏ ‏‮receive‬‏ ‏‮and‬‏ ‏‮hydrate‬‏ ‏‮different‬‏ ‏‮parts‬‏ ‏‮of‬‏ ‏‮the‬‏ ‏‮markup‬‏ ‏‮instead‬‏ ‏‮of‬‏ ‏‮all‬‏ ‏‮at‬‏ ‏‮once‬‏. [‏‮Learn‬‏ ‏‮more‬‏](https://reactjs.org/docs/react-dom-server.html#rendertonodestream)."
-  },
   "stack-packs/packs/react.js | unminified_css": {
     "message": "‏‮If‬‏ ‏‮your‬‏ ‏‮build‬‏ ‏‮system‬‏ ‏‮minifies‬‏ ‏‮your‬‏ ‏‮CSS‬‏ ‏‮files‬‏ ‏‮automatically‬‏, ‏‮ensure‬‏ ‏‮that‬‏ ‏‮you‬‏ ‏‮are‬‏ ‏‮deploying‬‏ ‏‮the‬‏ ‏‮production‬‏ ‏‮build‬‏ ‏‮of‬‏ ‏‮your‬‏ ‏‮application‬‏. ‏‮You‬‏ ‏‮can‬‏ ‏‮check‬‏ ‏‮this‬‏ ‏‮with‬‏ ‏‮the‬‏ ‏‮React‬‏ ‏‮Developer‬‏ ‏‮Tools‬‏ ‏‮extension‬‏. [‏‮Learn‬‏ ‏‮more‬‏](https://reactjs.org/docs/optimizing-performance.html#use-the-production-build)."
   },
@@ -1663,9 +1786,6 @@
   },
   "stack-packs/packs/wordpress.js | render_blocking_resources": {
     "message": "‏‮There‬‏ ‏‮are‬‏ ‏‮a‬‏ ‏‮number‬‏ ‏‮of‬‏ ‏‮WordPress‬‏ ‏‮plugins‬‏ ‏‮that‬‏ ‏‮can‬‏ ‏‮help‬‏ ‏‮you‬‏ [‏‮inline‬‏ ‏‮critical‬‏ ‏‮assets‬‏](https://wordpress.org/plugins/search/critical+css/) ‏‮or‬‏ [‏‮defer‬‏ ‏‮less‬‏ ‏‮important‬‏ ‏‮resources‬‏](https://wordpress.org/plugins/search/defer+css+javascript/). ‏‮Beware‬‏ ‏‮that‬‏ ‏‮optimizations‬‏ ‏‮provided‬‏ ‏‮by‬‏ ‏‮these‬‏ ‏‮plugins‬‏ ‏‮may‬‏ ‏‮break‬‏ ‏‮features‬‏ ‏‮of‬‏ ‏‮your‬‏ ‏‮theme‬‏ ‏‮or‬‏ ‏‮plugins‬‏, ‏‮so‬‏ ‏‮you‬‏ ‏‮will‬‏ ‏‮likely‬‏ ‏‮need‬‏ ‏‮to‬‏ ‏‮make‬‏ ‏‮code‬‏ ‏‮changes‬‏."
-  },
-  "stack-packs/packs/wordpress.js | time_to_first_byte": {
-    "message": "‏‮Themes‬‏, ‏‮plugins‬‏, ‏‮and‬‏ ‏‮server‬‏ ‏‮specifications‬‏ ‏‮all‬‏ ‏‮contribute‬‏ ‏‮to‬‏ ‏‮server‬‏ ‏‮response‬‏ ‏‮time‬‏. ‏‮Consider‬‏ ‏‮finding‬‏ ‏‮a‬‏ ‏‮more‬‏ ‏‮optimized‬‏ ‏‮theme‬‏, ‏‮carefully‬‏ ‏‮selecting‬‏ ‏‮an‬‏ ‏‮optimization‬‏ ‏‮plugin‬‏, ‏‮and‬‏/‏‮or‬‏ ‏‮upgrading‬‏ ‏‮your‬‏ ‏‮server‬‏."
   },
   "stack-packs/packs/wordpress.js | total_byte_weight": {
     "message": "‏‮Consider‬‏ ‏‮showing‬‏ ‏‮excerpts‬‏ ‏‮in‬‏ ‏‮your‬‏ ‏‮post‬‏ ‏‮lists‬‏ (‏‮e‬‏.‏‮g‬‏. ‏‮via‬‏ ‏‮the‬‏ ‏‮more‬‏ ‏‮tag‬‏), ‏‮reducing‬‏ ‏‮the‬‏ ‏‮number‬‏ ‏‮of‬‏ ‏‮posts‬‏ ‏‮shown‬‏ ‏‮on‬‏ ‏‮a‬‏ ‏‮given‬‏ ‏‮page‬‏, ‏‮breaking‬‏ ‏‮your‬‏ ‏‮long‬‏ ‏‮posts‬‏ ‏‮into‬‏ ‏‮multiple‬‏ ‏‮pages‬‏, ‏‮or‬‏ ‏‮using‬‏ ‏‮a‬‏ ‏‮plugin‬‏ ‏‮to‬‏ ‏‮lazy‬‏-‏‮load‬‏ ‏‮comments‬‏."

@@ -7,7 +7,7 @@
 
 const FMPAudit = require('../../../audits/metrics/first-meaningful-paint.js');
 const Audit = require('../../../audits/audit.js');
-const assert = require('assert');
+const assert = require('assert').strict;
 const options = FMPAudit.defaultOptions;
 const trace = require('../../fixtures/traces/progressive-app-m60.json');
 const devtoolsLogs = require('../../fixtures/traces/progressive-app-m60.devtools.log.json');

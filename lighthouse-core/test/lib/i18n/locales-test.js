@@ -6,7 +6,7 @@
 'use strict';
 
 const locales = require('../../../lib/i18n/locales.js');
-const assert = require('assert');
+const assert = require('assert').strict;
 
 /* eslint-env jest */
 

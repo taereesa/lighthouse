@@ -68,13 +68,14 @@ class ReportGenerator {
     const escape = value => `"${value.replace(/"/g, '""')}"`;
 
     // Possible TODO: tightly couple headers and row values
-    const header = ['category', 'name', 'title', 'type', 'score'];
+    const header = ['requestedUrl', 'finalUrl', 'category', 'name', 'title', 'type', 'score'];
     const table = Object.values(lhr.categories).map(category => {
       return category.auditRefs.map(auditRef => {
         const audit = lhr.audits[auditRef.id];
         // CSV validator wants all scores to be numeric, use -1 for now
         const numericScore = audit.score === null ? -1 : audit.score;
-        return [category.title, audit.id, audit.title, audit.scoreDisplayMode, numericScore]
+        return [lhr.requestedUrl, lhr.finalUrl, category.title, audit.id, audit.title,
+          audit.scoreDisplayMode, numericScore]
           .map(value => value.toString())
           .map(escape);
       });

@@ -72,6 +72,13 @@ class Driver {
      */
     this._monitoredUrl = null;
 
+    /**
+     * Used for monitoring frame navigations during gotoURL.
+     * @type {Array<LH.Crdp.Page.Frame>}
+     * @private
+     */
+    this._monitoredUrlNavigations = [];
+
     this.on('Target.attachedToTarget', event => {
       this._handleTargetAttached(event).catch(this._handleEventError);
     });
@@ -85,6 +92,7 @@ class Driver {
     });
 
     this.on('Page.frameNavigated', () => this._clearIsolatedContextId());
+    this.on('Page.frameNavigated', evt => this._monitoredUrlNavigations.push(evt.frame));
 
     connection.on('protocolevent', this._handleProtocolEvent.bind(this));
 
@@ -997,9 +1005,7 @@ class Driver {
   }
 
   /**
-   * Set up listener for network quiet events and URL redirects. Passed in URL
-   * will be monitored for redirects, with the final loaded URL passed back in
-   * _endNetworkStatusMonitoring.
+   * Set up listener for network quiet events and reset the monitored navigation events.
    * @param {string} startingUrl
    * @return {Promise<void>}
    * @private
@@ -1007,20 +1013,9 @@ class Driver {
   _beginNetworkStatusMonitoring(startingUrl) {
     this._networkStatusMonitor = new NetworkRecorder();
 
-    // Update startingUrl if it's ever redirected.
     this._monitoredUrl = startingUrl;
-    /** @param {LH.Artifacts.NetworkRequest} redirectRequest */
-    const requestLoadedListener = redirectRequest => {
-      // Ignore if this is not a redirected request.
-      if (!redirectRequest.redirectSource) {
-        return;
-      }
-      const earlierRequest = redirectRequest.redirectSource;
-      if (earlierRequest.url === this._monitoredUrl) {
-        this._monitoredUrl = redirectRequest.url;
-      }
-    };
-    this._networkStatusMonitor.on('requestloaded', requestLoadedListener);
+    // Reset back to empty
+    this._monitoredUrlNavigations = [];
 
     return this.sendCommand('Network.enable');
   }
@@ -1028,18 +1023,25 @@ class Driver {
   /**
    * End network status listening. Returns the final, possibly redirected,
    * loaded URL starting with the one passed into _endNetworkStatusMonitoring.
-   * @return {string}
+   * @return {Promise<string>}
    * @private
    */
-  _endNetworkStatusMonitoring() {
+  async _endNetworkStatusMonitoring() {
+    const startingUrl = this._monitoredUrl;
+    const frameNavigations = this._monitoredUrlNavigations;
+
+    const resourceTreeResponse = await this.sendCommand('Page.getResourceTree');
+    const mainFrameId = resourceTreeResponse.frameTree.frame.id;
+    const mainFrameNavigations = frameNavigations.filter(frame => frame.id === mainFrameId);
+    const finalNavigation = mainFrameNavigations[mainFrameNavigations.length - 1];
+
     this._networkStatusMonitor = null;
-    const finalUrl = this._monitoredUrl;
     this._monitoredUrl = null;
+    this._monitoredUrlNavigations = [];
 
-    if (!finalUrl) {
-      throw new Error('Network Status Monitoring ended with an undefined finalUrl');
-    }
-
+    const finalUrl = (finalNavigation && finalNavigation.url) || startingUrl;
+    if (!finalNavigation) log.warn('Driver', 'No detected navigations');
+    if (!finalUrl) throw new Error('Unable to determine finalUrl');
     return finalUrl;
   }
 
@@ -1138,7 +1140,7 @@ class Driver {
     await waitforPageNavigateCmd;
 
     return {
-      finalUrl: this._endNetworkStatusMonitoring(),
+      finalUrl: await this._endNetworkStatusMonitoring(),
       timedOut,
     };
   }

@@ -6,7 +6,7 @@
 'use strict';
 
 /* eslint-env jest */
-const assert = require('assert');
+const assert = require('assert').strict;
 const getFlags = require('../../cli-flags.js').getFlags;
 
 describe('CLI bin', function() {

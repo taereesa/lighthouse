@@ -6,7 +6,7 @@
 'use strict';
 
 const RedirectsAudit = require('../../audits/redirects.js');
-const assert = require('assert');
+const assert = require('assert').strict;
 const networkRecordsToDevtoolsLog = require('../network-records-to-devtools-log.js');
 const createTestTrace = require('../create-test-trace.js');
 

@@ -5,7 +5,7 @@
  */
 'use strict';
 
-const assert = require('assert');
+const assert = require('assert').strict;
 
 const MaxPotentialFID = require('../../../computed/metrics/max-potential-fid.js');
 const trace = require('../../fixtures/traces/progressive-app-m60.json');

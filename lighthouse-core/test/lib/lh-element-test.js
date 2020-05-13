@@ -6,7 +6,7 @@
 'use strict';
 
 const LHElement = require('../../lib/lh-element.js');
-const assert = require('assert');
+const assert = require('assert').strict;
 
 class DriverStub {
   sendCommand(command) {

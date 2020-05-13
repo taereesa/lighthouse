@@ -81,11 +81,14 @@ declare global {
         [p: string]: any;
       }
 
-      /** Possible types of values found within table items. */
-      type ItemValueTypes = 'bytes' | 'code' | 'link' | 'ms' | 'multi' | 'node' | 'source-location' | 'numeric' | 'text' | 'thumbnail' | 'timespanMs' | 'url';
-      type Value = string | number | boolean | DebugData | NodeValue | SourceLocationValue | LinkValue | UrlValue | CodeValue;
+      /** String enum of possible types of values found within table items. */
+      type ItemValueType = 'bytes' | 'code' | 'link' | 'ms' | 'multi' | 'node' | 'source-location' | 'numeric' | 'text' | 'thumbnail' | 'timespanMs' | 'url';
 
-      // TODO(bckenny): unify Table/Opportunity headings and items on next breaking change.
+      /** Possible types of values found within table items. */
+      type ItemValue = string | number | boolean | DebugData | NodeValue | SourceLocationValue | LinkValue | UrlValue | CodeValue;
+
+      // TODO: drop TableColumnHeading, rename OpportunityColumnHeading to TableColumnHeading and
+      // use that for all table-like audit details.
 
       export interface TableColumnHeading {
         /**
@@ -100,20 +103,20 @@ declare global {
          * those values will be primitives rendered as this type, but the values
          * could also be objects with their own type to override this field.
          */
-        itemType: ItemValueTypes;
+        itemType: ItemValueType;
         /**
          * Optional - defines an inner table of values that correspond to this column.
          * Key is required - if other properties are not provided, the value for the heading is used.
          */
-        subRows?: {key: string, itemType?: ItemValueTypes, displayUnit?: string, granularity?: number};
+        subRows?: {key: string, itemType?: ItemValueType, displayUnit?: string, granularity?: number};
 
         displayUnit?: string;
         granularity?: number;
       }
 
-      export type TableItem = {
+      export interface TableItem {
         debugData?: DebugData;
-        [p: string]: undefined | Value | Value[];
+        [p: string]: undefined | ItemValue | ItemValue[];
       }
 
       export interface OpportunityColumnHeading {
@@ -129,25 +132,26 @@ declare global {
          * those values will be primitives rendered as this type, but the values
          * could also be objects with their own type to override this field.
          */
-        valueType: ItemValueTypes;
+        valueType: ItemValueType;
         /**
          * Optional - defines an inner table of values that correspond to this column.
          * Key is required - if other properties are not provided, the value for the heading is used.
          */
-        subRows?: {key: string, valueType?: ItemValueTypes, displayUnit?: string, granularity?: number};
+        subRows?: {key: string, valueType?: ItemValueType, displayUnit?: string, granularity?: number};
 
         // NOTE: not used by opportunity details, but used in the renderer until table/opportunity unification.
         displayUnit?: string;
         granularity?: number;
       }
 
-      export interface OpportunityItem {
+      /** A more specific table element used for `opportunity` tables. */
+      export interface OpportunityItem extends TableItem {
         url: string;
         wastedBytes?: number;
         totalBytes?: number;
         wastedMs?: number;
         debugData?: DebugData;
-        [p: string]: undefined | Value | Value[];
+        [p: string]: undefined | ItemValue | ItemValue[];
       }
 
       /**

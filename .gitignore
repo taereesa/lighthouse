@@ -53,3 +53,5 @@ proto/scripts/*_processed.json
 
 # require any lock file to be checked in explicitly
 yarn.lock
+
+proto/sample_v2_round_trip.json

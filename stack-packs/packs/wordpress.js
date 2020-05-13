@@ -38,8 +38,8 @@ const UIStrings = {
   uses_text_compression: 'You can enable text compression in your web server configuration.',
   /** Additional description of a Lighthouse audit that tells the user how they can improve performance by using responsive images in the context of the Wordpress CMS platform. This is displayed after a user expands the section to see more. No character length limits. Links in (parenthesis) become link texts to additional documentation. */
   uses_responsive_images: 'Upload images directly through the [media library](https://wordpress.org/support/article/media-library-screen/) to ensure that the required image sizes are available, and then insert them from the media library or use the image widget to ensure the optimal image sizes are used (including those for the responsive breakpoints). Avoid using `Full Size` images unless the dimensions are adequate for their usage. [Learn More](https://wordpress.org/support/article/inserting-images-into-posts-and-pages/).',
-  /** Additional description of a Lighthouse audit that tells the user how they can improve the time to first byte speed metric, in the context of the Wordpress CMS platform. This is displayed after a user expands the section to see more. No character length limits. Links in (parenthesis) become link texts to additional documentation. */
-  time_to_first_byte: 'Themes, plugins, and server specifications all contribute to server response time. Consider finding a more optimized theme, carefully selecting an optimization plugin, and/or upgrading your server.',
+  /** Additional description of a Lighthouse audit that tells the user how they can improve the server-response-time speed metric, in the context of the Wordpress CMS platform. This is displayed after a user expands the section to see more. No character length limits. Links in (parenthesis) become link texts to additional documentation. */
+  server_response_time: 'Themes, plugins, and server specifications all contribute to server response time. Consider finding a more optimized theme, carefully selecting an optimization plugin, and/or upgrading your server.',
 };
 
 const str_ = i18n.createMessageInstanceIdFn(__filename, UIStrings);
@@ -62,7 +62,7 @@ module.exports = {
     'uses-optimized-images': str_(UIStrings.uses_optimized_images),
     'uses-text-compression': str_(UIStrings.uses_text_compression),
     'uses-responsive-images': str_(UIStrings.uses_responsive_images),
-    'time-to-first-byte': str_(UIStrings.time_to_first_byte),
+    'server-response-time': str_(UIStrings.server_response_time),
   },
 };
 module.exports.UIStrings = UIStrings;

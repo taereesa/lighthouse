@@ -13,7 +13,7 @@ const taskGroups = require('../../../lib/tracehouse/task-groups.js').taskGroups;
 const pwaTrace = require('../../fixtures/traces/progressive-app.json');
 const noTracingStartedTrace = require('../../fixtures/traces/no-tracingstarted-m74.json');
 const TracingProcessor = require('../../../lib/tracehouse/trace-processor.js');
-const assert = require('assert');
+const assert = require('assert').strict;
 
 describe('Main Thread Tasks', () => {
   const pid = 1;

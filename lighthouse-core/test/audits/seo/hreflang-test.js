@@ -5,7 +5,7 @@
  */
 'use strict';
 
-const assert = require('assert');
+const assert = require('assert').strict;
 const HreflangAudit = require('../../../audits/seo/hreflang.js');
 
 /* eslint-env jest */

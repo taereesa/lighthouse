@@ -5,7 +5,7 @@
  */
 'use strict';
 
-const assert = require('assert');
+const assert = require('assert').strict;
 const getLineNumberFromJsonLDPath = require('../../lib/sd-validation/line-number-from-jsonld-path.js'); // eslint-disable-line max-len
 
 /* global describe, it */

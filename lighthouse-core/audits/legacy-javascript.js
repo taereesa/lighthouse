@@ -18,6 +18,7 @@
 const Audit = require('./audit.js');
 const NetworkRecords = require('../computed/network-records.js');
 const MainResource = require('../computed/main-resource.js');
+const JSBundles = require('../computed/js-bundles.js');
 const URL = require('../lib/url-shim.js');
 const i18n = require('../lib/i18n/i18n.js');
 
@@ -107,7 +108,7 @@ class LegacyJavascript extends Audit {
       scoreDisplayMode: Audit.SCORING_MODES.INFORMATIVE,
       description: str_(UIStrings.description),
       title: str_(UIStrings.title),
-      requiredArtifacts: ['devtoolsLogs', 'ScriptElements', 'URL'],
+      requiredArtifacts: ['devtoolsLogs', 'ScriptElements', 'SourceMaps', 'URL'],
     };
   }
 
@@ -159,97 +160,103 @@ class LegacyJavascript extends Audit {
     return expression;
   }
 
+  static getPolyfillData() {
+    return [
+      /* eslint-disable max-len */
+      {module: 'es6.array.fill', name: 'Array.prototype.fill'},
+      {module: 'es6.array.filter', name: 'Array.prototype.filter'},
+      {module: 'es6.array.find', name: 'Array.prototype.find'},
+      {module: 'es6.array.find-index', name: 'Array.prototype.findIndex'},
+      {module: 'es6.array.for-each', name: 'Array.prototype.forEach'},
+      {module: 'es6.array.from', name: 'Array.from'},
+      {module: 'es6.array.is-array', name: 'Array.isArray'},
+      {module: 'es6.array.last-index-of', name: 'Array.prototype.lastIndexOf'},
+      {module: 'es6.array.map', name: 'Array.prototype.map'},
+      {module: 'es6.array.of', name: 'Array.of'},
+      {module: 'es6.array.reduce', name: 'Array.prototype.reduce'},
+      {module: 'es6.array.reduce-right', name: 'Array.prototype.reduceRight'},
+      {module: 'es6.array.some', name: 'Array.prototype.some'},
+      {module: 'es6.date.now', name: 'Date.now'},
+      {module: 'es6.date.to-iso-string', name: 'Date.prototype.toISOString'},
+      {module: 'es6.date.to-json', name: 'Date.prototype.toJSON'},
+      {module: 'es6.date.to-string', name: 'Date.prototype.toString'},
+      {module: 'es6.function.name', name: 'Function.prototype.name'},
+      {module: 'es6.map', name: 'Map'},
+      {module: 'es6.number.is-integer', name: 'Number.isInteger'},
+      {module: 'es6.number.is-safe-integer', name: 'Number.isSafeInteger'},
+      {module: 'es6.number.parse-float', name: 'Number.parseFloat'},
+      {module: 'es6.number.parse-int', name: 'Number.parseInt'},
+      {module: 'es6.object.assign', name: 'Object.assign'},
+      {module: 'es6.object.create', name: 'Object.create'},
+      {module: 'es6.object.define-properties', name: 'Object.defineProperties'},
+      {module: 'es6.object.define-property', name: 'Object.defineProperty'},
+      {module: 'es6.object.freeze', name: 'Object.freeze'},
+      {module: 'es6.object.get-own-property-descriptor', name: 'Object.getOwnPropertyDescriptor'},
+      {module: 'es6.object.get-own-property-names', name: 'Object.getOwnPropertyNames'},
+      {module: 'es6.object.get-prototype-of', name: 'Object.getPrototypeOf'},
+      {module: 'es6.object.is-extensible', name: 'Object.isExtensible'},
+      {module: 'es6.object.is-frozen', name: 'Object.isFrozen'},
+      {module: 'es6.object.is-sealed', name: 'Object.isSealed'},
+      {module: 'es6.object.keys', name: 'Object.keys'},
+      {module: 'es6.object.prevent-extensions', name: 'Object.preventExtensions'},
+      {module: 'es6.object.seal', name: 'Object.seal'},
+      {module: 'es6.object.set-prototype-of', name: 'Object.setPrototypeOf'},
+      {module: 'es6.promise', name: 'Promise'},
+      {module: 'es6.reflect.apply', name: 'Reflect.apply'},
+      {module: 'es6.reflect.construct', name: 'Reflect.construct'},
+      {module: 'es6.reflect.define-property', name: 'Reflect.defineProperty'},
+      {module: 'es6.reflect.delete-property', name: 'Reflect.deleteProperty'},
+      {module: 'es6.reflect.get', name: 'Reflect.get'},
+      {module: 'es6.reflect.get-own-property-descriptor', name: 'Reflect.getOwnPropertyDescriptor'},
+      {module: 'es6.reflect.get-prototype-of', name: 'Reflect.getPrototypeOf'},
+      {module: 'es6.reflect.has', name: 'Reflect.has'},
+      {module: 'es6.reflect.is-extensible', name: 'Reflect.isExtensible'},
+      {module: 'es6.reflect.own-keys', name: 'Reflect.ownKeys'},
+      {module: 'es6.reflect.prevent-extensions', name: 'Reflect.preventExtensions'},
+      {module: 'es6.reflect.set', name: 'Reflect.set'},
+      {module: 'es6.reflect.set-prototype-of', name: 'Reflect.setPrototypeOf'},
+      {module: 'es6.set', name: 'Set'},
+      {module: 'es6.string.code-point-at', name: 'String.prototype.codePointAt'},
+      {module: 'es6.string.ends-with', name: 'String.prototype.endsWith'},
+      {module: 'es6.string.from-code-point', name: 'String.fromCodePoint'},
+      {module: 'es6.string.includes', name: 'String.prototype.includes'},
+      {module: 'es6.string.raw', name: 'String.raw'},
+      {module: 'es6.string.repeat', name: 'String.prototype.repeat'},
+      {module: 'es6.string.starts-with', name: 'String.prototype.startsWith'},
+      {module: 'es6.string.trim', name: 'String.prototype.trim'},
+      {module: 'es6.typed.array-buffer', name: 'ArrayBuffer'},
+      {module: 'es6.typed.data-view', name: 'DataView'},
+      {module: 'es6.typed.float32-array', name: 'Float32Array'},
+      {module: 'es6.typed.float64-array', name: 'Float64Array'},
+      {module: 'es6.typed.int16-array', name: 'Int16Array'},
+      {module: 'es6.typed.int32-array', name: 'Int32Array'},
+      {module: 'es6.typed.int8-array', name: 'Int8Array'},
+      {module: 'es6.typed.uint16-array', name: 'Uint16Array'},
+      {module: 'es6.typed.uint32-array', name: 'Uint32Array'},
+      {module: 'es6.typed.uint8-array', name: 'Uint8Array'},
+      {module: 'es6.typed.uint8-clamped-array', name: 'Uint8ClampedArray'},
+      {module: 'es6.weak-map', name: 'WeakMap'},
+      {module: 'es6.weak-set', name: 'WeakSet'},
+      {module: 'es7.array.includes', name: 'Array.prototype.includes'},
+      {module: 'es7.object.entries', name: 'Object.entries'},
+      {module: 'es7.object.get-own-property-descriptors', name: 'Object.getOwnPropertyDescriptors'},
+      {module: 'es7.object.values', name: 'Object.values'},
+      {module: 'es7.string.pad-end', name: 'String.prototype.padEnd'},
+      {module: 'es7.string.pad-start', name: 'String.prototype.padStart'},
+      /* eslint-enable max-len */
+    ];
+  }
+
   /**
    * @return {Pattern[]}
    */
   static getPolyfillPatterns() {
-    return [
-      'Array.fill',
-      'Array.from',
-      'Array.isArray',
-      'Array.of',
-      'Array.prototype.filter',
-      'Array.prototype.find',
-      'Array.prototype.findIndex',
-      'Array.prototype.forEach',
-      'Array.prototype.includes',
-      'Array.prototype.lastIndexOf',
-      'Array.prototype.map',
-      'Array.prototype.reduce',
-      'Array.prototype.reduceRight',
-      'Array.prototype.some',
-      'ArrayBuffer',
-      'DataView',
-      'Date.now',
-      'Date.prototype.toISOString',
-      'Date.prototype.toJSON',
-      'Date.prototype.toString',
-      'Float32Array',
-      'Float64Array',
-      'Function.prototype.name',
-      'Int16Array',
-      'Int32Array',
-      'Int8Array',
-      'Map',
-      'Number.isInteger',
-      'Number.isSafeInteger',
-      'Number.parseFloat',
-      'Number.parseInt',
-      'Object.assign',
-      'Object.create',
-      'Object.defineProperties',
-      'Object.defineProperty',
-      'Object.entries',
-      'Object.freeze',
-      'Object.getOwnPropertyDescriptor',
-      'Object.getOwnPropertyDescriptors',
-      'Object.getOwnPropertyNames',
-      'Object.getPrototypeOf',
-      'Object.isExtensible',
-      'Object.isFrozen',
-      'Object.isSealed',
-      'Object.keys',
-      'Object.preventExtensions',
-      'Object.seal',
-      'Object.setPrototypeOf',
-      'Object.values',
-      'Promise',
-      'Reflect.apply',
-      'Reflect.construct',
-      'Reflect.defineProperty',
-      'Reflect.deleteProperty',
-      'Reflect.get',
-      'Reflect.getOwnPropertyDescriptor',
-      'Reflect.getPrototypeOf',
-      'Reflect.has',
-      'Reflect.isExtensible',
-      'Reflect.ownKeys',
-      'Reflect.preventExtensions',
-      'Reflect.set',
-      'Reflect.setPrototypeOf',
-      'Set',
-      'String.fromCodePoint',
-      'String.prototype.codePointAt',
-      'String.prototype.endsWith',
-      'String.prototype.includes',
-      'String.prototype.padEnd',
-      'String.prototype.padStart',
-      'String.prototype.repeat',
-      'String.prototype.startsWith',
-      'String.prototype.trim',
-      'String.raw',
-      'Uint16Array',
-      'Uint32Array',
-      'Uint8Array',
-      'Uint8ClampedArray',
-      'WeakMap',
-      'WeakSet',
-    ].map(polyfillName => {
-      const parts = polyfillName.split('.');
+    return this.getPolyfillData().map(({name}) => {
+      const parts = name.split('.');
       const object = parts.length > 1 ? parts.slice(0, parts.length - 1).join('.') : null;
       const property = parts[parts.length - 1];
       return {
-        name: polyfillName,
+        name,
         expression: this.buildPolyfillExpression(object, property),
       };
     });
@@ -276,23 +283,46 @@ class LegacyJavascript extends Audit {
   }
 
   /**
-   * Returns a collection of match results grouped by script url and with a mapping
-   * to determine the order in which the matches were discovered.
+   * Returns a collection of match results grouped by script url.
    *
    * @param {CodePatternMatcher} matcher
    * @param {LH.GathererArtifacts['ScriptElements']} scripts
    * @param {LH.Artifacts.NetworkRequest[]} networkRecords
+   * @param {LH.Artifacts.Bundle[]} bundles
    * @return {Map<string, PatternMatchResult[]>}
    */
-  static detectCodePatternsAcrossScripts(matcher, scripts, networkRecords) {
+  static detectAcrossScripts(matcher, scripts, networkRecords, bundles) {
     /** @type {Map<string, PatternMatchResult[]>} */
     const urlToMatchResults = new Map();
+    const polyfillData = this.getPolyfillData();
 
     for (const {requestId, content} of Object.values(scripts)) {
       if (!content) continue;
       const networkRecord = networkRecords.find(record => record.requestId === requestId);
       if (!networkRecord) continue;
+
+      // Start with pattern matching against the downloaded script.
       const matches = matcher.match(content);
+
+      // If it's a bundle with source maps, add in the polyfill modules by name too.
+      const bundle = bundles.find(b => b.script.src === networkRecord.url);
+      if (bundle) {
+        for (const {module, name} of polyfillData) {
+          // Skip if the pattern matching found a match for this polyfill.
+          if (matches.some(m => m.name === name)) continue;
+
+          const source = bundle.rawMap.sources.find(source => source.endsWith(`${module}.js`));
+          if (!source) continue;
+
+          const mapping = bundle.map.mappings().find(m => m.sourceURL === source);
+          if (mapping) {
+            matches.push({name, line: mapping.lineNumber, column: mapping.columnNumber});
+          } else {
+            matches.push({name, line: 0, column: 0});
+          }
+        }
+      }
+
       if (!matches.length) continue;
       urlToMatchResults.set(networkRecord.url, matches);
     }
@@ -312,6 +342,7 @@ class LegacyJavascript extends Audit {
       URL: artifacts.URL,
       devtoolsLog,
     }, context);
+    const bundles = await JSBundles.request(artifacts, context);
 
     /** @type {Array<{url: string, signals: string[], locations: LH.Audit.Details.SourceLocationValue[]}>} */
     const tableRows = [];
@@ -324,7 +355,7 @@ class LegacyJavascript extends Audit {
     ]);
 
     const urlToMatchResults =
-      this.detectCodePatternsAcrossScripts(matcher, artifacts.ScriptElements, networkRecords);
+      this.detectAcrossScripts(matcher, artifacts.ScriptElements, networkRecords, bundles);
     urlToMatchResults.forEach((matches, url) => {
       /** @type {typeof tableRows[number]} */
       const row = {url, signals: [], locations: []};

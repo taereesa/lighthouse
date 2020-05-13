@@ -8,7 +8,7 @@
 /* eslint-env jest */
 
 const withoutJsAudit = require('../../audits/without-javascript.js');
-const assert = require('assert');
+const assert = require('assert').strict;
 
 describe('Progressive Enhancement: without javascript audit', () => {
   it('fails when the js-less body is empty', () => {

@@ -7,7 +7,7 @@
 
 const ExternalAnchorsAudit =
   require('../../../audits/dobetterweb/external-anchors-use-rel-noopener.js');
-const assert = require('assert');
+const assert = require('assert').strict;
 
 const URL = 'https://google.com/test';
 

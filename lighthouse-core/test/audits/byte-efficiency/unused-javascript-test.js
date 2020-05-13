@@ -5,7 +5,7 @@
  */
 'use strict';
 
-const assert = require('assert');
+const assert = require('assert').strict;
 const fs = require('fs');
 const UnusedJavaScript = require('../../../audits/byte-efficiency/unused-javascript.js');
 const networkRecordsToDevtoolsLog = require('../../network-records-to-devtools-log.js');
@@ -43,7 +43,7 @@ function generateRecord(url, transferSize, resourceType) {
   return {url, transferSize, resourceType};
 }
 
-function generateUsage(url, ranges, transferSize = 1000) {
+function generateUsage(url, ranges) {
   const functions = ranges.map(range => {
     return {
       ranges: [
@@ -56,134 +56,103 @@ function generateUsage(url, ranges, transferSize = 1000) {
     };
   });
 
-  return {url, functions, networkRecord: {transferSize}};
+  return {url, functions};
+}
+
+function makeJsUsage(...usages) {
+  return usages.reduce((acc, cur) => {
+    acc[cur.url] = acc[cur.url] || [];
+    acc[cur.url].push(cur);
+    return acc;
+  }, {});
 }
 
 describe('UnusedJavaScript audit', () => {
-  describe('#computeWaste', () => {
-    it('should identify used', () => {
-      const usage = generateUsage('myscript.js', [[0, 100, true]]);
-      const result = UnusedJavaScript.computeWaste(usage);
-      assert.equal(result.unusedLength, 0);
-      assert.equal(result.contentLength, 100);
-    });
+  const domain = 'https://www.google.com';
+  const scriptUnknown = generateUsage(domain, [[0, 3000, false]]);
+  const scriptA = generateUsage(`${domain}/scriptA.js`, [[0, 100, true]]);
+  const scriptB = generateUsage(`${domain}/scriptB.js`, [[0, 200, true], [0, 50, false]]);
+  const inlineA = generateUsage(`${domain}/inline.html`, [[0, 5000, true], [5000, 6000, false]]);
+  const inlineB = generateUsage(`${domain}/inline.html`, [[0, 15000, true], [0, 5000, false]]);
+  const recordA = generateRecord(`${domain}/scriptA.js`, 35000, 'Script');
+  const recordB = generateRecord(`${domain}/scriptB.js`, 50000, 'Script');
+  const recordInline = generateRecord(`${domain}/inline.html`, 1000000, 'Document');
 
-    it('should identify unused', () => {
-      const usage = generateUsage('myscript.js', [[0, 100, false]]);
-      const result = UnusedJavaScript.computeWaste(usage);
-      assert.equal(result.unusedLength, 100);
-      assert.equal(result.contentLength, 100);
-    });
+  it('should merge duplicates', async () => {
+    const context = {computedCache: new Map()};
+    const networkRecords = [recordA, recordB, recordInline];
+    const artifacts = {
+      JsUsage: makeJsUsage(scriptA, scriptB, scriptUnknown, inlineA, inlineB),
+      devtoolsLogs: {defaultPass: networkRecordsToDevtoolsLog(networkRecords)},
+      SourceMaps: [],
+    };
+    const result = await UnusedJavaScript.audit_(artifacts, networkRecords, context);
+    expect(result.items.map(item => item.url)).toEqual([
+      'https://www.google.com/scriptB.js',
+      'https://www.google.com/inline.html',
+    ]);
 
-    it('should identify nested unused', () => {
-      const usage = generateUsage('myscript.js', [
-        [0, 100, true], // 40% used overall
+    const scriptBWaste = result.items[0];
+    assert.equal(scriptBWaste.totalBytes, 50000);
+    assert.equal(scriptBWaste.wastedBytes, 12500);
+    assert.equal(scriptBWaste.wastedPercent, 25);
 
-        [0, 10, true],
-        [0, 40, true],
-        [20, 40, false],
-
-        [60, 100, false],
-        [70, 80, false],
-
-        [100, 150, false],
-        [180, 200, false],
-        [100, 200, true], // 30% used overall
-      ]);
-
-      const result = UnusedJavaScript.computeWaste(usage);
-      assert.equal(result.unusedLength, 130);
-      assert.equal(result.contentLength, 200);
-    });
+    const inlineWaste = result.items[1];
+    assert.equal(inlineWaste.totalBytes, 21000);
+    assert.equal(inlineWaste.wastedBytes, 6000);
+    assert.equal(Math.round(inlineWaste.wastedPercent), 29);
   });
 
-  describe('audit_', () => {
-    const domain = 'https://www.google.com';
-    const scriptUnknown = generateUsage(domain, [[0, 3000, false]]);
-    const scriptA = generateUsage(`${domain}/scriptA.js`, [[0, 100, true]]);
-    const scriptB = generateUsage(`${domain}/scriptB.js`, [[0, 200, true], [0, 50, false]]);
-    const inlineA = generateUsage(`${domain}/inline.html`, [[0, 5000, true], [5000, 6000, false]]);
-    const inlineB = generateUsage(`${domain}/inline.html`, [[0, 15000, true], [0, 5000, false]]);
-    const recordA = generateRecord(`${domain}/scriptA.js`, 35000, 'Script');
-    const recordB = generateRecord(`${domain}/scriptB.js`, 50000, 'Script');
-    const recordInline = generateRecord(`${domain}/inline.html`, 1000000, 'Document');
+  it('should augment when provided source maps', async () => {
+    const context = {
+      computedCache: new Map(),
+      options: {
+        // Default threshold is 512, but is lowered here so that squoosh generates more
+        // results.
+        bundleSourceUnusedThreshold: 100,
+      },
+    };
+    const {map, content, usage} = load('squoosh');
+    const url = 'https://squoosh.app/main-app.js';
+    const networkRecords = [generateRecord(url, content.length, 'Script')];
+    const artifacts = {
+      JsUsage: makeJsUsage(usage),
+      devtoolsLogs: {defaultPass: networkRecordsToDevtoolsLog(networkRecords)},
+      SourceMaps: [{scriptUrl: url, map}],
+      ScriptElements: [{src: url, content}],
+    };
+    const result = await UnusedJavaScript.audit_(artifacts, networkRecords, context);
 
-    it('should merge duplicates', async () => {
-      const context = {computedCache: new Map()};
-      const networkRecords = [recordA, recordB, recordInline];
-      const artifacts = {
-        JsUsage: [scriptA, scriptB, scriptUnknown, inlineA, inlineB],
-        devtoolsLogs: {defaultPass: networkRecordsToDevtoolsLog(networkRecords)},
-      };
-      const result = await UnusedJavaScript.audit_(artifacts, networkRecords, context);
-      assert.equal(result.items.length, 2);
-
-      const scriptBWaste = result.items[0];
-      assert.equal(scriptBWaste.totalBytes, 50000);
-      assert.equal(scriptBWaste.wastedBytes, 12500);
-      assert.equal(scriptBWaste.wastedPercent, 25);
-
-      const inlineWaste = result.items[1];
-      assert.equal(inlineWaste.totalBytes, 21000);
-      assert.equal(inlineWaste.wastedBytes, 6000);
-      assert.equal(Math.round(inlineWaste.wastedPercent), 29);
-    });
-
-    it('should augment when provided source maps', async () => {
-      const context = {
-        computedCache: new Map(),
-        options: {
-          // Default threshold is 1024, but is lowered here so that squoosh actually generates
-          // results.
-          // TODO(cjamcl): the bundle visualization feature will require most of the logic currently
-          // done in unused-javascript to be moved to a computed artifact. When that happens, these
-          // tests will go there, and the artifact will not have any thresholds (filtering will happen
-          // within the audits), so this test will not need a threshold. Until then, it does.
-          bundleSourceUnusedThreshold: 100,
+    expect(result.items).toMatchInlineSnapshot(`
+      Array [
+        Object {
+          "sourceBytes": Array [
+            10062,
+            660,
+            4043,
+            2138,
+            4117,
+          ],
+          "sourceWastedBytes": Array [
+            3760,
+            660,
+            500,
+            293,
+            256,
+          ],
+          "sources": Array [
+            "(unmapped)",
+            "…src/codecs/webp/encoder-meta.ts",
+            "…src/lib/util.ts",
+            "…src/custom-els/RangeInput/index.ts",
+            "…node_modules/comlink/comlink.js",
+          ],
+          "totalBytes": 83748,
+          "url": "https://squoosh.app/main-app.js",
+          "wastedBytes": 6961,
+          "wastedPercent": 8.312435814764395,
         },
-      };
-      const {map, content, usage} = load('squoosh');
-      const url = 'https://squoosh.app/main-app.js';
-      const networkRecords = [generateRecord(url, content.length, 'Script')];
-      const artifacts = {
-        JsUsage: [usage],
-        devtoolsLogs: {defaultPass: networkRecordsToDevtoolsLog(networkRecords)},
-        SourceMaps: [{scriptUrl: url, map}],
-        ScriptElements: [{src: url, content}],
-      };
-      const result = await UnusedJavaScript.audit_(artifacts, networkRecords, context);
-
-      expect(result.items).toMatchInlineSnapshot(`
-        Array [
-          Object {
-            "sourceBytes": Array [
-              10062,
-              660,
-              4043,
-              2138,
-              4117,
-            ],
-            "sourceWastedBytes": Array [
-              3760,
-              660,
-              500,
-              293,
-              256,
-            ],
-            "sources": Array [
-              "(unmapped)",
-              "…src/codecs/webp/encoder-meta.ts",
-              "…src/lib/util.ts",
-              "…src/custom-els/RangeInput/index.ts",
-              "…node_modules/comlink/comlink.js",
-            ],
-            "totalBytes": 83748,
-            "url": "https://squoosh.app/main-app.js",
-            "wastedBytes": 6961,
-            "wastedPercent": 8.312435814764395,
-          },
-        ]
-      `);
-    });
+      ]
+    `);
   });
 });

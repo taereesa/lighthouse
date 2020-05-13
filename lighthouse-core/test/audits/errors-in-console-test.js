@@ -8,7 +8,7 @@
 /* eslint-env jest */
 
 const ErrorLogsAudit = require('../../audits/errors-in-console.js');
-const assert = require('assert');
+const assert = require('assert').strict;
 
 describe('Console error logs audit', () => {
   it('passes when no console messages were found', () => {

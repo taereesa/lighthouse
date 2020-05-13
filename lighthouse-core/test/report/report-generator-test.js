@@ -5,7 +5,7 @@
  */
 'use strict';
 
-const assert = require('assert');
+const assert = require('assert').strict;
 const fs = require('fs');
 const jsdom = require('jsdom');
 const ReportGenerator = require('../../report/report-generator.js');
@@ -99,6 +99,14 @@ describe('ReportGenerator', () => {
 
       const csvOutput = ReportGenerator.generateReport(sampleResults, 'csv');
       fs.writeFileSync(path, csvOutput);
+
+      const lines = csvOutput.split('\n');
+      expect(lines.length).toBeGreaterThan(100);
+      expect(lines.slice(0, 2).join('\n')).toMatchInlineSnapshot(`
+        "requestedUrl,finalUrl,category,name,title,type,score
+        \\"http://localhost:10200/dobetterweb/dbw_tester.html\\",\\"http://localhost:10200/dobetterweb/dbw_tester.html\\",\\"Performance\\",\\"first-contentful-paint\\",\\"First Contentful Paint\\",\\"numeric\\",\\"0.51\\"
+        "
+      `);
 
       try {
         await csvValidator(path, headers);

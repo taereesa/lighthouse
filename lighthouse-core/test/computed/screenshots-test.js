@@ -7,7 +7,7 @@
 
 /* eslint-env jest */
 const Screenshots = require('../../computed/screenshots.js');
-const assert = require('assert');
+const assert = require('assert').strict;
 const pwaTrace = require('../fixtures/traces/progressive-app.json');
 
 describe('Screenshot computed artifact', () => {

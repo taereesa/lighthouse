@@ -5,7 +5,7 @@
  */
 'use strict';
 
-const assert = require('assert');
+const assert = require('assert').strict;
 
 const SpeedIndex = require('../../../computed/metrics/speed-index.js');
 const trace = require('../../fixtures/traces/progressive-app-m60.json');

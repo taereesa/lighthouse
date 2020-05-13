@@ -13,6 +13,7 @@ cache:
   directories:
     - node_modules
     - lantern-data
+    - lighthouse-core/scripts/legacy-javascript/variants
     - /home/travis/.rvm/gems/
 install:
   # Ensure we have the latest Chrome stable.
@@ -32,13 +33,13 @@ script:
   - yarn bundlesize
   - yarn diff:sample-json
   - yarn lint
+  - yarn test-legacy-javascript
   - yarn unit:cicoverage
   - yarn type-check
   - yarn smoke:cicoverage
   - yarn test-clients
   - yarn test-viewer
   - yarn test-lantern
-  - yarn test-legacy-javascript
   - yarn test-bundle
   - yarn i18n:checks
   - yarn dogfood-lhci

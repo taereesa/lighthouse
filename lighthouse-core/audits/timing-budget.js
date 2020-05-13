@@ -55,6 +55,8 @@ class TimingBudget extends Audit {
       'estimated-input-latency': i18n.UIStrings.estimatedInputLatencyMetric,
       'total-blocking-time': i18n.UIStrings.totalBlockingTimeMetric,
       'speed-index': i18n.UIStrings.speedIndexMetric,
+      'largest-contentful-paint': i18n.UIStrings.largestContentfulPaintMetric,
+      'cumulative-layout-shift': i18n.UIStrings.cumulativeLayoutShiftMetric,
     };
     return str_(strMappings[timingMetric]);
   }
@@ -75,6 +77,8 @@ class TimingBudget extends Audit {
       'estimated-input-latency': summary.estimatedInputLatency,
       'total-blocking-time': summary.totalBlockingTime,
       'speed-index': summary.speedIndex,
+      'largest-contentful-paint': summary.largestContentfulPaint,
+      'cumulative-layout-shift': summary.cumulativeLayoutShift,
     };
     return measurements[timingMetric];
   }

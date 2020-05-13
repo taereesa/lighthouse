@@ -7,7 +7,7 @@
 
 /* eslint-env jest */
 
-const assert = require('assert');
+const assert = require('assert').strict;
 const ViewportMeta = require('../../computed/viewport-meta.js');
 
 describe('ViewportMeta computed artifact', () => {

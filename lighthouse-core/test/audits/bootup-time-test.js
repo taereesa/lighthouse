@@ -7,7 +7,7 @@
 
 /* eslint-env jest */
 const BootupTime = require('../../audits/bootup-time.js');
-const assert = require('assert');
+const assert = require('assert').strict;
 
 const acceptableTrace = require('../fixtures/traces/progressive-app-m60.json');
 const acceptableDevtoolsLogs = require('../fixtures/traces/progressive-app-m60.devtools.log.json');

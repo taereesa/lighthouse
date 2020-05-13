@@ -5,7 +5,7 @@
  */
 'use strict';
 
-const assert = require('assert');
+const assert = require('assert').strict;
 const ReportScoring = require('../scoring.js');
 
 /* eslint-env jest */

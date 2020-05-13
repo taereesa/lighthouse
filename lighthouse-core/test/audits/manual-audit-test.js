@@ -6,7 +6,7 @@
 'use strict';
 
 const ManualAudit = require('../../audits/manual/manual-audit.js');
-const assert = require('assert');
+const assert = require('assert').strict;
 
 /* eslint-env jest */
 

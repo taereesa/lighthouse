@@ -9,7 +9,7 @@
 
 const ResponseCompression =
     require('../../../../gather/gatherers/dobetterweb/response-compression.js');
-const assert = require('assert');
+const assert = require('assert').strict;
 const mockDriver = require('../../fake-driver.js');
 
 let options;

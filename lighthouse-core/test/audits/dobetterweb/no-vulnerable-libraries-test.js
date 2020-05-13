@@ -7,7 +7,7 @@
 
 const NoVulnerableLibrariesAudit =
   require('../../../audits/dobetterweb/no-vulnerable-libraries.js');
-const assert = require('assert');
+const assert = require('assert').strict;
 const semver = require('semver');
 
 /* eslint-env jest */

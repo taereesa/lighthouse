@@ -7,7 +7,7 @@
 
 const TraceProcessor = require('../../../lib/tracehouse/trace-processor.js');
 
-const assert = require('assert');
+const assert = require('assert').strict;
 const fs = require('fs');
 const createTestTrace = require('../../create-test-trace.js');
 const pwaTrace = require('../../fixtures/traces/progressive-app.json');

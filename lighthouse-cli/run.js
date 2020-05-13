@@ -27,12 +27,27 @@ const _PROTOCOL_TIMEOUT_EXIT_CODE = 67;
 
 /**
  * exported for testing
- * @param {string} flags
+ * @param {string|Array<string>} flags
  * @return {Array<string>}
  */
 function parseChromeFlags(flags = '') {
-  const parsed = yargsParser(
-      flags.trim(), {configuration: {'camel-case-expansion': false, 'boolean-negation': false}});
+  // flags will be a string if there is only one chrome-flag parameter:
+  // i.e. `lighthouse --chrome-flags="--user-agent='My Agent' --headless"`
+  // flags will be an array if there are multiple chrome-flags parameters
+  // i.e. `lighthouse --chrome-flags="--user-agent='My Agent'" --chrome-flags="--headless"`
+  const trimmedFlags = (Array.isArray(flags) ? flags : [flags])
+      // `child_process.execFile` and other programmatic invocations will pass Lighthouse arguments atomically.
+      // Many developers aren't aware of this and attempt to pass arguments to LH as they would to a shell `--chromeFlags="--headless --no-sandbox"`.
+      // In this case, yargs will see `"--headless --no-sandbox"` and treat it as a single argument instead of the intended `--headless --no-sandbox`.
+      // We remove quotes that surround the entire expression to make this work.
+      // i.e. `child_process.execFile("lighthouse", ["http://google.com", "--chrome-flags='--headless --no-sandbox'")`
+      // the following regular expression removes those wrapping quotes:
+      .map((flagsGroup) => flagsGroup.replace(/^\s*('|")(.+)\1\s*$/, '$2').trim())
+      .join(' ');
+
+  const parsed = yargsParser(trimmedFlags, {
+    configuration: {'camel-case-expansion': false, 'boolean-negation': false},
+  });
 
   return Object
       .keys(parsed)

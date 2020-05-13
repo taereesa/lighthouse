@@ -19,7 +19,7 @@ const fs = require('fs');
 const mkdir = fs.promises.mkdir;
 const glob = require('glob');
 const util = require('util');
-const exec = util.promisify(require('child_process').exec);
+const execFile = util.promisify(require('child_process').execFile);
 const yargs = require('yargs');
 
 const {ProgressLogger} = require('./lantern/collect/common.js');
@@ -149,14 +149,12 @@ async function gather() {
       // Skip if already gathered. Allows for restarting collection.
       if (fs.existsSync(gatherDir)) continue;
 
-      const cmd = [
-        'node',
+      await execFile('node', [
         `${LH_ROOT}/lighthouse-cli`,
         url,
         `--gather-mode=${gatherDir}`,
         argv.lhFlags,
-      ].join(' ');
-      await exec(cmd);
+      ]);
     }
   }
   progress.closeProgress();
@@ -180,18 +178,15 @@ async function audit() {
       // Skip if already audited. Allows for restarting collection.
       if (fs.existsSync(outputPath)) continue;
 
-      const cmd = [
-        'node',
-        `${LH_ROOT}/lighthouse-cli`,
-        url,
-        `--audit-mode=${gatherDir}`,
-        `--output-path=${outputPath}`,
-        '--output=json',
-        argv.lhFlags,
-      ].join(' ');
-
       try {
-        await exec(cmd);
+        await execFile('node', [
+          `${LH_ROOT}/lighthouse-cli`,
+          url,
+          `--audit-mode=${gatherDir}`,
+          `--output-path=${outputPath}`,
+          '--output=json',
+          argv.lhFlags,
+        ]);
       } catch (e) {
         console.error('audit error:', e);
       }

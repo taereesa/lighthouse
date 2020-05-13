@@ -7,7 +7,7 @@
 
 /* eslint-env jest */
 
-const assert = require('assert');
+const assert = require('assert').strict;
 const validateJSONLD = require('../../lib/sd-validation/sd-validation.js');
 
 describe('JSON validation', () => {

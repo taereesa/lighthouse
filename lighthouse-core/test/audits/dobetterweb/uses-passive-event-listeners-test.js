@@ -6,7 +6,7 @@
 'use strict';
 
 const PassiveEventsAudit = require('../../../audits/dobetterweb/uses-passive-event-listeners.js');
-const assert = require('assert');
+const assert = require('assert').strict;
 
 /* eslint-env jest */
 

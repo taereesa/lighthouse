@@ -6,7 +6,7 @@
 'use strict';
 
 const Budget = require('../../config/budget.js');
-const assert = require('assert');
+const assert = require('assert').strict;
 /* eslint-env jest */
 
 describe('Budget', () => {
@@ -94,7 +94,7 @@ describe('Budget', () => {
     });
 
     // Does not set unsupplied result
-    assert.equal(result[1].timings, null);
+    assert.equal(result[1].timings, undefined);
   });
 
   it('accepts an empty array', () => {
@@ -233,6 +233,26 @@ describe('Budget', () => {
   });
 
   describe('timing budget validation', () => {
+    it('supports all timing metrics', () => {
+      budgets[0].timings = [{metric: 'blah', budget: 0}];
+      const metrics = [
+        'first-contentful-paint',
+        'first-cpu-idle',
+        'interactive',
+        'first-meaningful-paint',
+        'max-potential-fid',
+        'estimated-input-latency',
+        'total-blocking-time',
+        'speed-index',
+        'largest-contentful-paint',
+        'cumulative-layout-shift',
+      ];
+      for (const metric of metrics) {
+        budgets[0].timings[0].metric = metric;
+        const result = Budget.initializeBudget(budgets);
+        expect(result[0].timings[0].metric).toEqual(metric);
+      }
+    });
     it('throws when an invalid metric is supplied', () => {
       budgets[0].timings[0].metric = 'medianMeaningfulPaint';
       assert.throws(_ => Budget.initializeBudget(budgets),

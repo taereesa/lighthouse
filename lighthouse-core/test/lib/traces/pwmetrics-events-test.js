@@ -6,7 +6,7 @@
 'use strict';
 
 const Metrics = require('../../../lib/traces/pwmetrics-events.js');
-const assert = require('assert');
+const assert = require('assert').strict;
 
 const dbwTrace = require('../../results/artifacts/defaultPass.trace.json');
 const dbwResults = require('../../results/sample_v2.json');

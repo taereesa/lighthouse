@@ -6,7 +6,7 @@
 'use strict';
 
 const UserTimingsAudit = require('../../audits/user-timings.js');
-const assert = require('assert');
+const assert = require('assert').strict;
 const traceEvents = require('../fixtures/traces/trace-user-timings.json');
 
 function generateArtifactsWithTrace(trace) {

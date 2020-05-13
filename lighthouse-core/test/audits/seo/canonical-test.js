@@ -6,7 +6,7 @@
 'use strict';
 
 const CanonicalAudit = require('../../../audits/seo/canonical.js');
-const assert = require('assert');
+const assert = require('assert').strict;
 const networkRecordsToDevtoolsLog = require('../../network-records-to-devtools-log.js');
 
 /* eslint-env jest */
@@ -80,7 +80,7 @@ describe('SEO: Document has valid canonical link', () => {
     const context = {computedCache: new Map()};
     return CanonicalAudit.audit(artifacts, context).then(auditResult => {
       const {score, explanation} = auditResult;
-      assert.equal(score, false);
+      assert.equal(score, 0);
       expect(explanation).toBeDisplayString('Invalid URL (https:// example.com)');
     });
   });

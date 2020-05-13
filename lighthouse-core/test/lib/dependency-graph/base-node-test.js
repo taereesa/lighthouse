@@ -8,7 +8,7 @@
 const BaseNode = require('../../../lib/dependency-graph/base-node.js');
 const NetworkNode = require('../../../lib/dependency-graph/network-node.js');
 
-const assert = require('assert');
+const assert = require('assert').strict;
 
 function sortedById(nodeArray) {
   return nodeArray.sort((node1, node2) => node1.id.localeCompare(node2.id));

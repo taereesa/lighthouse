@@ -6,7 +6,7 @@
 'use strict';
 
 const InstallableManifestAudit = require('../../audits/installable-manifest.js');
-const assert = require('assert');
+const assert = require('assert').strict;
 const manifestParser = require('../../lib/manifest-parser.js');
 
 const manifestSrc = JSON.stringify(require('../fixtures/manifest.json'));

@@ -7,7 +7,7 @@
 
 /* eslint-env jest */
 const Printer = require('../../printer.js');
-const assert = require('assert');
+const assert = require('assert').strict;
 const fs = require('fs');
 const sampleResults = require('../../../lighthouse-core/test/results/sample_v2.json');
 

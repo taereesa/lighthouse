@@ -6,7 +6,7 @@
 'use strict';
 
 const FontSizeAudit = require('../../../audits/seo/font-size.js');
-const assert = require('assert');
+const assert = require('assert').strict;
 
 const URL = {
   requestedUrl: 'https://example.com',

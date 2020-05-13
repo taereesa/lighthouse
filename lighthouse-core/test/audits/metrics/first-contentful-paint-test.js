@@ -5,7 +5,7 @@
  */
 'use strict';
 const Audit = require('../../../audits/metrics/first-contentful-paint.js');
-const assert = require('assert');
+const assert = require('assert').strict;
 const options = Audit.defaultOptions;
 
 const pwaTrace = require('../../fixtures/traces/progressive-app-m60.json');

@@ -6,7 +6,7 @@
 'use strict';
 
 const EstimatedInputLatency = require('../../../computed/metrics/estimated-input-latency.js');
-const assert = require('assert');
+const assert = require('assert').strict;
 
 const trace = require('../../fixtures/traces/progressive-app-m60.json');
 const devtoolsLog = require('../../fixtures/traces/progressive-app-m60.devtools.log.json');

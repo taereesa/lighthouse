@@ -209,7 +209,7 @@ class DetailsRenderer {
    * Render a details item value for embedding in a table. Renders the value
    * based on the heading's valueType, unless the value itself has a `type`
    * property to override it.
-   * @param {LH.Audit.Details.Value} value
+   * @param {LH.Audit.Details.ItemValue} value
    * @param {LH.Audit.Details.OpportunityColumnHeading} heading
    * @return {Element|null}
    */
@@ -337,7 +337,7 @@ class DetailsRenderer {
   }
 
   /**
-   * @param {LH.Audit.Details.Value[]} values
+   * @param {LH.Audit.Details.ItemValue[]} values
    * @param {LH.Audit.Details.OpportunityColumnHeading} heading
    * @return {Element}
    */
