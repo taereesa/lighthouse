@@ -282,13 +282,18 @@ class CacheHeaders extends Audit {
 
       const summary = {wastedBytes: totalWastedBytes};
       const details = Audit.makeTableDetails(headings, results, summary);
+      /** @type {LH.Audit.Details.DebugData} */
+      const debugData = {
+        type: 'debugdata',
+        queryStringCount,
+      };
 
       return {
         score,
         numericValue: totalWastedBytes,
         numericUnit: 'byte',
         displayValue: str_(UIStrings.displayValue, {itemCount: results.length}),
-        details,
+        details: {...details, debugData},
       };
     });
   }

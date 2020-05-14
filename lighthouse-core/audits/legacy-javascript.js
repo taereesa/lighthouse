@@ -387,7 +387,7 @@ class LegacyJavascript extends Audit {
     const debugData = {
       type: 'debugdata',
       signalCount,
-    }
+    };
 
     // Only fail if first party code has legacy code.
     // TODO(cjamcl): Use third-party-web.

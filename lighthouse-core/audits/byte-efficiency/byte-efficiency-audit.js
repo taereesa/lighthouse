@@ -18,8 +18,6 @@ const str_ = i18n.createMessageInstanceIdFn(__filename, {});
 /** @typedef {import('../../lib/dependency-graph/simulator/simulator')} Simulator */
 /** @typedef {import('../../lib/dependency-graph/base-node.js').Node} Node */
 
-const KB_IN_BYTES = 1024;
-
 const WASTED_MS_FOR_AVERAGE = 300;
 const WASTED_MS_FOR_POOR = 750;
 const WASTED_MS_FOR_SCORE_OF_ZERO = 5000;
