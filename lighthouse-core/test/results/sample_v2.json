@@ -2615,6 +2615,10 @@
         ],
         "summary": {
           "wastedBytes": 103455
+        },
+        "debugData": {
+          "type": "debugdata",
+          "queryStringCount": 7
         }
       }
     },
