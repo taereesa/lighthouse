@@ -327,7 +327,12 @@
       "scoreDisplayMode": "numeric",
       "numericValue": 4927.278,
       "numericUnit": "millisecond",
-      "displayValue": "4.9 s"
+      "displayValue": "4.9 s",
+      "details": {
+        "type": "debugdata",
+        "timeInMs": 4927.278,
+        "timestamp": 185608247190
+      }
     },
     "user-timings": {
       "id": "user-timings",
@@ -2677,7 +2682,11 @@
             "url": "http://localhost:10200/dobetterweb/dbw_tester.css?delay=2200",
             "totalBytes": 821
           }
-        ]
+        ],
+        "debugData": {
+          "type": "debugdata",
+          "totalCompletedRequests": 18
+        }
       }
     },
     "offscreen-images": {
@@ -3233,7 +3242,66 @@
             }
           }
         ],
-        "summary": {}
+        "summary": {},
+        "debugData": {
+          "type": "debugdata",
+          "jsLibs": [
+            {
+              "name": "jQuery",
+              "npmPkgName": "jquery",
+              "version": "2.1.1",
+              "vulns": [
+                {
+                  "severity": "Medium",
+                  "numericSeverity": 2,
+                  "library": "jQuery@2.1.1",
+                  "url": "https://snyk.io/vuln/SNYK-JS-JQUERY-567880"
+                },
+                {
+                  "severity": "Medium",
+                  "numericSeverity": 2,
+                  "library": "jQuery@2.1.1",
+                  "url": "https://snyk.io/vuln/SNYK-JS-JQUERY-565129"
+                },
+                {
+                  "severity": "Medium",
+                  "numericSeverity": 2,
+                  "library": "jQuery@2.1.1",
+                  "url": "https://snyk.io/vuln/SNYK-JS-JQUERY-174006"
+                },
+                {
+                  "severity": "Medium",
+                  "numericSeverity": 2,
+                  "library": "jQuery@2.1.1",
+                  "url": "https://snyk.io/vuln/npm:jquery:20150627"
+                }
+              ],
+              "highestSeverity": "Medium"
+            },
+            {
+              "name": "jQuery (Fast path)",
+              "npmPkgName": "jquery",
+              "version": "",
+              "vulns": []
+            },
+            {
+              "name": "WordPress",
+              "version": "",
+              "vulns": []
+            }
+          ],
+          "vulnerabilityResults": [
+            {
+              "highestSeverity": "Medium",
+              "vulnCount": 4,
+              "detectedLib": {
+                "text": "jQuery@2.1.1",
+                "url": "https://snyk.io/vuln/npm:jquery?lh=2.1.1&utm_source=lighthouse&utm_medium=ref&utm_campaign=audit",
+                "type": "link"
+              }
+            }
+          ]
+        }
       }
     },
     "js-libraries": {
@@ -6868,7 +6936,12 @@
         "audits[no-vulnerable-libraries].details.headings[2].text"
       ],
       "lighthouse-core/audits/dobetterweb/no-vulnerable-libraries.js | rowSeverityMedium": [
-        "audits[no-vulnerable-libraries].details.items[0].highestSeverity"
+        "audits[no-vulnerable-libraries].details.items[0].highestSeverity",
+        "audits[no-vulnerable-libraries].details.debugData.jsLibs[0].vulns[0].severity",
+        "audits[no-vulnerable-libraries].details.debugData.jsLibs[0].vulns[1].severity",
+        "audits[no-vulnerable-libraries].details.debugData.jsLibs[0].vulns[2].severity",
+        "audits[no-vulnerable-libraries].details.debugData.jsLibs[0].vulns[3].severity",
+        "audits[no-vulnerable-libraries].details.debugData.jsLibs[0].highestSeverity"
       ],
       "lighthouse-core/audits/dobetterweb/js-libraries.js | title": [
         "audits[js-libraries].title"

@@ -96,19 +96,18 @@ class TotalByteWeight extends ByteEfficiencyAudit {
     ];
 
     const tableDetails = ByteEfficiencyAudit.makeTableDetails(headings, results);
+    /** @type {LH.Audit.Details.DebugData} */
+    const debugData = {
+      type: 'debugdata',
+      totalCompletedRequests,
+    };
 
     return {
       score,
       numericValue: totalBytes,
       numericUnit: 'byte',
       displayValue: str_(UIStrings.displayValue, {totalBytes}),
-      extendedInfo: {
-        value: {
-          results,
-          totalCompletedRequests,
-        },
-      },
-      details: tableDetails,
+      details: {...tableDetails, debugData},
     };
   }
 }

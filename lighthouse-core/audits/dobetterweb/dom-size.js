@@ -125,9 +125,6 @@ class DOMSize extends Audit {
       numericValue: stats.totalBodyElements,
       numericUnit: 'element',
       displayValue: str_(UIStrings.displayValue, {itemCount: stats.totalBodyElements}),
-      extendedInfo: {
-        value: items,
-      },
       details: Audit.makeTableDetails(headings, items),
     };
   }

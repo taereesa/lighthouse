@@ -113,11 +113,6 @@ class Redirects extends Audit {
       displayValue: totalWastedMs ?
         str_(i18n.UIStrings.displayValueMsSavings, {wastedMs: totalWastedMs}) :
         '',
-      extendedInfo: {
-        value: {
-          wastedMs: totalWastedMs,
-        },
-      },
       details,
     };
   }

@@ -96,11 +96,6 @@ class UsesHTTP2Audit extends Audit {
       return {
         score: Number(resources.length === 0),
         displayValue: displayValue,
-        extendedInfo: {
-          value: {
-            results: resources,
-          },
-        },
         details,
       };
     });

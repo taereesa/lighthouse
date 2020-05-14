@@ -209,9 +209,6 @@ class UsesRelPreconnectAudit extends Audit {
       displayValue: maxWasted ?
         str_(i18n.UIStrings.displayValueMsSavings, {wastedMs: maxWasted}) :
         '',
-      extendedInfo: {
-        value: results,
-      },
       warnings,
       details,
     };

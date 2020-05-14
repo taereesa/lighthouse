@@ -36,7 +36,7 @@ describe('ReportScoring', () => {
     it('should score the categories', () => {
       const resultsByAuditId = {
         'my-audit': {score: 0},
-        'my-boolean-audit': {score: 1, extendedInfo: {}},
+        'my-boolean-audit': {score: 1},
         'my-scored-audit': {score: 1},
         'my-failed-audit': {score: 0.2},
         'my-boolean-failed-audit': {score: 0},
@@ -64,7 +64,7 @@ describe('ReportScoring', () => {
 
     it('should weight notApplicable audits as 0', () => {
       const resultsByAuditId = {
-        'my-boolean-audit': {score: 1, extendedInfo: {}, scoreDisplayMode: 'notApplicable'},
+        'my-boolean-audit': {score: 1, scoreDisplayMode: 'notApplicable'},
         'my-scored-audit': {score: 1},
         'my-failed-audit': {score: 0.2, scoreDisplayMode: 'notApplicable'},
         'my-boolean-failed-audit': {score: 0},

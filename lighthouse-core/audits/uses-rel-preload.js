@@ -230,9 +230,6 @@ class UsesRelPreloadAudit extends Audit {
       displayValue: wastedMs ?
         str_(i18n.UIStrings.displayValueMsSavings, {wastedMs}) :
         '',
-      extendedInfo: {
-        value: results,
-      },
       details,
       warnings,
     };

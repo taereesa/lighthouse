@@ -74,7 +74,9 @@ class InteractiveMetric extends Audit {
     const timeInMs = metricResult.timing;
     const isDesktop = artifacts.TestedAsMobileDevice === false;
     const options = isDesktop ? context.options.desktop : context.options.mobile;
-    const extendedInfo = {
+    /** @type {LH.Audit.Details.DebugData} */
+    const debugData = {
+      type: 'debugdata',
       timeInMs,
       timestamp: metricResult.timestamp,
       // @ts-ignore - TODO(bckenny): make lantern metric/metric a discriminated union.
@@ -91,9 +93,7 @@ class InteractiveMetric extends Audit {
       numericValue: timeInMs,
       numericUnit: 'millisecond',
       displayValue: str_(i18n.UIStrings.seconds, {timeInMs}),
-      extendedInfo: {
-        value: extendedInfo,
-      },
+      details: debugData,
     };
   }
 }

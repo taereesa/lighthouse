@@ -92,9 +92,6 @@ class ExternalAnchorsUseRelNoopenerAudit extends Audit {
 
     return {
       score: Number(failingAnchors.length === 0),
-      extendedInfo: {
-        value: failingAnchors,
-      },
       details,
       warnings,
     };

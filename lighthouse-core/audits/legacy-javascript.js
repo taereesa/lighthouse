@@ -383,6 +383,12 @@ class LegacyJavascript extends Audit {
     ];
     const details = Audit.makeTableDetails(headings, tableRows);
 
+    /** @type {LH.Audit.Details.DebugData} */
+    const debugData = {
+      type: 'debugdata',
+      signalCount,
+    }
+
     // Only fail if first party code has legacy code.
     // TODO(cjamcl): Use third-party-web.
     const foundSignalInFirstPartyCode = tableRows.some(row => {
@@ -391,10 +397,7 @@ class LegacyJavascript extends Audit {
     return {
       score: foundSignalInFirstPartyCode ? 0 : 1,
       notApplicable: !foundSignalInFirstPartyCode,
-      extendedInfo: {
-        signalCount,
-      },
-      details,
+      details: {...details, debugData},
     };
   }
 }

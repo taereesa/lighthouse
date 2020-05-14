@@ -73,11 +73,6 @@ class ServerResponseTime extends Audit {
       score: Number(passed),
       displayValue,
       details,
-      extendedInfo: {
-        value: {
-          wastedMs: responseTime - RESPONSE_THRESHOLD,
-        },
-      },
     };
   }
 }

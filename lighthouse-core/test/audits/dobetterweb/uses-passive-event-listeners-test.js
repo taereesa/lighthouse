@@ -25,7 +25,7 @@ describe('Page uses passive events listeners where applicable', () => {
     });
 
     assert.equal(auditResult.score, 0);
-    assert.equal(auditResult.extendedInfo.value.length, 2);
+    assert.equal(auditResult.details.items.length, 2);
   });
 
   it('passes scroll blocking listeners should be passive', () => {
@@ -33,6 +33,6 @@ describe('Page uses passive events listeners where applicable', () => {
       ConsoleMessages: [],
     });
     assert.equal(auditResult.score, 1);
-    assert.equal(auditResult.extendedInfo.value.length, 0);
+    assert.equal(auditResult.details.items.length, 0);
   });
 });

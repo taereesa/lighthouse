@@ -204,12 +204,6 @@ class CriticalRequestChains extends Audit {
         score: Number(chainCount === 0),
         notApplicable: chainCount === 0,
         displayValue: chainCount ? str_(UIStrings.displayValue, {itemCount: chainCount}) : '',
-        extendedInfo: {
-          value: {
-            chains: flattenedChains,
-            longestChain,
-          },
-        },
         details: {
           type: /** @type {'criticalrequestchain'} */('criticalrequestchain'),
           chains: flattenedChains,

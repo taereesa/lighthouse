@@ -103,9 +103,6 @@ class AxeAudit extends Audit {
 
     return {
       score: Number(rule === undefined),
-      extendedInfo: {
-        value: rule,
-      },
       details: {...Audit.makeTableDetails(headings, items), debugData},
     };
   }

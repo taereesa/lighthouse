@@ -198,7 +198,6 @@ class UnusedBytes extends Audit {
     const results = result.items.sort((itemA, itemB) => itemB.wastedBytes - itemA.wastedBytes);
 
     const wastedBytes = results.reduce((sum, item) => sum + item.wastedBytes, 0);
-    const wastedKb = Math.round(wastedBytes / KB_IN_BYTES);
     const wastedMs = this.computeWasteWithTTIGraph(results, graph, simulator, {
       providedWastedBytesByUrl: result.wastedBytesByUrl,
     });
@@ -217,13 +216,6 @@ class UnusedBytes extends Audit {
       numericValue: wastedMs,
       numericUnit: 'millisecond',
       score: UnusedBytes.scoreForWastedMs(wastedMs),
-      extendedInfo: {
-        value: {
-          wastedMs,
-          wastedKb,
-          results,
-        },
-      },
       details,
     };
   }

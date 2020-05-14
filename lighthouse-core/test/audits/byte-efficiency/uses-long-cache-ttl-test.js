@@ -44,7 +44,7 @@ describe('Cache headers audit', () => {
     const networkRecords = [networkRecord()];
     const context = {options, computedCache: new Map()};
     return CacheHeadersAudit.audit(getArtifacts(networkRecords), context).then(result => {
-      const items = result.extendedInfo.value.results;
+      const items = result.details.items;
       assert.equal(items.length, 1);
       assert.equal(items[0].cacheLifetimeMs, 0);
       assert.equal(items[0].wastedBytes, 10000);
@@ -104,7 +104,7 @@ describe('Cache headers audit', () => {
 
     const context = {options, computedCache: new Map()};
     return CacheHeadersAudit.audit(getArtifacts(networkRecords), context).then(result => {
-      const items = result.extendedInfo.value.results;
+      const items = result.details.items;
       assert.equal(items.length, 3);
       closeEnough(items[0].cacheLifetimeMs, 3600 * 1000);
       assert.equal(Math.round(items[0].wastedBytes), 8000);
@@ -130,7 +130,7 @@ describe('Cache headers audit', () => {
 
     const context = {options, computedCache: new Map()};
     return CacheHeadersAudit.audit(getArtifacts(networkRecords), context).then(result => {
-      const items = result.extendedInfo.value.results;
+      const items = result.details.items;
       assert.equal(items.length, 2);
       assert.ok(Math.abs(items[0].cacheLifetimeMs - 3600 * 1000) <= 5, 'invalid expires parsing');
       assert.equal(Math.round(items[0].wastedBytes), 8000);
@@ -154,7 +154,7 @@ describe('Cache headers audit', () => {
 
     const context = {options, computedCache: new Map()};
     return CacheHeadersAudit.audit(getArtifacts(networkRecords), context).then(result => {
-      const items = result.extendedInfo.value.results;
+      const items = result.details.items;
       assert.equal(items.length, 1);
     });
   });
@@ -167,7 +167,7 @@ describe('Cache headers audit', () => {
 
     const context = {options, computedCache: new Map()};
     return CacheHeadersAudit.audit(getArtifacts(networkRecords), context).then(result => {
-      const items = result.extendedInfo.value.results;
+      const items = result.details.items;
       assert.equal(items.length, 2);
     });
   });
@@ -183,7 +183,7 @@ describe('Cache headers audit', () => {
 
     const context = {options, computedCache: new Map()};
     return CacheHeadersAudit.audit(getArtifacts(networkRecords), context).then(result => {
-      const items = result.extendedInfo.value.results;
+      const items = result.details.items;
       assert.equal(result.score, 1);
       assert.equal(items.length, 0);
     });
@@ -198,7 +198,7 @@ describe('Cache headers audit', () => {
 
     const context = {options, computedCache: new Map()};
     return CacheHeadersAudit.audit(getArtifacts(networkRecords), context).then(result => {
-      const items = result.extendedInfo.value.results;
+      const items = result.details.items;
       assert.equal(result.score, 1);
       assert.equal(items.length, 0);
     });
@@ -216,9 +216,8 @@ describe('Cache headers audit', () => {
     const context = {options, computedCache: new Map()};
     return CacheHeadersAudit.audit(getArtifacts(networkRecords), context).then(result => {
       assert.equal(result.score, 1);
-      const items = result.extendedInfo.value.results;
+      const items = result.details.items;
       assert.equal(items.length, 1);
-      assert.equal(result.extendedInfo.value.queryStringCount, 1);
     });
   });
 });
