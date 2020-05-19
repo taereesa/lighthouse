@@ -229,8 +229,7 @@ class NoVulnerableLibrariesAudit extends Audit {
     /** @type {LH.Audit.Details.DebugData} */
     const debugData = {
       type: 'debugdata',
-      jsLibs: libraryVulns,
-      vulnerabilityResults,
+      vulnerableLibs: libraryVulns.filter(lib => lib.vulns.length),
     };
     return {
       score: Number(totalVulns === 0),

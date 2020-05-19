@@ -327,12 +327,7 @@
       "scoreDisplayMode": "numeric",
       "numericValue": 4927.278,
       "numericUnit": "millisecond",
-      "displayValue": "4.9 s",
-      "details": {
-        "type": "debugdata",
-        "timeInMs": 4927.278,
-        "timestamp": 185608247190
-      }
+      "displayValue": "4.9 s"
     },
     "user-timings": {
       "id": "user-timings",
@@ -2615,10 +2610,6 @@
         ],
         "summary": {
           "wastedBytes": 103455
-        },
-        "debugData": {
-          "type": "debugdata",
-          "queryStringCount": 7
         }
       }
     },
@@ -2686,11 +2677,7 @@
             "url": "http://localhost:10200/dobetterweb/dbw_tester.css?delay=2200",
             "totalBytes": 821
           }
-        ],
-        "debugData": {
-          "type": "debugdata",
-          "totalCompletedRequests": 18
-        }
+        ]
       }
     },
     "offscreen-images": {
@@ -3249,7 +3236,7 @@
         "summary": {},
         "debugData": {
           "type": "debugdata",
-          "jsLibs": [
+          "vulnerableLibs": [
             {
               "name": "jQuery",
               "npmPkgName": "jquery",
@@ -3281,28 +3268,6 @@
                 }
               ],
               "highestSeverity": "Medium"
-            },
-            {
-              "name": "jQuery (Fast path)",
-              "npmPkgName": "jquery",
-              "version": "",
-              "vulns": []
-            },
-            {
-              "name": "WordPress",
-              "version": "",
-              "vulns": []
-            }
-          ],
-          "vulnerabilityResults": [
-            {
-              "highestSeverity": "Medium",
-              "vulnCount": 4,
-              "detectedLib": {
-                "text": "jQuery@2.1.1",
-                "url": "https://snyk.io/vuln/npm:jquery?lh=2.1.1&utm_source=lighthouse&utm_medium=ref&utm_campaign=audit",
-                "type": "link"
-              }
             }
           ]
         }
@@ -6941,11 +6906,11 @@
       ],
       "lighthouse-core/audits/dobetterweb/no-vulnerable-libraries.js | rowSeverityMedium": [
         "audits[no-vulnerable-libraries].details.items[0].highestSeverity",
-        "audits[no-vulnerable-libraries].details.debugData.jsLibs[0].vulns[0].severity",
-        "audits[no-vulnerable-libraries].details.debugData.jsLibs[0].vulns[1].severity",
-        "audits[no-vulnerable-libraries].details.debugData.jsLibs[0].vulns[2].severity",
-        "audits[no-vulnerable-libraries].details.debugData.jsLibs[0].vulns[3].severity",
-        "audits[no-vulnerable-libraries].details.debugData.jsLibs[0].highestSeverity"
+        "audits[no-vulnerable-libraries].details.debugData.vulnerableLibs[0].vulns[0].severity",
+        "audits[no-vulnerable-libraries].details.debugData.vulnerableLibs[0].vulns[1].severity",
+        "audits[no-vulnerable-libraries].details.debugData.vulnerableLibs[0].vulns[2].severity",
+        "audits[no-vulnerable-libraries].details.debugData.vulnerableLibs[0].vulns[3].severity",
+        "audits[no-vulnerable-libraries].details.debugData.vulnerableLibs[0].highestSeverity"
       ],
       "lighthouse-core/audits/dobetterweb/js-libraries.js | title": [
         "audits[js-libraries].title"

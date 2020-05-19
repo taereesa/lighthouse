@@ -196,7 +196,6 @@ class CacheHeaders extends Audit {
     const devtoolsLogs = artifacts.devtoolsLogs[Audit.DEFAULT_PASS];
     return NetworkRecords.request(devtoolsLogs, context).then(records => {
       const results = [];
-      let queryStringCount = 0;
       let totalWastedBytes = 0;
 
       for (const record of records) {
@@ -237,7 +236,6 @@ class CacheHeaders extends Audit {
         const wastedBytes = (1 - cacheHitProbability) * totalBytes;
 
         totalWastedBytes += wastedBytes;
-        if (url.includes('?')) queryStringCount++;
 
         // Include cacheControl info (if it exists) per url as a diagnostic.
         /** @type {LH.Audit.Details.DebugData|undefined} */
@@ -282,18 +280,13 @@ class CacheHeaders extends Audit {
 
       const summary = {wastedBytes: totalWastedBytes};
       const details = Audit.makeTableDetails(headings, results, summary);
-      /** @type {LH.Audit.Details.DebugData} */
-      const debugData = {
-        type: 'debugdata',
-        queryStringCount,
-      };
 
       return {
         score,
         numericValue: totalWastedBytes,
         numericUnit: 'byte',
         displayValue: str_(UIStrings.displayValue, {itemCount: results.length}),
-        details: {...details, debugData},
+        details,
       };
     });
   }

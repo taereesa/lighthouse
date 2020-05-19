@@ -103,15 +103,9 @@ class UserTimings extends Audit {
 
       const details = Audit.makeTableDetails(headings, tableRows);
 
-      /** @type {LH.Audit.Details.DebugData|undefined} */
-      let debugData;
       /** @type {string|undefined} */
       let displayValue;
       if (userTimings.length) {
-        debugData = {
-          type: 'debugdata',
-          userTimings,
-        };
         displayValue = str_(UIStrings.displayValue, {itemCount: userTimings.length});
       }
 
@@ -120,7 +114,7 @@ class UserTimings extends Audit {
         score: Number(userTimings.length === 0),
         notApplicable: userTimings.length === 0,
         displayValue,
-        details: {...details, debugData},
+        details,
       };
     });
   }
