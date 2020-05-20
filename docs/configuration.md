@@ -8,7 +8,7 @@ Read more about the [architecture of Lighthouse](./architecture.md).
 
 You can specify a custom config file when using Lighthouse through the CLI or consuming the npm module yourself.
 
-**custom-config.js**
+**custom-config.js file**
 ```js
 module.exports = {
   extends: 'lighthouse:default',
@@ -23,12 +23,12 @@ module.exports = {
 };
 ```
 
-**CLI**
+**Use config file via CLI**
 ```sh
 lighthouse --config-path=path/to/custom-config.js https://example.com
 ```
 
-**Node**
+**Use config file via Node**
 ```js
 const lighthouse = require('lighthouse');
 const config = require('./path/to/custom-config.js');
@@ -72,7 +72,7 @@ The settings property controls various aspects of running Lighthouse such as CPU
 ```
 
 #### Options
-For full list see [our default config settings](https://github.com/GoogleChrome/lighthouse/blob/8f500e00243e07ef0a80b39334bedcc8ddc8d3d0/lighthouse-core/config/constants.js#L30-L48).
+For full list see [our default config settings](https://github.com/GoogleChrome/lighthouse/blob/575e29b8b6634bfb280bc820efea6795f3dd9017/types/externs.d.ts#L141-L186).
 
 | Name | Type | Description |
 | -- | -- | -- |
