@@ -105,6 +105,36 @@ class PerformanceCategoryRenderer extends CategoryRenderer {
   }
 
   /**
+   * Get a link to the interactive scoring calculator with the metric values.
+   * @param {LH.ReportResult.AuditRef[]} auditRefs
+   * @return {string}
+   */
+  _getScoringCalculatorHref(auditRefs) {
+    const v5andv6metrics = auditRefs.filter(audit => audit.group === 'metrics');
+    const fci = auditRefs.find(audit => audit.id === 'first-cpu-idle');
+    const fmp = auditRefs.find(audit => audit.id === 'first-meaningful-paint');
+    if (fci) v5andv6metrics.push(fci);
+    if (fmp) v5andv6metrics.push(fmp);
+
+    const metricPairs = v5andv6metrics.map(audit => {
+      const value = typeof audit.result.numericValue !== 'undefined' ?
+        audit.result.numericValue.toString() : 'null';
+      return [audit.id, value];
+    });
+    const paramPairs = [...metricPairs];
+
+    if (Util.reportJson) {
+      paramPairs.push(['device', Util.reportJson.configSettings.emulatedFormFactor]);
+      paramPairs.push(['version', Util.reportJson.lighthouseVersion]);
+    }
+
+    const params = new URLSearchParams(paramPairs);
+    const url = new URL('https://googlechrome.github.io/lighthouse/scorecalc/');
+    url.hash = params.toString();
+    return url.href;
+  }
+
+  /**
    * @param {LH.ReportResult.Category} category
    * @param {Object<string, LH.Result.ReportGroup>} groups
    * @param {'PSI'=} environment 'PSI' and undefined are the only valid values
@@ -152,6 +182,12 @@ class PerformanceCategoryRenderer extends CategoryRenderer {
       const estValuesEl = this.dom.createChildOf(metricAuditsEl, 'div', 'lh-metrics__disclaimer');
       const disclaimerEl = this.dom.convertMarkdownLinkSnippets(strings.varianceDisclaimer);
       estValuesEl.appendChild(disclaimerEl);
+
+      // Add link to score calculator.
+      const calculatorLink = this.dom.createChildOf(estValuesEl, 'a', 'lh-calclink');
+      calculatorLink.target = '_blank';
+      calculatorLink.textContent = strings.calculatorLink;
+      calculatorLink.href = this._getScoringCalculatorHref(category.auditRefs);
     }
 
     metricAuditsEl.classList.add('lh-audit-group--metrics');

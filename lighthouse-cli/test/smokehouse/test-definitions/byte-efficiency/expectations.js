@@ -219,12 +219,13 @@ const expectations = [
         },
         'uses-responsive-images': {
           details: {
-            overallSavingsBytes: '82000 +/- 5000',
+            overallSavingsBytes: '108000 +/- 5000',
             items: {
-              0: {wastedPercent: '45 +/- 5', url: /lighthouse-1024x680.jpg/},
-              1: {wastedPercent: '72 +/- 5', url: /lighthouse-2048x1356.webp\?size0/},
-              2: {wastedPercent: '45 +/- 5', url: /lighthouse-480x320.webp/},
-              length: 3,
+              0: {wastedPercent: '56 +/- 5', url: /lighthouse-1024x680.jpg/},
+              1: {wastedPercent: '78 +/- 5', url: /lighthouse-2048x1356.webp\?size0/},
+              2: {wastedPercent: '56 +/- 5', url: /lighthouse-480x320.webp/},
+              3: {wastedPercent: '20 +/- 5', url: /lighthouse-480x320.jpg/},
+              length: 4,
             },
           },
         },

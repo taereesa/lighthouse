@@ -5,7 +5,6 @@
  */
 'use strict';
 
-const assert = require('assert').strict;
 const parseCacheControl = require('parse-cache-control');
 const Audit = require('../audit.js');
 const NetworkRequest = require('../../lib/network-request.js');
@@ -55,11 +54,11 @@ class CacheHeaders extends Audit {
    */
   static get defaultOptions() {
     return {
-      // 50th and 75th percentiles HTTPArchive -> 50 and 75
+      // 50th and 25th percentiles HTTPArchive -> 50 and 75, with p10 derived from them.
       // https://bigquery.cloud.google.com/table/httparchive:lighthouse.2018_04_01_mobile?pli=1
-      // see https://www.desmos.com/calculator/8meohdnjbl
-      scorePODR: 4 * 1024,
-      scoreMedian: 128 * 1024,
+      // see https://www.desmos.com/calculator/uzsyl2hbcb
+      p10: 28 * 1024,
+      median: 128 * 1024,
     };
   }
 
@@ -76,7 +75,9 @@ class CacheHeaders extends Audit {
     // Based on UMA stats for HttpCache.StaleEntry.Validated.Age, see https://www.desmos.com/calculator/7v0qh1nzvh
     // Example: a max-age of 12 hours already covers ~50% of cases, doubling to 24 hours covers ~10% more.
     const RESOURCE_AGE_IN_HOURS_DECILES = [0, 0.2, 1, 3, 8, 12, 24, 48, 72, 168, 8760, Infinity];
-    assert.ok(RESOURCE_AGE_IN_HOURS_DECILES.length === 12, 'deciles 0-10 and 1 for overflow');
+    if (RESOURCE_AGE_IN_HOURS_DECILES.length !== 12) {
+      throw new Error('deciles 0-10 and 1 for overflow');
+    }
 
     const maxAgeInHours = maxAgeInSeconds / 3600;
     const upperDecileIndex = RESOURCE_AGE_IN_HOURS_DECILES.findIndex(
@@ -265,9 +266,8 @@ class CacheHeaders extends Audit {
       });
 
       const score = Audit.computeLogNormalScore(
-        totalWastedBytes,
-        context.options.scorePODR,
-        context.options.scoreMedian
+        {p10: context.options.p10, median: context.options.median},
+        totalWastedBytes
       );
 
       /** @type {LH.Audit.Details.Table['headings']} */

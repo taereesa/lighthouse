@@ -41,9 +41,9 @@ class MaxPotentialFID extends Audit {
    */
   static get defaultOptions() {
     return {
-      // see https://www.desmos.com/calculator/g3nf1ehtnk
-      scorePODR: 100,
-      scoreMedian: 250,
+      // see https://www.desmos.com/calculator/onxmbblyqo
+      p10: 130,
+      median: 250,
     };
   }
 
@@ -60,9 +60,8 @@ class MaxPotentialFID extends Audit {
 
     return {
       score: Audit.computeLogNormalScore(
-        metricResult.timing,
-        context.options.scorePODR,
-        context.options.scoreMedian
+        {p10: context.options.p10, median: context.options.median},
+        metricResult.timing
       ),
       numericValue: metricResult.timing,
       numericUnit: 'millisecond',

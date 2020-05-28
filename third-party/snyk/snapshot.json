@@ -74,7 +74,9 @@
       {"id":"npm:highcharts:20180225","severity":"high","semver":{"vulnerable":["<6.1.0"]}}
     ],
     "jquery":[
-      {"id":"SNYK-JS-JQUERY-565129","severity":"medium","semver":{"vulnerable":[">=2.2.0 <3.5.0"]}},
+      {"id":"SNYK-JS-JQUERY-569619","severity":"medium","semver":{"vulnerable":["<1.9.0"]}},
+      {"id":"SNYK-JS-JQUERY-567880","severity":"medium","semver":{"vulnerable":[">=1.2.0 <3.5.0"]}},
+      {"id":"SNYK-JS-JQUERY-565129","severity":"medium","semver":{"vulnerable":[">=1.0.3 <3.5.0"]}},
       {"id":"SNYK-JS-JQUERY-174006","severity":"medium","semver":{"vulnerable":["<3.4.0"]}},
       {"id":"npm:jquery:20160529","severity":"low","semver":{"vulnerable":[">=3.0.0-rc1 <3.0.0"]}},
       {"id":"npm:jquery:20150627","severity":"medium","semver":{"vulnerable":["<1.12.2",">=1.12.3 <2.2.2",">=2.2.3 <3.0.0"]}},
@@ -96,6 +98,7 @@
       {"id":"npm:knockout:20130701","severity":"medium","semver":{"vulnerable":[">=2.1.0-pre <3.0.0"]}}
     ],
     "lodash":[
+      {"id":"SNYK-JS-LODASH-567746","severity":"medium","semver":{"vulnerable":["<=4.17.15"]}},
       {"id":"SNYK-JS-LODASH-450202","severity":"high","semver":{"vulnerable":["<4.17.12"]}},
       {"id":"SNYK-JS-LODASH-73639","severity":"medium","semver":{"vulnerable":["<4.17.11"]}},
       {"id":"SNYK-JS-LODASH-73638","severity":"high","semver":{"vulnerable":["<4.17.11"]}},
@@ -109,6 +112,14 @@
     "mustache":[
       {"id":"npm:mustache:20151207","severity":"medium","semver":{"vulnerable":["<2.2.1"]}},
       {"id":"npm:mustache:20110814","severity":"medium","semver":{"vulnerable":["< 0.3.1"]}}
+    ],
+    "next":[
+      {"id":"SNYK-JS-NEXT-561584","severity":"medium","semver":{"vulnerable":["<9.3.2"]}},
+      {"id":"SNYK-JS-NEXT-174590","severity":"high","semver":{"vulnerable":["<2.4.1"]}},
+      {"id":"SNYK-JS-NEXT-72454","severity":"medium","semver":{"vulnerable":[">=7.0.0 <7.0.2"]}},
+      {"id":"npm:next:20180124","severity":"high","semver":{"vulnerable":["<4.2.3"]}},
+      {"id":"npm:next:20170607","severity":"medium","semver":{"vulnerable":["<2.4.3"]}},
+      {"id":"npm:next:20170601","severity":"high","semver":{"vulnerable":["<2.4.1",">=3.0.0-beta1 <3.0.0-beta7"]}}
     ],
     "react":[
       {"id":"npm:react:20150318","severity":"high","semver":{"vulnerable":[">=0.0.1 <0.14.0"]}},

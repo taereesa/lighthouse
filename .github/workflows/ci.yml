@@ -75,7 +75,8 @@ jobs:
     - name: Deepen git fetch (for buildtracker)
       run: git fetch --deepen=100
     - name: Store in buildtracker
-      run: yarn bt-cli upload-build
+      # TODO(paulirish): Don't allow this to fail the build. https://github.com/paularmstrong/build-tracker/issues/200
+      run: yarn bt-cli upload-build || true
       env:
         # https://buildtracker.dev/docs/guides/github-actions#configuration
         BT_API_AUTH_TOKEN: ${{ secrets.BT_API_AUTH_TOKEN }}

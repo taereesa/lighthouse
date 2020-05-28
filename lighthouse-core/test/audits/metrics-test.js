@@ -14,6 +14,9 @@ const pwaDevtoolsLog = require('../fixtures/traces/progressive-app-m60.devtools.
 const lcpTrace = require('../fixtures/traces/lcp-m78.json');
 const lcpDevtoolsLog = require('../fixtures/traces/lcp-m78.devtools.log.json');
 
+const artifactsTrace = require('../results/artifacts/defaultPass.trace.json');
+const artifactsDevtoolsLog = require('../results/artifacts/defaultPass.devtoolslog.json');
+
 /* eslint-env jest */
 
 describe('Performance: metrics', () => {
@@ -32,6 +35,21 @@ describe('Performance: metrics', () => {
     expect(result.details.items[0]).toMatchSnapshot();
   });
 
+  it('evaluates valid input correctly (throttlingMethod=provided)', async () => {
+    const artifacts = {
+      traces: {
+        [MetricsAudit.DEFAULT_PASS]: pwaTrace,
+      },
+      devtoolsLogs: {
+        [MetricsAudit.DEFAULT_PASS]: pwaDevtoolsLog,
+      },
+    };
+
+    const context = {settings: {throttlingMethod: 'provided'}, computedCache: new Map()};
+    const result = await MetricsAudit.audit(artifacts, context);
+    expect(result.details.items[0]).toMatchSnapshot();
+  });
+
   it('evaluates valid input (with lcp) correctly', async () => {
     const artifacts = {
       traces: {
@@ -45,6 +63,22 @@ describe('Performance: metrics', () => {
     const context = {settings: {throttlingMethod: 'simulate'}, computedCache: new Map()};
     const result = await MetricsAudit.audit(artifacts, context);
     expect(result.details.items[0]).toMatchSnapshot();
+  });
+
+  it('evaluates valid input (with CLS) correctly', async () => {
+    const artifacts = {
+      traces: {
+        [MetricsAudit.DEFAULT_PASS]: artifactsTrace,
+      },
+      devtoolsLogs: {
+        [MetricsAudit.DEFAULT_PASS]: artifactsDevtoolsLog,
+      },
+    };
+
+    const context = {settings: {throttlingMethod: 'simulate'}, computedCache: new Map()};
+    const {details} = await MetricsAudit.audit(artifacts, context);
+    expect(details.items[0].cumulativeLayoutShift).toMatchInlineSnapshot(`0.42`);
+    expect(details.items[0].observedCumulativeLayoutShift).toMatchInlineSnapshot(`0.42`);
   });
 
   it('does not fail the entire audit when TTI errors', async () => {

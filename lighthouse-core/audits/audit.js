@@ -68,25 +68,17 @@ class Audit {
   /* eslint-enable no-unused-vars */
 
   /**
-   * Computes a clamped score between 0 and 1 based on the measured value. Score is determined by
-   * considering a log-normal distribution governed by the two control points, point of diminishing
-   * returns and the median value, and returning the percentage of sites that have higher value.
-   *
-   * @param {number} measuredValue
-   * @param {number} diminishingReturnsValue
-   * @param {number} medianValue
+   * Computes a score between 0 and 1 based on the measured `value`. Score is determined by
+   * considering a log-normal distribution governed by two control points (the 10th
+   * percentile value and the median value) and represents the percentage of sites that are
+   * greater than `value`.
+   * @param {{median: number, p10: number}} controlPoints
+   * @param {number} value
    * @return {number}
    */
-  static computeLogNormalScore(measuredValue, diminishingReturnsValue, medianValue) {
-    const distribution = statistics.getLogNormalDistribution(
-      medianValue,
-      diminishingReturnsValue
-    );
-
-    let score = distribution.computeComplementaryPercentile(measuredValue);
-    score = Math.min(1, score);
-    score = Math.max(0, score);
-    return clampTo2Decimals(score);
+  static computeLogNormalScore(controlPoints, value) {
+    const percentile = statistics.getLogNormalScore(controlPoints, value);
+    return clampTo2Decimals(percentile);
   }
 
   /**

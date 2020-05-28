@@ -552,7 +552,7 @@
     "message": "Avoids Application Cache"
   },
   "lighthouse-core/audits/dobetterweb/charset.js | description": {
-    "message": "A character encoding declaration is required. It can be done with a <meta> tag in the first 1024 bytes of the HTML or in the Content-Type HTTP response header. [Learn more](https://www.w3.org/International/questions/qa-html-encoding-declarations)."
+    "message": "A character encoding declaration is required. It can be done with a <meta> tag in the first 1024 bytes of the HTML or in the Content-Type HTTP response header. [Learn more](https://web.dev/charset)."
   },
   "lighthouse-core/audits/dobetterweb/charset.js | failureTitle": {
     "message": "Charset declaration is missing or occurs too late in the HTML"
@@ -777,13 +777,13 @@
     "message": "Expected size"
   },
   "lighthouse-core/audits/image-size-responsive.js | description": {
-    "message": "Image natural dimensions should be proportional to the display size and the pixel ratio to maximize image clarity. [Learn more](https://web.dev/image-size-responsive)."
+    "message": "Image natural dimensions should be proportional to the display size and the pixel ratio to maximize image clarity. [Learn more](https://web.dev/serve-responsive-images/)."
   },
   "lighthouse-core/audits/image-size-responsive.js | failureTitle": {
-    "message": "Displays images with inappropriate size"
+    "message": "Serves images with low resolution"
   },
   "lighthouse-core/audits/image-size-responsive.js | title": {
-    "message": "Displays images with appropriate size"
+    "message": "Serves images with appropriate resolution"
   },
   "lighthouse-core/audits/installable-manifest.js | description": {
     "message": "Browsers can proactively prompt users to add your app to their homescreen, which can lead to higher engagement. [Learn more](https://web.dev/installable-manifest)."
@@ -798,7 +798,7 @@
     "message": "Insecure URL"
   },
   "lighthouse-core/audits/is-on-https.js | description": {
-    "message": "All sites should be protected with HTTPS, even ones that don't handle sensitive data. HTTPS prevents intruders from tampering with or passively listening in on the communications between your app and your users, and is a prerequisite for HTTP/2 and many new web platform APIs. [Learn more](https://web.dev/is-on-https)."
+    "message": "All sites should be protected with HTTPS, even ones that don't handle sensitive data. This includes avoiding [mixed content](https://developers.google.com/web/fundamentals/security/prevent-mixed-content/what-is-mixed-content), where some resources are loaded over HTTP despite the initial request being servedover HTTPS. HTTPS prevents intruders from tampering with or passively listening in on the communications between your app and your users, and is a prerequisite for HTTP/2 and many new web platform APIs. [Learn more](https://web.dev/is-on-https)."
   },
   "lighthouse-core/audits/is-on-https.js | displayValue": {
     "message": "{itemCount, plural,\n    =1 {1 insecure request found}\n    other {# insecure requests found}\n    }"
@@ -817,6 +817,15 @@
   },
   "lighthouse-core/audits/largest-contentful-paint-element.js | title": {
     "message": "Largest Contentful Paint element"
+  },
+  "lighthouse-core/audits/layout-shift-elements.js | description": {
+    "message": "These DOM elements contribute most to the CLS of the page."
+  },
+  "lighthouse-core/audits/layout-shift-elements.js | displayValue": {
+    "message": "{nodeCount, plural,\n    =1 {1 element found}\n    other {# elements found}\n    }"
+  },
+  "lighthouse-core/audits/layout-shift-elements.js | title": {
+    "message": "Avoid large layout shifts"
   },
   "lighthouse-core/audits/legacy-javascript.js | description": {
     "message": "Polyfills and transforms enable legacy browsers to use new JavaScript features. However, many aren't necessary for modern browsers. For your bundled JavaScript, adopt a modern script deployment strategy using module/nomodule feature detection to reduce the amount of code shipped to modern browsers, while retaining support for legacy browsers. [Learn More](https://philipwalton.com/articles/deploying-es2015-code-in-production-today/)"
@@ -841,6 +850,15 @@
   },
   "lighthouse-core/audits/load-fast-enough-for-pwa.js | title": {
     "message": "Page load is fast enough on mobile networks"
+  },
+  "lighthouse-core/audits/long-tasks.js | description": {
+    "message": "Lists the longest tasks on the main thread, useful for identifying worst contributors to input delay. [Learn more](https://web.dev/long-tasks-devtools)"
+  },
+  "lighthouse-core/audits/long-tasks.js | displayValue": {
+    "message": "{itemCount, plural,\n  =1 {# long task found}\n  other {# long tasks found}\n  }"
+  },
+  "lighthouse-core/audits/long-tasks.js | title": {
+    "message": "Avoid long main-thread tasks"
   },
   "lighthouse-core/audits/mainthread-work-breakdown.js | columnCategory": {
     "message": "Category"
@@ -873,7 +891,7 @@
     "message": "Page transitions don't feel like they block on the network"
   },
   "lighthouse-core/audits/maskable-icon.js | description": {
-    "message": "A maskable icon ensures that the image fills the entire shape without being letterboxed when installing the app on a device. [Learn more](https://web.dev/maskable-icon/)."
+    "message": "A maskable icon ensures that the image fills the entire shape without being letterboxed when installing the app on a device. [Learn more](https://web.dev/maskable-icon-audit/)."
   },
   "lighthouse-core/audits/maskable-icon.js | failureTitle": {
     "message": "Manifest doesn't have a maskable icon"
@@ -998,6 +1016,18 @@
   "lighthouse-core/audits/seo/canonical.js | title": {
     "message": "Document has a valid `rel=canonical`"
   },
+  "lighthouse-core/audits/seo/crawlable-anchors.js | columnFailingLink": {
+    "message": "Uncrawlable Link"
+  },
+  "lighthouse-core/audits/seo/crawlable-anchors.js | description": {
+    "message": "Search engines may use `href` attributes on links to crawl websites. Ensure that the `href` attribute of anchor elements links to an appropriate destination, so more pages of the site can be discovered. [Learn More](https://support.google.com/webmasters/answer/9112205)"
+  },
+  "lighthouse-core/audits/seo/crawlable-anchors.js | failureTitle": {
+    "message": "Links are not crawlable"
+  },
+  "lighthouse-core/audits/seo/crawlable-anchors.js | title": {
+    "message": "Links are crawlable"
+  },
   "lighthouse-core/audits/seo/font-size.js | description": {
     "message": "Font sizes less than 12px are too small to be legible and require mobile visitors to “pinch to zoom” in order to read. Strive to have >60% of page text ≥12px. [Learn more](https://web.dev/font-size)."
   },
@@ -1118,6 +1148,18 @@
   "lighthouse-core/audits/seo/tap-targets.js | title": {
     "message": "Tap targets are sized appropriately"
   },
+  "lighthouse-core/audits/server-response-time.js | description": {
+    "message": "Keep the server response time for the main document short because all other requests depend on it. [Learn more](https://web.dev/time-to-first-byte)."
+  },
+  "lighthouse-core/audits/server-response-time.js | displayValue": {
+    "message": "Root document took {timeInMs, number, milliseconds} ms"
+  },
+  "lighthouse-core/audits/server-response-time.js | failureTitle": {
+    "message": "Reduce initial server response time"
+  },
+  "lighthouse-core/audits/server-response-time.js | title": {
+    "message": "Initial server response time was short"
+  },
   "lighthouse-core/audits/service-worker.js | description": {
     "message": "The service worker is the technology that enables your app to use many Progressive Web App features, such as offline, add to homescreen, and push notifications. [Learn more](https://web.dev/service-worker)."
   },
@@ -1175,18 +1217,6 @@
   "lighthouse-core/audits/third-party-summary.js | title": {
     "message": "Minimize third-party usage"
   },
-  "lighthouse-core/audits/time-to-first-byte.js | description": {
-    "message": "Time To First Byte identifies the time at which your server sends a response. [Learn more](https://web.dev/time-to-first-byte)."
-  },
-  "lighthouse-core/audits/time-to-first-byte.js | displayValue": {
-    "message": "Root document took {timeInMs, number, milliseconds} ms"
-  },
-  "lighthouse-core/audits/time-to-first-byte.js | failureTitle": {
-    "message": "Reduce server response times (TTFB)"
-  },
-  "lighthouse-core/audits/time-to-first-byte.js | title": {
-    "message": "Server response times are low (TTFB)"
-  },
   "lighthouse-core/audits/timing-budget.js | columnMeasurement": {
     "message": "Measurement"
   },
@@ -1198,12 +1228,6 @@
   },
   "lighthouse-core/audits/timing-budget.js | title": {
     "message": "Timing budget"
-  },
-  "lighthouse-core/audits/user-timings.js | columnDuration": {
-    "message": "Duration"
-  },
-  "lighthouse-core/audits/user-timings.js | columnStartTime": {
-    "message": "Start Time"
   },
   "lighthouse-core/audits/user-timings.js | columnType": {
     "message": "Type"
@@ -1353,7 +1377,7 @@
     "message": "Budgets"
   },
   "lighthouse-core/config/default-config.js | diagnosticsGroupDescription": {
-    "message": "More information about the performance of your application. These numbers don't [directly affect](https://github.com/GoogleChrome/lighthouse/blob/d2ec9ffbb21de9ad1a0f86ed24575eda32c796f0/docs/scoring.md#how-are-the-scores-weighted) the Performance score."
+    "message": "More information about the performance of your application. These numbers don't [directly affect](https://web.dev/performance-scoring/) the Performance score."
   },
   "lighthouse-core/config/default-config.js | diagnosticsGroupTitle": {
     "message": "Diagnostics"
@@ -1365,7 +1389,7 @@
     "message": "First Paint Improvements"
   },
   "lighthouse-core/config/default-config.js | loadOpportunitiesGroupDescription": {
-    "message": "These suggestions can help your page load faster. They don't [directly affect](https://github.com/GoogleChrome/lighthouse/blob/d2ec9ffbb21de9ad1a0f86ed24575eda32c796f0/docs/scoring.md#how-are-the-scores-weighted) the Performance score."
+    "message": "These suggestions can help your page load faster. They don't [directly affect](https://web.dev/performance-scoring/) the Performance score."
   },
   "lighthouse-core/config/default-config.js | loadOpportunitiesGroupTitle": {
     "message": "Opportunities"
@@ -1436,6 +1460,9 @@
   "lighthouse-core/lib/i18n/i18n.js | columnCacheTTL": {
     "message": "Cache TTL"
   },
+  "lighthouse-core/lib/i18n/i18n.js | columnDuration": {
+    "message": "Duration"
+  },
   "lighthouse-core/lib/i18n/i18n.js | columnElement": {
     "message": "Element"
   },
@@ -1462,6 +1489,9 @@
   },
   "lighthouse-core/lib/i18n/i18n.js | columnSource": {
     "message": "Source"
+  },
+  "lighthouse-core/lib/i18n/i18n.js | columnStartTime": {
+    "message": "Start Time"
   },
   "lighthouse-core/lib/i18n/i18n.js | columnTimeSpent": {
     "message": "Time Spent"
@@ -1601,6 +1631,9 @@
   "lighthouse-core/report/html/renderer/util.js | auditGroupExpandTooltip": {
     "message": "Show audits"
   },
+  "lighthouse-core/report/html/renderer/util.js | calculatorLink": {
+    "message": "See calculator."
+  },
   "lighthouse-core/report/html/renderer/util.js | crcInitialNavigation": {
     "message": "Initial Navigation"
   },
@@ -1719,7 +1752,7 @@
     "message": "There were issues affecting this run of Lighthouse:"
   },
   "lighthouse-core/report/html/renderer/util.js | varianceDisclaimer": {
-    "message": "Values are estimated and may vary. The performance score is [based only on these metrics](https://github.com/GoogleChrome/lighthouse/blob/d2ec9ffbb21de9ad1a0f86ed24575eda32c796f0/docs/scoring.md#how-are-the-scores-weighted)."
+    "message": "Values are estimated and may vary. The [performance score is calculated](https://web.dev/performance-scoring/) directly from these metrics."
   },
   "lighthouse-core/report/html/renderer/util.js | warningAuditsGroupTitle": {
     "message": "Passed audits but with warnings"
@@ -1775,7 +1808,7 @@
   "stack-packs/packs/magento.js | offscreen_images": {
     "message": "Consider modifying your product and catalog templates to make use of the web platform's [lazy loading](https://web.dev/native-lazy-loading) feature."
   },
-  "stack-packs/packs/magento.js | time_to_first_byte": {
+  "stack-packs/packs/magento.js | server_response_time": {
     "message": "Use Magento's [Varnish integration](https://devdocs.magento.com/guides/v2.3/config-guide/varnish/config-varnish.html)."
   },
   "stack-packs/packs/magento.js | unminified_css": {
@@ -1805,7 +1838,7 @@
   "stack-packs/packs/react.js | redirects": {
     "message": "If you are using React Router, minimize usage of the `<Redirect>` component for [route navigations](https://reacttraining.com/react-router/web/api/Redirect)."
   },
-  "stack-packs/packs/react.js | time_to_first_byte": {
+  "stack-packs/packs/react.js | server_response_time": {
     "message": "If you are server-side rendering any React components, consider using `renderToNodeStream()` or `renderToStaticNodeStream()` to allow the client to receive and hydrate different parts of the markup instead of all at once. [Learn more](https://reactjs.org/docs/react-dom-server.html#rendertonodestream)."
   },
   "stack-packs/packs/react.js | unminified_css": {
@@ -1829,7 +1862,7 @@
   "stack-packs/packs/wordpress.js | render_blocking_resources": {
     "message": "There are a number of WordPress plugins that can help you [inline critical assets](https://wordpress.org/plugins/search/critical+css/) or [defer less important resources](https://wordpress.org/plugins/search/defer+css+javascript/). Beware that optimizations provided by these plugins may break features of your theme or plugins, so you will likely need to make code changes."
   },
-  "stack-packs/packs/wordpress.js | time_to_first_byte": {
+  "stack-packs/packs/wordpress.js | server_response_time": {
     "message": "Themes, plugins, and server specifications all contribute to server response time. Consider finding a more optimized theme, carefully selecting an optimization plugin, and/or upgrading your server."
   },
   "stack-packs/packs/wordpress.js | total_byte_weight": {

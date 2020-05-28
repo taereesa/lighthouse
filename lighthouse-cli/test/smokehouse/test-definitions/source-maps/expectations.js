@@ -7,8 +7,8 @@
 
 const fs = require('fs');
 
-const mapPath = require.resolve('../../../fixtures/source-map/script.js.map');
-const mapJson = fs.readFileSync(mapPath, 'utf-8');
+const mapJson =
+  fs.readFileSync(`${__dirname}/../../../fixtures/source-map/script.js.map`, 'utf-8');
 const map = JSON.parse(mapJson);
 
 /**

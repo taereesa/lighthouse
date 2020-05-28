@@ -141,10 +141,10 @@
     "message": "Ha nem megfelelő a definíciós listák jelölése, a képernyőolvasók zavaros vagy pontatlan szöveget generálhatnak. [További információ](https://web.dev/definition-list/)."
   },
   "lighthouse-core/audits/accessibility/definition-list.js | failureTitle": {
-    "message": "A(z) `<dl>` elemek nem csak megfelelően rendezett `<dt>` és `<dd>` csoportokat, illetve `<script>` vagy `<template>` elemeket tartalmaznak."
+    "message": "A `<dl>` elemek nem csak megfelelően rendezett `<dt>` és `<dd>` csoportokat, illetve `<script>`, `<template>` vagy `<div>` elemeket tartalmaznak."
   },
   "lighthouse-core/audits/accessibility/definition-list.js | title": {
-    "message": "A(z) `<dl>` elemek csak megfelelő sorrendű `<dt>` és `<dd>` csoportokat, illetve `<script>` vagy `<template>` elemeket tartalmaznak."
+    "message": "A `<dl>` elemek csak megfelelően rendezett `<dt>` és `<dd>` csoportokat, illetve `<script>`, `<template>` vagy `<div>` elemeket tartalmaznak."
   },
   "lighthouse-core/audits/accessibility/dlitem.js | description": {
     "message": "A definíciós listák elemeit (`<dt>` és `<dd>`) `<dl>` szülőelembe kell foglalni, hogy a képernyőolvasók megfelelően felolvashassák őket. [További információ](https://web.dev/dlitem/)."
@@ -404,6 +404,12 @@
   "lighthouse-core/audits/bootup-time.js | title": {
     "message": "JavaScript végrehajtási ideje"
   },
+  "lighthouse-core/audits/byte-efficiency/duplicated-javascript.js | description": {
+    "message": "Távolítsa el a csomagjaiból a nagy méretű, többször előforduló JavaScript-modulokat, hogy kevesebb hálózati forgalmat okozzanak. "
+  },
+  "lighthouse-core/audits/byte-efficiency/duplicated-javascript.js | title": {
+    "message": "Távolítsa el a többször szereplő modulokat a JavaScript-csomagokból"
+  },
   "lighthouse-core/audits/byte-efficiency/efficient-animated-content.js | description": {
     "message": "A túl nagy GIF-fájlokkal nem lehet hatékonyan animált tartalmakat nyújtani. Az adatforgalom csökkentésének érdekében a GIF-ek helyett érdemes az animációkhoz MPEG4-/WebM-videókat használnia, a statikus képekhez pedig PNG-/WebP-képeket. [További információ](https://web.dev/efficient-animated-content)"
   },
@@ -453,7 +459,7 @@
     "message": "Távolítsa el a nem használt CSS-kódot"
   },
   "lighthouse-core/audits/byte-efficiency/unused-javascript.js | description": {
-    "message": "A nem használt JavaScript-kód eltávolításával csökkentheti a hálózati tevékenység adatforgalmát. [További információ](https://developers.google.com/web/fundamentals/performance/optimizing-javascript/code-splitting)."
+    "message": "A nem használt JavaScript-kód eltávolításával csökkentheti a hálózati tevékenység adatforgalmát. [További információ](https://web.dev/remove-unused-code/)."
   },
   "lighthouse-core/audits/byte-efficiency/unused-javascript.js | title": {
     "message": "Távolítsa el a nem használt JavaScript-kódot"
@@ -545,6 +551,15 @@
   "lighthouse-core/audits/dobetterweb/appcache-manifest.js | title": {
     "message": "Kerüli az alkalmazás-gyorsítótárat"
   },
+  "lighthouse-core/audits/dobetterweb/charset.js | description": {
+    "message": "Kötelező deklarálnia a karakterkódolást. Megteheti a <meta> címkében, ha a HTML első 1024 bájtjába kerül, vagy a HTTP-válasz Content-Type fejlécében. [További információ](https://www.w3.org/International/questions/qa-html-encoding-declarations)."
+  },
+  "lighthouse-core/audits/dobetterweb/charset.js | failureTitle": {
+    "message": "A charset deklarációja hiányzik, vagy túl későn szerepel a HTML-ben"
+  },
+  "lighthouse-core/audits/dobetterweb/charset.js | title": {
+    "message": "Megfelelően meghatározott charset"
+  },
   "lighthouse-core/audits/dobetterweb/doctype.js | description": {
     "message": "A doctype meghatározásával elkerülhető, hogy a böngésző visszafelé kompatibilis módra váltson. [További információ](https://web.dev/doctype)."
   },
@@ -593,6 +608,9 @@
   "lighthouse-core/audits/dobetterweb/dom-size.js | title": {
     "message": "Kerüli a túlzó DOM-méretet"
   },
+  "lighthouse-core/audits/dobetterweb/external-anchors-use-rel-noopener.js | columnFailingAnchors": {
+    "message": "Hibás horgonyok"
+  },
   "lighthouse-core/audits/dobetterweb/external-anchors-use-rel-noopener.js | description": {
     "message": "Adjon `rel=\"noopener\"` vagy `rel=\"noreferrer\"` címkét a külső linkekhez, hogy javíthassa a teljesítményt és elkerülhesse a sebezhetőségeket. [További információ](https://web.dev/external-anchors-use-rel-noopener)."
   },
@@ -627,7 +645,7 @@
     "message": "A külső szkriptek `document.write()` segítségével történő dinamikus beillesztése több tíz másodperccel lassíthatja az oldalbetöltést a lassú kapcsolaton csatlakozó felhasználók esetében. [További információ](https://web.dev/no-document-write)."
   },
   "lighthouse-core/audits/dobetterweb/no-document-write.js | failureTitle": {
-    "message": "A(z) `document.write()` metódust használja"
+    "message": "Ne használja a következőt: `document.write()`"
   },
   "lighthouse-core/audits/dobetterweb/no-document-write.js | title": {
     "message": "Kerüli a(z) `document.write()` használatát"
@@ -749,6 +767,24 @@
   "lighthouse-core/audits/image-aspect-ratio.js | warningCompute": {
     "message": "Érvénytelen képméretezési információ {url}"
   },
+  "lighthouse-core/audits/image-size-responsive.js | columnActual": {
+    "message": "Valós méret"
+  },
+  "lighthouse-core/audits/image-size-responsive.js | columnDisplayed": {
+    "message": "Megjelenített méret"
+  },
+  "lighthouse-core/audits/image-size-responsive.js | columnExpected": {
+    "message": "Várt méret"
+  },
+  "lighthouse-core/audits/image-size-responsive.js | description": {
+    "message": "A kép természetes méreteinek arányosnak kell lennie a megjelenítési mérettel és a pixelaránnyal a lehető legnagyobb képtisztaság érdekében. [További információ](https://web.dev/image-size-responsive)."
+  },
+  "lighthouse-core/audits/image-size-responsive.js | failureTitle": {
+    "message": "A képeket nem megfelelő méretben jeleníti meg"
+  },
+  "lighthouse-core/audits/image-size-responsive.js | title": {
+    "message": "A képeket megfelelő méretben jeleníti meg"
+  },
   "lighthouse-core/audits/installable-manifest.js | description": {
     "message": "A böngészők proaktív módon kérhetik a felhasználókat, hogy adják hozzá az Ön alkalmazását a kezdőképernyőjükhöz, ami erősebb elköteleződéshez vezethet. [További információ](https://web.dev/installable-manifest)."
   },
@@ -772,6 +808,12 @@
   },
   "lighthouse-core/audits/is-on-https.js | title": {
     "message": "HTTPS-t használ"
+  },
+  "lighthouse-core/audits/legacy-javascript.js | description": {
+    "message": "A polifill és az átalakítás lehetővé teszi, hogy a régi böngészők is használhassák az újabb JavaScript-funkciókat. Az új böngészők esetében azonban sok polifill és átalakítás szükségtelen. Használjon modern szkripttelepítő módszert csomagolt JavaScript-kódjaihoz, amely észleli a module/nomodule utasításokat. Így kevesebb kódot küld a modern böngészőknek, mégis megtarthatja a régi böngészők támogatását. [További információ.](https://philipwalton.com/articles/deploying-es2015-code-in-production-today/)"
+  },
+  "lighthouse-core/audits/legacy-javascript.js | title": {
+    "message": "Régi JavaScript"
   },
   "lighthouse-core/audits/load-fast-enough-for-pwa.js | description": {
     "message": "A mobilhálózatokon is gyors oldalbetöltés jobb mobilos felhasználói élményt jelent. [További információ](https://web.dev/load-fast-enough-for-pwa)."
@@ -821,6 +863,18 @@
   "lighthouse-core/audits/manual/pwa-page-transitions.js | title": {
     "message": "Az oldalak közti váltásnak nem szabadna akadályozni a hálózati forgalmat"
   },
+  "lighthouse-core/audits/maskable-icon.js | description": {
+    "message": "Maszkolható ikonnal biztosíthatja, hogy a kép a forma egészét kitöltse: ne kerüljön köré letterbox, amikor a felhasználó telepíti. [További információ](https://web.dev/maskable-icon/)."
+  },
+  "lighthouse-core/audits/maskable-icon.js | failureTitle": {
+    "message": "A manifest nem tartalmaz maszkolható ikont"
+  },
+  "lighthouse-core/audits/maskable-icon.js | title": {
+    "message": "A manifest tartalmaz maszkolható ikont"
+  },
+  "lighthouse-core/audits/metrics/cumulative-layout-shift.js | description": {
+    "message": "Az Elrendezés összmozgása mutató az oldal megjelenítési területén látható elemek mozgását méri. [További információ](https://web.dev/cls)."
+  },
   "lighthouse-core/audits/metrics/estimated-input-latency.js | description": {
     "message": "A becsült bemeneti késés annak a becsült értéke, hogy az alkalmazás mennyi idő alatt reagál – ezredmásodpercben (ms) megadva – a felhasználói interakciókra az oldalbetöltés legforgalmasabb 5 másodperces időkeretében. Ha a várakozási idő meghaladja az 50 ms-ot, a felhasználók lassúnak érezhetik az alkalmazást. [További információ](https://web.dev/estimated-input-latency)."
   },
@@ -837,7 +891,7 @@
     "message": "Az interaktivitásig eltelt idő az az idő, amely ahhoz szükséges, hogy az oldal teljesen interaktívvá váljon. [További információ](https://web.dev/interactive)."
   },
   "lighthouse-core/audits/metrics/largest-contentful-paint.js | description": {
-    "message": "A legnagyobb vizuális tartalomválasz azt az időpontot jelöli, amikor a rendszer megjeleníti a legnagyobb szöveget vagy képet. [További információ](https://web.dev/largest-contentful-paint)."
+    "message": "A legnagyobb vizuális tartalomválasz azt az időpontot jelöli, amikor a rendszer megjeleníti a legnagyobb szöveget vagy képet. [További információ](https://web.dev/lighthouse-largest-contentful-paint)."
   },
   "lighthouse-core/audits/metrics/max-potential-fid.js | description": {
     "message": "A felhasználók által tapasztalható, első interakciótól számított esetleges maximális válaszkésés a leghosszabb feladat időtartama. [További információ](https://web.dev/lighthouse-max-potential-fid)."
@@ -1112,18 +1166,6 @@
   "lighthouse-core/audits/third-party-summary.js | title": {
     "message": "Minimalizálja a harmadik felektől származó kódok használatát"
   },
-  "lighthouse-core/audits/time-to-first-byte.js | description": {
-    "message": "Az első bájtig eltelt idő azt mutatja, hogy a szerver mikor küldött választ. [További információ](https://web.dev/time-to-first-byte)."
-  },
-  "lighthouse-core/audits/time-to-first-byte.js | displayValue": {
-    "message": "{timeInMs, number, milliseconds} ms a gyökérdokumentumhoz"
-  },
-  "lighthouse-core/audits/time-to-first-byte.js | failureTitle": {
-    "message": "Csökkentse a szerver válaszidejét (TTFB)"
-  },
-  "lighthouse-core/audits/time-to-first-byte.js | title": {
-    "message": "Alacsony a szerver válaszideje (TTFB)"
-  },
   "lighthouse-core/audits/timing-budget.js | columnMeasurement": {
     "message": "Mérés"
   },
@@ -1135,12 +1177,6 @@
   },
   "lighthouse-core/audits/timing-budget.js | title": {
     "message": "Időkeret"
-  },
-  "lighthouse-core/audits/user-timings.js | columnDuration": {
-    "message": "Időtartam"
-  },
-  "lighthouse-core/audits/user-timings.js | columnStartTime": {
-    "message": "Kezdés ideje"
   },
   "lighthouse-core/audits/user-timings.js | columnType": {
     "message": "Típus"
@@ -1162,6 +1198,9 @@
   },
   "lighthouse-core/audits/uses-rel-preconnect.js | title": {
     "message": "Csatlakozzon előre a szükséges forrásokhoz"
+  },
+  "lighthouse-core/audits/uses-rel-preconnect.js | tooManyPreconnectLinksWarning": {
+    "message": "Több mint két preconnect link található. A preconnect linkeket érdemes csak ritkán használni, a legfontosabb eredethelyekhez."
   },
   "lighthouse-core/audits/uses-rel-preload.js | crossoriginWarning": {
     "message": "Előtöltési <link> található a(z) {preloadURL} címre vonatkozóan, de a böngésző nem használta. Ellenőrizze, hogy megfelelően használja-e a(z) `crossorigin` attribútumot."
@@ -1349,6 +1388,12 @@
   "lighthouse-core/config/default-config.js | seoMobileGroupTitle": {
     "message": "Mobilbarát"
   },
+  "lighthouse-core/gather/gather-runner.js | warningRedirected": {
+    "message": "Előfordulhat, hogy az oldal nem az elvártaknak megfelelően töltődik be, mert a teszt-URL ({requested}) átirányít ide: {final}. Próbálkozzon a második URL közvetlen tesztelésével."
+  },
+  "lighthouse-core/gather/gather-runner.js | warningTimeout": {
+    "message": "Az oldal túl lassan töltődött be, és túllépte az időkeretet. Az eredmények hiányosak lehetnek."
+  },
   "lighthouse-core/lib/i18n/i18n.js | columnCacheTTL": {
     "message": "Gyorsítótár-TTL"
   },
@@ -1364,11 +1409,17 @@
   "lighthouse-core/lib/i18n/i18n.js | columnRequests": {
     "message": "Kérések"
   },
+  "lighthouse-core/lib/i18n/i18n.js | columnResourceSize": {
+    "message": "Forrás mérete"
+  },
   "lighthouse-core/lib/i18n/i18n.js | columnResourceType": {
     "message": "Forrás típusa"
   },
   "lighthouse-core/lib/i18n/i18n.js | columnSize": {
     "message": "Méret"
+  },
+  "lighthouse-core/lib/i18n/i18n.js | columnSource": {
+    "message": "Forrás"
   },
   "lighthouse-core/lib/i18n/i18n.js | columnTimeSpent": {
     "message": "Eltöltött idő"
@@ -1384,6 +1435,9 @@
   },
   "lighthouse-core/lib/i18n/i18n.js | columnWastedMs": {
     "message": "Potenciális megtakarítás"
+  },
+  "lighthouse-core/lib/i18n/i18n.js | cumulativeLayoutShiftMetric": {
+    "message": "Elrendezés összmozgása"
   },
   "lighthouse-core/lib/i18n/i18n.js | displayValueByteSavings": {
     "message": "Potenciálisan {wastedBytes, number, bytes} KB megtakarítás"
@@ -1414,6 +1468,9 @@
   },
   "lighthouse-core/lib/i18n/i18n.js | interactiveMetric": {
     "message": "Interaktivitásig eltelt idő"
+  },
+  "lighthouse-core/lib/i18n/i18n.js | largestContentfulPaintMetric": {
+    "message": "Legnagyobb vizuális tartalomválasz"
   },
   "lighthouse-core/lib/i18n/i18n.js | maxPotentialFIDMetric": {
     "message": "Első interakciótól számított max. potenciális késés"
@@ -1508,11 +1565,38 @@
   "lighthouse-core/report/html/renderer/util.js | crcLongestDurationLabel": {
     "message": "Kritikus elérési út maximális várakozási ideje:"
   },
+  "lighthouse-core/report/html/renderer/util.js | dropdownCopyJSON": {
+    "message": "JSON másolása"
+  },
+  "lighthouse-core/report/html/renderer/util.js | dropdownDarkTheme": {
+    "message": "Sötét téma be-/kikapcsolása"
+  },
+  "lighthouse-core/report/html/renderer/util.js | dropdownPrintExpanded": {
+    "message": "Teljes jelentés nyomtatása"
+  },
+  "lighthouse-core/report/html/renderer/util.js | dropdownPrintSummary": {
+    "message": "Összefoglalás nyomtatása"
+  },
+  "lighthouse-core/report/html/renderer/util.js | dropdownSaveGist": {
+    "message": "Mentés Gistként"
+  },
+  "lighthouse-core/report/html/renderer/util.js | dropdownSaveHTML": {
+    "message": "Mentés HTML-ként"
+  },
+  "lighthouse-core/report/html/renderer/util.js | dropdownSaveJSON": {
+    "message": "Mentés JSON-ként"
+  },
+  "lighthouse-core/report/html/renderer/util.js | dropdownViewer": {
+    "message": "Megnyitás a megtekintőben"
+  },
   "lighthouse-core/report/html/renderer/util.js | errorLabel": {
     "message": "Hiba!"
   },
   "lighthouse-core/report/html/renderer/util.js | errorMissingAuditInfo": {
     "message": "Jelentési hiba: nincs ellenőrzési információ"
+  },
+  "lighthouse-core/report/html/renderer/util.js | footerIssue": {
+    "message": "Probléma beküldése"
   },
   "lighthouse-core/report/html/renderer/util.js | labDataTitle": {
     "message": "Laboradatok"
@@ -1535,6 +1619,48 @@
   "lighthouse-core/report/html/renderer/util.js | passedAuditsGroupTitle": {
     "message": "Sikeresen teljesített ellenőrzések"
   },
+  "lighthouse-core/report/html/renderer/util.js | runtimeDesktopEmulation": {
+    "message": "Emulált asztal"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeMobileEmulation": {
+    "message": "Emulált Moto G4"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeNoEmulation": {
+    "message": "Emuláció nélkül"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsBenchmark": {
+    "message": "CPU/memória teljesítménye"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsCPUThrottling": {
+    "message": "CPU-korlátozás"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsChannel": {
+    "message": "Csatorna"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsDevice": {
+    "message": "Eszköz"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsFetchTime": {
+    "message": "Lekérdezési idő"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsNetworkThrottling": {
+    "message": "Hálózatkorlátozás"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsTitle": {
+    "message": "Futási időre vonatkozó beállítások"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsUA": {
+    "message": "Felhasználói ügynök (gazdagép)"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsUANetwork": {
+    "message": "Felhasználói ügynök (hálózat)"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsUrl": {
+    "message": "URL"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeUnknown": {
+    "message": "Ismeretlen"
+  },
   "lighthouse-core/report/html/renderer/util.js | snippetCollapseButtonLabel": {
     "message": "Kódrészlet összecsukása"
   },
@@ -1543,6 +1669,9 @@
   },
   "lighthouse-core/report/html/renderer/util.js | thirdPartyResourcesLabel": {
     "message": "Harmadik féltől származó források megjelenítése"
+  },
+  "lighthouse-core/report/html/renderer/util.js | throttlingProvided": {
+    "message": "A környezettől származik"
   },
   "lighthouse-core/report/html/renderer/util.js | toplevelWarningsMessage": {
     "message": "A Lighthouse-futtatást befolyásoló problémák fordultak elő:"
@@ -1604,9 +1733,6 @@
   "stack-packs/packs/magento.js | offscreen_images": {
     "message": "A webes platformok [késleltetett betöltés](https://web.dev/native-lazy-loading) funkciójának használata érdekében vegye fontolóra a termék- és katalógussablonok módosítását."
   },
-  "stack-packs/packs/magento.js | time_to_first_byte": {
-    "message": "Használja a Magento [Varnish-integrációját](https://devdocs.magento.com/guides/v2.3/config-guide/varnish/config-varnish.html)."
-  },
   "stack-packs/packs/magento.js | unminified_css": {
     "message": "Engedélyezze a „Minify CSS Files” (CSS-fájlok kicsinyítése) beállítást az üzlet fejlesztői beállításaiban. [További információ](https://devdocs.magento.com/guides/v2.3/performance-best-practices/configuration.html?itm_source=devdocs&itm_medium=search_page&itm_campaign=federated_search&itm_term=minify%20css%20files)."
   },
@@ -1634,9 +1760,6 @@
   "stack-packs/packs/react.js | redirects": {
     "message": "Ha a React Routert használja, csökkentse minimálisra a `<Redirect>` komponens használatát az [útválasztási navigációban](https://reacttraining.com/react-router/web/api/Redirect)."
   },
-  "stack-packs/packs/react.js | time_to_first_byte": {
-    "message": "Ha szerveroldali renderelést alkalmaz bármilyen React-összetevőnél, fontolja meg a következők valamelyikének használatát: `renderToNodeStream()` vagy `renderToStaticNodeStream()`. Ezekkel engedélyezheti az ügyfél számára, hogy a markupot ne egyben, hanem részletekben kapja meg és hidratálja. [További információ](https://reactjs.org/docs/react-dom-server.html#rendertonodestream)."
-  },
   "stack-packs/packs/react.js | unminified_css": {
     "message": "Ha a fejlesztéshez használt rendszere automatikusan kicsinyíti a CSS-fájlokat, akkor ügyeljen arra, hogy az alkalmazás éles buildjét telepítse. Ezt a React Developer Tools bővítménnyel ellenőrizheti. [További információ](https://reactjs.org/docs/optimizing-performance.html#use-the-production-build)."
   },
@@ -1657,9 +1780,6 @@
   },
   "stack-packs/packs/wordpress.js | render_blocking_resources": {
     "message": "Számos WordPress-bővítmény segíthet a [kritikus elemek beágyazásában](https://wordpress.org/plugins/search/critical+css/) és a [kevésbé fontos források](https://wordpress.org/plugins/search/defer+css+javascript/) késleltetésében. Fontos, hogy az ilyen jellegű bővítmények által nyújtott optimalizációk működésképtelenné tehetik a témák vagy más bővítmények funkcióit, ezért valószínűleg módosítania kell majd a meglévő kódot."
-  },
-  "stack-packs/packs/wordpress.js | time_to_first_byte": {
-    "message": "A témák, a bővítmények és a szerver specifikációi mind befolyásolják a szerver válaszidejét. Érdemes lehet jobban optimalizált témát keresnie, megfelelő optimalizáló bővítményt választania és/vagy nagyobb teljesítményű szerverre váltania."
   },
   "stack-packs/packs/wordpress.js | total_byte_weight": {
     "message": "Fontolja meg kivonatok megjelenítését a bejegyzéslistákban (pl. a more címkével), az oldalanként megjelenített bejegyzések számának csökkentését, a hosszabb bejegyzések több oldalra tördelését, valamint a hozzászólások lusta betöltését bővítmény segítségével."

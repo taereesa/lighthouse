@@ -39,13 +39,13 @@ describe('Resource summary computed', () => {
   it('sets size and count correctly', async () => {
     const result = await ComputedResourceSummary.request(artifacts, context);
     assert.equal(result.script.count, 2);
-    assert.equal(result.script.size, 10 + 50);
+    assert.equal(result.script.transferSize, 10 + 50);
   });
 
   it('sets "total" resource metrics correctly', async () => {
     const result = await ComputedResourceSummary.request(artifacts, context);
     assert.equal(result.total.count, 4);
-    assert.equal(result.total.size, 30 + 10 + 50 + 70);
+    assert.equal(result.total.transferSize, 30 + 10 + 50 + 70);
   });
 
   it('sets "other" resource metrics correctly', async () => {
@@ -58,7 +58,7 @@ describe('Resource summary computed', () => {
     const result = ComputedResourceSummary.summarize(
       networkRecords, networkRecords[0].url, context);
     assert.equal(result.other.count, 1);
-    assert.equal(result.other.size, 50);
+    assert.equal(result.other.transferSize, 50);
   });
 
   it('ignores /favicon.ico', async () => {
@@ -69,7 +69,7 @@ describe('Resource summary computed', () => {
     const result = await ComputedResourceSummary.request(artifacts, context);
 
     assert.equal(result.total.count, 1);
-    assert.equal(result.total.size, 30);
+    assert.equal(result.total.transferSize, 30);
   });
 
   it('ignores records with non-network protocols', async () => {
@@ -89,7 +89,7 @@ describe('Resource summary computed', () => {
 
     const result = await ComputedResourceSummary.request(artifacts, context);
     assert.equal(result.total.count, 1);
-    assert.equal(result.total.size, 30);
+    assert.equal(result.total.transferSize, 30);
   });
 
   describe('identifying third-party resources', () => {
@@ -108,7 +108,7 @@ describe('Resource summary computed', () => {
       it('the root domain and all subdomains are considered first-party', async () => {
         context.settings.budgets = null;
         const result = await ComputedResourceSummary.request(artifacts, context);
-        expect(result['third-party'].size).toBe(25 + 50 + 70);
+        expect(result['third-party'].transferSize).toBe(25 + 50 + 70);
         expect(result['third-party'].count).toBe(3);
       });
 
@@ -120,7 +120,7 @@ describe('Resource summary computed', () => {
         ]);
         context.settings.budgets = null;
         const result = await ComputedResourceSummary.request(artifacts, context);
-        expect(result['third-party'].size).toBe(10);
+        expect(result['third-party'].transferSize).toBe(10);
         expect(result['third-party'].count).toBe(1);
       });
     });
@@ -136,7 +136,7 @@ describe('Resource summary computed', () => {
           },
         }];
         const result = await ComputedResourceSummary.request(artifacts, context);
-        expect(result['third-party'].size).toBe(allResourcesSize - 10);
+        expect(result['third-party'].transferSize).toBe(allResourcesSize - 10);
         expect(result['third-party'].count).toBe(allResourcesCount - 1);
       });
 
@@ -149,7 +149,7 @@ describe('Resource summary computed', () => {
           },
         }];
         const result = await ComputedResourceSummary.request(artifacts, context);
-        expect(result['third-party'].size).toBe(allResourcesSize - 30 - 10);
+        expect(result['third-party'].transferSize).toBe(allResourcesSize - 30 - 10);
         expect(result['third-party'].count).toBe(allResourcesCount - 2);
       });
 
@@ -162,7 +162,7 @@ describe('Resource summary computed', () => {
           },
         }];
         const result = await ComputedResourceSummary.request(artifacts, context);
-        expect(result['third-party'].size).toBe(allResourcesSize - 30);
+        expect(result['third-party'].transferSize).toBe(allResourcesSize - 30);
         expect(result['third-party'].count).toBe(allResourcesCount - 1);
       });
 
@@ -174,7 +174,7 @@ describe('Resource summary computed', () => {
           },
         }];
         const result = await ComputedResourceSummary.request(artifacts, context);
-        expect(result['third-party'].size).toBe(allResourcesSize - 30 - 25);
+        expect(result['third-party'].transferSize).toBe(allResourcesSize - 30 - 25);
         expect(result['third-party'].count).toBe(allResourcesCount - 2);
       });
 
@@ -186,7 +186,7 @@ describe('Resource summary computed', () => {
           },
         }];
         const result = await ComputedResourceSummary.request(artifacts, context);
-        expect(result['third-party'].size).toBe(allResourcesSize - 25);
+        expect(result['third-party'].transferSize).toBe(allResourcesSize - 25);
         expect(result['third-party'].count).toBe(allResourcesCount - 1);
       });
 
@@ -198,7 +198,7 @@ describe('Resource summary computed', () => {
           },
         }];
         const result = await ComputedResourceSummary.request(artifacts, context);
-        expect(result['third-party'].size).toBe(allResourcesSize - 30 - 10);
+        expect(result['third-party'].transferSize).toBe(allResourcesSize - 30 - 10);
         expect(result['third-party'].count).toBe(allResourcesCount - 2);
       });
 
@@ -210,7 +210,7 @@ describe('Resource summary computed', () => {
           },
         }];
         const result = await ComputedResourceSummary.request(artifacts, context);
-        expect(result['third-party'].size).toBe(0);
+        expect(result['third-party'].transferSize).toBe(0);
         expect(result['third-party'].count).toBe(0);
       });
     });

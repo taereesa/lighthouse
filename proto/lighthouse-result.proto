@@ -438,6 +438,9 @@ message I18n {
 
     // Label for a row in a table that shows in what tool Lighthouse is being run (e.g. The lighthouse CLI, Chrome DevTools, Lightrider, WebPageTest, etc).
     string runtime_settings_channel = 44;
+
+    // Text link pointing to the Lighthouse scoring calculator. This link immediately follows a sentence stating the performance score is calculated from the perf metrics.
+    string calculator_link = 45;
   }
 
   // The message holding all formatted strings

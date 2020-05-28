@@ -5,7 +5,7 @@
     "hostUserAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3358.0 Safari/537.36",
     "benchmarkIndex": 1000
   },
-  "lighthouseVersion": "6.0.0-beta.0",
+  "lighthouseVersion": "6.0.0",
   "fetchTime": "2018-03-13T00:55:45.840Z",
   "requestedUrl": "http://localhost:10200/dobetterweb/dbw_tester.html",
   "finalUrl": "http://localhost:10200/dobetterweb/dbw_tester.html",
@@ -14,7 +14,7 @@
     "is-on-https": {
       "id": "is-on-https",
       "title": "Does not use HTTPS",
-      "description": "All sites should be protected with HTTPS, even ones that don't handle sensitive data. HTTPS prevents intruders from tampering with or passively listening in on the communications between your app and your users, and is a prerequisite for HTTP/2 and many new web platform APIs. [Learn more](https://web.dev/is-on-https).",
+      "description": "All sites should be protected with HTTPS, even ones that don't handle sensitive data. This includes avoiding [mixed content](https://developers.google.com/web/fundamentals/security/prevent-mixed-content/what-is-mixed-content), where some resources are loaded over HTTP despite the initial request being servedover HTTPS. HTTPS prevents intruders from tampering with or passively listening in on the communications between your app and your users, and is a prerequisite for HTTP/2 and many new web platform APIs. [Learn more](https://web.dev/is-on-https).",
       "score": 0,
       "scoreDisplayMode": "binary",
       "displayValue": "1 insecure request found",
@@ -85,7 +85,7 @@
       "id": "largest-contentful-paint",
       "title": "Largest Contentful Paint",
       "description": "Largest Contentful Paint marks the time at which the largest text or image is painted. [Learn More](https://web.dev/lighthouse-largest-contentful-paint)",
-      "score": 0.31,
+      "score": 0.28,
       "scoreDisplayMode": "numeric",
       "numericValue": 4927.278,
       "numericUnit": "millisecond",
@@ -293,10 +293,10 @@
         ]
       }
     },
-    "time-to-first-byte": {
-      "id": "time-to-first-byte",
-      "title": "Server response times are low (TTFB)",
-      "description": "Time To First Byte identifies the time at which your server sends a response. [Learn more](https://web.dev/time-to-first-byte).",
+    "server-response-time": {
+      "id": "server-response-time",
+      "title": "Initial server response time was short",
+      "description": "Keep the server response time for the main document short because all other requests depend on it. [Learn more](https://web.dev/time-to-first-byte).",
       "score": 1,
       "scoreDisplayMode": "binary",
       "numericValue": 570.5630000000001,
@@ -576,7 +576,7 @@
     "maskable-icon": {
       "id": "maskable-icon",
       "title": "Manifest doesn't have a maskable icon",
-      "description": "A maskable icon ensures that the image fills the entire shape without being letterboxed when installing the app on a device. [Learn more](https://web.dev/maskable-icon/).",
+      "description": "A maskable icon ensures that the image fills the entire shape without being letterboxed when installing the app on a device. [Learn more](https://web.dev/maskable-icon-audit/).",
       "score": 0,
       "scoreDisplayMode": "binary",
       "explanation": "No manifest was fetched"
@@ -632,8 +632,8 @@
     },
     "image-size-responsive": {
       "id": "image-size-responsive",
-      "title": "Displays images with inappropriate size",
-      "description": "Image natural dimensions should be proportional to the display size and the pixel ratio to maximize image clarity. [Learn more](https://web.dev/image-size-responsive).",
+      "title": "Serves images with low resolution",
+      "description": "Image natural dimensions should be proportional to the display size and the pixel ratio to maximize image clarity. [Learn more](https://web.dev/serve-responsive-images/).",
       "score": 0,
       "scoreDisplayMode": "binary",
       "details": {
@@ -1380,7 +1380,7 @@
             "estimatedInputLatency": 16,
             "totalBlockingTime": 117,
             "maxPotentialFID": 123,
-            "cumulativeLayoutShift": 0,
+            "cumulativeLayoutShift": 0.42,
             "observedNavigationStart": 0,
             "observedNavigationStartTs": 185603319912,
             "observedFirstPaint": 3969,
@@ -1397,6 +1397,7 @@
             "observedLoadTs": 185608244374,
             "observedDomContentLoaded": 4901,
             "observedDomContentLoadedTs": 185608220734,
+            "observedCumulativeLayoutShift": 0.42,
             "observedFirstVisualChange": 3969,
             "observedFirstVisualChangeTs": 185607288912,
             "observedLastVisualChange": 4791,
@@ -1439,7 +1440,7 @@
             "text": "Requests"
           },
           {
-            "key": "size",
+            "key": "transferSize",
             "itemType": "bytes",
             "text": "Transfer Size"
           },
@@ -1459,7 +1460,7 @@
             "resourceType": "script",
             "label": "Script",
             "requestCount": 4,
-            "size": 103675,
+            "transferSize": 103675,
             "countOverBudget": "2 requests",
             "sizeOverBudget": 72955
           },
@@ -1467,7 +1468,7 @@
             "resourceType": "total",
             "label": "Total",
             "requestCount": 16,
-            "size": 160517,
+            "transferSize": 160517,
             "countOverBudget": "6 requests",
             "sizeOverBudget": 58117
           },
@@ -1475,21 +1476,21 @@
             "resourceType": "other",
             "label": "Other",
             "requestCount": 1,
-            "size": 12640,
+            "transferSize": 12640,
             "sizeOverBudget": 7520
           },
           {
             "resourceType": "third-party",
             "label": "Third-party",
             "requestCount": 1,
-            "size": 30174,
+            "transferSize": 30174,
             "sizeOverBudget": 4574
           },
           {
             "resourceType": "stylesheet",
             "label": "Stylesheet",
             "requestCount": 7,
-            "size": 5352,
+            "transferSize": 5352,
             "countOverBudget": "5 requests",
             "sizeOverBudget": 232
           },
@@ -1497,25 +1498,25 @@
             "resourceType": "image",
             "label": "Image",
             "requestCount": 1,
-            "size": 24741
+            "transferSize": 24741
           },
           {
             "resourceType": "media",
             "label": "Media",
             "requestCount": 0,
-            "size": 0
+            "transferSize": 0
           },
           {
             "resourceType": "font",
             "label": "Font",
             "requestCount": 0,
-            "size": 0
+            "transferSize": 0
           },
           {
             "resourceType": "document",
             "label": "Document",
             "requestCount": 3,
-            "size": 14109,
+            "transferSize": 14109,
             "countOverBudget": "2 requests"
           }
         ]
@@ -1601,7 +1602,7 @@
             "text": "Requests"
           },
           {
-            "key": "size",
+            "key": "transferSize",
             "itemType": "bytes",
             "text": "Transfer Size"
           }
@@ -1611,55 +1612,55 @@
             "resourceType": "total",
             "label": "Total",
             "requestCount": 16,
-            "size": 160517
+            "transferSize": 160517
           },
           {
             "resourceType": "script",
             "label": "Script",
             "requestCount": 4,
-            "size": 103675
+            "transferSize": 103675
           },
           {
             "resourceType": "image",
             "label": "Image",
             "requestCount": 1,
-            "size": 24741
+            "transferSize": 24741
           },
           {
             "resourceType": "document",
             "label": "Document",
             "requestCount": 3,
-            "size": 14109
+            "transferSize": 14109
           },
           {
             "resourceType": "other",
             "label": "Other",
             "requestCount": 1,
-            "size": 12640
+            "transferSize": 12640
           },
           {
             "resourceType": "stylesheet",
             "label": "Stylesheet",
             "requestCount": 7,
-            "size": 5352
+            "transferSize": 5352
           },
           {
             "resourceType": "media",
             "label": "Media",
             "requestCount": 0,
-            "size": 0
+            "transferSize": 0
           },
           {
             "resourceType": "font",
             "label": "Font",
             "requestCount": 0,
-            "size": 0
+            "transferSize": 0
           },
           {
             "resourceType": "third-party",
             "label": "Third-party",
             "requestCount": 1,
-            "size": 30174
+            "transferSize": 30174
           }
         ]
       }
@@ -1735,6 +1736,104 @@
               "nodeLabel": "This domain is for use in illustrative examples in documents. You may use this …",
               "snippet": "<p class=\"paragraph\">"
             }
+          }
+        ]
+      }
+    },
+    "layout-shift-elements": {
+      "id": "layout-shift-elements",
+      "title": "Avoid large layout shifts",
+      "description": "These DOM elements contribute most to the CLS of the page.",
+      "score": null,
+      "scoreDisplayMode": "informative",
+      "displayValue": "4 elements found",
+      "details": {
+        "type": "table",
+        "headings": [
+          {
+            "key": "node",
+            "itemType": "node",
+            "text": "Element"
+          }
+        ],
+        "items": [
+          {
+            "node": {
+              "type": "node",
+              "path": "1,HTML,1,BODY,2,DIV,0,DIV,0,DIV,0,ARTICLE,1,DIV,3,H5",
+              "selector": "div.blog-index > article > div.entry-content > h5",
+              "nodeLabel": "Debugging Node.js with Chrome DevTools",
+              "snippet": "<h5>"
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "path": "1,HTML,1,BODY,2,DIV,0,DIV,0,DIV,0,ARTICLE,1,DIV,4,P",
+              "selector": "div.blog-index > article > div.entry-content > p",
+              "nodeLabel": "The canonical guide to using the Chrome DevTools UI for debugging Node.js. It d…",
+              "snippet": "<p>"
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "path": "1,HTML,1,BODY,2,DIV,0,DIV,0,DIV,0,ARTICLE,1,DIV,5,HR",
+              "selector": "div.blog-index > article > div.entry-content > hr",
+              "nodeLabel": "hr",
+              "snippet": "<hr>"
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "path": "1,HTML,1,BODY,2,DIV,0,DIV,0,DIV,0,ARTICLE,1,DIV,6,P",
+              "selector": "div.blog-index > article > div.entry-content > p",
+              "nodeLabel": "Aside from that, I’ve been busy working on Lighthouse, performance metrics, too…",
+              "snippet": "<p>"
+            }
+          }
+        ]
+      }
+    },
+    "long-tasks": {
+      "id": "long-tasks",
+      "title": "Avoid long main-thread tasks",
+      "description": "Lists the longest tasks on the main thread, useful for identifying worst contributors to input delay. [Learn more](https://web.dev/long-tasks-devtools)",
+      "score": null,
+      "scoreDisplayMode": "informative",
+      "displayValue": "4 long tasks found",
+      "details": {
+        "type": "table",
+        "headings": [
+          {
+            "key": "url",
+            "itemType": "url",
+            "text": "URL"
+          },
+          {
+            "key": "duration",
+            "itemType": "ms",
+            "granularity": 1,
+            "text": "Duration"
+          }
+        ],
+        "items": [
+          {
+            "url": "http://localhost:10200/dobetterweb/dbw_tester.js",
+            "duration": 983.081
+          },
+          {
+            "url": "http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js",
+            "duration": 127.282
+          },
+          {
+            "url": "Unattributable",
+            "duration": 123.752
+          },
+          {
+            "url": "http://localhost:10200/zone.js",
+            "duration": 96.198
           }
         ]
       }
@@ -2953,7 +3052,7 @@
     "charset": {
       "id": "charset",
       "title": "Charset declaration is missing or occurs too late in the HTML",
-      "description": "A character encoding declaration is required. It can be done with a <meta> tag in the first 1024 bytes of the HTML or in the Content-Type HTTP response header. [Learn more](https://www.w3.org/International/questions/qa-html-encoding-declarations).",
+      "description": "A character encoding declaration is required. It can be done with a <meta> tag in the first 1024 bytes of the HTML or in the Content-Type HTTP response header. [Learn more](https://web.dev/charset).",
       "score": 0,
       "scoreDisplayMode": "binary"
     },
@@ -3017,7 +3116,7 @@
       "score": 0,
       "scoreDisplayMode": "binary",
       "warnings": [
-        "Unable to determine the destination for anchor (<a target=\"blank\">Hello</a>). If not used as a hyperlink, consider removing target=_blank."
+        "Unable to determine the destination for anchor (<a target=\"_blank\">). If not used as a hyperlink, consider removing target=_blank."
       ],
       "details": {
         "type": "table",
@@ -3032,41 +3131,54 @@
           {
             "node": {
               "type": "node",
-              "path": "",
-              "selector": "",
-              "nodeLabel": "",
-              "snippet": "<a href=\"https://www.google.com/\" target=\"blank\">Hello</a>"
+              "path": "3,HTML,1,BODY,36,A",
+              "selector": "body > a",
+              "nodeLabel": "external link",
+              "snippet": "<a href=\"https://www.google.com/\" target=\"_blank\">"
             },
             "href": "https://www.google.com/",
             "target": "_blank",
             "rel": "",
-            "outerHTML": "<a href=\"https://www.google.com/\" target=\"blank\">Hello</a>"
+            "outerHTML": "<a href=\"https://www.google.com/\" target=\"_blank\">"
           },
           {
             "node": {
               "type": "node",
-              "path": "",
-              "selector": "",
-              "nodeLabel": "",
-              "snippet": "<a target=\"blank\">Hello</a>"
+              "path": "3,HTML,1,BODY,38,A",
+              "selector": "body > a",
+              "nodeLabel": "external link",
+              "snippet": "<a target=\"_blank\">"
             },
             "href": "Unknown",
             "target": "_blank",
             "rel": "",
-            "outerHTML": "<a target=\"blank\">Hello</a>"
+            "outerHTML": "<a target=\"_blank\">"
           },
           {
             "node": {
               "type": "node",
-              "path": "",
-              "selector": "",
-              "nodeLabel": "",
-              "snippet": "<a rel=\"nofollow\" href=\"https://www.google.com/\" target=\"blank\">Hello</a>"
+              "path": "3,HTML,1,BODY,40,A",
+              "selector": "body > a",
+              "nodeLabel": "external link",
+              "snippet": "<a href=\"https://www.google.com/\" target=\"_blank\" rel=\"nofollow\">"
             },
             "href": "https://www.google.com/",
             "target": "_blank",
             "rel": "nofollow",
-            "outerHTML": "<a rel=\"nofollow\" href=\"https://www.google.com/\" target=\"blank\">Hello</a>"
+            "outerHTML": "<a href=\"https://www.google.com/\" target=\"_blank\" rel=\"nofollow\">"
+          },
+          {
+            "node": {
+              "type": "node",
+              "path": "3,HTML,1,BODY,52,A",
+              "selector": "body > a",
+              "nodeLabel": "internal link is ok",
+              "snippet": "<a href=\"./doesnotexist\" target=\"_blank\">"
+            },
+            "href": "http://localhost:53133/dobetterweb/doesnotexist",
+            "target": "_blank",
+            "rel": "",
+            "outerHTML": "<a href=\"./doesnotexist\" target=\"_blank\">"
           }
         ]
       }
@@ -3145,7 +3257,7 @@
       "description": "Some third-party scripts may contain known security vulnerabilities that are easily identified and exploited by attackers. [Learn more](https://web.dev/no-vulnerable-libraries).",
       "score": 0,
       "scoreDisplayMode": "binary",
-      "displayValue": "2 vulnerabilities detected",
+      "displayValue": "4 vulnerabilities detected",
       "details": {
         "type": "table",
         "headings": [
@@ -3168,7 +3280,7 @@
         "items": [
           {
             "highestSeverity": "Medium",
-            "vulnCount": 2,
+            "vulnCount": 4,
             "detectedLib": {
               "text": "jQuery@2.1.1",
               "url": "https://snyk.io/vuln/npm:jquery?lh=2.1.1&utm_source=lighthouse&utm_medium=ref&utm_campaign=audit",
@@ -3476,6 +3588,43 @@
         "headings": [],
         "items": [],
         "summary": {}
+      }
+    },
+    "crawlable-anchors": {
+      "id": "crawlable-anchors",
+      "title": "Links are not crawlable",
+      "description": "Search engines may use `href` attributes on links to crawl websites. Ensure that the `href` attribute of anchor elements links to an appropriate destination, so more pages of the site can be discovered. [Learn More](https://support.google.com/webmasters/answer/9112205)",
+      "score": 0,
+      "scoreDisplayMode": "binary",
+      "details": {
+        "type": "table",
+        "headings": [
+          {
+            "key": "node",
+            "itemType": "node",
+            "text": "Uncrawlable Link"
+          }
+        ],
+        "items": [
+          {
+            "node": {
+              "type": "node",
+              "path": "3,HTML,1,BODY,38,A",
+              "selector": "body > a",
+              "nodeLabel": "external link",
+              "snippet": "<a target=\"_blank\">"
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "path": "3,HTML,1,BODY,54,A",
+              "selector": "body > a",
+              "nodeLabel": "a",
+              "snippet": "<a href=\"javascript:void(0)\" target=\"_blank\">"
+            }
+          }
+        ]
       }
     },
     "is-crawlable": {
@@ -3827,7 +3976,7 @@
           "group": "load-opportunities"
         },
         {
-          "id": "time-to-first-byte",
+          "id": "server-response-time",
           "weight": 0,
           "group": "load-opportunities"
         },
@@ -3912,6 +4061,11 @@
           "group": "diagnostics"
         },
         {
+          "id": "layout-shift-elements",
+          "weight": 0,
+          "group": "diagnostics"
+        },
+        {
           "id": "uses-http2",
           "weight": 0,
           "group": "diagnostics"
@@ -3923,6 +4077,11 @@
         },
         {
           "id": "no-document-write",
+          "weight": 0,
+          "group": "diagnostics"
+        },
+        {
+          "id": "long-tasks",
           "weight": 0,
           "group": "diagnostics"
         },
@@ -4324,6 +4483,11 @@
           "group": "seo-content"
         },
         {
+          "id": "crawlable-anchors",
+          "weight": 1,
+          "group": "seo-crawl"
+        },
+        {
           "id": "is-crawlable",
           "weight": 1,
           "group": "seo-crawl"
@@ -4369,7 +4533,7 @@
         }
       ],
       "id": "seo",
-      "score": 0.73
+      "score": 0.67
     },
     "pwa": {
       "title": "Progressive Web App",
@@ -4469,7 +4633,7 @@
     },
     "load-opportunities": {
       "title": "Opportunities",
-      "description": "These suggestions can help your page load faster. They don't [directly affect](https://github.com/GoogleChrome/lighthouse/blob/d2ec9ffbb21de9ad1a0f86ed24575eda32c796f0/docs/scoring.md#how-are-the-scores-weighted) the Performance score."
+      "description": "These suggestions can help your page load faster. They don't [directly affect](https://web.dev/performance-scoring/) the Performance score."
     },
     "budgets": {
       "title": "Budgets",
@@ -4477,7 +4641,7 @@
     },
     "diagnostics": {
       "title": "Diagnostics",
-      "description": "More information about the performance of your application. These numbers don't [directly affect](https://github.com/GoogleChrome/lighthouse/blob/d2ec9ffbb21de9ad1a0f86ed24575eda32c796f0/docs/scoring.md#how-are-the-scores-weighted) the Performance score."
+      "description": "More information about the performance of your application. These numbers don't [directly affect](https://web.dev/performance-scoring/) the Performance score."
     },
     "pwa-fast-reliable": {
       "title": "Fast and reliable"
@@ -4777,7 +4941,7 @@
       },
       {
         "startTime": 0,
-        "name": "lh:audit:time-to-first-byte",
+        "name": "lh:audit:server-response-time",
         "duration": 100,
         "entryType": "measure"
       },
@@ -5066,6 +5230,18 @@
       {
         "startTime": 0,
         "name": "lh:audit:largest-contentful-paint-element",
+        "duration": 100,
+        "entryType": "measure"
+      },
+      {
+        "startTime": 0,
+        "name": "lh:audit:layout-shift-elements",
+        "duration": 100,
+        "entryType": "measure"
+      },
+      {
+        "startTime": 0,
+        "name": "lh:audit:long-tasks",
         "duration": 100,
         "entryType": "measure"
       },
@@ -5599,6 +5775,12 @@
       },
       {
         "startTime": 0,
+        "name": "lh:audit:crawlable-anchors",
+        "duration": 100,
+        "entryType": "measure"
+      },
+      {
+        "startTime": 0,
         "name": "lh:audit:is-crawlable",
         "duration": 100,
         "entryType": "measure"
@@ -5651,6 +5833,7 @@
   "i18n": {
     "rendererFormattedStrings": {
       "auditGroupExpandTooltip": "Show audits",
+      "calculatorLink": "See calculator.",
       "crcInitialNavigation": "Initial Navigation",
       "crcLongestDurationLabel": "Maximum critical path latency:",
       "dropdownCopyJSON": "Copy JSON",
@@ -5690,7 +5873,7 @@
       "thirdPartyResourcesLabel": "Show 3rd-party resources",
       "throttlingProvided": "Provided by environment",
       "toplevelWarningsMessage": "There were issues affecting this run of Lighthouse:",
-      "varianceDisclaimer": "Values are estimated and may vary. The performance score is [based only on these metrics](https://github.com/GoogleChrome/lighthouse/blob/d2ec9ffbb21de9ad1a0f86ed24575eda32c796f0/docs/scoring.md#how-are-the-scores-weighted).",
+      "varianceDisclaimer": "Values are estimated and may vary. The [performance score is calculated](https://web.dev/performance-scoring/) directly from these metrics.",
       "warningAuditsGroupTitle": "Passed audits but with warnings",
       "warningHeader": "Warnings: "
     },
@@ -5895,6 +6078,7 @@
         "audits[bootup-time].details.headings[0].text",
         "audits[network-rtt].details.headings[0].text",
         "audits[network-server-latency].details.headings[0].text",
+        "audits[long-tasks].details.headings[0].text",
         "audits[uses-long-cache-ttl].details.headings[0].text",
         "audits[total-byte-weight].details.headings[0].text",
         "audits[render-blocking-resources].details.headings[0].label",
@@ -5910,18 +6094,18 @@
       "lighthouse-core/audits/errors-in-console.js | columnDesc": [
         "audits[errors-in-console].details.headings[1].text"
       ],
-      "lighthouse-core/audits/time-to-first-byte.js | title": [
-        "audits[time-to-first-byte].title"
+      "lighthouse-core/audits/server-response-time.js | title": [
+        "audits[server-response-time].title"
       ],
-      "lighthouse-core/audits/time-to-first-byte.js | description": [
-        "audits[time-to-first-byte].description"
+      "lighthouse-core/audits/server-response-time.js | description": [
+        "audits[server-response-time].description"
       ],
-      "lighthouse-core/audits/time-to-first-byte.js | displayValue": [
+      "lighthouse-core/audits/server-response-time.js | displayValue": [
         {
           "values": {
             "timeInMs": 570.5630000000001
           },
-          "path": "audits[time-to-first-byte].displayValue"
+          "path": "audits[server-response-time].displayValue"
         }
       ],
       "lighthouse-core/lib/i18n/i18n.js | firstCPUIdleMetric": [
@@ -6262,7 +6446,39 @@
       ],
       "lighthouse-core/lib/i18n/i18n.js | columnElement": [
         "audits[largest-contentful-paint-element].details.headings[0].text",
+        "audits[layout-shift-elements].details.headings[0].text",
         "audits[dom-size].details.headings[1].text"
+      ],
+      "lighthouse-core/audits/layout-shift-elements.js | title": [
+        "audits[layout-shift-elements].title"
+      ],
+      "lighthouse-core/audits/layout-shift-elements.js | description": [
+        "audits[layout-shift-elements].description"
+      ],
+      "lighthouse-core/audits/layout-shift-elements.js | displayValue": [
+        {
+          "values": {
+            "nodeCount": 4
+          },
+          "path": "audits[layout-shift-elements].displayValue"
+        }
+      ],
+      "lighthouse-core/audits/long-tasks.js | title": [
+        "audits[long-tasks].title"
+      ],
+      "lighthouse-core/audits/long-tasks.js | description": [
+        "audits[long-tasks].description"
+      ],
+      "lighthouse-core/audits/long-tasks.js | displayValue": [
+        {
+          "values": {
+            "itemCount": 4
+          },
+          "path": "audits[long-tasks].displayValue"
+        }
+      ],
+      "lighthouse-core/lib/i18n/i18n.js | columnDuration": [
+        "audits[long-tasks].details.headings[1].text"
       ],
       "lighthouse-core/audits/manual/pwa-cross-browser.js | title": [
         "audits[pwa-cross-browser].title"
@@ -6734,7 +6950,7 @@
       "lighthouse-core/audits/dobetterweb/external-anchors-use-rel-noopener.js | warning": [
         {
           "values": {
-            "anchorHTML": "<a target=\"blank\">Hello</a>"
+            "anchorHTML": "<a target=\"_blank\">"
           },
           "path": "audits[external-anchors-use-rel-noopener].warnings[0]"
         }
@@ -6769,7 +6985,7 @@
       "lighthouse-core/audits/dobetterweb/no-vulnerable-libraries.js | displayValue": [
         {
           "values": {
-            "itemCount": 2
+            "itemCount": 4
           },
           "path": "audits[no-vulnerable-libraries].displayValue"
         }
@@ -6867,6 +7083,15 @@
       ],
       "lighthouse-core/audits/seo/link-text.js | description": [
         "audits[link-text].description"
+      ],
+      "lighthouse-core/audits/seo/crawlable-anchors.js | failureTitle": [
+        "audits[crawlable-anchors].title"
+      ],
+      "lighthouse-core/audits/seo/crawlable-anchors.js | description": [
+        "audits[crawlable-anchors].description"
+      ],
+      "lighthouse-core/audits/seo/crawlable-anchors.js | columnFailingLink": [
+        "audits[crawlable-anchors].details.headings[0].text"
       ],
       "lighthouse-core/audits/seo/is-crawlable.js | title": [
         "audits[is-crawlable].title"
@@ -7107,8 +7332,8 @@
       "stack-packs/packs/wordpress.js | uses_responsive_images": [
         "stackPacks[0].descriptions[uses-responsive-images]"
       ],
-      "stack-packs/packs/wordpress.js | time_to_first_byte": [
-        "stackPacks[0].descriptions[time-to-first-byte]"
+      "stack-packs/packs/wordpress.js | server_response_time": [
+        "stackPacks[0].descriptions[server-response-time]"
       ]
     }
   },
@@ -7131,7 +7356,7 @@
         "uses-optimized-images": "Consider using an [image optimization WordPress plugin](https://wordpress.org/plugins/search/optimize+images/) that compresses your images while retaining quality.",
         "uses-text-compression": "You can enable text compression in your web server configuration.",
         "uses-responsive-images": "Upload images directly through the [media library](https://wordpress.org/support/article/media-library-screen/) to ensure that the required image sizes are available, and then insert them from the media library or use the image widget to ensure the optimal image sizes are used (including those for the responsive breakpoints). Avoid using `Full Size` images unless the dimensions are adequate for their usage. [Learn More](https://wordpress.org/support/article/inserting-images-into-posts-and-pages/).",
-        "time-to-first-byte": "Themes, plugins, and server specifications all contribute to server response time. Consider finding a more optimized theme, carefully selecting an optimization plugin, and/or upgrading your server."
+        "server-response-time": "Themes, plugins, and server specifications all contribute to server response time. Consider finding a more optimized theme, carefully selecting an optimization plugin, and/or upgrading your server."
       }
     }
   ]

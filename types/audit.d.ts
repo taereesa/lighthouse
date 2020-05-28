@@ -21,8 +21,8 @@ declare global {
     }>;
 
     export interface ScoreOptions {
-      scorePODR: number;
-      scoreMedian: number;
+      p10: number;
+      median: number;
     }
 
     export interface ScoreDisplayModes {

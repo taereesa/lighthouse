@@ -141,10 +141,10 @@
     "message": "عندما لا يتم ترميز قوائم التعريفات بشكل صحيح، قد تقدم برامج قراءة الشاشة نتائج غير واضحة أو غير دقيقة. [مزيد من المعلومات](https://web.dev/definition-list/)"
   },
   "lighthouse-core/audits/accessibility/definition-list.js | failureTitle": {
-    "message": "`<dl>` لا تحتوي على مجموعات `<dt>` و`<dd>` المرتبة بشكلٍ صحيح فقط، أو العناصر `<script>` أو `<template>`"
+    "message": "`<dl>` لا تحتوي على مجموعات `<dt>` و`<dd>` المرتبة بشكلٍ صحيح فقط، أو العناصر `<script>` أو`<template>` أو`<div>`."
   },
   "lighthouse-core/audits/accessibility/definition-list.js | title": {
-    "message": "`<dl>` تحتوي على مجموعات `<dt>` و`<dd>` المرتبة بشكلٍ صحيح فقط، أو العناصر `<script>` أو `<template>`."
+    "message": "`<dl>` تحتوي على مجموعات `<dt>` و`<dd>` المرتبة بشكلٍ صحيح فقط، أو العناصر `<script>` أو`<template>` أو `<div>`."
   },
   "lighthouse-core/audits/accessibility/dlitem.js | description": {
     "message": "يجب إدراج عناصر قائمة التعريفات (`<dt>` و`<dd>`) في عنصر رئيسي `<dl>` وذلك لضمان إعلان برامج قراءة الشاشة عنها بشكل صحيح. [مزيد من المعلومات](https://web.dev/dlitem/)"
@@ -354,7 +354,7 @@
     "message": "سمات `[lang]` تحتوي على قيمة صالحة"
   },
   "lighthouse-core/audits/accessibility/video-caption.js | description": {
-    "message": "عندما يقدم الفيديو شرحًا، يَسهُل على المستخدمين الصُم والذين يعانون من إعاقة سمعية فهم مضمونه. [مزيد من المعلومات](https://web.dev/video-caption/)"
+    "message": "عندما يقدم الفيديو شرحًا، يَسهُل على المستخدمين الصُم والذين يعانون من عجز سمعي فهم مضمونه. [مزيد من المعلومات](https://web.dev/video-caption/)"
   },
   "lighthouse-core/audits/accessibility/video-caption.js | failureTitle": {
     "message": "عناصر `<video>` لا تحتوي على عنصر `<track>` مع `[kind=\"captions\"]`."
@@ -396,13 +396,19 @@
     "message": "الوقت الإجمالي لوحدة المعالجة المركزية"
   },
   "lighthouse-core/audits/bootup-time.js | description": {
-    "message": "يمكنك تقليل الوقت المستغرق في تحليل جافا سكريبت وإنشائها وتنفيذها. قد يتبين لك أن تسليم أحمال جافا سكريبت بحجم أصغر يساعد على ذلك. [مزيد من المعلومات](https://web.dev/bootup-time)"
+    "message": "يمكنك تقليل الوقت المستغرق في تحليل JavaScript وإنشائها وتنفيذها. قد يتبين لك أن تسليم أحمال JavaScript بحجم أصغر يساعد على ذلك. [مزيد من المعلومات](https://web.dev/bootup-time)"
   },
   "lighthouse-core/audits/bootup-time.js | failureTitle": {
-    "message": "تقليل وقت تنفيذ جافا سكريبت"
+    "message": "تقليل وقت تنفيذ JavaScript"
   },
   "lighthouse-core/audits/bootup-time.js | title": {
-    "message": "وقت تنفيذ جافا سكريبت"
+    "message": "وقت تنفيذ JavaScript"
+  },
+  "lighthouse-core/audits/byte-efficiency/duplicated-javascript.js | description": {
+    "message": "يمكنك إزالة وحدات JavaScript الكبيرة المكررة من الحِزم لتقليل وحدات البايت غير الضرورية التي يستهلكها نشاط الشبكة. "
+  },
+  "lighthouse-core/audits/byte-efficiency/duplicated-javascript.js | title": {
+    "message": "عليك إزالة الوحدات المكررة في حِزم JavaScript"
   },
   "lighthouse-core/audits/byte-efficiency/efficient-animated-content.js | description": {
     "message": "ملفات GIF الكبيرة غير كافية لعرض محتوى صور متحركة. يمكنك استخدام فيديوهات MPEG4/WebM للصور المتحركة وملفات PNG/WebP للصور الثابتة بدلاً من ملف GIF لحفظ وحدات البايت للشبكة. [مزيد من المعلومات](https://web.dev/efficient-animated-content)"
@@ -417,7 +423,7 @@
     "message": "تأجيل الصور خارج الشاشة"
   },
   "lighthouse-core/audits/byte-efficiency/render-blocking-resources.js | description": {
-    "message": "تحظر الموارد سرعة عرض الصفحة لصفحتك. ويمكنك تضمين عناصر جافا سكريبت/CSS المهمة وتأجيل جميع الأنماط/عناصر جافا سكريبت غير المهمة. [مزيد من المعلومات](https://web.dev/render-blocking-resources)"
+    "message": "تحظر الموارد سرعة عرض الصفحة لصفحتك. ويمكنك تضمين عناصر JavaScript/CSS المهمة وتأجيل جميع الأنماط/عناصر JavaScript غير المهمة. [مزيد من المعلومات](https://web.dev/render-blocking-resources)"
   },
   "lighthouse-core/audits/byte-efficiency/render-blocking-resources.js | title": {
     "message": "استبعاد موارد حظر العرض"
@@ -441,10 +447,10 @@
     "message": "تصغير CSS"
   },
   "lighthouse-core/audits/byte-efficiency/unminified-javascript.js | description": {
-    "message": "يمكن أن يؤدي تصغير ملفات جافا سكريبت إلى تقليل أحجام الأحمال ووقت تحليل النص البرمجي. [مزيد من المعلومات](https://web.dev/unminified-javascript)"
+    "message": "يمكن أن يؤدي تصغير ملفات JavaScript إلى تقليل أحجام الأحمال ووقت تحليل النص البرمجي. [مزيد من المعلومات](https://web.dev/unminified-javascript)"
   },
   "lighthouse-core/audits/byte-efficiency/unminified-javascript.js | title": {
-    "message": "تصغير جافا سكريبت"
+    "message": "تصغير JavaScript"
   },
   "lighthouse-core/audits/byte-efficiency/unused-css-rules.js | description": {
     "message": "يمكنك إزالة القواعد الضارة من أوراق الأنماط وتأجيل تحميل خدمة CSS غير المستخدمة في محتوى الجزء المرئي من الصفحة للحد من وحدات البايت غير الضرورية المستهلكة من خلال نشاط الشبكة. [مزيد من المعلومات](https://web.dev/unused-css-rules)"
@@ -453,10 +459,10 @@
     "message": "إزالة خدمة CSS غير المُستخدَمة"
   },
   "lighthouse-core/audits/byte-efficiency/unused-javascript.js | description": {
-    "message": "يمكنك إزالة نصوص JavaScript غير المستخدمة لتقليل وحدات البايت التي يستهلكها نشاط الشبكة. [مزيد من المعلومات](https://developers.google.com/web/fundamentals/performance/optimizing-javascript/code-splitting)"
+    "message": "يمكنك إزالة نصوص JavaScript غير المستخدمة لتقليل وحدات البايت التي يستهلكها نشاط الشبكة. [مزيد من المعلومات](https://web.dev/remove-unused-code/)"
   },
   "lighthouse-core/audits/byte-efficiency/unused-javascript.js | title": {
-    "message": "إزالة جافا سكريبت غير المستخدم"
+    "message": "إزالة JavaScript غير المستخدم"
   },
   "lighthouse-core/audits/byte-efficiency/uses-long-cache-ttl.js | description": {
     "message": "يمكن لفترة التخزين المؤقت الطويلة تسريع عملية تكرار الزيارات إلى صفحتك. [مزيد من المعلومات](https://web.dev/uses-long-cache-ttl)"
@@ -474,7 +480,7 @@
     "message": "يتم تحميل الصور المحسَّنة بشكلٍ أسرع وتستهلك بيانات أقل لشبكة الجوّال. [مزيد من المعلومات](https://web.dev/uses-optimized-images)"
   },
   "lighthouse-core/audits/byte-efficiency/uses-optimized-images.js | title": {
-    "message": "تشفير الصور بكفاءة"
+    "message": "ترميز الصور بكفاءة"
   },
   "lighthouse-core/audits/byte-efficiency/uses-responsive-images.js | description": {
     "message": "يمكنك عرض صور بحجم مناسب لحفظ بيانات شبكة الجوّال وتحسين وقت التحميل. [مزيد من المعلومات](https://web.dev/uses-responsive-images)"
@@ -545,6 +551,15 @@
   "lighthouse-core/audits/dobetterweb/appcache-manifest.js | title": {
     "message": "يتم تجنُب ذاكرة التخزين المؤقت للتطبيق"
   },
+  "lighthouse-core/audits/dobetterweb/charset.js | description": {
+    "message": "تعريف ترميز الأحرف مطلوب. ويمكن إجراء ذلك باستخدام علامة <meta> في أول 1024 وحدة بايت من عنوان HTML أو في عنوان الاستجابة Content-Type في HTTP. [مزيد من المعلومات](https://www.w3.org/International/questions/qa-html-encoding-declarations)"
+  },
+  "lighthouse-core/audits/dobetterweb/charset.js | failureTitle": {
+    "message": "تعريف ترميز الأحرف غير متوفر أو تأخر ظهوره جدًا في HTML"
+  },
+  "lighthouse-core/audits/dobetterweb/charset.js | title": {
+    "message": "تحديد ترميز الأحرف بشكلٍ صحيح"
+  },
   "lighthouse-core/audits/dobetterweb/doctype.js | description": {
     "message": "يؤدي تحديد doctype إلى منع المتصفح من التبديل إلى وضع Quirks. [مزيد من المعلومات](https://web.dev/doctype)"
   },
@@ -593,6 +608,9 @@
   "lighthouse-core/audits/dobetterweb/dom-size.js | title": {
     "message": "تجنُب حجم DOM الزائد"
   },
+  "lighthouse-core/audits/dobetterweb/external-anchors-use-rel-noopener.js | columnFailingAnchors": {
+    "message": "علامات الارتساء التي تعذّرت مراجعتها"
+  },
   "lighthouse-core/audits/dobetterweb/external-anchors-use-rel-noopener.js | description": {
     "message": "يمكنك إضافة `rel=\"noopener\"` أو `rel=\"noreferrer\"` إلى أي روابط خارجية لتحسين الأداء ومنع الثغرات الأمنية. [مزيد من المعلومات](https://web.dev/external-anchors-use-rel-noopener)"
   },
@@ -618,16 +636,16 @@
     "message": "الإصدار"
   },
   "lighthouse-core/audits/dobetterweb/js-libraries.js | description": {
-    "message": "تم رصد جميع مكتبات الواجهة الأمامية جافا سكريبت في الصفحة. [مزيد من المعلومات](https://web.dev/js-libraries)"
+    "message": "تم رصد جميع مكتبات الواجهة الأمامية JavaScript في الصفحة. [مزيد من المعلومات](https://web.dev/js-libraries)"
   },
   "lighthouse-core/audits/dobetterweb/js-libraries.js | title": {
-    "message": "مكتبات جافا سكريبت التي تم رصدها"
+    "message": "مكتبات JavaScript التي تم رصدها"
   },
   "lighthouse-core/audits/dobetterweb/no-document-write.js | description": {
     "message": "بالنسبة إلى المستخدمين الذين لديهم اتصالات بطيئة، يمكن للبرامج النصية الخارجية التي يتم إدخالها ديناميكيًا عبر `document.write()` تأخير تحميل الصفحة لمدة ثوانٍ متعددة. [مزيد من المعلومات](https://web.dev/no-document-write)"
   },
   "lighthouse-core/audits/dobetterweb/no-document-write.js | failureTitle": {
-    "message": "يتم استخدام `document.write()`"
+    "message": "تجنَّب `document.write()`"
   },
   "lighthouse-core/audits/dobetterweb/no-document-write.js | title": {
     "message": "يتم تجنُب `document.write()`"
@@ -648,7 +666,7 @@
     "message": "{itemCount,plural, =1{تم رصد ثغرة واحدة}zero{تم رصد # ثغرة}two{تم رصد ثغرتين (#)}few{تم رصد # ثغرات}many{تم رصد # ثغرةً}other{تم رصد # ثغرة}}"
   },
   "lighthouse-core/audits/dobetterweb/no-vulnerable-libraries.js | failureTitle": {
-    "message": "يتم تضمين مكتبات الواجهة الأمامية جافا سكريبت ذات الثغرات الأمنية المعروفة"
+    "message": "يتم تضمين مكتبات الواجهة الأمامية JavaScript ذات الثغرات الأمنية المعروفة"
   },
   "lighthouse-core/audits/dobetterweb/no-vulnerable-libraries.js | rowSeverityHigh": {
     "message": "مرتفع"
@@ -660,7 +678,7 @@
     "message": "متوسط"
   },
   "lighthouse-core/audits/dobetterweb/no-vulnerable-libraries.js | title": {
-    "message": "يتم تجنُب مكتبات الواجهة الأمامية جافا سكريبت ذات الثغرات الأمنية المعروفة"
+    "message": "يتم تجنُب مكتبات الواجهة الأمامية JavaScript ذات الثغرات الأمنية المعروفة"
   },
   "lighthouse-core/audits/dobetterweb/notification-on-start.js | description": {
     "message": "لا يثق المستخدمون في المواقع الإلكترونية التي تطلب إرسال الإشعارات بدون سياق أو قد يؤدي ذلك إلى إرباكهم. يمكنك ربط الطلب بإيماءات المستخدم بدلاً من ذلك. [مزيد من المعلومات](https://web.dev/notification-on-start)"
@@ -720,13 +738,13 @@
     "message": "لم يتم تسجيل أخطاء المتصفح في وحدة التحكّم"
   },
   "lighthouse-core/audits/font-display.js | description": {
-    "message": "يمكنك الاستفادة من ميزة CSS لعرض الخطوط لضمان أن يكون النص مرئيًا للمستخدم أثناء تحميل خطوط موقع ويب. [مزيد من المعلومات](https://web.dev/font-display)"
+    "message": "يمكنك الاستفادة من ميزة CSS لعرض الخطوط لضمان أن يكون النص مرئيًا للمستخدم أثناء تحميل خطوط موقع إلكتروني. [مزيد من المعلومات](https://web.dev/font-display)"
   },
   "lighthouse-core/audits/font-display.js | failureTitle": {
-    "message": "التأكد من بقاء النص مرئيًا أثناء تحميل خط موقع ويب"
+    "message": "التأكد من بقاء النص مرئيًا أثناء تحميل خط موقع إلكتروني"
   },
   "lighthouse-core/audits/font-display.js | title": {
-    "message": "تظل جميع النصوص مرئية أثناء تحميل خط موقع ويب"
+    "message": "تظل جميع النصوص مرئية أثناء تحميل خط موقع إلكتروني"
   },
   "lighthouse-core/audits/font-display.js | undeclaredFontURLWarning": {
     "message": "لم يتمكّن Lighthouse من التحقّق تلقائيًا من قيمة عرض الخط لعنوان URL التالي: {fontURL}"
@@ -748,6 +766,24 @@
   },
   "lighthouse-core/audits/image-aspect-ratio.js | warningCompute": {
     "message": "معلومات تغيير حجم الصورة غير صالحة {url}"
+  },
+  "lighthouse-core/audits/image-size-responsive.js | columnActual": {
+    "message": "الحجم الفعلي"
+  },
+  "lighthouse-core/audits/image-size-responsive.js | columnDisplayed": {
+    "message": "الحجم المعروض"
+  },
+  "lighthouse-core/audits/image-size-responsive.js | columnExpected": {
+    "message": "الحجم المتوقع"
+  },
+  "lighthouse-core/audits/image-size-responsive.js | description": {
+    "message": "يجب أن تكون الأبعاد الطبيعية للصورة متناسبة مع حجم العرض ونسبة وحدة البكسل لزيادة وضوح الصورة إلى أقصى حد. [مزيد من المعلومات](https://web.dev/image-size-responsive)"
+  },
+  "lighthouse-core/audits/image-size-responsive.js | failureTitle": {
+    "message": "عرض الصور بحجم غير ملائم"
+  },
+  "lighthouse-core/audits/image-size-responsive.js | title": {
+    "message": "عرض الصور بحجم ملائم"
   },
   "lighthouse-core/audits/installable-manifest.js | description": {
     "message": "يمكن للمتصفحات أن تطلب من المستخدمين بشكل مسبق إضافة تطبيقك إلى الشاشة الرئيسية، ويمكن بذلك زيادة التفاعل. [مزيد من المعلومات](https://web.dev/installable-manifest)"
@@ -773,6 +809,12 @@
   "lighthouse-core/audits/is-on-https.js | title": {
     "message": "يتم استخدام HTTPS"
   },
+  "lighthouse-core/audits/legacy-javascript.js | description": {
+    "message": "يساعد الملء التلقائي وعمليات التحويل المتصفّحات القديمة في استخدام ميزات JavaScript الجديدة. ولكن العديد منها غير ضروري للمتصفّحات الحديثة. وبالنسبة إلى حِزم JavaScript، يمكنك استخدام استراتيجية حديثة لنشر النص البرمجي باستخدام ميزة الكشف عن الميزات \"module/nomodule\" لتقليل عدد الرموز البرمجية التي يتم نقلها للمتصفّحات الحديثة مع استمرار اعتماد المتصفّحات القديمة. [مزيد من المعلومات](https://philipwalton.com/articles/deploying-es2015-code-in-production-today/)"
+  },
+  "lighthouse-core/audits/legacy-javascript.js | title": {
+    "message": "ميزات JavaScript القديمة"
+  },
   "lighthouse-core/audits/load-fast-enough-for-pwa.js | description": {
     "message": "إنّ تحميل الصفحات بشكل سريع عبر شبكة الجوّال يضمن توفير تجربة استخدام عالية الجودة. [مزيد من المعلومات](https://web.dev/load-fast-enough-for-pwa)"
   },
@@ -795,7 +837,7 @@
     "message": "الفئة"
   },
   "lighthouse-core/audits/mainthread-work-breakdown.js | description": {
-    "message": "ننصحك بتقليل الوقت المستغرق في تحليل \"جافا سكريبت\" وإنشائه وتنفيذه. قد يتبيّن لك أن تقديم بيانات \"جافا سكريبت\" بحجم أصغر يساعد على ذلك. [مزيد من المعلومات](https://web.dev/mainthread-work-breakdown)"
+    "message": "ننصحك بتقليل الوقت المستغرق في تحليل JavaScript وإنشائه وتنفيذه. قد يتبيّن لك أن تقديم بيانات JavaScript بحجم أصغر يساعد على ذلك. [مزيد من المعلومات](https://web.dev/mainthread-work-breakdown)"
   },
   "lighthouse-core/audits/mainthread-work-breakdown.js | failureTitle": {
     "message": "تقليل سلسلة العمل الرئيسية"
@@ -821,6 +863,18 @@
   "lighthouse-core/audits/manual/pwa-page-transitions.js | title": {
     "message": "عمليات نقل الصفحة لا تبدو أنها محظورة على الشبكة"
   },
+  "lighthouse-core/audits/maskable-icon.js | description": {
+    "message": "يضمن الرمز القابل للإخفاء تعبئة الصورة للشكل بالكامل بدون أن تصبح مُعدَّة للعرض على شاشة عريضة أفقيًا أثناء تثبيت التطبيق على الجهاز. [مزيد من المعلومات](https://web.dev/maskable-icon/)"
+  },
+  "lighthouse-core/audits/maskable-icon.js | failureTitle": {
+    "message": "البيان لا يحتوي على رمز قابل للإخفاء"
+  },
+  "lighthouse-core/audits/maskable-icon.js | title": {
+    "message": "البيان يحتوي على رمز قابل للإخفاء"
+  },
+  "lighthouse-core/audits/metrics/cumulative-layout-shift.js | description": {
+    "message": "تقيس \"متغيّرات التصميم التراكمية\" حركة العناصر المرئية في إطار العرض. [مزيد من المعلومات](https://web.dev/cls)"
+  },
   "lighthouse-core/audits/metrics/estimated-input-latency.js | description": {
     "message": "إن \"وقت الاستجابة المقدر للإدخال\" هو تقدير لطول المدة التي يستغرقها تطبيقك للاستجابة لإدخال المستخدم بالمللي ثانية، وذلك أثناء الثواني الخمس الأكثر انشغالاً في فترة تحميل الصفحة. وفي حال كان وقت الاستجابة أكثر من 50 مللي ثانية، يمكن للمستخدمين اعتبار تطبيقك بأنه بطيء في التفاعل. [مزيد من المعلومات](https://web.dev/estimated-input-latency)"
   },
@@ -837,7 +891,7 @@
     "message": "وقت التفاعل هو مقدار الوقت المستغرق حتى تصبح الصفحة تفاعلية بالكامل. [مزيد من المعلومات](https://web.dev/interactive)"
   },
   "lighthouse-core/audits/metrics/largest-contentful-paint.js | description": {
-    "message": "تحدد \"سرعة عرض أكبر محتوى على الصفحة\" الوقت الذي يُعرَض فيه أكبر صورة أو نص. [مزيد من المعلومات](https://web.dev/largest-contentful-paint)"
+    "message": "تحدد \"سرعة عرض أكبر محتوى على الصفحة\" الوقت الذي يُعرَض فيه أكبر صورة أو نص. [مزيد من المعلومات](https://web.dev/lighthouse-largest-contentful-paint)"
   },
   "lighthouse-core/audits/metrics/max-potential-fid.js | description": {
     "message": "الحد الأقصى المحتمل من \"مهلة الاستجابة لأوّل إدخال\" الذي قد يواجهه المستخدمين، هو مدة أطول مهمّة. [مزيد من المعلومات](https://web.dev/lighthouse-max-potential-fid)"
@@ -1112,18 +1166,6 @@
   "lighthouse-core/audits/third-party-summary.js | title": {
     "message": "تقليل استخدام الرموز التابعة لجهات خارجية"
   },
-  "lighthouse-core/audits/time-to-first-byte.js | description": {
-    "message": "يحدّد \"وقت وصول أول بايت\" الوقت الذي يُرسل فيه الخادم استجابة. [مزيد من المعلومات](https://web.dev/time-to-first-byte)"
-  },
-  "lighthouse-core/audits/time-to-first-byte.js | displayValue": {
-    "message": "استغرق مستند الجذر {timeInMs, number, milliseconds} مللي ثانية"
-  },
-  "lighthouse-core/audits/time-to-first-byte.js | failureTitle": {
-    "message": "تقليل أوقات استجابة الخادم (TTFB)"
-  },
-  "lighthouse-core/audits/time-to-first-byte.js | title": {
-    "message": "أوقات استجابة الخادم منخفضة (TTFB)"
-  },
   "lighthouse-core/audits/timing-budget.js | columnMeasurement": {
     "message": "القياسات"
   },
@@ -1135,12 +1177,6 @@
   },
   "lighthouse-core/audits/timing-budget.js | title": {
     "message": "ميزانية قائمة على الوقت"
-  },
-  "lighthouse-core/audits/user-timings.js | columnDuration": {
-    "message": "المدة"
-  },
-  "lighthouse-core/audits/user-timings.js | columnStartTime": {
-    "message": "وقت البدء"
   },
   "lighthouse-core/audits/user-timings.js | columnType": {
     "message": "النوع"
@@ -1162,6 +1198,9 @@
   },
   "lighthouse-core/audits/uses-rel-preconnect.js | title": {
     "message": "الاتصال المسبق للأصول المطلوبة"
+  },
+  "lighthouse-core/audits/uses-rel-preconnect.js | tooManyPreconnectLinksWarning": {
+    "message": "تم العثور على أكثر من رابطَين للاتصال المُسبَق. ننصح بعدم استخدام روابط الاتصال المُسبَق بشكل كبير واقتصارها على المصادر الأكثر أهمية فقط."
   },
   "lighthouse-core/audits/uses-rel-preload.js | crossoriginWarning": {
     "message": "تم العثور على <link> للتحميل المسبق لـ \"{preloadURL}\"، ولكن لم يتم استخدامه من خلال المتصفح. يُرجى التحقّق من استخدام السمة `crossorigin` بشكل صحيح."
@@ -1185,16 +1224,16 @@
     "message": "تضمين علامة `<meta name=\"viewport\">` مع `width` أو `initial-scale`"
   },
   "lighthouse-core/audits/without-javascript.js | description": {
-    "message": "يجب أن يعرض تطبيقك بعض المحتوى عند إيقاف جافا سكريبت، حتى في حال كان مجرد تحذير للمستخدم يشير إلى ضرورة وجود جافا سكريبت لاستخدام التطبيق. [مزيد من المعلومات](https://web.dev/without-javascript)"
+    "message": "يجب أن يعرض تطبيقك بعض المحتوى عند إيقاف JavaScript، حتى في حال كان مجرد تحذير للمستخدم يشير إلى ضرورة وجود JavaScript لاستخدام التطبيق. [مزيد من المعلومات](https://web.dev/without-javascript)"
   },
   "lighthouse-core/audits/without-javascript.js | explanation": {
     "message": "يجب أن يعرض نص الصفحة بعض المحتوى في حالة عدم توفر النصوص البرمجية."
   },
   "lighthouse-core/audits/without-javascript.js | failureTitle": {
-    "message": "عدم تقديم المحتوى الاحتياطي عند عدم توفر جافا سكريبت"
+    "message": "عدم تقديم المحتوى الاحتياطي عند عدم توفر JavaScript"
   },
   "lighthouse-core/audits/without-javascript.js | title": {
-    "message": "تضمين بعض المحتوى عند عدم توفّر جافا سكريبت"
+    "message": "تضمين بعض المحتوى عند عدم توفّر JavaScript"
   },
   "lighthouse-core/audits/works-offline.js | description": {
     "message": "في حال كنت تنشئ \"تطبيق ويب تقدّمي\"، يمكنك استخدام مشغّل الخدمات حتى يتمكّن التطبيق من العمل بلا اتصال بالإنترنت. [مزيد من المعلومات](https://web.dev/works-offline)"
@@ -1349,6 +1388,12 @@
   "lighthouse-core/config/default-config.js | seoMobileGroupTitle": {
     "message": "متوافق مع الجوّال"
   },
+  "lighthouse-core/gather/gather-runner.js | warningRedirected": {
+    "message": "قد لا يتم تحميل الصفحة كما هو متوقَع لأن عنوان URL للاختبار ({requested}) تمت إعادة توجيهه إلى {final}. يُرجى محاولة اختبار عنوان URL الثاني مباشرةً."
+  },
+  "lighthouse-core/gather/gather-runner.js | warningTimeout": {
+    "message": "أدّى عدم تحميل الصفحة بسرعة كافية إلى تعذّر انتهاء تحميلها في الوقت المحدّد. وقد تكون النتائج غير مكتملة."
+  },
   "lighthouse-core/lib/i18n/i18n.js | columnCacheTTL": {
     "message": "ذاكرة التخزين المؤقت TTL"
   },
@@ -1364,11 +1409,17 @@
   "lighthouse-core/lib/i18n/i18n.js | columnRequests": {
     "message": "الطلبات"
   },
+  "lighthouse-core/lib/i18n/i18n.js | columnResourceSize": {
+    "message": "حجم المصدر"
+  },
   "lighthouse-core/lib/i18n/i18n.js | columnResourceType": {
     "message": "نوع المورد"
   },
   "lighthouse-core/lib/i18n/i18n.js | columnSize": {
     "message": "الحجم"
+  },
+  "lighthouse-core/lib/i18n/i18n.js | columnSource": {
+    "message": "المصدر"
   },
   "lighthouse-core/lib/i18n/i18n.js | columnTimeSpent": {
     "message": "الوقت المستغرَق"
@@ -1384,6 +1435,9 @@
   },
   "lighthouse-core/lib/i18n/i18n.js | columnWastedMs": {
     "message": "التوفيرات المحتملة"
+  },
+  "lighthouse-core/lib/i18n/i18n.js | cumulativeLayoutShiftMetric": {
+    "message": "متغيّرات التصميم التراكمية"
   },
   "lighthouse-core/lib/i18n/i18n.js | displayValueByteSavings": {
     "message": "التوفيرات المحتملة من {wastedBytes, number, bytes}  كيلوبايت"
@@ -1414,6 +1468,9 @@
   },
   "lighthouse-core/lib/i18n/i18n.js | interactiveMetric": {
     "message": "وقت التفاعل"
+  },
+  "lighthouse-core/lib/i18n/i18n.js | largestContentfulPaintMetric": {
+    "message": "سرعة عرض أكبر محتوى"
   },
   "lighthouse-core/lib/i18n/i18n.js | maxPotentialFIDMetric": {
     "message": "الحد الأقصى المحتمل من مهلة الاستجابة لأوّل إدخال"
@@ -1508,11 +1565,38 @@
   "lighthouse-core/report/html/renderer/util.js | crcLongestDurationLabel": {
     "message": "الحد الأقصى لوقت استجابة المسار المهم:"
   },
+  "lighthouse-core/report/html/renderer/util.js | dropdownCopyJSON": {
+    "message": "نسخ كائن JSON"
+  },
+  "lighthouse-core/report/html/renderer/util.js | dropdownDarkTheme": {
+    "message": "تبديل المظهر الداكن"
+  },
+  "lighthouse-core/report/html/renderer/util.js | dropdownPrintExpanded": {
+    "message": "توسيع مدى الطباعة"
+  },
+  "lighthouse-core/report/html/renderer/util.js | dropdownPrintSummary": {
+    "message": "طباعة ملخّص التقرير"
+  },
+  "lighthouse-core/report/html/renderer/util.js | dropdownSaveGist": {
+    "message": "حفظ بتنسيق Gist"
+  },
+  "lighthouse-core/report/html/renderer/util.js | dropdownSaveHTML": {
+    "message": "حفظ بتنسيق HTML"
+  },
+  "lighthouse-core/report/html/renderer/util.js | dropdownSaveJSON": {
+    "message": "حفظ بتنسيق JSON"
+  },
+  "lighthouse-core/report/html/renderer/util.js | dropdownViewer": {
+    "message": "فتح في العارِض"
+  },
   "lighthouse-core/report/html/renderer/util.js | errorLabel": {
     "message": "خطأ!"
   },
   "lighthouse-core/report/html/renderer/util.js | errorMissingAuditInfo": {
     "message": "الإبلاغ عن خطأ: لا تتوفَّر معلومات تدقيق"
+  },
+  "lighthouse-core/report/html/renderer/util.js | footerIssue": {
+    "message": "الإبلاغ عن مشكلة"
   },
   "lighthouse-core/report/html/renderer/util.js | labDataTitle": {
     "message": "بيانات المختبَر"
@@ -1535,6 +1619,48 @@
   "lighthouse-core/report/html/renderer/util.js | passedAuditsGroupTitle": {
     "message": "اجتياز عمليات التدقيق بنجاح"
   },
+  "lighthouse-core/report/html/renderer/util.js | runtimeDesktopEmulation": {
+    "message": "محاكاة سطح المكتب"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeMobileEmulation": {
+    "message": "محاكاة Moto G4"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeNoEmulation": {
+    "message": "بلا محاكاة"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsBenchmark": {
+    "message": "طاقة وحدة المعالجة المركزية (CPU)/الذاكرة"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsCPUThrottling": {
+    "message": "تقييد وحدة المعالجة المركزية (CPU)"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsChannel": {
+    "message": "قناة"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsDevice": {
+    "message": "جهاز"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsFetchTime": {
+    "message": "وقت الإجراء"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsNetworkThrottling": {
+    "message": "ضبط الحد الأقصى المسموح لعرض نطاق الشبكة"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsTitle": {
+    "message": "إعدادات وقت التشغيل"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsUA": {
+    "message": "وكيل المستخدم (مضيف)"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsUANetwork": {
+    "message": "وكيل المستخدم (شبكة)"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsUrl": {
+    "message": "عنوان URL"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeUnknown": {
+    "message": "غير معروف"
+  },
   "lighthouse-core/report/html/renderer/util.js | snippetCollapseButtonLabel": {
     "message": "تصغير المقتطف"
   },
@@ -1543,6 +1669,9 @@
   },
   "lighthouse-core/report/html/renderer/util.js | thirdPartyResourcesLabel": {
     "message": "عرض موارد الجهات الخارجية"
+  },
+  "lighthouse-core/report/html/renderer/util.js | throttlingProvided": {
+    "message": "مقدَّم من البيئة"
   },
   "lighthouse-core/report/html/renderer/util.js | toplevelWarningsMessage": {
     "message": "حدثت مشاكل تؤثر في تشغيل Lighthouse:"
@@ -1578,7 +1707,7 @@
     "message": "عليك استخدام التمرير الافتراضي مع مجموعة تطوير المكوّنات (CDK) في حال عرض قوائم كبيرة جدًا. [مزيد من المعلومات](https://web.dev/virtualize-lists-with-angular-cdk/)"
   },
   "stack-packs/packs/angular.js | total_byte_weight": {
-    "message": "طبِّق [تقسيم الرموز على مستوى المسار](https://web.dev/route-level-code-splitting-in-angular/) لتقليل حجم حِزم \"جافا سكريبت\". عليك أيضًا دفع تكاليف مواد العرض نقدًا ومسبقًا من خلال [مشغّل خدمات Angular](https://web.dev/precaching-with-the-angular-service-worker/)."
+    "message": "طبِّق [تقسيم الرموز على مستوى المسار](https://web.dev/route-level-code-splitting-in-angular/) لتقليل حجم حِزم JavaScript. عليك أيضًا دفع تكاليف مواد العرض نقدًا ومسبقًا من خلال [مشغّل خدمات Angular](https://web.dev/precaching-with-the-angular-service-worker/)."
   },
   "stack-packs/packs/angular.js | unminified_warning": {
     "message": "في حال استخدام Angular CLI، يُرجى التأكد من أنه يتم إنشاء الإصدارات في وضع الإنتاج. [مزيد من المعلومات](https://angular.io/guide/deployment#enable-runtime-production-mode)"
@@ -1593,10 +1722,10 @@
     "message": "عليك استخدام الأداة `BreakpointObserver` في مجموعة تطوير المكوّنات (CDK) لإدارة النقاط الفاصلة للصور. [مزيد من المعلومات](https://material.angular.io/cdk/layout/overview)"
   },
   "stack-packs/packs/magento.js | critical_request_chains": {
-    "message": "في حال عدم إنشاء حزمة لمواد عرض \"جافا سكريبت\"، عليك استخدام [baler](https://github.com/magento/baler)."
+    "message": "في حال عدم إنشاء حزمة لمواد عرض JavaScript، عليك استخدام [baler](https://github.com/magento/baler)."
   },
   "stack-packs/packs/magento.js | disable_bundling": {
-    "message": "أوقِف [التصغير وحزمة \"جافا سكريبت\"](https://devdocs.magento.com/guides/v2.3/frontend-dev-guide/themes/js-bundling.html) المدمجة للنظام الأساسي Magento واستخدِم [baler](https://github.com/magento/baler/) بدلاً من ذلك."
+    "message": "أوقِف [التصغير وحزمة JavaScript](https://devdocs.magento.com/guides/v2.3/frontend-dev-guide/themes/js-bundling.html) المدمجة للنظام الأساسي Magento واستخدِم [baler](https://github.com/magento/baler/) بدلاً من ذلك."
   },
   "stack-packs/packs/magento.js | font_display": {
     "message": "حدِّد `@font-display` عند [وضع خطوط مخصصة](https://devdocs.magento.com/guides/v2.3/frontend-dev-guide/css-topics/using-fonts.html)."
@@ -1604,17 +1733,14 @@
   "stack-packs/packs/magento.js | offscreen_images": {
     "message": "عليك تعديل نماذج الكتالوج والمنتج للاستفادة من ميزة [التحميل الخامل](https://web.dev/native-lazy-loading) للنظام الأساسي للويب."
   },
-  "stack-packs/packs/magento.js | time_to_first_byte": {
-    "message": "استخدِم [دمج Varnish](https://devdocs.magento.com/guides/v2.3/config-guide/varnish/config-varnish.html) للنظام الأساسي Magento."
-  },
   "stack-packs/packs/magento.js | unminified_css": {
     "message": "فعِّل الخيار \"تصغير ملفات CSS\" في إعدادات مطوّر البرامج في المتجر. [مزيد من المعلومات](https://devdocs.magento.com/guides/v2.3/performance-best-practices/configuration.html?itm_source=devdocs&itm_medium=search_page&itm_campaign=federated_search&itm_term=minify%20css%20files)"
   },
   "stack-packs/packs/magento.js | unminified_javascript": {
-    "message": "استخدِم [Terser](https://www.npmjs.com/package/terser) لتصغير جميع مواد عرض \"جافا سكريبت\" التي تنتج عن نشر المحتوى الثابت، وأوقِف ميزة التصغير المُدمجة."
+    "message": "استخدِم [Terser](https://www.npmjs.com/package/terser) لتصغير جميع مواد عرض JavaScript التي تنتج عن نشر المحتوى الثابت، وأوقِف ميزة التصغير المُدمجة."
   },
   "stack-packs/packs/magento.js | unused_javascript": {
-    "message": "أوقِف [حزمة \"جافا سكريبت\"](https://devdocs.magento.com/guides/v2.3/frontend-dev-guide/themes/js-bundling.html) المدمجة للنظام الأساسي Magento."
+    "message": "أوقِف [حزمة JavaScript](https://devdocs.magento.com/guides/v2.3/frontend-dev-guide/themes/js-bundling.html) المدمجة للنظام الأساسي Magento."
   },
   "stack-packs/packs/magento.js | uses_optimized_images": {
     "message": "عليك البحث عن [سوق Magento](https://marketplace.magento.com/catalogsearch/result/?q=optimize%20image) للحصول على مجموعة متنوعة من إضافات الجهات الخارجية لتحسين الصور."
@@ -1634,17 +1760,14 @@
   "stack-packs/packs/react.js | redirects": {
     "message": "في حال استخدام React Router، عليك تقليل استخدام المكوّن `<Redirect>` في [عمليات تنقل المسار](https://reacttraining.com/react-router/web/api/Redirect)."
   },
-  "stack-packs/packs/react.js | time_to_first_byte": {
-    "message": "في حال كنت تعرض من جانب الخادم أي مكوّنات React، عليك استخدام `renderToNodeStream()` أو `renderToStaticNodeStream()` للسماح للعميل بتلقي أجزاء مختلفة من الترميز ودمجها بدلاً من جميع الأجزاء دفعة واحدة. [مزيد من المعلومات](https://reactjs.org/docs/react-dom-server.html#rendertonodestream)"
-  },
   "stack-packs/packs/react.js | unminified_css": {
     "message": "في حال تصغير نظام الإصدار لملفات CSS تلقائيًا، يُرجى التأكد من أنك تنشر إصدار الإنتاج لتطبيقك. يمكنك التحقّق من ذلك باستخدام إضافة React Developer Tools. [مزيد من المعلومات](https://reactjs.org/docs/optimizing-performance.html#use-the-production-build)"
   },
   "stack-packs/packs/react.js | unminified_javascript": {
-    "message": "في حال تصغير نظام الإصدار لملفات \"جافا سكريبت\" تلقائيًا، يُرجى التأكد من أنك تنشر إصدار الإنتاج لتطبيقك. يمكنك التحقّق من ذلك باستخدام إضافة React Developer Tools. [مزيد من المعلومات](https://reactjs.org/docs/optimizing-performance.html#use-the-production-build)"
+    "message": "في حال تصغير نظام الإصدار لملفات JavaScript تلقائيًا، يُرجى التأكد من أنك تنشر إصدار الإنتاج لتطبيقك. يمكنك التحقّق من ذلك باستخدام إضافة React Developer Tools. [مزيد من المعلومات](https://reactjs.org/docs/optimizing-performance.html#use-the-production-build)"
   },
   "stack-packs/packs/react.js | unused_javascript": {
-    "message": "في حال عدم العرض من جانب الخادم، عليك [تقسيم حِزم \"جافا سكريبت\"](https://web.dev/code-splitting-suspense/) من خلال `React.lazy()`. بخلاف ذلك، يمكن تقسيم الرمز باستخدام مكتبة تابعة لجهات خارجية، مثل [المكوّنات القابلة للتحميل](https://www.smooth-code.com/open-source/loadable-components/docs/getting-started/)."
+    "message": "في حال عدم العرض من جانب الخادم، عليك [تقسيم حِزم JavaScript](https://web.dev/code-splitting-suspense/) من خلال `React.lazy()`. بخلاف ذلك، يمكن تقسيم الرمز باستخدام مكتبة تابعة لجهات خارجية، مثل [المكوّنات القابلة للتحميل](https://www.smooth-code.com/open-source/loadable-components/docs/getting-started/)."
   },
   "stack-packs/packs/react.js | user_timings": {
     "message": "استخدِم محلِّل React DevTools الذي يتيح الاستفادة من واجهة برمجة تطبيقات المحلّل لقياس مستوى أداء العرض للمكوّنات. [مزيد من المعلومات](https://reactjs.org/blog/2018/09/10/introducing-the-react-profiler.html)"
@@ -1657,9 +1780,6 @@
   },
   "stack-packs/packs/wordpress.js | render_blocking_resources": {
     "message": "هناك عدد من مكونات WordPress الإضافية التي يمكنها مساعدتك على [تضمين مواد العرض المهمة](https://wordpress.org/plugins/search/critical+css/) أو [تأجيل موارد أقل أهمية](https://wordpress.org/plugins/search/defer+css+javascript/). عليك توخي الحذر من أن التحسينات التي توفرها هذه الإضافات قد توقف ميزات التصميم أو المكونات الإضافية، لذلك ستحتاج على الأرجح إلى إجراء تغييرات في الرمز البرمجي."
-  },
-  "stack-packs/packs/wordpress.js | time_to_first_byte": {
-    "message": "تساهم التصاميم والمكونات الإضافية ومواصفات الخادم في تحسين وقت استجابة الخادم. يمكنك البحث عن تصميم مُحسّن أكثر و/أو اختيار مكون إضافي للتحسين و/أو ترقية الخادم."
   },
   "stack-packs/packs/wordpress.js | total_byte_weight": {
     "message": "يمكنك عرض مقتطفات في قوائم مشاركاتك (مثلاً عبر العلامة \"المزيد\")، أو تقليل عدد المشاركات المعروضة في صفحة معينة، أو تقسيم مشاركاتك الطويلة إلى صفحات متعددة، أو استخدام مكون إضافي لتحميل التعليقات ذات التحميل الكسول."
@@ -1674,7 +1794,7 @@
     "message": "يمكنك تقليل عدد [مكونات WordPress الإضافية](https://wordpress.org/plugins/) التي تُحمِّل خدمة CSS غير المُستخدَمة في صفحتك أو تبديلها. لتحديد المكونات الإضافية التي تضيف CSS دخيلة، يمكنك محاولة تشغيل [تغطية الرمز البرمجي](https://developers.google.com/web/updates/2017/04/devtools-release-notes#coverage) في Chrome DevTools. يمكنك تحديد التصميم/المكون الإضافي المسؤول عن عنوان URL لورقة الأنماط. يمكنك البحث عن المكونات الإضافية التي تحتوي على العديد من أوراق الأنماط في القائمة والتي تحتوي على الكثير من اللون الأحمر في تغطية الرمز البرمجي. يجب أن يدرِج المكون الإضافي ورقة أنماط فقط في حال تم استخدامه في الصفحة فعليًا."
   },
   "stack-packs/packs/wordpress.js | unused_javascript": {
-    "message": "يمكنك تقليل عدد [مكونات WordPress الإضافية](https://wordpress.org/plugins/) التي تُحمِّل لغة جافا سكريبت غير المُستخدَمة في صفحتك أو تبديلها. لتحديد المكونات الإضافية التي تضيف لغة جافا سكريبت دخيلة، يمكنك محاولة تشغيل [تغطية الرمز البرمجي](https://developers.google.com/web/updates/2017/04/devtools-release-notes#coverage) في Chrome DevTools. يمكنك تحديد التصميم/المكون الإضافي المسؤول عن عنوان URL للنص البرمجي. يمكنك البحث عن المكونات الإضافية التي تحتوي على العديد من النصوص البرمجية في القائمة والتي تحتوي على الكثير من اللون الأحمر في تغطية الرمز البرمجي. يجب أن يدرِج المكون الإضافي نصًا برمجيًا فقط في حال تم استخدامه في الصفحة فعليًا."
+    "message": "يمكنك تقليل عدد [مكونات WordPress الإضافية](https://wordpress.org/plugins/) التي تُحمِّل لغة JavaScript غير المُستخدَمة في صفحتك أو تبديلها. لتحديد المكونات الإضافية التي تضيف لغة JavaScript دخيلة، يمكنك محاولة تشغيل [تغطية الرمز البرمجي](https://developers.google.com/web/updates/2017/04/devtools-release-notes#coverage) في Chrome DevTools. يمكنك تحديد التصميم/المكون الإضافي المسؤول عن عنوان URL للنص البرمجي. يمكنك البحث عن المكونات الإضافية التي تحتوي على العديد من النصوص البرمجية في القائمة والتي تحتوي على الكثير من اللون الأحمر في تغطية الرمز البرمجي. يجب أن يدرِج المكون الإضافي نصًا برمجيًا فقط في حال تم استخدامه في الصفحة فعليًا."
   },
   "stack-packs/packs/wordpress.js | uses_long_cache_ttl": {
     "message": "يمكنك الاطّلاع على [ذاكرة التخزين المؤقت للمتصفّح في WordPress](https://wordpress.org/support/article/optimization/#browser-caching)."

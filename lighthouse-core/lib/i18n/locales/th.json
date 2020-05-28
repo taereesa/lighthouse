@@ -141,10 +141,10 @@
     "message": "เมื่อมีการทำเครื่องหมายรายการคำจำกัดความอย่างไม่ถูกต้อง โปรแกรมอ่านหน้าจออาจสร้างเอาต์พุตที่ทำให้สับสนหรือไม่แม่นยำ [ดูข้อมูลเพิ่มเติม](https://web.dev/definition-list/)"
   },
   "lighthouse-core/audits/accessibility/definition-list.js | failureTitle": {
-    "message": "`<dl>` ไม่ได้มีเพียงกลุ่ม `<dt>` และ `<dd>` หรือองค์ประกอบ `<script>` หรือ `<template>` ที่เรียงลำดับอย่างถูกต้อง"
+    "message": "`<dl>` ไม่ได้มีเพียงกลุ่ม `<dt>` และ `<dd>` หรือองค์ประกอบ `<script>` `<template>` หรือ `<div>` ที่เรียงลำดับอย่างถูกต้อง"
   },
   "lighthouse-core/audits/accessibility/definition-list.js | title": {
-    "message": "`<dl>` มีเพียงกลุ่ม `<dt>` และ `<dd>` องค์ประกอบ `<script>` หรือ `<template>` ที่เรียงลำดับอย่างถูกต้อง"
+    "message": "`<dl>` มีเพียงกลุ่ม `<dt>` และ `<dd>` หรือองค์ประกอบ `<script>` `<template>` หรือ `<div>` ที่เรียงลำดับอย่างถูกต้อง"
   },
   "lighthouse-core/audits/accessibility/dlitem.js | description": {
     "message": "รายการย่อยของคำจำกัดความ (`<dt>` และ `<dd>`) ต้องรวมอยู่ในองค์ประกอบ `<dl>` ระดับบนสุดเพื่อดูแลให้โปรแกรมอ่านหน้าจออ่านได้อย่างถูกต้อง [ดูข้อมูลเพิ่มเติม](https://web.dev/dlitem/)"
@@ -404,6 +404,12 @@
   "lighthouse-core/audits/bootup-time.js | title": {
     "message": "เวลาในการดำเนินการกับ JavaScript"
   },
+  "lighthouse-core/audits/byte-efficiency/duplicated-javascript.js | description": {
+    "message": "นำโมดูล JavaScript ขนาดใหญ่ที่ซ้ำกันออกจากแพ็กเกจเพื่อลดจำนวนไบต์ที่ไม่จำเป็นที่กิจกรรมเครือข่ายใช้ "
+  },
+  "lighthouse-core/audits/byte-efficiency/duplicated-javascript.js | title": {
+    "message": "นำโมดูลที่ซ้ำกันในแพ็กเกจ JavaScript ออก"
+  },
   "lighthouse-core/audits/byte-efficiency/efficient-animated-content.js | description": {
     "message": "GIF ขนาดใหญ่ไม่มีประสิทธิภาพในการแสดงเนื้อหาภาพเคลื่อนไหว พิจารณาใช้วิดีโอ MPEG4/WebM สำหรับภาพเคลื่อนไหวและใช้ PNG/WebP สำหรับภาพนิ่งแทน GIF เพื่อประหยัดไบต์ของเครือข่าย [ดูข้อมูลเพิ่มเติม](https://web.dev/efficient-animated-content)"
   },
@@ -453,7 +459,7 @@
     "message": "นำ CSS ที่ไม่ได้ใช้ออก"
   },
   "lighthouse-core/audits/byte-efficiency/unused-javascript.js | description": {
-    "message": "นำ JavaScript ที่ไม่ได้ใช้ออกเพื่อลดจำนวนไบต์ที่กิจกรรมเครือข่ายใช้ [ดูข้อมูลเพิ่มเติม](https://developers.google.com/web/fundamentals/performance/optimizing-javascript/code-splitting)"
+    "message": "นำ JavaScript ที่ไม่ได้ใช้ออกเพื่อลดจำนวนไบต์ที่กิจกรรมเครือข่ายใช้ [ดูข้อมูลเพิ่มเติม](https://web.dev/remove-unused-code/)"
   },
   "lighthouse-core/audits/byte-efficiency/unused-javascript.js | title": {
     "message": "นำ JavaScript ที่ไม่ได้ใช้ออก"
@@ -545,6 +551,15 @@
   "lighthouse-core/audits/dobetterweb/appcache-manifest.js | title": {
     "message": "หลีกเลี่ยงการใช้แคชของแอปพลิเคชัน"
   },
+  "lighthouse-core/audits/dobetterweb/charset.js | description": {
+    "message": "จำเป็นต้องประกาศการเข้ารหัสอักขระ ซึ่งทำได้โดยใช้แท็ก <meta> ใน 1024 ไบต์แรกของ HTML หรือในส่วนหัวการตอบกลับ HTTP ประเภทเนื้อหา [ดูข้อมูลเพิ่มเติม](https://www.w3.org/International/questions/qa-html-encoding-declarations)"
+  },
+  "lighthouse-core/audits/dobetterweb/charset.js | failureTitle": {
+    "message": "ไม่มีการประกาศชุดอักขระหรือประกาศช้าเกินไปใน HTML"
+  },
+  "lighthouse-core/audits/dobetterweb/charset.js | title": {
+    "message": "กำหนดชุดอักขระได้อย่างถูกต้อง"
+  },
   "lighthouse-core/audits/dobetterweb/doctype.js | description": {
     "message": "การระบุ DOCTYPE ช่วยป้องกันไม่ให้เบราว์เซอร์เปลี่ยนไปใช้โหมดที่ไม่มาตรฐาน [ดูข้อมูลเพิ่มเติม](https://web.dev/doctype)"
   },
@@ -593,6 +608,9 @@
   "lighthouse-core/audits/dobetterweb/dom-size.js | title": {
     "message": "หลีกเลี่ยง DOM ที่มีขนาดใหญ่เกินไป"
   },
+  "lighthouse-core/audits/dobetterweb/external-anchors-use-rel-noopener.js | columnFailingAnchors": {
+    "message": "แท็ก Anchor ที่ไม่ผ่านการตรวจสอบ"
+  },
   "lighthouse-core/audits/dobetterweb/external-anchors-use-rel-noopener.js | description": {
     "message": "เพิ่ม `rel=\"noopener\"` หรือ `rel=\"noreferrer\"` ไปยังลิงก์ภายนอกใดๆ เพื่อปรับปรุงประสิทธิภาพและป้องกันช่องโหว่ด้านความปลอดภัย [ดูข้อมูลเพิ่มเติม](https://web.dev/external-anchors-use-rel-noopener)"
   },
@@ -627,7 +645,7 @@
     "message": "สำหรับผู้ใช้ที่การเชื่อมต่อช้า สคริปต์ภายนอกที่แทรกเข้ามาแบบไดนามิกผ่านทาง `document.write()` จะช่วยหน่วงการโหลดหน้าเว็บได้หลายสิบวินาที [ดูข้อมูลเพิ่มเติม](https://web.dev/no-document-write)"
   },
   "lighthouse-core/audits/dobetterweb/no-document-write.js | failureTitle": {
-    "message": "ใช้ `document.write()`"
+    "message": "หลีกเลี่ยง `document.write()`"
   },
   "lighthouse-core/audits/dobetterweb/no-document-write.js | title": {
     "message": "หลีกเลี่ยงการใช้ `document.write()`"
@@ -749,6 +767,24 @@
   "lighthouse-core/audits/image-aspect-ratio.js | warningCompute": {
     "message": "ข้อมูลขนาดรูปภาพไมู่กต้อง {url}"
   },
+  "lighthouse-core/audits/image-size-responsive.js | columnActual": {
+    "message": "ขนาดจริง"
+  },
+  "lighthouse-core/audits/image-size-responsive.js | columnDisplayed": {
+    "message": "ขนาดที่แสดง"
+  },
+  "lighthouse-core/audits/image-size-responsive.js | columnExpected": {
+    "message": "ขนาดที่คาดไว้"
+  },
+  "lighthouse-core/audits/image-size-responsive.js | description": {
+    "message": "ขนาดตามธรรมชาติของรูปภาพควรได้สัดส่วนกับขนาดการแสดงผลและอัตราส่วนพิกเซลเพื่อเพิ่มความชัดเจนของรูปภาพให้ได้มากที่สุด [ดูข้อมูลเพิ่มเติม](https://web.dev/image-size-responsive)"
+  },
+  "lighthouse-core/audits/image-size-responsive.js | failureTitle": {
+    "message": "แสดงรูปภาพที่มีขนาดไม่เหมาะสม"
+  },
+  "lighthouse-core/audits/image-size-responsive.js | title": {
+    "message": "แสดงรูปภาพที่มีขนาดเหมาะสม"
+  },
   "lighthouse-core/audits/installable-manifest.js | description": {
     "message": "เบราว์เซอร์แจ้งผู้ใช้อย่างชัดแจ้งให้เพิ่มแอปของคุณในหน้าจอหลัก ซึ่งจะทำให้ผู้ใช้มีส่วนร่วมเพิ่มขึ้นได้ [ดูข้อมูลเพิ่มเติม](https://web.dev/installable-manifest)"
   },
@@ -772,6 +808,12 @@
   },
   "lighthouse-core/audits/is-on-https.js | title": {
     "message": "ใช้ HTTPS"
+  },
+  "lighthouse-core/audits/legacy-javascript.js | description": {
+    "message": "โพลีฟิลล์และการเปลี่ยนรูปแบบช่วยให้เบราว์เซอร์เดิมใช้ฟีเจอร์ JavaScript ใหม่ได้ แต่ส่วนมากจะไม่จำเป็นสำหรับเบราว์เซอร์สมัยใหม่ สำหรับ JavaScript แบบแพ็กเกจ ให้ใช้กลยุทธ์การทำให้สคริปต์สมัยใหม่ใช้งานได้โดยใช้การตรวจหาฟีเจอร์โมดูล/ไม่มีโมดูลเพื่อลดจำนวนโค้ดที่ส่งไปยังเบราว์เซอร์สมัยใหม่ ขณะที่ยังรองรับเบราว์เซอร์เดิมอยู่ [ดูข้อมูลเพิ่มเติม](https://philipwalton.com/articles/deploying-es2015-code-in-production-today/)"
+  },
+  "lighthouse-core/audits/legacy-javascript.js | title": {
+    "message": "JavaScript เดิม"
   },
   "lighthouse-core/audits/load-fast-enough-for-pwa.js | description": {
     "message": "การโหลดหน้าเว็บที่รวดเร็วผ่านเครือข่ายมือถือช่วยให้มั่นใจว่าผู้ใช้ได้รับประสบการณ์การใช้งานที่ดีในอุปกรณ์เคลื่อนที่ [ดูข้อมูลเพิ่มเติม](https://web.dev/load-fast-enough-for-pwa)"
@@ -821,6 +863,18 @@
   "lighthouse-core/audits/manual/pwa-page-transitions.js | title": {
     "message": "เปลี่ยนหน้าได้รวดเร็วแม้ว่าเครือข่ายจะช้า"
   },
+  "lighthouse-core/audits/maskable-icon.js | description": {
+    "message": "ไอคอนที่มาสก์ได้ช่วยให้รูปภาพแสดงขึ้นเต็มกรอบโดยไม่มีแถบปรากฏอยู่ตามขอบเมื่อติดตั้งแอปในอุปกรณ์ [ดูข้อมูลเพิ่มเติม](https://web.dev/maskable-icon/)"
+  },
+  "lighthouse-core/audits/maskable-icon.js | failureTitle": {
+    "message": "ไฟล์ Manifest ไม่มีไอคอนที่มาสก์ได้"
+  },
+  "lighthouse-core/audits/maskable-icon.js | title": {
+    "message": "ไฟล์ Manifest มีไอคอนที่มาสก์ได้"
+  },
+  "lighthouse-core/audits/metrics/cumulative-layout-shift.js | description": {
+    "message": "การเปลี่ยนเลย์เอาต์สะสมจะวัดการเคลื่อนไหวขององค์ประกอบที่มองเห็นได้ภายในวิวพอร์ต [ดูข้อมูลเพิ่มเติม](https://web.dev/cls)"
+  },
   "lighthouse-core/audits/metrics/estimated-input-latency.js | description": {
     "message": "เวลาตอบสนองต่ออินพุตโดยประมาณเป็นระยะเวลาโดยประมาณที่แอปใช้เพื่อตอบสนองอินพุตของผู้ใช้ระหว่างการโหลดหน้าเว็บในกรอบเวลา 5 วินาทีที่ทำงานหนักที่สุด มีหน่วยเป็นมิลลิวินาที หากเวลาในการตอบสนองนานกว่า 50 มิลลิวินาที ผู้ใช้อาจรู้สึกว่าแอปช้า [ดูข้อมูลเพิ่มเติม](https://web.dev/estimated-input-latency)"
   },
@@ -837,7 +891,7 @@
     "message": "เวลาในการตอบสนองคือระยะเวลาที่หน้าเว็บใช้ในการตอบสนองอย่างสมบูรณ์ [ดูข้อมูลเพิ่มเติม](https://web.dev/interactive)"
   },
   "lighthouse-core/audits/metrics/largest-contentful-paint.js | description": {
-    "message": "Largest Contentful Paint ระบุเวลาที่แสดงผลข้อความหรือรูปภาพได้มากที่สุด [ดูข้อมูลเพิ่มเติม](https://web.dev/largest-contentful-paint)"
+    "message": "Largest Contentful Paint ระบุเวลาที่แสดงผลข้อความหรือรูปภาพได้มากที่สุด [ดูข้อมูลเพิ่มเติม](https://web.dev/lighthouse-largest-contentful-paint)"
   },
   "lighthouse-core/audits/metrics/max-potential-fid.js | description": {
     "message": "First Input Delay สูงสุดที่อาจเกิดขึ้นซึ่งผู้ใช้อาจเจอคือระยะเวลาของงานที่ยาวที่สุด [ดูข้อมูลเพิ่มเติม](https://web.dev/lighthouse-max-potential-fid)"
@@ -1112,18 +1166,6 @@
   "lighthouse-core/audits/third-party-summary.js | title": {
     "message": "ลดการใช้ของบุคคลที่สาม"
   },
-  "lighthouse-core/audits/time-to-first-byte.js | description": {
-    "message": "Time To First Byte ระบุเวลาที่เซิร์ฟเวอร์ส่งการตอบกลับ [ดูข้อมูลเพิ่มเติม](https://web.dev/time-to-first-byte)"
-  },
-  "lighthouse-core/audits/time-to-first-byte.js | displayValue": {
-    "message": "เอกสารรากใช้เวลา {timeInMs, number, milliseconds} มิลลิวินาที"
-  },
-  "lighthouse-core/audits/time-to-first-byte.js | failureTitle": {
-    "message": "ลดเวลาในการตอบกลับของเซิร์ฟเวอร์ (TTFB)"
-  },
-  "lighthouse-core/audits/time-to-first-byte.js | title": {
-    "message": "เวลาตอบสนองของเซิร์ฟเวอร์ต่ำ (TTFB)"
-  },
   "lighthouse-core/audits/timing-budget.js | columnMeasurement": {
     "message": "การวัด"
   },
@@ -1135,12 +1177,6 @@
   },
   "lighthouse-core/audits/timing-budget.js | title": {
     "message": "งบประมาณด้านเวลา"
-  },
-  "lighthouse-core/audits/user-timings.js | columnDuration": {
-    "message": "ระยะเวลา"
-  },
-  "lighthouse-core/audits/user-timings.js | columnStartTime": {
-    "message": "เวลาเริ่มต้น"
   },
   "lighthouse-core/audits/user-timings.js | columnType": {
     "message": "ประเภท"
@@ -1162,6 +1198,9 @@
   },
   "lighthouse-core/audits/uses-rel-preconnect.js | title": {
     "message": "เชื่อมต่อกับต้นทางที่จำเป็นล่วงหน้า"
+  },
+  "lighthouse-core/audits/uses-rel-preconnect.js | tooManyPreconnectLinksWarning": {
+    "message": "พบลิงก์ที่เชื่อมต่อล่วงหน้ามากกว่า 2 รายการ ควรใช้ลิงก์ที่เชื่อมต่อล่วงหน้าเท่าที่จำเป็นและใช้กับต้นทางที่สำคัญที่สุดเท่านั้น"
   },
   "lighthouse-core/audits/uses-rel-preload.js | crossoriginWarning": {
     "message": "พบ <link> ที่โหลดล่วงหน้าสำหรับ \"{preloadURL}\" แต่เบราว์เซอร์ไม่ได้นำไปใช้งาน โปรดตรวจสอบว่าคุณใช้แอตทริบิวต์ `crossorigin` อย่างถูกต้องแล้ว"
@@ -1349,6 +1388,12 @@
   "lighthouse-core/config/default-config.js | seoMobileGroupTitle": {
     "message": "เหมาะกับอุปกรณ์เคลื่อนที่"
   },
+  "lighthouse-core/gather/gather-runner.js | warningRedirected": {
+    "message": "หน้านี้อาจไม่โหลดขึ้นตามที่คาดไว้เนื่องจาก URL ทดสอบของคุณ ({requested}) มีการเปลี่ยนเส้นทางไปยัง {final} ลองทดสอบ URL ที่ 2 โดยตรง"
+  },
+  "lighthouse-core/gather/gather-runner.js | warningTimeout": {
+    "message": "หน้าโหลดช้าเกินกำหนดเวลา หน้าที่โหลดมาได้อาจไม่ครบถ้วน"
+  },
   "lighthouse-core/lib/i18n/i18n.js | columnCacheTTL": {
     "message": "แคช TTL"
   },
@@ -1364,11 +1409,17 @@
   "lighthouse-core/lib/i18n/i18n.js | columnRequests": {
     "message": "คำขอ"
   },
+  "lighthouse-core/lib/i18n/i18n.js | columnResourceSize": {
+    "message": "ขนาดทรัพยากร"
+  },
   "lighthouse-core/lib/i18n/i18n.js | columnResourceType": {
     "message": "ประเภททรัพยากร"
   },
   "lighthouse-core/lib/i18n/i18n.js | columnSize": {
     "message": "ขนาด"
+  },
+  "lighthouse-core/lib/i18n/i18n.js | columnSource": {
+    "message": "แหล่งที่มา"
   },
   "lighthouse-core/lib/i18n/i18n.js | columnTimeSpent": {
     "message": "เวลาที่ใช้"
@@ -1384,6 +1435,9 @@
   },
   "lighthouse-core/lib/i18n/i18n.js | columnWastedMs": {
     "message": "เวลาที่อาจประหยัดได้"
+  },
+  "lighthouse-core/lib/i18n/i18n.js | cumulativeLayoutShiftMetric": {
+    "message": "การเปลี่ยนเลย์เอาต์สะสม"
   },
   "lighthouse-core/lib/i18n/i18n.js | displayValueByteSavings": {
     "message": "อาจประหยัดได้ {wastedBytes, number, bytes} KB"
@@ -1414,6 +1468,9 @@
   },
   "lighthouse-core/lib/i18n/i18n.js | interactiveMetric": {
     "message": "เวลาในการโต้ตอบ"
+  },
+  "lighthouse-core/lib/i18n/i18n.js | largestContentfulPaintMetric": {
+    "message": "Largest Contentful Paint"
   },
   "lighthouse-core/lib/i18n/i18n.js | maxPotentialFIDMetric": {
     "message": "First Input Delay สูงสุดที่อาจเกิดขึ้น"
@@ -1508,11 +1565,38 @@
   "lighthouse-core/report/html/renderer/util.js | crcLongestDurationLabel": {
     "message": "เวลาในการตอบสนองของเส้นทางสำคัญที่ยาวที่สุด"
   },
+  "lighthouse-core/report/html/renderer/util.js | dropdownCopyJSON": {
+    "message": "คัดลอก JSON"
+  },
+  "lighthouse-core/report/html/renderer/util.js | dropdownDarkTheme": {
+    "message": "เปิด/ปิดธีมมืด"
+  },
+  "lighthouse-core/report/html/renderer/util.js | dropdownPrintExpanded": {
+    "message": "ขยายข้อมูลการพิมพ์"
+  },
+  "lighthouse-core/report/html/renderer/util.js | dropdownPrintSummary": {
+    "message": "สรุปการพิมพ์"
+  },
+  "lighthouse-core/report/html/renderer/util.js | dropdownSaveGist": {
+    "message": "บันทึกเป็น Gist"
+  },
+  "lighthouse-core/report/html/renderer/util.js | dropdownSaveHTML": {
+    "message": "บันทึกเป็น HTML"
+  },
+  "lighthouse-core/report/html/renderer/util.js | dropdownSaveJSON": {
+    "message": "บันทึกเป็น JSON"
+  },
+  "lighthouse-core/report/html/renderer/util.js | dropdownViewer": {
+    "message": "เปิดในโปรแกรมดู"
+  },
   "lighthouse-core/report/html/renderer/util.js | errorLabel": {
     "message": "ข้อผิดพลาด!"
   },
   "lighthouse-core/report/html/renderer/util.js | errorMissingAuditInfo": {
     "message": "ข้อผิดพลาดในรายงาน: ไม่มีข้อมูลการตรวจสอบ"
+  },
+  "lighthouse-core/report/html/renderer/util.js | footerIssue": {
+    "message": "รายงานปัญหา"
   },
   "lighthouse-core/report/html/renderer/util.js | labDataTitle": {
     "message": "ข้อมูลในห้องทดลอง"
@@ -1535,6 +1619,48 @@
   "lighthouse-core/report/html/renderer/util.js | passedAuditsGroupTitle": {
     "message": "การตรวจสอบที่ผ่านแล้ว"
   },
+  "lighthouse-core/report/html/renderer/util.js | runtimeDesktopEmulation": {
+    "message": "เดสก์ท็อปจำลอง"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeMobileEmulation": {
+    "message": "Moto G4 จำลอง"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeNoEmulation": {
+    "message": "ไม่มีการจำลอง"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsBenchmark": {
+    "message": "ความแรงของ CPU/หน่วยความจำ"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsCPUThrottling": {
+    "message": "การควบคุม CPU"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsChannel": {
+    "message": "ช่อง"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsDevice": {
+    "message": "อุปกรณ์"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsFetchTime": {
+    "message": "เวลาในการดึงข้อมูล"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsNetworkThrottling": {
+    "message": "การควบคุมเครือข่าย"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsTitle": {
+    "message": "การตั้งค่ารันไทม์"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsUA": {
+    "message": "User Agent (โฮสต์)"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsUANetwork": {
+    "message": "User Agent (เครือข่าย)"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsUrl": {
+    "message": "URL"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeUnknown": {
+    "message": "ไม่ทราบ"
+  },
   "lighthouse-core/report/html/renderer/util.js | snippetCollapseButtonLabel": {
     "message": "ยุบตัวอย่างข้อมูล"
   },
@@ -1543,6 +1669,9 @@
   },
   "lighthouse-core/report/html/renderer/util.js | thirdPartyResourcesLabel": {
     "message": "แสดงทรัพยากรของบุคคลที่สาม"
+  },
+  "lighthouse-core/report/html/renderer/util.js | throttlingProvided": {
+    "message": "ให้บริการโดยสภาพแวดล้อม"
   },
   "lighthouse-core/report/html/renderer/util.js | toplevelWarningsMessage": {
     "message": "เกิดปัญหาที่มีผลต่อการทำงานนี้ของ Lighthouse"
@@ -1604,9 +1733,6 @@
   "stack-packs/packs/magento.js | offscreen_images": {
     "message": "ลองแก้ไขเทมเพลตผลิตภัณฑ์และแคตตาล็อกเพื่อใช้ประโยชน์จากฟีเจอร์[การโหลดแบบ Lazy Loading](https://web.dev/native-lazy-loading) ของแพลตฟอร์มเว็บ"
   },
-  "stack-packs/packs/magento.js | time_to_first_byte": {
-    "message": "ใช้[การผสานรวม Varnish](https://devdocs.magento.com/guides/v2.3/config-guide/varnish/config-varnish.html) ของ Magento"
-  },
   "stack-packs/packs/magento.js | unminified_css": {
     "message": "เปิดใช้ตัวเลือก \"Minify CSS Files\" ในการตั้งค่านักพัฒนาซอฟต์แวร์ของร้านค้า [ดูข้อมูลเพิ่มเติม](https://devdocs.magento.com/guides/v2.3/performance-best-practices/configuration.html?itm_source=devdocs&itm_medium=search_page&itm_campaign=federated_search&itm_term=minify%20css%20files)"
   },
@@ -1634,9 +1760,6 @@
   "stack-packs/packs/react.js | redirects": {
     "message": "หากคุณกำลังใช้ React Router ให้ลดการใช้ของคอมโพเนนต์ `<Redirect>` ในการ[ไปยังเส้นทางต่างๆ](https://reacttraining.com/react-router/web/api/Redirect)"
   },
-  "stack-packs/packs/react.js | time_to_first_byte": {
-    "message": "หากคุณกำลังแสดงคอมโพเนนต์ของ React ใดๆ บนฝั่งเซิร์ฟเวอร์ ให้ลองใช้ `renderToNodeStream()` หรือ `renderToStaticNodeStream()` เพื่อให้ลูกค้าได้รับและรวมส่วนต่างๆ ของมาร์กอัปแทนที่จะรวมทั้งหมดในคราวเดียว [ดูข้อมูลเพิ่มเติม](https://reactjs.org/docs/react-dom-server.html#rendertonodestream)"
-  },
   "stack-packs/packs/react.js | unminified_css": {
     "message": "หากระบบในรุ่นของคุณลดขนาดไฟล์ CSS โดยอัตโนมัติ โปรดตรวจสอบให้แน่ใจว่าคุณทำให้รุ่นที่ใช้งานจริงของแอปพลิเคชันใช้งานได้ ตรวจสอบเรื่องนี้ได้ด้วยส่วนขยายของ React Developer Tools [ดูข้อมูลเพิ่มเติม](https://reactjs.org/docs/optimizing-performance.html#use-the-production-build)"
   },
@@ -1657,9 +1780,6 @@
   },
   "stack-packs/packs/wordpress.js | render_blocking_resources": {
     "message": "มีปลั๊กอิน WordPress หลายรายการที่ช่วยคุณ[แทรกเนื้อหาที่สำคัญ](https://wordpress.org/plugins/search/critical+css/) หรือ[เลื่อนเวลาโหลดทรัพยากรที่สำคัญน้อยกว่า](https://wordpress.org/plugins/search/defer+css+javascript/) โปรดระวังว่าการเพิ่มประสิทธิภาพโดยปลั๊กอินเหล่านี้อาจทำให้ฟีเจอร์ของธีมหรือปลั๊กอินของคุณเสียหาย ซึ่งน่าจะทำให้คุณต้องแก้ไขโค้ด"
-  },
-  "stack-packs/packs/wordpress.js | time_to_first_byte": {
-    "message": "การกำหนดธีม ปลั๊กอิน และเซิร์ฟเวอร์ล้วนส่งผลต่อเวลาการตอบสนองของเซิร์ฟเวอร์ ลองหาธีมที่เพิ่มประสิทธิภาพมากขึ้น พยายามเลือกปลั๊กอินการเพิ่มประสิทธิภาพด้วยความระมัดระวัง และ/หรืออัปเกรดเซิร์ฟเวอร์"
   },
   "stack-packs/packs/wordpress.js | total_byte_weight": {
     "message": "ลองแสดงข้อความที่ตัดตอนมาในรายการโพสต์ (เช่น ผ่านแท็ก \"เพิ่มเติม\") ลดจำนวนโพสต์ที่แสดงในหน้าหนึ่งๆ แบ่งโพสต์ยาวๆ เป็นหลายหน้า หรือใช้ปลั๊กอินเพื่อโหลดความคิดเห็นแบบ Lazy Loading"

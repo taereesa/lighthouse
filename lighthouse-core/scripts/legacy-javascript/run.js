@@ -25,6 +25,7 @@ const hash = crypto
   .update(fs.readFileSync(`${__dirname}/yarn.lock`, 'utf8'))
   .update(fs.readFileSync(`${__dirname}/run.js`, 'utf8'))
   .update(fs.readFileSync(`${__dirname}/main.js`, 'utf8'))
+  .update(fs.readFileSync(require.resolve('../../audits/legacy-javascript.js'), 'utf8'))
   .digest('hex');
 const VARIANT_DIR = `${__dirname}/variants/${hash}`;
 
@@ -34,7 +35,7 @@ const STAGE = process.env.STAGE || 'all';
 const mainCode = fs.readFileSync(`${__dirname}/main.js`, 'utf-8');
 
 const plugins = LegacyJavascript.getTransformPatterns().map(pattern => pattern.name);
-const polyfills = LegacyJavascript.getPolyfillData().map(d => d.module);
+const polyfills = LegacyJavascript.getPolyfillData();
 
 /**
  * @param {string} command
@@ -95,6 +96,7 @@ async function createVariant(options) {
       `${dir}/main.transpiled.js`,
       '-o', `${dir}/main.bundle.js`,
       '--debug', // source maps
+      '--full-paths=false',
     ]);
 
     // Minify.
@@ -217,6 +219,13 @@ function createSummarySizes() {
   fs.writeFileSync(`${__dirname}/summary-sizes.txt`, lines.join('\n'));
 }
 
+/**
+ * @param {string} module
+ */
+function makeRequireCodeForPolyfill(module) {
+  return `require("../../../../node_modules/core-js/modules/${module}")`;
+}
+
 async function main() {
   for (const plugin of plugins) {
     await createVariant({
@@ -254,12 +263,23 @@ async function main() {
     }
 
     for (const polyfill of polyfills) {
+      const module = coreJsVersion === 2 ? polyfill.coreJs2Module : polyfill.coreJs3Module;
       await createVariant({
         group: `core-js-${coreJsVersion}-only-polyfill`,
-        name: polyfill,
-        code: `require("core-js/modules/${polyfill}")`,
+        name: module,
+        code: makeRequireCodeForPolyfill(module),
       });
     }
+
+    const allPolyfillCode = polyfills.map(polyfill => {
+      const module = coreJsVersion === 2 ? polyfill.coreJs2Module : polyfill.coreJs3Module;
+      return makeRequireCodeForPolyfill(module);
+    }).join('\n');
+    await createVariant({
+      group: 'all-legacy-polyfills',
+      name: `all-legacy-polyfills-core-js-${coreJsVersion}`,
+      code: allPolyfillCode,
+    });
   }
 
   removeCoreJs();
@@ -269,15 +289,19 @@ async function main() {
   // Summary of using source maps and pattern matching.
   summary = makeSummary('legacy-javascript.json');
   fs.writeFileSync(`${__dirname}/summary-signals.json`, JSON.stringify(summary, null, 2));
-  console.log({
-    totalSignals: summary.totalSignals,
-    variantsMissingSignals: summary.variantsMissingSignals,
-  });
-  console.table(summary.variants);
 
   // Summary of using only pattern matching.
   summary = makeSummary('legacy-javascript-nomaps.json');
   fs.writeFileSync(`${__dirname}/summary-signals-nomaps.json`, JSON.stringify(summary, null, 2));
+  console.log({
+    totalSignals: summary.totalSignals,
+    variantsMissingSignals: summary.variantsMissingSignals,
+  });
+  console.table(summary.variants.filter(variant => {
+    // Too many signals, break layout.
+    if (variant.name.includes('all-legacy-polyfills')) return false;
+    return true;
+  }));
 
   createSummarySizes();
 }
