@@ -155,20 +155,10 @@ const expectations = [
                 url: 'http://localhost:10200/byte-efficiency/bundle.js',
                 totalBytes: '12913 +/- 1000',
                 wastedBytes: '5827 +/- 200',
-                sources: [
-                  '…./b.js',
-                  '…./c.js',
-                  '…webpack/bootstrap',
-                ],
-                sourceBytes: [
-                  '4417 +/- 50',
-                  '2200 +/- 50',
-                  '2809 +/- 50',
-                ],
-                sourceWastedBytes: [
-                  '2191 +/- 50',
-                  '2182 +/- 50',
-                  '1259 +/- 50',
+                subRows: [
+                  {source: '…./b.js', sourceBytes: '4417 +/- 50', sourceWastedBytes: '2191 +/- 50'},
+                  {source: '…./c.js', sourceBytes: '2200 +/- 50', sourceWastedBytes: '2182 +/- 50'},
+                  {source: '…./b.js', sourceBytes: '2809 +/- 50', sourceWastedBytes: '1259 +/- 50'},
                 ],
               },
             ],
