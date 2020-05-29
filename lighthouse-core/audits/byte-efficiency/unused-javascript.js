@@ -40,13 +40,13 @@ function commonPrefix(strings) {
 }
 
 /**
- * @param {string[]} strings
+ * @param {string} string
  * @param {string} commonPrefix
- * @return {string[]}
+ * @return {string}
  */
-function trimCommonPrefix(strings, commonPrefix) {
-  if (!commonPrefix) return strings;
-  return strings.map(s => s.startsWith(commonPrefix) ? '…' + s.slice(commonPrefix.length) : s);
+function trimCommonPrefix(string, commonPrefix) {
+  if (!commonPrefix) return string;
+  return string.startsWith(commonPrefix) ? '…' + string.slice(commonPrefix.length) : string;
 }
 
 /**
@@ -160,11 +160,16 @@ class UnusedJavaScript extends ByteEfficiencyAudit {
       });
 
     const commonSourcePrefix = commonPrefix([...bundle.map._sourceInfos.keys()]);
-    Object.assign(item, {
-      sources: trimCommonPrefix(topUnusedFilesSizes.map(d => d.key), commonSourcePrefix),
-      sourceBytes: topUnusedFilesSizes.map(d => d.total),
-      sourceWastedBytes: topUnusedFilesSizes.map(d => d.unused),
-    });
+    item.subRows = {
+      type: 'subrows',
+      items: topUnusedFilesSizes.map(({key, unused, total}) => {
+        return {
+          source: trimCommonPrefix(key, commonSourcePrefix),
+          sourceBytes: total,
+          sourceWastedBytes: unused,
+        };
+      }),
+    };
   }
 
   /**
@@ -255,7 +260,7 @@ class UnusedJavaScript extends ByteEfficiencyAudit {
       items,
       headings: [
         /* eslint-disable max-len */
-        {key: 'url', valueType: 'url', subRows: {key: 'sources', valueType: 'code'}, label: str_(i18n.UIStrings.columnURL)},
+        {key: 'url', valueType: 'url', subRows: {key: 'source', valueType: 'code'}, label: str_(i18n.UIStrings.columnURL)},
         {key: 'totalBytes', valueType: 'bytes', subRows: {key: 'sourceBytes'}, label: str_(i18n.UIStrings.columnTransferSize)},
         {key: 'wastedBytes', valueType: 'bytes', subRows: {key: 'sourceWastedBytes'}, label: str_(i18n.UIStrings.columnWastedBytes)},
         /* eslint-enable max-len */

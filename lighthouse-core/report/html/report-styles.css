@@ -1330,7 +1330,7 @@
   word-break: normal;
 }
 
-.lh-table tbody tr:nth-child(odd) {
+.lh-row--odd {
   background-color: var(--table-higlight-background-color);
 }
 
@@ -1425,12 +1425,15 @@
   text-decoration: underline dotted #999;
 }
 
-.lh-sub-rows:not(:first-child) .lh-sub-row {
+.lh-sub-row {
   margin-left: 20px;
+  margin-bottom: 0;
   color: var(--color-gray-700);
 }
-.lh-sub-row {
-  margin-bottom: 0;
+.lh-sub-row td {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 20px;
 }
 
 /* Chevron

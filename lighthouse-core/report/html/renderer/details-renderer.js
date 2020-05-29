@@ -214,7 +214,7 @@ class DetailsRenderer {
    * @return {Element|null}
    */
   _renderTableValue(value, heading) {
-    if (typeof value === 'undefined' || value === null) {
+    if (value === undefined || value === null) {
       return null;
     }
 
@@ -337,19 +337,72 @@ class DetailsRenderer {
   }
 
   /**
-   * @param {LH.Audit.Details.ItemValue[]} values
-   * @param {LH.Audit.Details.OpportunityColumnHeading} heading
-   * @return {Element}
+   * @param {LH.Audit.Details.OpportunityItem | LH.Audit.Details.TableItem} row
+   * @param {(LH.Audit.Details.OpportunityColumnHeading | null)[]} headings
    */
-  _renderSubRows(values, heading) {
-    const subRowsElement = this._dom.createElement('div', 'lh-sub-rows');
-    for (const childValue of values) {
-      const subRowElement = this._renderTableValue(childValue, heading);
-      if (!subRowElement) continue;
-      subRowElement.classList.add('lh-sub-row');
-      subRowsElement.appendChild(subRowElement);
+  _renderTableRow(row, headings) {
+    const rowElem = this._dom.createElement('tr');
+
+    for (const heading of headings) {
+      const value = heading && heading.key && row[heading.key];
+
+      let valueElement;
+      if (heading && heading.key !== null && value !== undefined && value !== null) {
+        valueElement = this._renderTableValue(value, heading);
+      }
+
+      if (heading && valueElement) {
+        const classes = `lh-table-column--${heading.valueType}`;
+        this._dom.createChildOf(rowElem, 'td', classes).appendChild(valueElement);
+      } else {
+        // Empty cell is rendered for a column if:
+        // - the pair is null
+        // - the heading key is null
+        // - the value is undefined/null
+        this._dom.createChildOf(rowElem, 'td', 'lh-table-column--empty');
+      }
     }
-    return subRowsElement;
+
+    return rowElem;
+  }
+
+  /**
+   * Renders one or more rows from a details item.
+   * @param {LH.Audit.Details.OpportunityItem | LH.Audit.Details.TableItem} item
+   * @param {LH.Audit.Details.OpportunityColumnHeading[]} headings
+   */
+  _renderTableItem(item, headings) {
+    const fragment = this._dom.createFragment();
+    fragment.append(this._renderTableRow(item, headings));
+
+    // A single details item can expand into multiple table rows. These additional table rows
+    // are called sub-rows.
+    if (!item.subRows) return fragment;
+
+    const subRowHeadings = [];
+    for (const heading of headings) {
+      if (!heading.subRows) {
+        subRowHeadings.push(null);
+        continue;
+      }
+
+      subRowHeadings.push({
+        key: heading.subRows.key,
+        valueType: heading.subRows.valueType || heading.valueType,
+        granularity: heading.subRows.granularity || heading.granularity,
+        displayUnit: heading.subRows.displayUnit || heading.displayUnit,
+        label: '',
+      });
+    }
+    if (!subRowHeadings.some(Boolean)) return fragment;
+
+    for (const subRowItem of item.subRows.items) {
+      const rowEl = this._renderTableRow(subRowItem, subRowHeadings);
+      rowEl.classList.add('lh-sub-row');
+      fragment.append(rowEl);
+    }
+
+    return fragment;
   }
 
   /**
@@ -374,50 +427,17 @@ class DetailsRenderer {
     }
 
     const tbodyElem = this._dom.createChildOf(tableElem, 'tbody');
-    for (const row of details.items) {
-      const rowElem = this._dom.createChildOf(tbodyElem, 'tr');
-      for (const heading of headings) {
-        const valueFragment = this._dom.createFragment();
-
-        if (heading.key === null && !heading.subRows) {
-          // eslint-disable-next-line no-console
-          console.warn('A header with a null `key` should define `subRows`.');
-        }
-
-        if (heading.key === null) {
-          const emptyElement = this._dom.createElement('div');
-          emptyElement.innerHTML = '&nbsp;';
-          valueFragment.appendChild(emptyElement);
-        } else {
-          const value = row[heading.key];
-          const valueElement =
-            value !== undefined && !Array.isArray(value) && this._renderTableValue(value, heading);
-          if (valueElement) valueFragment.appendChild(valueElement);
-        }
-
-        if (heading.subRows) {
-          const subRowsHeading = {
-            key: heading.subRows.key,
-            valueType: heading.subRows.valueType || heading.valueType,
-            granularity: heading.subRows.granularity || heading.granularity,
-            displayUnit: heading.subRows.displayUnit || heading.displayUnit,
-            label: '',
-          };
-          const values = row[subRowsHeading.key];
-          if (Array.isArray(values)) {
-            const subRowsElement = this._renderSubRows(values, subRowsHeading);
-            valueFragment.appendChild(subRowsElement);
-          }
-        }
-
-        if (valueFragment.childElementCount) {
-          const classes = `lh-table-column--${heading.valueType}`;
-          this._dom.createChildOf(rowElem, 'td', classes).appendChild(valueFragment);
-        } else {
-          this._dom.createChildOf(rowElem, 'td', 'lh-table-column--empty');
-        }
+    let even = true;
+    for (const item of details.items) {
+      const rowFragment = this._renderTableItem(item, headings);
+      for (const rowEl of this._dom.findAll('tr', rowFragment)) {
+        // For zebra striping.
+        rowEl.classList.add(even ? 'lh-row--even' : 'lh-row--odd');
       }
+      even = !even;
+      tbodyElem.append(rowFragment);
     }
+
     return tableElem;
   }
 
