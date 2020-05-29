@@ -313,6 +313,7 @@ class LegacyJavascript extends Audit {
       devtoolsLog,
     }, context);
 
+    /** @typedef {{signal: string, location: LH.Audit.Details.SourceLocationValue}} SubRowItem */
     /** @type {Array<{url: string, subRows: LH.Audit.Details.TableSubRows}>} */
     const tableRows = [];
     let signalCount = 0;
@@ -327,10 +328,17 @@ class LegacyJavascript extends Audit {
       this.detectCodePatternsAcrossScripts(matcher, artifacts.ScriptElements, networkRecords);
     urlToMatchResults.forEach((matches, url) => {
       /** @type {typeof tableRows[number]} */
-      const row = {url, subRows: {type: 'subrows', items: []}};
+      const row = {
+        url,
+        subRows: {
+          type: 'subrows',
+          items: [],
+        },
+      };
       for (const match of matches) {
         const {name, line, column} = match;
-        row.subRows.items.push({
+        /** @type {SubRowItem} */
+        const subRowItem = {
           signal: name,
           location: {
             type: 'source-location',
@@ -339,7 +347,8 @@ class LegacyJavascript extends Audit {
             column,
             urlProvider: 'network',
           },
-        });
+        };
+        row.subRows.items.push(subRowItem);
       }
       tableRows.push(row);
       signalCount += row.subRows.items.length;
