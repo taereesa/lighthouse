@@ -1580,6 +1580,9 @@
   "lighthouse-core/report/html/renderer/util.js | auditGroupExpandTooltip": {
     "message": "Show audits"
   },
+  "lighthouse-core/report/html/renderer/util.js | calculatorLink": {
+    "message": "See calculator."
+  },
   "lighthouse-core/report/html/renderer/util.js | crcInitialNavigation": {
     "message": "Initial Navigation"
   },
@@ -1698,7 +1701,7 @@
     "message": "There were issues affecting this run of Lighthouse:"
   },
   "lighthouse-core/report/html/renderer/util.js | varianceDisclaimer": {
-    "message": "Values are estimated and may vary. The performance score is [based only on these metrics](https://github.com/GoogleChrome/lighthouse/blob/d2ec9ffbb21de9ad1a0f86ed24575eda32c796f0/docs/scoring.md#how-are-the-scores-weighted)."
+    "message": "Values are estimated and may vary. The [performance score is calculated](https://web.dev/performance-scoring/) directly from these metrics."
   },
   "lighthouse-core/report/html/renderer/util.js | warningAuditsGroupTitle": {
     "message": "Passed audits but with warnings"

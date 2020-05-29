@@ -1580,6 +1580,9 @@
   "lighthouse-core/report/html/renderer/util.js | auditGroupExpandTooltip": {
     "message": "Ŝh́ôẃ âúd̂ít̂ś"
   },
+  "lighthouse-core/report/html/renderer/util.js | calculatorLink": {
+    "message": "Ŝéê ćâĺĉúl̂át̂ór̂."
+  },
   "lighthouse-core/report/html/renderer/util.js | crcInitialNavigation": {
     "message": "Îńît́îál̂ Ńâv́îǵât́îón̂"
   },
@@ -1698,7 +1701,7 @@
     "message": "T̂h́êŕê ẃêŕê íŝśûéŝ áf̂f́êćt̂ín̂ǵ t̂h́îś r̂ún̂ óf̂ Ĺîǵĥt́ĥóûśê:"
   },
   "lighthouse-core/report/html/renderer/util.js | varianceDisclaimer": {
-    "message": "V̂ál̂úêś âŕê éŝt́îḿât́êd́ âńd̂ ḿâý v̂ár̂ý. T̂h́ê ṕêŕf̂ór̂ḿâńĉé ŝćôŕê íŝ [b́âśêd́ ôńl̂ý ôń t̂h́êśê ḿêt́r̂íĉś](https://github.com/GoogleChrome/lighthouse/blob/d2ec9ffbb21de9ad1a0f86ed24575eda32c796f0/docs/scoring.md#how-are-the-scores-weighted)."
+    "message": "V̂ál̂úêś âŕê éŝt́îḿât́êd́ âńd̂ ḿâý v̂ár̂ý. T̂h́ê [ṕêŕf̂ór̂ḿâńĉé ŝćôŕê íŝ ćâĺĉúl̂át̂éd̂](https://web.dev/performance-scoring/) d́îŕêćt̂ĺŷ f́r̂óm̂ t́ĥéŝé m̂ét̂ŕîćŝ."
   },
   "lighthouse-core/report/html/renderer/util.js | warningAuditsGroupTitle": {
     "message": "P̂áŝśêd́ âúd̂ít̂ś b̂út̂ ẃît́ĥ ẃâŕn̂ín̂ǵŝ"
