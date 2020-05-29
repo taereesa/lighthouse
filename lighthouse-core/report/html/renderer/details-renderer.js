@@ -337,14 +337,14 @@ class DetailsRenderer {
   }
 
   /**
-   * @param {LH.Audit.Details.OpportunityItem | LH.Audit.Details.TableItem} row
+   * @param {LH.Audit.Details.OpportunityItem | LH.Audit.Details.TableItem} item
    * @param {(LH.Audit.Details.OpportunityColumnHeading | null)[]} headings
    */
-  _renderTableRow(row, headings) {
+  _renderTableRow(item, headings) {
     const rowElem = this._dom.createElement('tr');
 
     for (const heading of headings) {
-      const value = heading && heading.key && row[heading.key];
+      const value = heading && heading.key && item[heading.key];
 
       let valueElement;
       if (heading && heading.key !== null && value !== undefined && value !== null) {
@@ -367,11 +367,11 @@ class DetailsRenderer {
   }
 
   /**
-   * Renders one or more rows from a details item.
+   * Renders one or more rows from a details table item.
    * @param {LH.Audit.Details.OpportunityItem | LH.Audit.Details.TableItem} item
    * @param {LH.Audit.Details.OpportunityColumnHeading[]} headings
    */
-  _renderTableItem(item, headings) {
+  _renderTableItemRows(item, headings) {
     const fragment = this._dom.createFragment();
     fragment.append(this._renderTableRow(item, headings));
 
@@ -429,13 +429,13 @@ class DetailsRenderer {
     const tbodyElem = this._dom.createChildOf(tableElem, 'tbody');
     let even = true;
     for (const item of details.items) {
-      const rowFragment = this._renderTableItem(item, headings);
-      for (const rowEl of this._dom.findAll('tr', rowFragment)) {
+      const rowsFragment = this._renderTableItemRows(item, headings);
+      for (const rowEl of this._dom.findAll('tr', rowsFragment)) {
         // For zebra striping.
         rowEl.classList.add(even ? 'lh-row--even' : 'lh-row--odd');
       }
       even = !even;
-      tbodyElem.append(rowFragment);
+      tbodyElem.append(rowsFragment);
     }
 
     return tableElem;
