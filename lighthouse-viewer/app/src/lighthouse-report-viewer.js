@@ -5,7 +5,7 @@
  */
 'use strict';
 
-/* global DOM, ViewerUIFeatures, ReportRenderer, DragAndDrop, GithubApi, PSIApi, logger, idbKeyval */
+/* global DOM, ViewerUIFeatures, ReportRenderer, DragAndDrop, GithubApi, PSIApi, logger, idbKeyval, __LIGHTHOUSE_JSON__ */
 
 /** @typedef {import('./psi-api').PSIParams} PSIParams */
 
@@ -178,6 +178,10 @@ class LighthouseReportViewer {
     if ('lhr' in json) {
       json = /** @type {LH.RunnerResult} */ (json).lhr;
     }
+
+    // Install as global for easier debugging
+    window.__LIGHTHOUSE_JSON__ = json;
+    console.log('window.__LIGHTHOUSE_JSON__', json);
 
     this._validateReportJson(json);
 
