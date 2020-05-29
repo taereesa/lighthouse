@@ -463,7 +463,9 @@
     "devicePixelRatio": 2.625
   },
   "WebAppManifest": null,
-  "InstallabilityErrors": {"errors": []},
+  "InstallabilityErrors": {
+    "errors": []
+  },
   "MetaElements": [
     {
       "name": "",
@@ -1749,49 +1751,168 @@
   "AnchorElements": [
     {
       "href": "https://www.google.com/",
-      "outerHTML": "<a href=\"https://www.google.com/\" target=\"blank\">Hello</a>",
+      "rawHref": "https://www.google.com/",
+      "onclick": "",
+      "role": "",
+      "name": "",
+      "text": "external link",
       "rel": "",
       "target": "_blank",
-      "text": "external link"
+      "devtoolsNodePath": "3,HTML,1,BODY,36,A",
+      "selector": "body > a",
+      "nodeLabel": "external link",
+      "outerHTML": "<a href=\"https://www.google.com/\" target=\"_blank\">",
+      "listeners": []
     },
     {
       "href": "",
-      "outerHTML": "<a target=\"blank\">Hello</a>",
+      "rawHref": "",
+      "onclick": "",
+      "role": "",
+      "name": "",
+      "text": "external link",
       "rel": "",
       "target": "_blank",
-      "text": "Hello"
+      "devtoolsNodePath": "3,HTML,1,BODY,38,A",
+      "selector": "body > a",
+      "nodeLabel": "external link",
+      "outerHTML": "<a target=\"_blank\">",
+      "listeners": []
     },
     {
       "href": "https://www.google.com/",
-      "outerHTML": "<a rel=\"noopener\" href=\"https://www.google.com/\" target=\"blank\">Hello</a>",
-      "rel": "noopener",
-      "target": "_blank",
-      "text": "external link that uses noopener"
-    },
-    {
-      "href": "https://www.google.com/",
-      "outerHTML": "<a rel=\"nofollow\" href=\"https://www.google.com/\" target=\"blank\">Hello</a>",
+      "rawHref": "https://www.google.com/",
+      "onclick": "",
+      "role": "",
+      "name": "",
+      "text": "external link",
       "rel": "nofollow",
       "target": "_blank",
-      "text": "external link that uses nofollow"
+      "devtoolsNodePath": "3,HTML,1,BODY,40,A",
+      "selector": "body > a",
+      "nodeLabel": "external link",
+      "outerHTML": "<a href=\"https://www.google.com/\" target=\"_blank\" rel=\"nofollow\">",
+      "listeners": []
     },
     {
-      "href": "http://localhost:10200/dobetterweb/doesnotexist",
+      "href": "https://www.google.com/",
+      "rawHref": "https://www.google.com/",
+      "onclick": "",
+      "role": "",
+      "name": "",
+      "text": "external link that uses rel noopener and another unrelated rel attribute",
+      "rel": "noopener nofollow",
+      "target": "_blank",
+      "devtoolsNodePath": "3,HTML,1,BODY,42,A",
+      "selector": "body > a",
+      "nodeLabel": "external link that uses rel noopener and another unrelated rel attribute",
+      "outerHTML": "<a href=\"https://www.google.com/\" target=\"_blank\" rel=\"noopener nofollow\">",
+      "listeners": []
+    },
+    {
+      "href": "https://www.google.com/",
+      "rawHref": "https://www.google.com/",
+      "onclick": "",
+      "role": "",
+      "name": "",
+      "text": "external link that uses rel noreferrer and another unrelated rel attribute",
+      "rel": "noreferrer nofollow",
+      "target": "_blank",
+      "devtoolsNodePath": "3,HTML,1,BODY,44,A",
+      "selector": "body > a",
+      "nodeLabel": "external link that uses rel noreferrer and another unrelated rel attribute",
+      "outerHTML": "<a href=\"https://www.google.com/\" target=\"_blank\" rel=\"noreferrer nofollow\">",
+      "listeners": []
+    },
+    {
+      "href": "https://www.google.com/",
+      "rawHref": "https://www.google.com/",
+      "onclick": "",
+      "role": "",
+      "name": "",
+      "text": "external link that uses rel noopener",
+      "rel": "noopener",
+      "target": "_blank",
+      "devtoolsNodePath": "3,HTML,1,BODY,46,A",
+      "selector": "body > a",
+      "nodeLabel": "external link that uses rel noopener",
+      "outerHTML": "<a href=\"https://www.google.com/\" target=\"_blank\" rel=\"noopener\">",
+      "listeners": []
+    },
+    {
+      "href": "https://www.google.com/",
+      "rawHref": "https://www.google.com/",
+      "onclick": "",
+      "role": "",
+      "name": "",
+      "text": "external link that uses rel noreferrer",
+      "rel": "noreferrer",
+      "target": "_blank",
+      "devtoolsNodePath": "3,HTML,1,BODY,48,A",
+      "selector": "body > a",
+      "nodeLabel": "external link that uses rel noreferrer",
+      "outerHTML": "<a href=\"https://www.google.com/\" target=\"_blank\" rel=\"noreferrer\">",
+      "listeners": []
+    },
+    {
+      "href": "https://www.google.com/",
+      "rawHref": "https://www.google.com/",
+      "onclick": "",
+      "role": "",
+      "name": "",
+      "text": "external link that uses rel noopener and noreferrer",
+      "rel": "noopener noreferrer",
+      "target": "_blank",
+      "devtoolsNodePath": "3,HTML,1,BODY,50,A",
+      "selector": "body > a",
+      "nodeLabel": "external link that uses rel noopener and noreferrer",
+      "outerHTML": "<a href=\"https://www.google.com/\" target=\"_blank\" rel=\"noopener noreferrer\">",
+      "listeners": []
+    },
+    {
+      "href": "http://localhost:53133/dobetterweb/doesnotexist",
+      "rawHref": "./doesnotexist",
+      "onclick": "",
+      "role": "",
+      "name": "",
+      "text": "internal link is ok",
       "rel": "",
       "target": "_blank",
-      "text": "internal link is ok"
+      "devtoolsNodePath": "3,HTML,1,BODY,52,A",
+      "selector": "body > a",
+      "nodeLabel": "internal link is ok",
+      "outerHTML": "<a href=\"./doesnotexist\" target=\"_blank\">",
+      "listeners": []
     },
     {
       "href": "javascript:void(0)",
+      "rawHref": "javascript:void(0)",
+      "onclick": "",
+      "role": "",
+      "name": "",
+      "text": "",
       "rel": "",
       "target": "_blank",
-      "text": ""
+      "devtoolsNodePath": "3,HTML,1,BODY,54,A",
+      "selector": "body > a",
+      "nodeLabel": "a",
+      "outerHTML": "<a href=\"javascript:void(0)\" target=\"_blank\">",
+      "listeners": []
     },
     {
       "href": "mailto:inbox@email.com",
+      "rawHref": "mailto:inbox@email.com",
+      "onclick": "",
+      "role": "",
+      "name": "",
+      "text": "",
       "rel": "",
       "target": "_blank",
-      "text": ""
+      "devtoolsNodePath": "3,HTML,1,BODY,56,A",
+      "selector": "body > a",
+      "nodeLabel": "a",
+      "outerHTML": "<a href=\"mailto:inbox@email.com\" target=\"_blank\">",
+      "listeners": []
     }
   ],
   "AppCacheManifest": "clock.appcache",

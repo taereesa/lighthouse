@@ -136,21 +136,6 @@ module.exports = [
             ],
           },
         },
-        'largest-contentful-paint-element': {
-          score: null,
-          displayValue: '1 element found',
-          details: {
-            items: [
-              {
-                node: {
-                  type: 'node',
-                  nodeLabel: 'img',
-                  path: '2,HTML,1,BODY,0,IMG',
-                },
-              },
-            ],
-          },
-        },
       },
     },
   },
@@ -170,37 +155,48 @@ module.exports = [
       },
     },
   },
-  // TODO: uncomment when Chrome m83 lands
-  // {
-  //   lhr: {
-  //     requestedUrl: 'http://localhost:10200/perf/trace-elements.html',
-  //     finalUrl: 'http://localhost:10200/perf/trace-elements.html',
-  //     audits: {
-  //       'largest-contentful-paint-element': {
-  //         score: null,
-  //         displayValue: '1 element found',
-  //         details: {
-  //           items: [
-  //             {
-  //               node: {
-  //                 type: 'node',
-  //                 nodeLabel: 'img',
-  //                 path: '0,HTML,1,BODY,0,DIV,0,IMG',
-  //               },
-  //             },
-  //           ],
-  //         },
-  //       },
-  //       'layout-shift-elements': {
-  //         score: null,
-  //         displayValue: '2 elements found',
-  //         details: {
-  //           items: {
-  //             length: 2,
-  //           },
-  //         },
-  //       },
-  //     },
-  //   },
-  // },
+  {
+    lhr: {
+      requestedUrl: 'http://localhost:10200/perf/trace-elements.html',
+      finalUrl: 'http://localhost:10200/perf/trace-elements.html',
+      audits: {
+        'largest-contentful-paint-element': {
+          score: null,
+          displayValue: '1 element found',
+          details: {
+            items: [
+              {
+                node: {
+                  type: 'node',
+                  nodeLabel: 'img',
+                  selector: 'body > div#late-content > img',
+                },
+              },
+            ],
+          },
+        },
+        // TODO: uncomment when Chrome m84 lands
+        // 'layout-shift-elements': {
+        //   score: null,
+        //   displayValue: '2 elements found',
+        //   details: {
+        //     items: {
+        //       length: 2,
+        //     },
+        //   },
+        // },
+        'long-tasks': {
+          score: null,
+          details: {
+            items: {
+              0: {
+                url: 'http://localhost:10200/perf/delayed-element.js',
+                duration: '>500',
+              },
+            },
+          },
+        },
+      },
+    },
+  },
 ];

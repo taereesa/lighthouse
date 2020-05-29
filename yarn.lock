@@ -5322,10 +5322,10 @@ lighthouse-logger@^1.0.0, lighthouse-logger@^1.2.0:
     debug "^2.6.8"
     marky "^1.2.0"
 
-lighthouse-plugin-publisher-ads@^0.4.3:
-  version "0.4.3"
-  resolved "https://registry.yarnpkg.com/lighthouse-plugin-publisher-ads/-/lighthouse-plugin-publisher-ads-0.4.3.tgz#3b03e966fa18a940e9bd35380374f8b612fa0c3a"
-  integrity sha512-Ra5Xqd3EqK8mzs0YzHnk9evj9WQc2z+WbyyjK1LXcuaQIn2p8jmE7C/5NH1fqMsGiSBN2LBvbvGCgcopn1wjdg==
+lighthouse-plugin-publisher-ads@^1.1.0-beta.0:
+  version "1.1.0-beta.0"
+  resolved "https://registry.yarnpkg.com/lighthouse-plugin-publisher-ads/-/lighthouse-plugin-publisher-ads-1.1.0-beta.0.tgz#9279958851fde29b73fdcf96e2b36fa16a1ea5c0"
+  integrity sha512-AYNgSTYhVshp+As+Dh9NWnEXx81d/oawYQtr6qJhgM9zM+8upcO/AHuKQFmQI9vn61XOM3zmxOP4WNcDLCEYFg==
   dependencies:
     "@tusbar/cache-control" "^0.3.1"
     esprima "^4.0.1"

@@ -773,13 +773,10 @@ class DropDown {
 
   /**
    * Focus out handler for the drop down menu.
-   * @param {Event} e
+   * @param {FocusEvent} e
    */
   onMenuFocusOut(e) {
-    // TODO: The focusout event is not supported in our current version of typescript (3.5.3)
-    // https://github.com/microsoft/TypeScript/issues/30716
-    const focusEvent = /** @type {FocusEvent} */ (e);
-    const focusedEl = /** @type {?HTMLElement} */ (focusEvent.relatedTarget);
+    const focusedEl = /** @type {?HTMLElement} */ (e.relatedTarget);
 
     if (!this._menuEl.contains(focusedEl)) {
       this.close();

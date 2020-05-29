@@ -5,7 +5,7 @@
     "hostUserAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3358.0 Safari/537.36",
     "benchmarkIndex": 1000
   },
-  "lighthouseVersion": "6.0.0-beta.0",
+  "lighthouseVersion": "6.0.0",
   "fetchTime": "2018-03-13T00:55:45.840Z",
   "requestedUrl": "http://localhost:10200/dobetterweb/dbw_tester.html",
   "finalUrl": "http://localhost:10200/dobetterweb/dbw_tester.html",
@@ -632,8 +632,8 @@
     },
     "image-size-responsive": {
       "id": "image-size-responsive",
-      "title": "Displays images with inappropriate size",
-      "description": "Image natural dimensions should be proportional to the display size and the pixel ratio to maximize image clarity. [Learn more](https://web.dev/image-size-responsive).",
+      "title": "Serves images with low resolution",
+      "description": "Image natural dimensions should be proportional to the display size and the pixel ratio to maximize image clarity. [Learn more](https://web.dev/serve-responsive-images/).",
       "score": 0,
       "scoreDisplayMode": "binary",
       "details": {
@@ -1792,6 +1792,48 @@
               "nodeLabel": "Aside from that, I’ve been busy working on Lighthouse, performance metrics, too…",
               "snippet": "<p>"
             }
+          }
+        ]
+      }
+    },
+    "long-tasks": {
+      "id": "long-tasks",
+      "title": "Avoid long main-thread tasks",
+      "description": "Lists the longest tasks on the main thread, useful for identifying worst contributors to input delay. [Learn more](https://web.dev/long-tasks-devtools)",
+      "score": null,
+      "scoreDisplayMode": "informative",
+      "displayValue": "4 long tasks found",
+      "details": {
+        "type": "table",
+        "headings": [
+          {
+            "key": "url",
+            "itemType": "url",
+            "text": "URL"
+          },
+          {
+            "key": "duration",
+            "itemType": "ms",
+            "granularity": 1,
+            "text": "Duration"
+          }
+        ],
+        "items": [
+          {
+            "url": "http://localhost:10200/dobetterweb/dbw_tester.js",
+            "duration": 983.081
+          },
+          {
+            "url": "http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js",
+            "duration": 127.282
+          },
+          {
+            "url": "Unattributable",
+            "duration": 123.752
+          },
+          {
+            "url": "http://localhost:10200/zone.js",
+            "duration": 96.198
           }
         ]
       }
@@ -3074,7 +3116,7 @@
       "score": 0,
       "scoreDisplayMode": "binary",
       "warnings": [
-        "Unable to determine the destination for anchor (<a target=\"blank\">Hello</a>). If not used as a hyperlink, consider removing target=_blank."
+        "Unable to determine the destination for anchor (<a target=\"_blank\">). If not used as a hyperlink, consider removing target=_blank."
       ],
       "details": {
         "type": "table",
@@ -3089,41 +3131,54 @@
           {
             "node": {
               "type": "node",
-              "path": "",
-              "selector": "",
-              "nodeLabel": "",
-              "snippet": "<a href=\"https://www.google.com/\" target=\"blank\">Hello</a>"
+              "path": "3,HTML,1,BODY,36,A",
+              "selector": "body > a",
+              "nodeLabel": "external link",
+              "snippet": "<a href=\"https://www.google.com/\" target=\"_blank\">"
             },
             "href": "https://www.google.com/",
             "target": "_blank",
             "rel": "",
-            "outerHTML": "<a href=\"https://www.google.com/\" target=\"blank\">Hello</a>"
+            "outerHTML": "<a href=\"https://www.google.com/\" target=\"_blank\">"
           },
           {
             "node": {
               "type": "node",
-              "path": "",
-              "selector": "",
-              "nodeLabel": "",
-              "snippet": "<a target=\"blank\">Hello</a>"
+              "path": "3,HTML,1,BODY,38,A",
+              "selector": "body > a",
+              "nodeLabel": "external link",
+              "snippet": "<a target=\"_blank\">"
             },
             "href": "Unknown",
             "target": "_blank",
             "rel": "",
-            "outerHTML": "<a target=\"blank\">Hello</a>"
+            "outerHTML": "<a target=\"_blank\">"
           },
           {
             "node": {
               "type": "node",
-              "path": "",
-              "selector": "",
-              "nodeLabel": "",
-              "snippet": "<a rel=\"nofollow\" href=\"https://www.google.com/\" target=\"blank\">Hello</a>"
+              "path": "3,HTML,1,BODY,40,A",
+              "selector": "body > a",
+              "nodeLabel": "external link",
+              "snippet": "<a href=\"https://www.google.com/\" target=\"_blank\" rel=\"nofollow\">"
             },
             "href": "https://www.google.com/",
             "target": "_blank",
             "rel": "nofollow",
-            "outerHTML": "<a rel=\"nofollow\" href=\"https://www.google.com/\" target=\"blank\">Hello</a>"
+            "outerHTML": "<a href=\"https://www.google.com/\" target=\"_blank\" rel=\"nofollow\">"
+          },
+          {
+            "node": {
+              "type": "node",
+              "path": "3,HTML,1,BODY,52,A",
+              "selector": "body > a",
+              "nodeLabel": "internal link is ok",
+              "snippet": "<a href=\"./doesnotexist\" target=\"_blank\">"
+            },
+            "href": "http://localhost:53133/dobetterweb/doesnotexist",
+            "target": "_blank",
+            "rel": "",
+            "outerHTML": "<a href=\"./doesnotexist\" target=\"_blank\">"
           }
         ]
       }
@@ -3570,6 +3625,43 @@
         "headings": [],
         "items": [],
         "summary": {}
+      }
+    },
+    "crawlable-anchors": {
+      "id": "crawlable-anchors",
+      "title": "Links are not crawlable",
+      "description": "Search engines may use `href` attributes on links to crawl websites. Ensure that the `href` attribute of anchor elements links to an appropriate destination, so more pages of the site can be discovered. [Learn More](https://support.google.com/webmasters/answer/9112205)",
+      "score": 0,
+      "scoreDisplayMode": "binary",
+      "details": {
+        "type": "table",
+        "headings": [
+          {
+            "key": "node",
+            "itemType": "node",
+            "text": "Uncrawlable Link"
+          }
+        ],
+        "items": [
+          {
+            "node": {
+              "type": "node",
+              "path": "3,HTML,1,BODY,38,A",
+              "selector": "body > a",
+              "nodeLabel": "external link",
+              "snippet": "<a target=\"_blank\">"
+            }
+          },
+          {
+            "node": {
+              "type": "node",
+              "path": "3,HTML,1,BODY,54,A",
+              "selector": "body > a",
+              "nodeLabel": "a",
+              "snippet": "<a href=\"javascript:void(0)\" target=\"_blank\">"
+            }
+          }
+        ]
       }
     },
     "is-crawlable": {
@@ -4026,6 +4118,11 @@
           "group": "diagnostics"
         },
         {
+          "id": "long-tasks",
+          "weight": 0,
+          "group": "diagnostics"
+        },
+        {
           "id": "network-requests",
           "weight": 0
         },
@@ -4423,6 +4520,11 @@
           "group": "seo-content"
         },
         {
+          "id": "crawlable-anchors",
+          "weight": 1,
+          "group": "seo-crawl"
+        },
+        {
           "id": "is-crawlable",
           "weight": 1,
           "group": "seo-crawl"
@@ -4468,7 +4570,7 @@
         }
       ],
       "id": "seo",
-      "score": 0.73
+      "score": 0.67
     },
     "pwa": {
       "title": "Progressive Web App",
@@ -5176,6 +5278,12 @@
       },
       {
         "startTime": 0,
+        "name": "lh:audit:long-tasks",
+        "duration": 100,
+        "entryType": "measure"
+      },
+      {
+        "startTime": 0,
         "name": "lh:audit:pwa-cross-browser",
         "duration": 100,
         "entryType": "measure"
@@ -5704,6 +5812,12 @@
       },
       {
         "startTime": 0,
+        "name": "lh:audit:crawlable-anchors",
+        "duration": 100,
+        "entryType": "measure"
+      },
+      {
+        "startTime": 0,
         "name": "lh:audit:is-crawlable",
         "duration": 100,
         "entryType": "measure"
@@ -6001,6 +6115,7 @@
         "audits[bootup-time].details.headings[0].text",
         "audits[network-rtt].details.headings[0].text",
         "audits[network-server-latency].details.headings[0].text",
+        "audits[long-tasks].details.headings[0].text",
         "audits[uses-long-cache-ttl].details.headings[0].text",
         "audits[total-byte-weight].details.headings[0].text",
         "audits[render-blocking-resources].details.headings[0].label",
@@ -6384,6 +6499,23 @@
           },
           "path": "audits[layout-shift-elements].displayValue"
         }
+      ],
+      "lighthouse-core/audits/long-tasks.js | title": [
+        "audits[long-tasks].title"
+      ],
+      "lighthouse-core/audits/long-tasks.js | description": [
+        "audits[long-tasks].description"
+      ],
+      "lighthouse-core/audits/long-tasks.js | displayValue": [
+        {
+          "values": {
+            "itemCount": 4
+          },
+          "path": "audits[long-tasks].displayValue"
+        }
+      ],
+      "lighthouse-core/lib/i18n/i18n.js | columnDuration": [
+        "audits[long-tasks].details.headings[1].text"
       ],
       "lighthouse-core/audits/manual/pwa-cross-browser.js | title": [
         "audits[pwa-cross-browser].title"
@@ -6855,7 +6987,7 @@
       "lighthouse-core/audits/dobetterweb/external-anchors-use-rel-noopener.js | warning": [
         {
           "values": {
-            "anchorHTML": "<a target=\"blank\">Hello</a>"
+            "anchorHTML": "<a target=\"_blank\">"
           },
           "path": "audits[external-anchors-use-rel-noopener].warnings[0]"
         }
@@ -6993,6 +7125,15 @@
       ],
       "lighthouse-core/audits/seo/link-text.js | description": [
         "audits[link-text].description"
+      ],
+      "lighthouse-core/audits/seo/crawlable-anchors.js | failureTitle": [
+        "audits[crawlable-anchors].title"
+      ],
+      "lighthouse-core/audits/seo/crawlable-anchors.js | description": [
+        "audits[crawlable-anchors].description"
+      ],
+      "lighthouse-core/audits/seo/crawlable-anchors.js | columnFailingLink": [
+        "audits[crawlable-anchors].details.headings[0].text"
       ],
       "lighthouse-core/audits/seo/is-crawlable.js | title": [
         "audits[is-crawlable].title"

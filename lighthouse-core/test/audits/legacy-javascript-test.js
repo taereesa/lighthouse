@@ -19,7 +19,7 @@ const createArtifacts = (scripts) => {
     url,
   }));
   return {
-    URL: {finalUrl: '', requestedUrl: ''},
+    URL: {finalUrl: 'https://www.example.com', requestedUrl: 'https://www.example.com'},
     devtoolsLogs: {defaultPass: networkRecordsToDevtoolsLog(networkRecords)},
     ScriptElements: scripts.map(({url, code}, index) => {
       return {
@@ -81,6 +81,18 @@ describe('LegacyJavaScript audit', () => {
     const result = await LegacyJavascript.audit(artifacts, {computedCache: new Map()});
     assert.equal(result.score, 1);
     assert.equal(result.details.debugData.signalCount, 0);
+  });
+
+  it('passes code with a legacy polyfill in third party resource', async () => {
+    const artifacts = createArtifacts([
+      {
+        code: 'String.prototype.repeat = function() {}',
+        url: 'https://www.googletagmanager.com/a.js',
+      },
+    ]);
+    const result = await LegacyJavascript.audit(artifacts, {computedCache: new Map()});
+    assert.equal(result.score, 1);
+    assert.equal(result.extendedInfo.signalCount, 1);
   });
 
   it('fails code with a legacy polyfill', async () => {

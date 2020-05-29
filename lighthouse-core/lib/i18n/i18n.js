@@ -84,6 +84,10 @@ const UIStrings = {
   columnOverBudget: 'Over Budget',
   /** Label for a column in a data table; entries will be a representation of a DOM element. */
   columnElement: 'Element',
+  /** Label for a column in a data table; entries will be the number of milliseconds since the page started loading. */
+  columnStartTime: 'Start Time',
+  /** Label for a column in a data table; entries will be the total number of milliseconds from the start time until the end time. */
+  columnDuration: 'Duration',
   /** Label for a row in a data table; entries will be the total number and byte size of all resources loaded by a web page. */
   totalResourceType: 'Total',
   /** Label for a row in a data table; entries will be the total number and byte size of all 'Document' resources loaded by a web page. */

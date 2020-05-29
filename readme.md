@@ -274,31 +274,6 @@ yarn
 yarn build-all
 ```
 
-#### installing protobuf
-If changing audit output, you'll need to have v3.7.1 of the protocol-buffer/protobuf compiler installed. (v3.7.1 is known to be compatible, and 3.11.x is known to be **not** compatible.).
-
-Homebrew should be able to install it correctly: `brew install protobuf@3.7`
-
-But if you want to do it manually, these steps that have worked well for us:
-
-```sh
-mkdir protobuf-install && cd protobuf-install
-curl -L -o protobuf-python-3.7.1.zip https://github.com/protocolbuffers/protobuf/releases/download/v3.7.1/protobuf-python-3.7.1.zip
-unzip protobuf-python-3.7.1.zip
-cd protobuf-3.7.1
-
-cd python
-python setup.py build
-python setup.py test
-(cd .. && autogen.sh && configure && make)
-(cd .. && sudo make install)
-python setup.py build --cpp_implementation
-sudo python setup.py install --cpp_implementation
-```
-
-Also, see the [official installation instructions](https://github.com/protocolbuffers/protobuf#protocol-compiler-installation).
-
-
 ### Run
 
 ```sh
@@ -362,7 +337,7 @@ This section details services that have integrated Lighthouse data. If you're wo
 
 * **[Fluxguard](https://fluxguard.com/)** - Fluxguard provides website DOM change monitoring orchestrated with Google Puppeteer, and audited by Lighthouse. Fluxguard is a freemium product, with monthly monitoring of up to 75 pages for free.
 
-* **[PageSpeed Green](https://pagespeed.green/)** - Web performance monitoring service for web sites. Track PageSpeed performance indicators for unlimited web pages from multiple regions. Check all code changes for PageSpeed degradations by integrating to your CD/CI using CLI. Powered By Google Lighthouse and Puppeteer. PageSpeed Green is a paid product with a free 14-day trial.
+* **[PageSpeed Green](https://pagespeed.green/)** - Website loading speed monitoring service. Track PageSpeed performance for unlimited web pages from multiple regions. Check all code changes for PageSpeed degradations by integrating to your CD/CI using CLI. Powered By Google Lighthouse and Puppeteer. PageSpeed Green is a freemium product with monthly monitoring of up to 200 audits for free.
 
 * **[SEO Guard](https://www.seo-guard.com)** — SEO Guard is a website monitoring solution. It provides metrics based on Lighthouse scores. The service is offered via free and paid premium plans.
 

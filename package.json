@@ -1,6 +1,6 @@
 {
   "name": "lighthouse",
-  "version": "6.0.0-beta.0",
+  "version": "6.0.0",
   "description": "Lighthouse",
   "main": "./lighthouse-core/index.js",
   "bin": {
@@ -130,7 +130,7 @@
     "isomorphic-fetch": "^2.2.1",
     "jest": "^24.9.0",
     "jsdom": "^12.2.0",
-    "lighthouse-plugin-publisher-ads": "^0.4.3",
+    "lighthouse-plugin-publisher-ads": "^1.1.0-beta.0",
     "lodash.clonedeep": "^4.5.0",
     "npm-run-posix-or-windows": "^2.0.2",
     "nyc": "^13.3.0",

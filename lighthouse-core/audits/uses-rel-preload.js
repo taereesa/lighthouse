@@ -78,11 +78,22 @@ class UsesRelPreloadAudit extends Audit {
     graph.traverse(node => node.type === 'network' && requests.push(node.record));
 
     const preloadRequests = requests.filter(req => req.isLinkPreload);
-    const preloadURLs = new Set(preloadRequests.map(req => req.url));
-    // A failed preload attempt will manifest as a URL that was requested twice.
+    const preloadURLsByFrame = new Map();
+    for (const request of preloadRequests) {
+      const preloadURLs = preloadURLsByFrame.get(request.frameId) || new Set();
+      preloadURLs.add(request.url);
+      preloadURLsByFrame.set(request.frameId, preloadURLs);
+    }
+
+    // A failed preload attempt will manifest as a URL that was requested twice within the same frame.
     // Once with `isLinkPreload` AND again without `isLinkPreload`.
-    const failedRequests = requests.filter(req => preloadURLs.has(req.url) && !req.isLinkPreload);
-    return new Set(failedRequests.map(req => req.url));
+    const duplicateRequestsAfterPreload = requests.filter(request => {
+      const preloadURLsForFrame = preloadURLsByFrame.get(request.frameId);
+      if (!preloadURLsForFrame) return false;
+      if (!preloadURLsForFrame.has(request.url)) return false;
+      return !request.isLinkPreload;
+    });
+    return new Set(duplicateRequestsAfterPreload.map(req => req.url));
   }
 
   /**
@@ -108,6 +119,8 @@ class UsesRelPreloadAudit extends Audit {
     if (URL.NON_NETWORK_PROTOCOLS.includes(request.protocol)) return false;
     // It's not at the right depth, don't recommend it.
     if (initiatorPath.length !== mainResourceDepth + 2) return false;
+    // It's not a request for the main frame, it wouldn't get reused even if you did preload it.
+    if (request.frameId !== mainResource.frameId) return false;
     // We survived everything else, just check that it's a first party request.
     return URL.rootDomainsMatch(request.url, mainResource.url);
   }

@@ -15,7 +15,6 @@ const UIStrings = {
   description: 'These DOM elements contribute most to the CLS of the page.',
   /** [ICU Syntax] Label for the Cumulative Layout Shift Elements audit identifying how many elements were found. */
   displayValue: `{nodeCount, plural,
-    =0 {No elements found}
     =1 {1 element found}
     other {# elements found}
     }`,
@@ -63,7 +62,10 @@ class LayoutShiftElements extends Audit {
     ];
 
     const details = Audit.makeTableDetails(headings, clsElementData);
-    const displayValue = str_(UIStrings.displayValue, {nodeCount: clsElementData.length});
+    let displayValue;
+    if (clsElementData.length > 0) {
+      displayValue = str_(UIStrings.displayValue, {nodeCount: clsElementData.length});
+    }
 
     return {
       score: 1,

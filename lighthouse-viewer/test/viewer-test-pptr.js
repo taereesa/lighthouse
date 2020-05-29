@@ -192,7 +192,7 @@ describe('Lighthouse Viewer', () => {
       await viewerPage.goto(url);
 
       // Wait for report to render.
-      await viewerPage.waitForSelector('.lh-metrics-container');
+      await viewerPage.waitForSelector('.lh-columns');
 
       const interceptedUrl = new URL(interceptedRequest.url());
       expect(interceptedUrl.origin + interceptedUrl.pathname)
@@ -249,7 +249,7 @@ describe('Lighthouse Viewer', () => {
       await viewerPage.goto(url);
 
       // Wait for report to render.call out to PSI with specified categories
-      await viewerPage.waitForSelector('.lh-metrics-container');
+      await viewerPage.waitForSelector('.lh-columns');
 
       const interceptedUrl = new URL(interceptedRequest.url());
       expect(interceptedUrl.origin + interceptedUrl.pathname)

@@ -777,13 +777,13 @@
     "message": "Êx́p̂éĉt́êd́ ŝíẑé"
   },
   "lighthouse-core/audits/image-size-responsive.js | description": {
-    "message": "Îḿâǵê ńât́ûŕâĺ d̂ím̂én̂śîón̂ś ŝh́ôúl̂d́ b̂é p̂ŕôṕôŕt̂íôńâĺ t̂ó t̂h́ê d́îśp̂ĺâý ŝíẑé âńd̂ t́ĥé p̂íx̂él̂ ŕât́îó t̂ó m̂áx̂ím̂íẑé îḿâǵê ćl̂ár̂ít̂ý. [L̂éâŕn̂ ḿôŕê](https://web.dev/image-size-responsive)."
+    "message": "Îḿâǵê ńât́ûŕâĺ d̂ím̂én̂śîón̂ś ŝh́ôúl̂d́ b̂é p̂ŕôṕôŕt̂íôńâĺ t̂ó t̂h́ê d́îśp̂ĺâý ŝíẑé âńd̂ t́ĥé p̂íx̂él̂ ŕât́îó t̂ó m̂áx̂ím̂íẑé îḿâǵê ćl̂ár̂ít̂ý. [L̂éâŕn̂ ḿôŕê](https://web.dev/serve-responsive-images/)."
   },
   "lighthouse-core/audits/image-size-responsive.js | failureTitle": {
-    "message": "D̂íŝṕl̂áŷś îḿâǵêś ŵít̂h́ îńâṕp̂ŕôṕr̂íât́ê śîźê"
+    "message": "Ŝér̂v́êś îḿâǵêś ŵít̂h́ l̂óŵ ŕêśôĺût́îón̂"
   },
   "lighthouse-core/audits/image-size-responsive.js | title": {
-    "message": "D̂íŝṕl̂áŷś îḿâǵêś ŵít̂h́ âṕp̂ŕôṕr̂íât́ê śîźê"
+    "message": "Ŝér̂v́êś îḿâǵêś ŵít̂h́ âṕp̂ŕôṕr̂íât́ê ŕêśôĺût́îón̂"
   },
   "lighthouse-core/audits/installable-manifest.js | description": {
     "message": "B̂ŕôẃŝér̂ś ĉán̂ ṕr̂óâćt̂ív̂él̂ý p̂ŕôḿp̂t́ ûśêŕŝ t́ô ád̂d́ ŷóûŕ âṕp̂ t́ô t́ĥéîŕ ĥóm̂éŝćr̂éêń, ŵh́îćĥ ćâń l̂éâd́ t̂ó ĥíĝh́êŕ êńĝáĝém̂én̂t́. [L̂éâŕn̂ ḿôŕê](https://web.dev/installable-manifest)."
@@ -822,7 +822,7 @@
     "message": "T̂h́êśê D́ÔḾ êĺêḿêńt̂ś ĉón̂t́r̂íb̂út̂é m̂óŝt́ t̂ó t̂h́ê ĆL̂Ś ôf́ t̂h́ê ṕâǵê."
   },
   "lighthouse-core/audits/layout-shift-elements.js | displayValue": {
-    "message": "{nodeCount, plural,\n    =0 {N̂ó êĺêḿêńt̂ś f̂óûńd̂}\n    =1 {1 él̂ém̂én̂t́ f̂óûńd̂}\n    other {# él̂ém̂én̂t́ŝ f́ôún̂d́}\n    }"
+    "message": "{nodeCount, plural,\n    =1 {1 êĺêḿêńt̂ f́ôún̂d́}\n    other {# êĺêḿêńt̂ś f̂óûńd̂}\n    }"
   },
   "lighthouse-core/audits/layout-shift-elements.js | title": {
     "message": "Âv́ôíd̂ ĺâŕĝé l̂áŷóût́ ŝh́îf́t̂ś"
@@ -850,6 +850,15 @@
   },
   "lighthouse-core/audits/load-fast-enough-for-pwa.js | title": {
     "message": "P̂áĝé l̂óâd́ îś f̂áŝt́ êńôúĝh́ ôń m̂ób̂íl̂é n̂ét̂ẃôŕk̂ś"
+  },
+  "lighthouse-core/audits/long-tasks.js | description": {
+    "message": "L̂íŝt́ŝ t́ĥé l̂ón̂ǵêśt̂ t́âśk̂ś ôń t̂h́ê ḿâín̂ t́ĥŕêád̂, úŝéf̂úl̂ f́ôŕ îd́êńt̂íf̂ýîńĝ ẃôŕŝt́ ĉón̂t́r̂íb̂út̂ór̂ś t̂ó îńp̂út̂ d́êĺâý. [L̂éâŕn̂ ḿôŕê](https://web.dev/long-tasks-devtools)"
+  },
+  "lighthouse-core/audits/long-tasks.js | displayValue": {
+    "message": "{itemCount, plural,\n  =1 {# l̂ón̂ǵ t̂áŝḱ f̂óûńd̂}\n  other {# ĺôńĝ t́âśk̂ś f̂óûńd̂}\n  }"
+  },
+  "lighthouse-core/audits/long-tasks.js | title": {
+    "message": "Âv́ôíd̂ ĺôńĝ ḿâín̂-t́ĥŕêád̂ t́âśk̂ś"
   },
   "lighthouse-core/audits/mainthread-work-breakdown.js | columnCategory": {
     "message": "Ĉát̂éĝór̂ý"
@@ -1006,6 +1015,18 @@
   },
   "lighthouse-core/audits/seo/canonical.js | title": {
     "message": "D̂óĉúm̂én̂t́ ĥáŝ á v̂ál̂íd̂ `rel=canonical`"
+  },
+  "lighthouse-core/audits/seo/crawlable-anchors.js | columnFailingLink": {
+    "message": "Ûńĉŕâẃl̂áb̂ĺê Ĺîńk̂"
+  },
+  "lighthouse-core/audits/seo/crawlable-anchors.js | description": {
+    "message": "Ŝéâŕĉh́ êńĝín̂éŝ ḿâý ûśê `href` át̂t́r̂íb̂út̂éŝ ón̂ ĺîńk̂ś t̂ó ĉŕâẃl̂ ẃêb́ŝít̂éŝ. Én̂śûŕê t́ĥát̂ t́ĥé `href` ât́t̂ŕîb́ût́ê óf̂ án̂ćĥór̂ él̂ém̂én̂t́ŝ ĺîńk̂ś t̂ó âń âṕp̂ŕôṕr̂íât́ê d́êśt̂ín̂át̂íôń, ŝó m̂ór̂é p̂áĝéŝ óf̂ t́ĥé ŝít̂é ĉán̂ b́ê d́îśĉóv̂ér̂éd̂. [Ĺêár̂ń M̂ór̂é](https://support.google.com/webmasters/answer/9112205)"
+  },
+  "lighthouse-core/audits/seo/crawlable-anchors.js | failureTitle": {
+    "message": "L̂ín̂ḱŝ ár̂é n̂ót̂ ćr̂áŵĺâb́l̂é"
+  },
+  "lighthouse-core/audits/seo/crawlable-anchors.js | title": {
+    "message": "L̂ín̂ḱŝ ár̂é ĉŕâẃl̂áb̂ĺê"
   },
   "lighthouse-core/audits/seo/font-size.js | description": {
     "message": "F̂ón̂t́ ŝíẑéŝ ĺêśŝ t́ĥán̂ 12ṕx̂ ár̂é t̂óô śm̂ál̂ĺ t̂ó b̂é l̂éĝíb̂ĺê án̂d́ r̂éq̂úîŕê ḿôb́îĺê v́îśît́ôŕŝ t́ô “ṕîńĉh́ t̂ó ẑóôḿ” îń ôŕd̂ér̂ t́ô ŕêád̂. Śt̂ŕîv́ê t́ô h́âv́ê >60% óf̂ ṕâǵê t́êx́t̂ ≥12ṕx̂. [Ĺêár̂ń m̂ór̂é](https://web.dev/font-size)."
@@ -1207,12 +1228,6 @@
   },
   "lighthouse-core/audits/timing-budget.js | title": {
     "message": "T̂ím̂ín̂ǵ b̂úd̂ǵêt́"
-  },
-  "lighthouse-core/audits/user-timings.js | columnDuration": {
-    "message": "D̂úr̂át̂íôń"
-  },
-  "lighthouse-core/audits/user-timings.js | columnStartTime": {
-    "message": "Ŝt́âŕt̂ T́îḿê"
   },
   "lighthouse-core/audits/user-timings.js | columnType": {
     "message": "T̂ýp̂é"
@@ -1445,6 +1460,9 @@
   "lighthouse-core/lib/i18n/i18n.js | columnCacheTTL": {
     "message": "Ĉáĉh́ê T́T̂Ĺ"
   },
+  "lighthouse-core/lib/i18n/i18n.js | columnDuration": {
+    "message": "D̂úr̂át̂íôń"
+  },
   "lighthouse-core/lib/i18n/i18n.js | columnElement": {
     "message": "Êĺêḿêńt̂"
   },
@@ -1471,6 +1489,9 @@
   },
   "lighthouse-core/lib/i18n/i18n.js | columnSource": {
     "message": "Ŝóûŕĉé"
+  },
+  "lighthouse-core/lib/i18n/i18n.js | columnStartTime": {
+    "message": "Ŝt́âŕt̂ T́îḿê"
   },
   "lighthouse-core/lib/i18n/i18n.js | columnTimeSpent": {
     "message": "T̂ím̂é Ŝṕêńt̂"
