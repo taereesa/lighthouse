@@ -261,8 +261,8 @@ describe('Budget', () => {
     });
 
     it('throws when an invalid budget is supplied', () => {
-      budgets[0].timings[0].budget = '100KB';
-      assert.throws(_ => Budget.initializeBudget(budgets), /Invalid budget: 100KB/);
+      budgets[0].timings[0].budget = '100KiB';
+      assert.throws(_ => Budget.initializeBudget(budgets), /Invalid budget: 100KiB/);
     });
 
     it('throws when a tolerance is supplied', () => {

@@ -20,7 +20,7 @@ const UIStrings = {
 
 const str_ = i18n.createMessageInstanceIdFn(__filename, UIStrings);
 
-// Allow 10KB of unused CSS to permit `:hover` and other styles not used on a non-interactive load.
+// Allow 10KiB of unused CSS to permit `:hover` and other styles not used on a non-interactive load.
 // @see https://github.com/GoogleChrome/lighthouse/issues/9353 for more discussion.
 const IGNORE_THRESHOLD_IN_BYTES = 10 * 1024;
 

@@ -75,8 +75,10 @@ class DetailsRenderer {
    */
   _renderBytes(details) {
     // TODO: handle displayUnit once we have something other than 'kb'
-    const value = Util.i18n.formatBytesToKB(details.value, details.granularity);
-    return this._renderText(value);
+    const value = Util.i18n.formatBytesToKiB(details.value, details.granularity);
+    const text = this._renderText(value);
+    text.setAttribute('title', Util.i18n.formatNumber(details.value));
+    return text;
   }
 
   /**

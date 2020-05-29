@@ -1587,7 +1587,7 @@
       "description": "To set budgets for the quantity and size of page resources, add a budget.json file. [Learn more](https://developers.google.com/web/tools/lighthouse/audits/budgets).",
       "score": null,
       "scoreDisplayMode": "informative",
-      "displayValue": "16 requests • 157 KB",
+      "displayValue": "16 requests • 157 KiB",
       "details": {
         "type": "table",
         "headings": [
@@ -2663,7 +2663,7 @@
       "scoreDisplayMode": "numeric",
       "numericValue": 160738,
       "numericUnit": "byte",
-      "displayValue": "Total size was 157 KB",
+      "displayValue": "Total size was 157 KiB",
       "details": {
         "type": "table",
         "headings": [
@@ -2823,7 +2823,7 @@
       "scoreDisplayMode": "numeric",
       "numericValue": 150,
       "numericUnit": "millisecond",
-      "displayValue": "Potential savings of 30 KB",
+      "displayValue": "Potential savings of 30 KiB",
       "warnings": [],
       "details": {
         "type": "opportunity",
@@ -2898,7 +2898,7 @@
       "scoreDisplayMode": "numeric",
       "numericValue": 0,
       "numericUnit": "millisecond",
-      "displayValue": "Potential savings of 9 KB",
+      "displayValue": "Potential savings of 9 KiB",
       "warnings": [],
       "details": {
         "type": "opportunity",
@@ -2963,7 +2963,7 @@
       "scoreDisplayMode": "numeric",
       "numericValue": 300,
       "numericUnit": "millisecond",
-      "displayValue": "Potential savings of 63 KB",
+      "displayValue": "Potential savings of 63 KiB",
       "details": {
         "type": "opportunity",
         "headings": [

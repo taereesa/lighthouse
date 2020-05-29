@@ -68,7 +68,7 @@ module.exports = [
       audits: {
         'resource-summary': {
           score: null,
-          displayValue: '10 requests • 164 KB',
+          displayValue: '10 requests • 164 KiB',
           details: {
             items: [
               {resourceType: 'total', requestCount: 10, transferSize: '168000±1000'},

@@ -38,9 +38,9 @@ describe('util helpers', () => {
 
   it('formats bytes', () => {
     const i18n = new I18n('en', {...Util.UIStrings});
-    assert.equal(i18n.formatBytesToKB(100), `0.1${NBSP}KB`);
-    assert.equal(i18n.formatBytesToKB(2000), `2${NBSP}KB`);
-    assert.equal(i18n.formatBytesToKB(1014 * 1024), `1,014${NBSP}KB`);
+    assert.equal(i18n.formatBytesToKiB(100), `0.1${NBSP}KiB`);
+    assert.equal(i18n.formatBytesToKiB(2000), `2${NBSP}KiB`);
+    assert.equal(i18n.formatBytesToKiB(1014 * 1024), `1,014${NBSP}KiB`);
   });
 
   it('formats ms', () => {
@@ -62,7 +62,7 @@ describe('util helpers', () => {
 
     const i18n = new I18n('de', {...Util.UIStrings});
     assert.strictEqual(i18n.formatNumber(number), '12.346,9');
-    assert.strictEqual(i18n.formatBytesToKB(number), `12,1${NBSP}KB`);
+    assert.strictEqual(i18n.formatBytesToKiB(number), `12,1${NBSP}KiB`);
     assert.strictEqual(i18n.formatMilliseconds(number), `12.350${NBSP}ms`);
     assert.strictEqual(i18n.formatSeconds(number), `12,3${NBSP}s`);
   });
@@ -73,7 +73,7 @@ describe('util helpers', () => {
 
     const i18n = new I18n('en-XA', {...Util.UIStrings});
     assert.strictEqual(i18n.formatNumber(number), '12.346,9');
-    assert.strictEqual(i18n.formatBytesToKB(number), `12,1${NBSP}KB`);
+    assert.strictEqual(i18n.formatBytesToKiB(number), `12,1${NBSP}KiB`);
     assert.strictEqual(i18n.formatMilliseconds(number), `12.350${NBSP}ms`);
     assert.strictEqual(i18n.formatSeconds(number), `12,3${NBSP}s`);
   });

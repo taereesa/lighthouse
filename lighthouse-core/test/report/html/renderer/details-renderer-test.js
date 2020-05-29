@@ -126,8 +126,8 @@ describe('DetailsRenderer', () => {
         type: 'opportunity',
         headings: [
           {key: 'url', valueType: 'url', label: 'URL'},
-          {key: 'totalBytes', valueType: 'bytes', label: 'Size (KB)'},
-          {key: 'wastedBytes', valueType: 'bytes', label: 'Potential Savings (KB)'},
+          {key: 'totalBytes', valueType: 'bytes', label: 'Size (KiB)'},
+          {key: 'wastedBytes', valueType: 'bytes', label: 'Potential Savings (KiB)'},
         ],
         items: [{
           url: 'https://example.com',

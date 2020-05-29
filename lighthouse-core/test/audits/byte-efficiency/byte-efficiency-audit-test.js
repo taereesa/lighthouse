@@ -146,7 +146,7 @@ describe('Byte efficiency base audit', () => {
     });
   });
 
-  it('should populate KB', () => {
+  it('should populate KiB', () => {
     const result = ByteEfficiencyAudit.createAuditProduct({
       headings: baseHeadings,
       items: [

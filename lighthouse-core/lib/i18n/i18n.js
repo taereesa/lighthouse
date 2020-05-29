@@ -50,8 +50,8 @@ const UIStrings = {
   ms: '{timeInMs, number, milliseconds}\xa0ms',
   /** Used to show the duration in seconds that something lasted. The {timeInMs} placeholder will be replaced with the time duration, shown in seconds (e.g. 5.2 s) */
   seconds: '{timeInMs, number, seconds}\xa0s',
-  /** Label shown per-audit to show how many bytes smaller the page could be if the user implemented the suggestions. The `{wastedBytes}` placeholder will be replaced with the number of bytes, shown in kilobytes (e.g. 148 KB) */
-  displayValueByteSavings: 'Potential savings of {wastedBytes, number, bytes}\xa0KB',
+  /** Label shown per-audit to show how many bytes smaller the page could be if the user implemented the suggestions. The `{wastedBytes}` placeholder will be replaced with the number of bytes, shown in kibibytes (e.g. 148 KiB) */
+  displayValueByteSavings: 'Potential savings of {wastedBytes, number, bytes}\xa0KiB',
   /** Label shown per-audit to show how many milliseconds faster the page load could be if the user implemented the suggestions. The `{wastedMs}` placeholder will be replaced with the time duration, shown in milliseconds (e.g. 140 ms) */
   displayValueMsSavings: 'Potential savings of {wastedMs, number, milliseconds}\xa0ms',
   /** Label for a column in a data table; entries will be the URL of a web resource */
