@@ -68,6 +68,7 @@ class LargestContentfulPaintElement extends Audit {
 
     return {
       score: 1,
+      notApplicable: lcpElementDetails.length === 0,
       displayValue,
       details,
     };

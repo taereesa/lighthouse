@@ -86,12 +86,23 @@ function collectAnchorElements() {
 /**
  * @param {LH.Gatherer.PassContext['driver']} driver
  * @param {string} devtoolsNodePath
+ * @return {Promise<Array<{type: string}>>}
  */
 async function getEventListeners(driver, devtoolsNodePath) {
-  const {nodeId} = await driver.sendCommand('DOM.pushNodeByPathToFrontend', {
-    path: devtoolsNodePath,
-  });
+  /** @type {number|undefined} */
+  let nodeId;
+  try {
+    const response = await driver.sendCommand('DOM.pushNodeByPathToFrontend', {
+      path: devtoolsNodePath,
+    });
 
+    nodeId = response.nodeId;
+  } catch (err) {
+    if (/No node.*found/.test(err.message)) return [];
+    throw err;
+  }
+
+  if (nodeId === undefined) return [];
   const {object: {objectId = ''}} = await driver.sendCommand('DOM.resolveNode', {
     nodeId,
   });
