@@ -7,7 +7,6 @@
 
 const ByteEfficiencyAudit = require('./byte-efficiency-audit.js');
 const ModuleDuplication = require('../../computed/module-duplication.js');
-const NetworkAnalyzer = require('../../lib/dependency-graph/simulator/network-analyzer.js');
 const i18n = require('../../lib/i18n/i18n.js');
 
 const UIStrings = {
@@ -187,29 +186,7 @@ class DuplicatedJavascript extends ByteEfficiencyAudit {
       items.push(otherItem);
     }
 
-    // Convert bytes to transfer size estimation.
-    const mainDocumentRecord = await NetworkAnalyzer.findMainDocument(networkRecords);
-    for (const [url, bytes] of wastedBytesByUrl.entries()) {
-      const networkRecord = url === artifacts.URL.finalUrl ?
-        mainDocumentRecord :
-        networkRecords.find(n => n.url === url);
-      const script = artifacts.ScriptElements.find(script => script.src === url);
-      if (!script || script.content === null) {
-        // This should never happen because we found the wasted bytes from bundles, which required contents in a ScriptElement.
-        continue;
-      }
-      if (!networkRecord) {
-        // This should never happen because we either have a network request for the main document (inline scripts),
-        // or the ScriptElement if for an external resource and so should have a network request.
-        continue;
-      }
-
-      const contentLength = script.content.length;
-      const transferSize =
-        ByteEfficiencyAudit.estimateTransferSize(networkRecord, contentLength, 'Script');
-      const transferRatio = transferSize / contentLength;
-      wastedBytesByUrl.set(url, bytes * transferRatio);
-    }
+    await this.convertWastedResourceBytesToTransferBytes(artifacts, networkRecords, wastedBytesByUrl);
 
     /** @type {LH.Audit.Details.OpportunityColumnHeading[]} */
     const headings = [

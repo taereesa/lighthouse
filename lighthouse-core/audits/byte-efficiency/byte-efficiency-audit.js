@@ -9,6 +9,7 @@ const Audit = require('../audit.js');
 const linearInterpolation = require('../../lib/statistics.js').linearInterpolation;
 const Interactive = require('../../computed/metrics/lantern-interactive.js');
 const i18n = require('../../lib/i18n/i18n.js');
+const NetworkAnalyzer = require('../../lib/dependency-graph/simulator/network-analyzer.js');
 const NetworkRecords = require('../../computed/network-records.js');
 const LoadSimulator = require('../../computed/load-simulator.js');
 const PageDependencyGraph = require('../../computed/page-dependency-graph.js');
@@ -38,7 +39,7 @@ const WASTED_MS_FOR_SCORE_OF_ZERO = 5000;
  * @overview Used as the base for all byte efficiency audits. Computes total bytes
  *    and estimated time saved. Subclass and override `audit_` to return results.
  */
-class UnusedBytes extends Audit {
+class ByteEfficiencyAudit extends Audit {
   /**
    * Creates a score based on the wastedMs value using linear interpolation between control points.
    *
@@ -216,7 +217,7 @@ class UnusedBytes extends Audit {
       displayValue,
       numericValue: wastedMs,
       numericUnit: 'millisecond',
-      score: UnusedBytes.scoreForWastedMs(wastedMs),
+      score: ByteEfficiencyAudit.scoreForWastedMs(wastedMs),
       extendedInfo: {
         value: {
           wastedMs,
@@ -226,6 +227,37 @@ class UnusedBytes extends Audit {
       },
       details,
     };
+  }
+
+  /**
+   * Convert bytes to transfer size estimation.
+   * @param {LH.Artifacts} artifacts
+   * @param {Array<LH.Artifacts.NetworkRequest>} networkRecords
+   * @param {Map<string, number>} wastedBytesByUrl
+   */
+  static async convertWastedResourceBytesToTransferBytes(artifacts, networkRecords, wastedBytesByUrl) {
+    const mainDocumentRecord = await NetworkAnalyzer.findMainDocument(networkRecords);
+    for (const [url, bytes] of wastedBytesByUrl.entries()) {
+      const networkRecord = url === artifacts.URL.finalUrl ?
+        mainDocumentRecord :
+        networkRecords.find(n => n.url === url);
+      const script = artifacts.ScriptElements.find(script => script.src === url);
+      if (!script || script.content === null) {
+        // This should never happen because we found the wasted bytes from bundles, which required contents in a ScriptElement.
+        continue;
+      }
+      if (!networkRecord) {
+        // This should never happen because we either have a network request for the main document (inline scripts),
+        // or the ScriptElement if for an external resource and so should have a network request.
+        continue;
+      }
+
+      const contentLength = script.content.length;
+      const transferSize =
+        ByteEfficiencyAudit.estimateTransferSize(networkRecord, contentLength, 'Script');
+      const transferRatio = transferSize / contentLength;
+      wastedBytesByUrl.set(url, bytes * transferRatio);
+    }
   }
 
   /* eslint-disable no-unused-vars */
@@ -243,4 +275,4 @@ class UnusedBytes extends Audit {
   /* eslint-enable no-unused-vars */
 }
 
-module.exports = UnusedBytes;
+module.exports = ByteEfficiencyAudit;

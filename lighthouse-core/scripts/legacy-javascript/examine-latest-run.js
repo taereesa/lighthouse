@@ -19,7 +19,7 @@
 const path = require('path');
 // @ts-ignore - We don't really need types for this
 const colors = require('colors');
-const LegacyJavascript = require('../../audits/legacy-javascript.js');
+const LegacyJavascript = require('../../audits/byte-efficiency/legacy-javascript.js');
 
 const LH_ROOT_DIR = path.join(__dirname, '../../../');
 const LATEST_RUN_DIR = path.join(LH_ROOT_DIR, 'latest-run');

@@ -12,7 +12,7 @@ const path = require('path');
 const glob = require('glob');
 const {execFileSync} = require('child_process');
 const crypto = require('crypto');
-const LegacyJavascript = require('../../audits/legacy-javascript.js');
+const LegacyJavascript = require('../../audits/byte-efficiency/legacy-javascript.js');
 const networkRecordsToDevtoolsLog = require('../../test/network-records-to-devtools-log.js');
 
 // Create variants in a directory named-cached by contents of this script and the lockfile.
