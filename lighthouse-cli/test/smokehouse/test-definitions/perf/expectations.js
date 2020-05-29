@@ -200,3 +200,37 @@ module.exports = [
     },
   },
 ];
+
+module.exports = [
+  {
+    lhr: {
+      requestedUrl: 'http://localhost:10200/perf/trace-elements.html?missing',
+      finalUrl: 'http://localhost:10200/perf/trace-elements.html?missing',
+      audits: {
+        'largest-contentful-paint-element': {
+          score: null,
+          displayValue: '1 element found',
+          details: {
+            items: [
+              {
+                node: {
+                  type: 'node',
+                  nodeLabel: 'img',
+                  selector: 'body > div#late-content > img',
+                },
+              },
+            ],
+          },
+        },
+        'layout-shift-elements': {
+          score: null,
+          scoreDisplayMode: 'notApplicable',
+          details: {
+            items: {
+              length: 0,
+            },
+          },
+        },
+      },
+    },
+  }];

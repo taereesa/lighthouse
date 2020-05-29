@@ -6,6 +6,24 @@
 
 /* eslint-disable */
 
+/** Create long tasks on the main thread. */
+function stall(ms) {
+  const start = performance.now();
+  while (performance.now() - start < ms) ;
+}
+
+/** Render large number of elements to fill up the backend node cache. */
+function rerender(iterations) {
+  const rerender_ = (i, resolve) => {
+    const filler = `<div>Filler element</div>`.repeat(4000);
+    document.body.innerHTML = `<div id="div-${i}">${i} left</div>${filler}`;
+    if (i === 0) resolve();
+    if (i > 0) requestAnimationFrame(() => rerender_(i - 1, resolve));
+  };
+
+  return new Promise(resolve => rerender_(iterations, resolve));
+}
+
 // largest-contentful-paint-element: add the largest element later in page load
 // layout-shift-elements: shift down the `<h1>` in the page
 setTimeout(() => {
@@ -16,10 +34,16 @@ setTimeout(() => {
   const top = document.getElementById('late-content');
   top.appendChild(imgEl);
   top.appendChild(textEl);
+
+  // layout-shift-elements: ensure we can handle missing shift elements
+  if (window.location.href.includes('?missing')) {
+    stall(100); // force a long task to ensure we reach the rerendering stage
+    setTimeout(async () => {
+      await rerender(20); // rerender a large number of nodes to evict the early layout shift node
+      document.body.textContent = 'Now it is all gone!';
+    }, 50);
+  }
 }, 1000);
 
 // long-tasks: add a very long task at least 500ms
-const start = performance.now();
-while (performance.now() - start < 800) {
-  for (let i = 0; i < 1000000; i++) ;
-}
+stall(800);
