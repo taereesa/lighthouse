@@ -156,27 +156,36 @@ describe('UnusedJavaScript audit', () => {
       expect(result.items).toMatchInlineSnapshot(`
         Array [
           Object {
-            "sourceBytes": Array [
-              10062,
-              660,
-              4043,
-              2138,
-              4117,
-            ],
-            "sourceWastedBytes": Array [
-              3760,
-              660,
-              500,
-              293,
-              256,
-            ],
-            "sources": Array [
-              "(unmapped)",
-              "…src/codecs/webp/encoder-meta.ts",
-              "…src/lib/util.ts",
-              "…src/custom-els/RangeInput/index.ts",
-              "…node_modules/comlink/comlink.js",
-            ],
+            "subRows": Object {
+              "items": Array [
+                Object {
+                  "source": "(unmapped)",
+                  "sourceBytes": 10062,
+                  "sourceWastedBytes": 3760,
+                },
+                Object {
+                  "source": "…src/codecs/webp/encoder-meta.ts",
+                  "sourceBytes": 660,
+                  "sourceWastedBytes": 660,
+                },
+                Object {
+                  "source": "…src/lib/util.ts",
+                  "sourceBytes": 4043,
+                  "sourceWastedBytes": 500,
+                },
+                Object {
+                  "source": "…src/custom-els/RangeInput/index.ts",
+                  "sourceBytes": 2138,
+                  "sourceWastedBytes": 293,
+                },
+                Object {
+                  "source": "…node_modules/comlink/comlink.js",
+                  "sourceBytes": 4117,
+                  "sourceWastedBytes": 256,
+                },
+              ],
+              "type": "subrows",
+            },
             "totalBytes": 83748,
             "url": "https://squoosh.app/main-app.js",
             "wastedBytes": 6961,
