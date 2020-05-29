@@ -77,9 +77,9 @@ class DetailsRenderer {
     // TODO: handle displayUnit once we have something other than 'kb'
     // Note that 'kb' is historical and actually represents KiB.
     const value = Util.i18n.formatBytesToKiB(details.value, details.granularity);
-    const text = this._renderText(value);
-    text.setAttribute('title', Util.i18n.formatBytes(details.value));
-    return text;
+    const textEl = this._renderText(value);
+    textEl.title = Util.i18n.formatBytes(details.value);
+    return textEl;
   }
 
   /**
@@ -158,7 +158,7 @@ class DetailsRenderer {
 
   /**
    * @param {string} text
-   * @return {Element}
+   * @return {HTMLDivElement}
    */
   _renderText(text) {
     const element = this._dom.createElement('div', 'lh-text');
