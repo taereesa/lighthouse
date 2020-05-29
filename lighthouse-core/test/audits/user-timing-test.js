@@ -22,6 +22,11 @@ describe('Performance: user-timings audit', () => {
   it('evaluates valid input correctly', () => {
     const artifacts = generateArtifactsWithTrace(traceEvents);
     return UserTimingsAudit.audit(artifacts, {computedCache: new Map()}).then(auditResult => {
+      const blackListedUTs = auditResult.details.items.filter(timing => {
+        return UserTimingsAudit.blacklistedPrefixes.some(prefix => timing.name.startsWith(prefix));
+      });
+      assert.equal(blackListedUTs.length, 0, 'Blacklisted usertimings included in results');
+
       assert.equal(auditResult.score, 0);
       expect(auditResult.displayValue).toBeDisplayString('2 user timings');
 
@@ -34,6 +39,30 @@ describe('Performance: user-timings audit', () => {
       assert.equal(auditResult.details.items[1].timingType, 'Mark');
       assert.equal(auditResult.details.items[1].startTime, 1000.954);
       assert.equal(auditResult.details.items[1].duration, undefined);
+    });
+  });
+
+  it('doesn\'t throw when user_timing events have a colon', () => {
+    const extraTraceEvents = traceEvents.concat([
+      {
+        'pid': 41904,
+        'tid': 1295,
+        'ts': 1676836141,
+        'ph': 'R',
+        'id': 'fake-event',
+        'cat': 'blink.user_timing',
+        'name': 'Zone:ZonePromise',
+        'dur': 64,
+        'tdur': 61,
+        'tts': 881373,
+        'args': {},
+      },
+    ]);
+
+    const artifacts = generateArtifactsWithTrace(extraTraceEvents);
+    return UserTimingsAudit.audit(artifacts, {computedCache: new Map()}).then(result => {
+      const fakeEvt = result.details.items.find(item => item.name === 'Zone:ZonePromise');
+      assert.ok(fakeEvt, 'failed to find user timing item with colon');
     });
   });
 });

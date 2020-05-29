@@ -92,7 +92,7 @@ describe('LegacyJavaScript audit', () => {
     ]);
     const result = await LegacyJavascript.audit(artifacts, {computedCache: new Map()});
     assert.equal(result.score, 1);
-    assert.equal(result.extendedInfo.signalCount, 1);
+    assert.equal(result.details.debugData.signalCount, 1);
   });
 
   it('fails code with a legacy polyfill', async () => {
