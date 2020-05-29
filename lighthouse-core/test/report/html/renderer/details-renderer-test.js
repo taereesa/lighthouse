@@ -571,75 +571,97 @@ describe('DetailsRenderer', () => {
     });
 
     describe('subRows', () => {
+      function makeSubrows(items) {
+        return {
+          type: 'subrows',
+          items,
+        };
+      }
+
       it('renders', () => {
         const details = {
           type: 'table',
-          headings: [{key: 'url', itemType: 'url', subRows: {key: 'sources', itemType: 'code'}}],
-          items: [
-            {url: 'https://www.example.com', sources: ['a', 'b', 'c']},
-          ],
-        };
-
-        const el = renderer.render(details);
-        const columnElement = el.querySelector('td.lh-table-column--url');
-
-        // First element is the url.
-        const codeEl = columnElement.firstChild;
-        assert.equal(codeEl.localName, 'div');
-        assert.ok(codeEl.classList.contains('lh-text__url'));
-        assert.equal(codeEl.textContent, 'https://www.example.com');
-
-        // Second element lists the multiple values.
-        const subRowsEl = columnElement.children[1];
-        assert.equal(subRowsEl.localName, 'div');
-        assert.ok(subRowsEl.classList.contains('lh-sub-rows'));
-
-        const multiValueEls = subRowsEl.querySelectorAll('.lh-sub-row');
-        assert.equal(multiValueEls[0].textContent, 'a');
-        assert.ok(multiValueEls[0].classList.contains('lh-code'));
-        assert.equal(multiValueEls[1].textContent, 'b');
-        assert.ok(multiValueEls[1].classList.contains('lh-code'));
-        assert.equal(multiValueEls[2].textContent, 'c');
-        assert.ok(multiValueEls[2].classList.contains('lh-code'));
-      });
-
-      it('renders, uses heading properties as fallback', () => {
-        const details = {
-          type: 'table',
-          headings: [{key: 'url', itemType: 'url', subRows: {key: 'sources'}}],
+          headings: [{key: 'url', itemType: 'url', subRows: {key: 'source', itemType: 'code'}}],
           items: [
             {
               url: 'https://www.example.com',
-              sources: [
-                'https://www.a.com',
-                {type: 'code', value: 'https://www.b.com'},
-                'https://www.c.com',
-              ],
+              subRows: makeSubrows([
+                {source: 'a'},
+                {source: 'b'},
+                {source: 'c'},
+              ]),
             },
           ],
         };
 
         const el = renderer.render(details);
-        const columnElement = el.querySelector('td.lh-table-column--url');
 
-        // First element is the url.
-        const codeEl = columnElement.firstChild;
+        const rowEls = el.querySelectorAll('tbody tr');
+        let rowEl;
+        let columnEl;
+
+        // First row contains a 'url' item type.
+        rowEl = rowEls[0];
+        columnEl = rowEl.querySelector('td.lh-table-column--url');
+        const codeEl = columnEl.firstChild;
         assert.equal(codeEl.localName, 'div');
         assert.ok(codeEl.classList.contains('lh-text__url'));
         assert.equal(codeEl.textContent, 'https://www.example.com');
 
-        // Second element lists the multiple values.
-        const subRowsEl = columnElement.children[1];
-        assert.equal(subRowsEl.localName, 'div');
-        assert.ok(subRowsEl.classList.contains('lh-sub-rows'));
+        // The sub-rows contain a 'code' item type.
+        for (let i = 0; i < details.items[0].subRows.items; i++) {
+          const source = details.items[0].subRows.items[i].source;
+          rowEl = rowEls[i + 1];
+          columnEl = rowEl.querySelector('td.lh-table-column--code');
+          assert.ok(rowEl.classList.contains('lh-sub-row'));
+          assert.ok(columnEl.firstChild.classList.contains('lh-code'));
+          assert.equal(rowEl.textContent, source);
+        }
+      });
 
-        const multiValueEls = subRowsEl.querySelectorAll('.lh-sub-row');
-        assert.equal(multiValueEls[0].textContent, 'https://www.a.com');
-        assert.ok(multiValueEls[0].classList.contains('lh-text__url'));
-        assert.equal(multiValueEls[1].textContent, 'https://www.b.com');
-        assert.ok(multiValueEls[1].classList.contains('lh-code'));
-        assert.equal(multiValueEls[2].textContent, 'https://www.c.com');
-        assert.ok(multiValueEls[2].classList.contains('lh-text__url'));
+      it('renders, uses heading properties as fallback', () => {
+        const details = {
+          type: 'table',
+          headings: [{key: 'url', itemType: 'url', subRows: {key: 'source'}}],
+          items: [
+            {
+              url: 'https://www.example.com',
+              subRows: makeSubrows([
+                {source: 'https://www.a.com'},
+                {source: {type: 'code', value: 'https://www.b.com'}},
+                {source: 'https://www.c.com'},
+              ]),
+            },
+          ],
+        };
+
+        const el = renderer.render(details);
+        const rowEls = el.querySelectorAll('tbody tr');
+        let rowEl;
+        let columnEl;
+
+        // First row contains a 'url' item type.
+        rowEl = rowEls[0];
+        columnEl = rowEl.querySelector('td.lh-table-column--url');
+        const codeEl = columnEl.firstChild;
+        assert.equal(codeEl.localName, 'div');
+        assert.ok(codeEl.classList.contains('lh-text__url'));
+        assert.equal(codeEl.textContent, 'https://www.example.com');
+
+        // The sub-rows contain a 'url' item type, except for the second one, which is 'code'.
+        for (let i = 0; i < details.items[0].subRows.items.length; i++) {
+          const source = details.items[0].subRows.items[i].source;
+          rowEl = rowEls[i + 1];
+          assert.ok(rowEl.classList.contains('lh-sub-row'));
+          columnEl = rowEl.querySelector('td');
+          if (typeof source === 'string') {
+            assert.ok(columnEl.firstChild.classList.contains('lh-text__url'));
+            assert.equal(rowEl.textContent, source);
+          } else {
+            assert.ok(columnEl.firstChild.classList.contains('lh-code'));
+            assert.equal(columnEl.textContent, source.value);
+          }
+        }
       });
     });
   });
