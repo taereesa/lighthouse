@@ -86,6 +86,15 @@ describe('Audit', () => {
         assert.strictEqual(auditResult.score, null);
       });
 
+      it('switches to an ERROR and is not scored if an errorMessage is passed in with null', () => {
+        const errorMessage = 'ERRRRR';
+        const auditResult = Audit.generateAuditResult(NumericAudit, {score: null, errorMessage});
+
+        assert.strictEqual(auditResult.scoreDisplayMode, Audit.SCORING_MODES.ERROR);
+        assert.strictEqual(auditResult.errorMessage, errorMessage);
+        assert.strictEqual(auditResult.score, null);
+      });
+
       it('switches to NOT_APPLICABLE and is not scored if product was marked notApplicable', () => {
         const auditResult = Audit.generateAuditResult(PassOrFailAudit,
             {score: 1, notApplicable: true});
@@ -259,6 +268,22 @@ describe('Audit', () => {
         type: 'list',
         items: [1, 2, 3],
       });
+    });
+  });
+
+  describe('#computeLogNormalScore', () => {
+    it('clamps the score to two decimal places', () => {
+      const params = {
+        median: 1000,
+        p10: 500,
+      };
+
+      assert.strictEqual(Audit.computeLogNormalScore(params, 0), 1);
+      assert.strictEqual(Audit.computeLogNormalScore(params, 250), 0.99);
+      assert.strictEqual(Audit.computeLogNormalScore(params, 1500), 0.23);
+      assert.strictEqual(Audit.computeLogNormalScore(params, 2500), 0.05);
+      assert.strictEqual(Audit.computeLogNormalScore(params, 4000), 0.01);
+      assert.strictEqual(Audit.computeLogNormalScore(params, 4100), 0);
     });
   });
 });

@@ -5,13 +5,13 @@
  */
 'use strict';
 
-const TimeToFirstByte = require('../../audits/time-to-first-byte.js');
+const ServerResponseTime = require('../../audits/server-response-time.js');
 const assert = require('assert').strict;
 const networkRecordsToDevtoolsLog = require('../network-records-to-devtools-log.js');
 
 /* eslint-env jest */
-describe('Performance: time-to-first-byte audit', () => {
-  it('fails when ttfb of root document is higher than 600ms', () => {
+describe('Performance: server-response-time audit', () => {
+  it('fails when response time of root document is higher than 600ms', () => {
     const mainResource = {
       url: 'https://example.com/',
       requestId: '0',
@@ -20,17 +20,17 @@ describe('Performance: time-to-first-byte audit', () => {
     const devtoolsLog = networkRecordsToDevtoolsLog([mainResource]);
 
     const artifacts = {
-      devtoolsLogs: {[TimeToFirstByte.DEFAULT_PASS]: devtoolsLog},
+      devtoolsLogs: {[ServerResponseTime.DEFAULT_PASS]: devtoolsLog},
       URL: {finalUrl: 'https://example.com/'},
     };
 
-    return TimeToFirstByte.audit(artifacts, {computedCache: new Map()}).then(result => {
+    return ServerResponseTime.audit(artifacts, {computedCache: new Map()}).then(result => {
       assert.strictEqual(result.numericValue, 630);
       assert.strictEqual(result.score, 0);
     });
   });
 
-  it('succeeds when ttfb of root document is lower than 600ms', () => {
+  it('succeeds when response time of root document is lower than 600ms', () => {
     const mainResource = {
       url: 'https://example.com/',
       requestId: '0',
@@ -39,11 +39,11 @@ describe('Performance: time-to-first-byte audit', () => {
     const devtoolsLog = networkRecordsToDevtoolsLog([mainResource]);
 
     const artifacts = {
-      devtoolsLogs: {[TimeToFirstByte.DEFAULT_PASS]: devtoolsLog},
+      devtoolsLogs: {[ServerResponseTime.DEFAULT_PASS]: devtoolsLog},
       URL: {finalUrl: 'https://example.com/'},
     };
 
-    return TimeToFirstByte.audit(artifacts, {computedCache: new Map()}).then(result => {
+    return ServerResponseTime.audit(artifacts, {computedCache: new Map()}).then(result => {
       assert.strictEqual(result.numericValue, 200);
       assert.strictEqual(result.score, 1);
     });

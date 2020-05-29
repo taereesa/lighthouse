@@ -18,31 +18,31 @@
     "message": "`[aria-*]` பண்புக்கூறுகள் அவற்றின் பங்களிப்புகளுடன் பொருந்துகின்றன"
   },
   "lighthouse-core/audits/accessibility/aria-hidden-body.js | description": {
-    "message": "Assistive technologies, like screen readers, work inconsistently when `aria-hidden=\"true\"` is set on the document `<body>`. [Learn more](https://web.dev/aria-hidden-body/)."
+    "message": "`<body>` ஆவணத்தில் `aria-hidden=\"true\"` அமைக்கப்பட்டிருக்கும்போது ஸ்க்ரீன் ரீடர்கள் போன்ற உதவிகரமான தொழில்நுட்பங்கள் சீரற்று இயங்கும். [மேலும் அறிக](https://web.dev/aria-hidden-body/)."
   },
   "lighthouse-core/audits/accessibility/aria-hidden-body.js | failureTitle": {
-    "message": "`[aria-hidden=\"true\"]` is present on the document `<body>`"
+    "message": "`<body>` ஆவணத்தில் `[aria-hidden=\"true\"]` உள்ளது"
   },
   "lighthouse-core/audits/accessibility/aria-hidden-body.js | title": {
-    "message": "`[aria-hidden=\"true\"]` is not present on the document `<body>`"
+    "message": "`<body>` ஆவணத்தில் `[aria-hidden=\"true\"]` இல்லை"
   },
   "lighthouse-core/audits/accessibility/aria-hidden-focus.js | description": {
-    "message": "Focusable descendents within an `[aria-hidden=\"true\"]` element prevent those interactive elements from being available to users of assistive technologies like screen readers. [Learn more](https://web.dev/aria-hidden-focus/)."
+    "message": "ஸ்க்ரீன் ரீடர்கள் போன்ற உதவிகரமான தொழில்நுட்பங்களின் பயனர்களுக்கு அந்த உரையாடல் உறுப்புகள் கிடைப்பதை `[aria-hidden=\"true\"]` உறுப்பு ஒன்றிற்குள் இருக்கும் மையப்படுத்தக்கூடிய வழித்தோன்றல்கள் தடுக்கும். [மேலும் அறிக](https://web.dev/aria-hidden-focus/)."
   },
   "lighthouse-core/audits/accessibility/aria-hidden-focus.js | failureTitle": {
-    "message": "`[aria-hidden=\"true\"]` elements contain focusable descendents"
+    "message": "`[aria-hidden=\"true\"]` உறுப்புகளில் மையப்படுத்தக்கூடிய வழித்தோன்றல்கள் உள்ளன"
   },
   "lighthouse-core/audits/accessibility/aria-hidden-focus.js | title": {
-    "message": "`[aria-hidden=\"true\"]` elements do not contain focusable descendents"
+    "message": "`[aria-hidden=\"true\"]` உறுப்புகளில் மையப்படுத்தக்கூடிய வழித்தோன்றல்கள் இல்லை"
   },
   "lighthouse-core/audits/accessibility/aria-input-field-name.js | description": {
-    "message": "When an input field doesn't have an accessible name, screen readers announce it with a generic name, making it unusable for users who rely on screen readers. [Learn more](https://web.dev/aria-input-field-name/)."
+    "message": "ஓர் உள்ளீட்டுப் புலத்திற்குத் தெளிவான பெயர் இல்லையெனில் ஸ்க்ரீன் ரீடர்கள் அதைப் பொதுவான பெயரைப் பயன்படுத்தி அறிவிக்கும், இது ஸ்க்ரீன் ரீடர்களைப் பயன்படுத்தும் பயனர்களுக்கு உதவியாக இருக்காது. [மேலும் அறிக](https://web.dev/aria-input-field-name/)."
   },
   "lighthouse-core/audits/accessibility/aria-input-field-name.js | failureTitle": {
-    "message": "ARIA input fields do not have accessible names"
+    "message": "ARIA உள்ளீட்டுப் புலங்களுக்குத் தெளிவான பெயர்கள் இல்லை"
   },
   "lighthouse-core/audits/accessibility/aria-input-field-name.js | title": {
-    "message": "ARIA input fields have accessible names"
+    "message": "ARIA உள்ளீட்டுப் புலங்கள் தெளிவான பெயர்களைக் கொண்டுள்ளன"
   },
   "lighthouse-core/audits/accessibility/aria-required-attr.js | description": {
     "message": "சில ARIA பங்களிப்புகளில் ஸ்க்ரீன் ரீடர்களுக்கு உறுப்பின் நிலையை விவரிக்கத் தேவையான பண்புக்கூறுகள் உள்ளன. [மேலும் அறிக](https://web.dev/aria-required-attr/)."
@@ -81,13 +81,13 @@
     "message": "`[role]` செல்லுபடியாகும் மதிப்புகளைக் கொண்டுள்ளன"
   },
   "lighthouse-core/audits/accessibility/aria-toggle-field-name.js | description": {
-    "message": "When a toggle field doesn't have an accessible name, screen readers announce it with a generic name, making it unusable for users who rely on screen readers. [Learn more](https://web.dev/aria-toggle-field-name/)."
+    "message": "நிலைமாற்றுப் புலம் ஒன்றுக்குத் தெளிவான பெயர் இல்லையெனில் ஸ்க்ரீன் ரீடர்கள் அதைப் பொதுவான பெயரைப் பயன்படுத்தி அறிவிக்கும், இது ஸ்க்ரீன் ரீடர்களைப் பயன்படுத்தும் பயனர்களுக்கு உதவியாக இருக்காது. [மேலும் அறிக](https://web.dev/aria-toggle-field-name/)."
   },
   "lighthouse-core/audits/accessibility/aria-toggle-field-name.js | failureTitle": {
-    "message": "ARIA toggle fields do not have accessible names"
+    "message": "ARIA நிலைமாற்றுப் புலங்களுக்குத் தெளிவான பெயர்கள் இல்லை"
   },
   "lighthouse-core/audits/accessibility/aria-toggle-field-name.js | title": {
-    "message": "ARIA toggle fields have accessible names"
+    "message": "ARIA நிலைமாற்றுப் புலங்கள் தெளிவான பெயர்களைக் கொண்டுள்ளன"
   },
   "lighthouse-core/audits/accessibility/aria-valid-attr-value.js | description": {
     "message": "செல்லுபடியாகாத மதிப்புகள் உள்ள ARIA பண்புக்கூறுகளை ஸ்க்ரீன் ரீடர்கள் போன்ற உதவிகரமான தொழில்நுட்பங்களால் புரிந்துகொள்ள இயலாது. [மேலும் அறிக](https://web.dev/aria-valid-attr-value/)."
@@ -141,10 +141,10 @@
     "message": "வரையறைப் பட்டியல்கள் சரியாகக் குறிக்கப்படவில்லை எனில் ஸ்க்ரீன் ரீடர்கள் குழப்பமான அல்லது துல்லியமற்ற வெளியீட்டைத் தரக்கூடும். [மேலும் அறிக](https://web.dev/definition-list/)."
   },
   "lighthouse-core/audits/accessibility/definition-list.js | failureTitle": {
-    "message": "சரியாக வரிசைப்படுத்தப்பட்ட `<dt>`, `<dd>` குழுக்கள், `<script>` அல்லது `<template>` உறுப்புகள் மட்டுமல்லாது வேறு வகைகளையும் `<dl>` கொண்டுள்ளது."
+    "message": "சரியாக வரிசைப்படுத்தப்பட்ட `<dt>`, `<dd>` ஆகிய குழுக்களும் `<script>`, `<template>`, `<div>` போன்ற உறுப்புகளும் மட்டுமல்லாது வேறு வகைகளையும் `<dl>` கொண்டுள்ளது."
   },
   "lighthouse-core/audits/accessibility/definition-list.js | title": {
-    "message": "`<dl>`கள் முறையாக வரிசைப்படுத்தப்பட்ட `<dt>`, `<dd>` குழுக்களையும் `<script>` அல்லது `<template>` உறுப்புகளையும் மட்டுமே கொண்டிருக்கும்."
+    "message": "சரியாக வரிசைப்படுத்தப்பட்ட `<dt>`, `<dd>` ஆகிய குழுக்களையும் `<script>`, `<template>`, `<div>` போன்ற உறுப்புகளையும் மட்டுமே `<dl>` கொண்டுள்ளது."
   },
   "lighthouse-core/audits/accessibility/dlitem.js | description": {
     "message": "விளக்கப்பட்டியலில் உள்ளவற்றை (`<dt>`,`<dd>`) ஸ்க்ரீன் ரீடர்கள் சரியாகப் படிக்க அவை ஒரு முதல்நிலை `<dl>` உறுப்பில் சேர்க்கப்பட்டிருக்க வேண்டும். [மேலும் அறிக](https://web.dev/dlitem/)."
@@ -165,31 +165,31 @@
     "message": "ஆவணத்தில் `<title>` உறுப்பு உள்ளது"
   },
   "lighthouse-core/audits/accessibility/duplicate-id-active.js | description": {
-    "message": "All focusable elements must have a unique `id` to ensure that they're visible to assistive technologies. [Learn more](https://web.dev/duplicate-id-active/)."
+    "message": "உதவிகரமான தொழில்நுட்பங்களுக்குத் தெரியும்வகையில் இருப்பதை உறுதிசெய்வதற்காக அனைத்து மையப்படுத்தக்கூடிய உறுப்புகளும் பிரத்தியேக `id` ஐக் கொண்டதாக இருக்க வேண்டும். [மேலும் அறிக](https://web.dev/duplicate-id-active/)."
   },
   "lighthouse-core/audits/accessibility/duplicate-id-active.js | failureTitle": {
-    "message": "`[id]` attributes on active, focusable elements are not unique"
+    "message": "செயலிலுள்ள, மையப்படுத்தக்கூடிய உறுப்புகளில் `[id]` பண்புக்கூறுகள் பிரத்தியேகமானவையாக இல்லை"
   },
   "lighthouse-core/audits/accessibility/duplicate-id-active.js | title": {
-    "message": "`[id]` attributes on active, focusable elements are unique"
+    "message": "செயலிலுள்ள, மையப்படுத்தக்கூடிய உறுப்புகளில் `[id]` பண்புக்கூறுகள் பிரத்தியேகமானவையாக உள்ளன"
   },
   "lighthouse-core/audits/accessibility/duplicate-id-aria.js | description": {
-    "message": "The value of an ARIA ID must be unique to prevent other instances from being overlooked by assistive technologies. [Learn more](https://web.dev/duplicate-id-aria/)."
+    "message": "உதவிகரமான தொழில்நுட்பங்களால் மற்ற நேர்வுகள் புறக்கணிக்கப்படுவதைத் தடுக்க, ARIA ஐடியின் மதிப்பு பிரத்தியேகமானதாக இருக்க வேண்டும். [மேலும் அறிக](https://web.dev/duplicate-id-aria/)."
   },
   "lighthouse-core/audits/accessibility/duplicate-id-aria.js | failureTitle": {
-    "message": "ARIA IDs are not unique"
+    "message": "ARIA ஐடிகள் பிரத்தியேகமானவையாக இல்லை"
   },
   "lighthouse-core/audits/accessibility/duplicate-id-aria.js | title": {
-    "message": "ARIA IDs are unique"
+    "message": "ARIA ஐடிகள் பிரத்தியேகமானவையாக உள்ளன"
   },
   "lighthouse-core/audits/accessibility/form-field-multiple-labels.js | description": {
-    "message": "Form fields with multiple labels can be confusingly announced by assistive technologies like screen readers which use either the first, the last, or all of the labels. [Learn more](https://web.dev/form-field-multiple-labels/)."
+    "message": "ஸ்க்ரீன் ரீடர்கள் போன்ற உதவிகரமான தொழில்நுட்பங்களால் பல லேபிள்களைக் கொண்ட படிவத்தின் புலங்கள் குழப்பமான வகையில் அறிவிக்கப்படலாம், இவை முதல் லேபிளையோ, இறுதி லேபிளையோ, அனைத்து லேபிள்களையுமோ பயன்படுத்தும். [மேலும் அறிக](https://web.dev/form-field-multiple-labels/)."
   },
   "lighthouse-core/audits/accessibility/form-field-multiple-labels.js | failureTitle": {
-    "message": "Form fields have multiple labels"
+    "message": "படிவத்தின் புலங்கள் பல லேபிள்களைக் கொண்டுள்ளன"
   },
   "lighthouse-core/audits/accessibility/form-field-multiple-labels.js | title": {
-    "message": "No form fields have multiple labels"
+    "message": "படிவத்தின் புலங்கள் எதுவும் பல லேபிள்களைக் கொண்டதாக இல்லை"
   },
   "lighthouse-core/audits/accessibility/frame-title.js | description": {
     "message": "ஃபிரேம்களில் உள்ளவற்றை விவரிக்க அவற்றின் தலைப்பை ஸ்க்ரீன் ரீடர் பயனர்கள் சார்ந்துள்ளனர். [மேலும் அறிக](https://web.dev/frame-title/)."
@@ -201,13 +201,13 @@
     "message": "`<frame>` அல்லது `<iframe>` உறுப்புகளுக்குத் தலைப்பு உள்ளது"
   },
   "lighthouse-core/audits/accessibility/heading-order.js | description": {
-    "message": "Properly ordered headings that do not skip levels convey the semantic structure of the page, making it easier to navigate and understand when using assistive technologies. [Learn more](https://web.dev/heading-order/)."
+    "message": "நிலைகளைத் தவிர்க்காமல் சரியாக வரிசைப்படுத்தப்பட்ட தலைப்புகள் பக்கத்தின் புரியக்கூடிய வடிவமைப்பிலான தோற்றமைப்பைத் தெரிவிக்கும், உதவிகரமான தொழில்நுட்பங்களைப் பயன்படுத்தும்போது எளிதாக வழிசெலுத்துவதற்கும் புரிந்துகொள்வதற்கும் இது உதவும். [மேலும் அறிக](https://web.dev/heading-order/)."
   },
   "lighthouse-core/audits/accessibility/heading-order.js | failureTitle": {
-    "message": "Heading elements are not in a sequentially-descending order"
+    "message": "தலைப்பு உறுப்புகள் தொடர்-இறங்குவரிசையில் இல்லை"
   },
   "lighthouse-core/audits/accessibility/heading-order.js | title": {
-    "message": "Heading elements appear in a sequentially-descending order"
+    "message": "தலைப்பு உறுப்புகள் தொடர்-இறங்குவரிசையில் உள்ளன"
   },
   "lighthouse-core/audits/accessibility/html-has-lang.js | description": {
     "message": "ஒரு பக்கமானது மொழியின் பண்புக்கூறைக் குறிப்பிடவில்லை எனில் ஸ்க்ரீன் ரீடரை அமைக்கும்போது பயனர் தேர்வுசெய்த மொழியையே பக்கத்தின் இயல்பு மொழியாக ஸ்க்ரீன் ரீடர் கருதும். இயல்பு மொழியில் பக்கம் இல்லை எனில் பக்கத்தின் உரையை ஸ்க்ரீன் ரீடர் சரியாக வாசிக்க முடியாமல் போகக்கூடும். [மேலும் அறிக](https://web.dev/html-has-lang/)."
@@ -404,6 +404,12 @@
   "lighthouse-core/audits/bootup-time.js | title": {
     "message": "JavaScript செயல்பாட்டு நேரம்"
   },
+  "lighthouse-core/audits/byte-efficiency/duplicated-javascript.js | description": {
+    "message": "நெட்வொர்க் செயல்பாடு தேவையற்ற பைட்களை உபயோகப்படுத்துவதைக் குறைக்க வேண்டுமென்றால் தொகுப்புகளிலிருந்து பெரிய, நகலெடுக்கப்பட்ட JavaScript மாடியூல்களை அகற்றவும். "
+  },
+  "lighthouse-core/audits/byte-efficiency/duplicated-javascript.js | title": {
+    "message": "JavaScript தொகுப்புகளில் உள்ள நகல் மாடியூல்களை அகற்றுதல்"
+  },
   "lighthouse-core/audits/byte-efficiency/efficient-animated-content.js | description": {
     "message": "அனிமேஷன் செய்தவற்றைக் காட்டுவதற்கு பெரிய அளவிலான GIFகள் பொருத்தமானவை அல்ல. நெட்வொர்க் பைட்களை சேமிக்க GIFக்குப் பதிலாக அனிமேஷன்களுக்கு MPEG4/WebM வீடியோக்களையும் நிலையான படங்களுக்கு PNG/WebP வடிவமைப்புகளையும் பயன்படுத்தவும். [மேலும் அறிக](https://web.dev/efficient-animated-content)"
   },
@@ -453,7 +459,7 @@
     "message": "பயன்படுத்தப்படாத CSSசை அகற்றவும்"
   },
   "lighthouse-core/audits/byte-efficiency/unused-javascript.js | description": {
-    "message": "Remove unused JavaScript to reduce bytes consumed by network activity. [Learn more](https://developers.google.com/web/fundamentals/performance/optimizing-javascript/code-splitting)."
+    "message": "நெட்வொர்க் செயல்பாடு பயன்படுத்தும் பைட்களைக் குறைப்பதற்கு, பயன்படுத்தப்படாத JavaScriptடை அகற்றவும். [மேலும் அறிக](https://web.dev/remove-unused-code/)."
   },
   "lighthouse-core/audits/byte-efficiency/unused-javascript.js | title": {
     "message": "பயன்படுத்தப்படாத JavaScriptடை அகற்றவும்"
@@ -516,25 +522,25 @@
     "message": "முக்கியக் கோரிக்கைகள் தொடர்ந்து கோர்வையாக உருவாவதைத் தவிர்க்கவும்"
   },
   "lighthouse-core/audits/deprecations.js | columnDeprecate": {
-    "message": "தடுத்தல் / எச்சரித்தல்"
+    "message": "நிறுத்தம் / எச்சரித்தல்"
   },
   "lighthouse-core/audits/deprecations.js | columnLine": {
     "message": "வரி"
   },
   "lighthouse-core/audits/deprecations.js | description": {
-    "message": "தடுக்கப்பட்ட APIகள் இறுதியில் உலாவியிலிருந்து அகற்றப்படும். [மேலும் அறிக](https://web.dev/deprecations)."
+    "message": "நிறுத்தப்பட்ட APIகள் இறுதியில் உலாவியிலிருந்து அகற்றப்படும். [மேலும் அறிக](https://web.dev/deprecations)."
   },
   "lighthouse-core/audits/deprecations.js | displayValue": {
     "message": "{itemCount,plural, =1{1 எச்சரிக்கை கண்டறியப்பட்டது}other{# எச்சரிக்கைகள் கண்டறியப்பட்டுள்ளன}}"
   },
   "lighthouse-core/audits/deprecations.js | failureTitle": {
-    "message": "தடுக்கப்பட்ட APIகளைப் பயன்படுத்துகிறது"
+    "message": "நிறுத்தப்பட்ட APIகளைப் பயன்படுத்துகிறது"
   },
   "lighthouse-core/audits/deprecations.js | title": {
-    "message": "தடுக்கப்பட்டுள்ள APIகளைத் தவிர்க்கும்"
+    "message": "நிறுத்தப்பட்டுள்ள APIகளைத் தவிர்க்கும்"
   },
   "lighthouse-core/audits/dobetterweb/appcache-manifest.js | description": {
-    "message": "ஆப்ஸின் தற்காலிக சேமிப்பு தடுக்கப்பட்டுள்ளது. [மேலும் அறிக](https://web.dev/appcache-manifest)."
+    "message": "ஆப்ஸின் தற்காலிக சேமிப்பு நிறுத்தப்பட்டுள்ளது. [மேலும் அறிக](https://web.dev/appcache-manifest)."
   },
   "lighthouse-core/audits/dobetterweb/appcache-manifest.js | displayValue": {
     "message": "\"{AppCacheManifest}\" கண்டறியப்பட்டது"
@@ -544,6 +550,15 @@
   },
   "lighthouse-core/audits/dobetterweb/appcache-manifest.js | title": {
     "message": "ஆப்ஸின் தற்காலிக சேமிப்பைத் தவிர்க்கும்"
+  },
+  "lighthouse-core/audits/dobetterweb/charset.js | description": {
+    "message": "எழுத்துக்குறிக் குறியாக்கத்திற்கான அறிவிப்பை வரையறுக்க வேண்டும். HTMLலின் முதல் 1024 பைட்களிலோ அல்லது Content-Type HTTP பதில் தலைப்பிலோ <meta> குறிச்சொல்லைக் குறிப்பிட்டு இதைச் செய்யலாம். [மேலும் அறிக](https://www.w3.org/International/questions/qa-html-encoding-declarations)."
+  },
+  "lighthouse-core/audits/dobetterweb/charset.js | failureTitle": {
+    "message": "எழுத்துக்குறியாக்க அறிவிப்பு இல்லை அல்லது HTMLலில் மிகவும் தாமதமாக நிகழ்கிறது"
+  },
+  "lighthouse-core/audits/dobetterweb/charset.js | title": {
+    "message": "எழுத்துக்குறியாக்கம் முறையாக இருக்கிறது"
   },
   "lighthouse-core/audits/dobetterweb/doctype.js | description": {
     "message": "ஆவண வகையைக் குறிப்பிடுவது குவர்க்ஸ் பயன்முறைக்கு உலாவியை மாற்றுவதைத் தடுக்கும். [மேலும் அறிக](https://web.dev/doctype)."
@@ -565,9 +580,6 @@
   },
   "lighthouse-core/audits/dobetterweb/doctype.js | title": {
     "message": "இந்தப் பக்கமானது HTML ஆவண வகையில் உள்ளது"
-  },
-  "lighthouse-core/audits/dobetterweb/dom-size.js | columnElement": {
-    "message": "உறுப்பு"
   },
   "lighthouse-core/audits/dobetterweb/dom-size.js | columnStatistic": {
     "message": "புள்ளிவிவரம்"
@@ -595,6 +607,9 @@
   },
   "lighthouse-core/audits/dobetterweb/dom-size.js | title": {
     "message": "அபரிமிதமான DOM அளவைத் தவிர்க்கிறது"
+  },
+  "lighthouse-core/audits/dobetterweb/external-anchors-use-rel-noopener.js | columnFailingAnchors": {
+    "message": "தோல்வியுற்ற ஆங்க்கர்கள்"
   },
   "lighthouse-core/audits/dobetterweb/external-anchors-use-rel-noopener.js | description": {
     "message": "ஏதேனும் புற இணைப்புகளின் செயல்திறனை அதிகரிக்கவும் அவற்றிலுள்ள பாதுகாப்புக் குறைபாடுகளைத் தடுக்கவும் `rel=\"noopener\"` அல்லது `rel=\"noreferrer\"`ஐ சேர்க்கவும். [மேலும் அறிக](https://web.dev/external-anchors-use-rel-noopener)."
@@ -630,7 +645,7 @@
     "message": "வேகம் குறைந்த இணைய சேவை உள்ள பயனர்களுக்கு, வெளி ஸ்கிரிப்ட்களை `document.write()` வழியாக உட்செலுத்தும்போது பக்கத்தை ஏற்றுவதை அது பல வினாடிகள் தாமதிக்கும். [மேலும் அறிக](https://web.dev/no-document-write)."
   },
   "lighthouse-core/audits/dobetterweb/no-document-write.js | failureTitle": {
-    "message": "`document.write()`ஐப் பயன்படுத்துகிறது"
+    "message": "`document.write()` ஐத் தவிர்க்கவும்"
   },
   "lighthouse-core/audits/dobetterweb/no-document-write.js | title": {
     "message": "`document.write()`ஐத் தவிர்க்கும்"
@@ -752,6 +767,24 @@
   "lighthouse-core/audits/image-aspect-ratio.js | warningCompute": {
     "message": "பட அளவு குறித்த தகவல் செல்லாதது {url}"
   },
+  "lighthouse-core/audits/image-size-responsive.js | columnActual": {
+    "message": "உண்மையான அளவு"
+  },
+  "lighthouse-core/audits/image-size-responsive.js | columnDisplayed": {
+    "message": "காட்டப்படும் அளவு"
+  },
+  "lighthouse-core/audits/image-size-responsive.js | columnExpected": {
+    "message": "எதிர்பார்க்கப்படும் அளவு"
+  },
+  "lighthouse-core/audits/image-size-responsive.js | description": {
+    "message": "படத்தின் தெளிவுத்தன்மையை அதிகரிக்க, படத்தின் இயல்புப் பரிமாணங்களானவை காட்சி அளவுக்கும் பிக்சல் விகிதத்திற்கும் நேர்விகிதத்தில் இருக்க வேண்டும். [மேலும் அறிக](https://web.dev/image-size-responsive)."
+  },
+  "lighthouse-core/audits/image-size-responsive.js | failureTitle": {
+    "message": "பொருத்தமற்ற அளவுள்ள படங்கள் காட்டப்படுன்றன"
+  },
+  "lighthouse-core/audits/image-size-responsive.js | title": {
+    "message": "சரியான அளவுள்ள படங்கள் காட்டப்படுன்றன"
+  },
   "lighthouse-core/audits/installable-manifest.js | description": {
     "message": "முக்கியத்துவத்தின் காரணமாக ஆப்ஸை முகப்புத் திரையில் சேர்க்குமாறு முன்னெச்சரிக்கையாக உலாவிகள் பயனர்களுக்கு அறிவிக்கும். [மேலும் அறிக](https://web.dev/installable-manifest)."
   },
@@ -775,6 +808,12 @@
   },
   "lighthouse-core/audits/is-on-https.js | title": {
     "message": "HTTPSஸைப் பயன்படுத்துகிறது"
+  },
+  "lighthouse-core/audits/legacy-javascript.js | description": {
+    "message": "புதிய JavaScript அம்சங்களை லெகஸி உலாவிகள் பயன்படுத்துவதற்குப் பாலிஃபில்களும் ட்ரான்ஸ்ஃபாரம்களும் உதவுகின்றன. எனினும் நவீன உலாவிகளுக்கு இவற்றுள் பல தேவைப்படுவதில்லை. தொகுக்கப்பட்ட JavaScriptடிற்கு, லெகஸி உலாவிகளுக்கான ஆதரவைத் தக்க வைக்கும் அதே நேரத்தில் நவீன உலாவிகளுக்கு மாற்றப்படும் குறியீடுகளைக் குறைப்பதற்காக மாடியூல்/நோமாடியூல் அம்சக் கண்டறிதலைப் பயன்படுத்தி நவீன ஸ்கிரிப்ட் பயன்படுத்துதல் உத்தியைப் பயன்படுத்துங்கள். [மேலும் அறிக](https://philipwalton.com/articles/deploying-es2015-code-in-production-today/)"
+  },
+  "lighthouse-core/audits/legacy-javascript.js | title": {
+    "message": "லெகஸி JavaScript"
   },
   "lighthouse-core/audits/load-fast-enough-for-pwa.js | description": {
     "message": "மொபைல் நெட்வொர்க்கில் பக்கம் வேகமாக ஏற்றப்பட்டால் அது மொபைல் பயனர்களுக்கு சிறந்த அனுபவத்தை வழங்கும். [மேலும் அறிக](https://web.dev/load-fast-enough-for-pwa)."
@@ -824,6 +863,18 @@
   "lighthouse-core/audits/manual/pwa-page-transitions.js | title": {
     "message": "பக்கத்தின் மாற்றங்கள் நெட்வொர்க்கில் தடுக்கப்பட்டவை போன்று தோன்றக்கூடாது"
   },
+  "lighthouse-core/audits/maskable-icon.js | description": {
+    "message": "சாதனத்தில் ஆப்ஸை நிறுவும்போது ஐகானின் படம் லெட்டர்பாக்ஸ் ஆகாமல் அந்த வடிவத்தினுள் முழுமையாகத் தோன்றுவதை மாஸ்க் செய்யப்பட்ட ஐகான் உறுதிப்படுத்துகின்றது. [மேலும் அறிக](https://web.dev/maskable-icon/)."
+  },
+  "lighthouse-core/audits/maskable-icon.js | failureTitle": {
+    "message": "மாஸ்க் செய்யக்கூடிய ஐகான் மெனிஃபெஸ்டில் இல்லை"
+  },
+  "lighthouse-core/audits/maskable-icon.js | title": {
+    "message": "மாஸ்க் செய்யப்பட்ட ஐகான் மெனிஃபெஸ்டில் உள்ளது"
+  },
+  "lighthouse-core/audits/metrics/cumulative-layout-shift.js | description": {
+    "message": "காட்சிப் பகுதிக்குள் தெரியக்கூடிய கூறுகளின் நகர்வை கியூமுலேட்டிவ் லேஅவுட் ஷிஃப்ட் அளவிடுகிறது. [மேலும் அறிக](https://web.dev/cls)."
+  },
   "lighthouse-core/audits/metrics/estimated-input-latency.js | description": {
     "message": "'தோராய உள்ளீட்டுத் தாமதம்' என்பது பக்கம் ஏற்றப்படும் பிஸியான 5 வினாடி காலஅளவின்போது பயனரின் உள்ளீட்டுக்கு பதிலளிக்க உங்கள் ஆப்ஸ் எவ்வளவு நேரம் எடுத்துக் கொள்கிறது என்பதற்கான தோராய மதிப்பாகும். பதிலளிக்க 50 மி.வி.க்கு மேல் தாமதமானால் உங்கள் ஆப்ஸ் மெதுவானது என்று பயனர்கள் கருதக்கூடும். [மேலும் அறிக](https://web.dev/estimated-input-latency)."
   },
@@ -840,19 +891,16 @@
     "message": "எதிர்வினை நேரம் என்பது பக்கம் முழுமையாக எதிர்வினையாற்றும் வகையில் ஏற்றப்படுவதற்கான கால அளவாகும். [மேலும் அறிக](https://web.dev/interactive)."
   },
   "lighthouse-core/audits/metrics/largest-contentful-paint.js | description": {
-    "message": "Largest Contentful Paint marks the time at which the largest text or image is painted. [Learn More](https://web.dev/largest-contentful-paint)"
-  },
-  "lighthouse-core/audits/metrics/largest-contentful-paint.js | title": {
-    "message": "Largest Contentful Paint"
+    "message": "'உள்ளடக்கமுள்ள மிகப்பெரிய தோற்றம்' மிகப்பெரிய உரையோ படமோ தோன்றும் நேரத்தைக் குறிக்கிறது. [மேலும் அறிக](https://web.dev/lighthouse-largest-contentful-paint)"
   },
   "lighthouse-core/audits/metrics/max-potential-fid.js | description": {
-    "message": "The maximum potential First Input Delay that your users could experience is the duration of the longest task. [Learn more](https://web.dev/lighthouse-max-potential-fid)."
+    "message": "உங்கள் பயனர்கள் எதிர்கொள்ளக்கூடிய அதிக சாத்தியமான ’முதல் உள்ளீட்டிற்குப் பதில் அளிக்கும் நேரம்’ என்பது மிக நீண்ட பணியின் கால அளவாகும். [மேலும் அறிக](https://web.dev/lighthouse-max-potential-fid)."
   },
   "lighthouse-core/audits/metrics/speed-index.js | description": {
     "message": "பக்கத்திலுள்ள உள்ளடக்கங்கள் எவ்வளவு விரைவாகத் தெரிகின்றன என்பதை 'வேக அட்டவணை' காண்பிக்கிறது. [மேலும் அறிக](https://web.dev/speed-index)."
   },
   "lighthouse-core/audits/metrics/total-blocking-time.js | description": {
-    "message": "Sum of all time periods between FCP and Time to Interactive, when task length exceeded 50ms, expressed in milliseconds. [Learn more](https://web.dev/lighthouse-total-blocking-time)."
+    "message": "பணியின் நீளம் 50மி.வி.களைத் தாண்டும்போது FCP மற்றும் எதிர்வினை நேரத்திற்கு இடையில் இருக்கும் எல்லா கால அளவுகளின் கூட்டுத்தொகை (மில்லி வினாடிகளில்). [மேலும் அறிக](https://web.dev/lighthouse-total-blocking-time)."
   },
   "lighthouse-core/audits/network-rtt.js | description": {
     "message": "நெட்வொர்க் ரவுண்ட் டிரிப் டைம்ஸ் (Round Trip Times - RTT) செயல்திறனில் பெரும் தாக்கத்தை ஏற்படுத்தும். அசல் சேவையகத்துக்கான RTT அதிகமாக இருந்தால் பயனரின் அருகில் இருக்கும் சேவையகங்கள் இணையதளத்தின் செயல்திறனை மேம்படுத்தலாம் என்பதைக் குறிக்கும். [மேலும் அறிக](https://hpbn.co/primer-on-latency-and-bandwidth/)."
@@ -870,7 +918,7 @@
     "message": "கணிக்க முடியாத நெட்வொர்க் சூழல்களிலும் சேவைச் செயலாக்கி உங்கள் இணைய ஆப்ஸை நம்பகமானதாக மாற்றும். [மேலும் அறிக](https://web.dev/offline-start-url)."
   },
   "lighthouse-core/audits/offline-start-url.js | errorLoading": {
-    "message": "Error loading {url} in Service Worker, got status code {statusCode}"
+    "message": "Service Workerரில் {url} ஐ ஏற்ற முடியவில்லை, {statusCode} எனும் நிலைக் குறியீடு கிடைத்துள்ளது"
   },
   "lighthouse-core/audits/offline-start-url.js | failureTitle": {
     "message": "ஆஃப்லைனில் உள்ள போது 200 என்ற HTTP நிலைக் குறியீட்டுடன் `start_url` விரைவாகப் பதிலளிக்கவில்லை"
@@ -1118,35 +1166,17 @@
   "lighthouse-core/audits/third-party-summary.js | title": {
     "message": "மூன்றாம் தரப்பு உபயோகத்தைக் குறைத்தல்"
   },
-  "lighthouse-core/audits/time-to-first-byte.js | description": {
-    "message": "'முதல் பைட்டின் நேரம்' என்பது உங்கள் சேவையகம் ஒரு பதிலை அனுப்பும் நேரத்தை சுட்டிக்காட்டுகிறது. [மேலும் அறிக](https://web.dev/time-to-first-byte)."
-  },
-  "lighthouse-core/audits/time-to-first-byte.js | displayValue": {
-    "message": "மூல ஆவணம் எடுத்துக் கொண்ட நேரம்: {timeInMs, number, milliseconds} மி.வி."
-  },
-  "lighthouse-core/audits/time-to-first-byte.js | failureTitle": {
-    "message": "சேவையக எதிர்வினை நேரங்களைக் குறைக்கவும் (TTFB)"
-  },
-  "lighthouse-core/audits/time-to-first-byte.js | title": {
-    "message": "சேவையகம் எதிர்வினையாற்றும் நேரங்கள் குறைவாக உள்ளன (TTFB)"
-  },
   "lighthouse-core/audits/timing-budget.js | columnMeasurement": {
-    "message": "Measurement"
+    "message": "அளவீடு"
   },
   "lighthouse-core/audits/timing-budget.js | columnTimingMetric": {
-    "message": "Metric"
+    "message": "மெட்ரிக்"
   },
   "lighthouse-core/audits/timing-budget.js | description": {
-    "message": "Set a timing budget to help you keep an eye on the performance of your site. Performant sites load fast and respond to user input events quickly. [Learn more](https://developers.google.com/web/tools/lighthouse/audits/budgets)."
+    "message": "டைமிங் பட்ஜெட் ஒன்றை அமையுங்கள், உங்கள் தளத்தின் செயல்திறனைக் கண்காணிக்க இது உதவும். செயல்திறன் மிக்க தளங்கள் வேகமாக ஏற்றப்படுவதோடு பயனர் உள்ளீடுகளுக்கு விரைவாக பதிலளிக்கும். [மேலும் அறிக](https://developers.google.com/web/tools/lighthouse/audits/budgets)."
   },
   "lighthouse-core/audits/timing-budget.js | title": {
-    "message": "Timing budget"
-  },
-  "lighthouse-core/audits/user-timings.js | columnDuration": {
-    "message": "கால அளவு"
-  },
-  "lighthouse-core/audits/user-timings.js | columnStartTime": {
-    "message": "தொடக்க நேரம்"
+    "message": "டைமிங் பட்ஜெட்"
   },
   "lighthouse-core/audits/user-timings.js | columnType": {
     "message": "வகை"
@@ -1168,6 +1198,9 @@
   },
   "lighthouse-core/audits/uses-rel-preconnect.js | title": {
     "message": "தேவைப்படும் டொமைன் பெயர்களுக்கு முன்கூட்டியே இணைப்பு வழங்கவும்"
+  },
+  "lighthouse-core/audits/uses-rel-preconnect.js | tooManyPreconnectLinksWarning": {
+    "message": "2க்கும் மேற்பட்ட முன்னிணைப்பு இணைப்புகள் உள்ளன. முன்னிணைப்பு இணைப்புகளை அரிதாகவும் மிகவும் முக்கியமான மூலங்களை இணைப்பதற்கும் மட்டுமே பயன்படுத்த வேண்டும்."
   },
   "lighthouse-core/audits/uses-rel-preload.js | crossoriginWarning": {
     "message": "\"{preloadURL}\"க்கான <link> முன்னிணைப்பு கண்டறியப்பட்டது, ஆனால் உலாவியால் அது பயன்படுத்தப்படவில்லை. `crossorigin` பண்புக்கூறை முறையாகப் பயன்படுத்துகிறீர்களா என்று சரிபார்க்கவும்."
@@ -1355,6 +1388,12 @@
   "lighthouse-core/config/default-config.js | seoMobileGroupTitle": {
     "message": "மொபைலுக்கேற்றது"
   },
+  "lighthouse-core/gather/gather-runner.js | warningRedirected": {
+    "message": "உங்கள் சோதனை URL ({requested}) {final}என்பதற்குத் திசைதிருப்பப்பட்டதால் எதிர்பரர்த்த அளவிற்குப் பக்கம் ஏற்றப்படாமல் போகக்கூடும். நேரடியாக இரண்டாவது URLலை சோதித்துப் பாருங்கள்."
+  },
+  "lighthouse-core/gather/gather-runner.js | warningTimeout": {
+    "message": "நேர வரம்பிற்குள் பக்கத்தை முழுமையாக ஏற்ற முடியவில்லை. இதனால் முடிவுகள் காட்டப்படாமல் போகலாம்."
+  },
   "lighthouse-core/lib/i18n/i18n.js | columnCacheTTL": {
     "message": "தற்காலிக நினைவக TTL"
   },
@@ -1370,11 +1409,17 @@
   "lighthouse-core/lib/i18n/i18n.js | columnRequests": {
     "message": "கோரிக்கைகள்"
   },
+  "lighthouse-core/lib/i18n/i18n.js | columnResourceSize": {
+    "message": "ஆதாரங்களின் அளவு"
+  },
   "lighthouse-core/lib/i18n/i18n.js | columnResourceType": {
     "message": "ஆதார வகை"
   },
   "lighthouse-core/lib/i18n/i18n.js | columnSize": {
     "message": "அளவு"
+  },
+  "lighthouse-core/lib/i18n/i18n.js | columnSource": {
+    "message": "மூலம்"
   },
   "lighthouse-core/lib/i18n/i18n.js | columnTimeSpent": {
     "message": "செலவிட்ட நேரம்"
@@ -1390,6 +1435,9 @@
   },
   "lighthouse-core/lib/i18n/i18n.js | columnWastedMs": {
     "message": "சேமிக்கப்படக்கூடியது"
+  },
+  "lighthouse-core/lib/i18n/i18n.js | cumulativeLayoutShiftMetric": {
+    "message": "கியூமுலேட்டிவ் லேஅவுட் ஷிஃப்ட்"
   },
   "lighthouse-core/lib/i18n/i18n.js | displayValueByteSavings": {
     "message": "சேமிக்கக்கூடிய அளவு: {wastedBytes, number, bytes} கி.பை."
@@ -1420,6 +1468,9 @@
   },
   "lighthouse-core/lib/i18n/i18n.js | interactiveMetric": {
     "message": "எதிர்வினை நேரம்"
+  },
+  "lighthouse-core/lib/i18n/i18n.js | largestContentfulPaintMetric": {
+    "message": "உள்ளடக்கமுள்ள மிகப்பெரிய தோற்றம்"
   },
   "lighthouse-core/lib/i18n/i18n.js | maxPotentialFIDMetric": {
     "message": "முதல் உள்ளீட்டிற்கு பதிலளிக்கக்கூடிய அதிகபட்ச நேரம்"
@@ -1514,11 +1565,38 @@
   "lighthouse-core/report/html/renderer/util.js | crcLongestDurationLabel": {
     "message": "முக்கியக் கோரிக்கைத் தடத்தின் அதிகபட்சத் தாமதம்:"
   },
+  "lighthouse-core/report/html/renderer/util.js | dropdownCopyJSON": {
+    "message": "JSONனை நகலெடு"
+  },
+  "lighthouse-core/report/html/renderer/util.js | dropdownDarkTheme": {
+    "message": "டார்க் தீம் நிலைமாற்று"
+  },
+  "lighthouse-core/report/html/renderer/util.js | dropdownPrintExpanded": {
+    "message": "விரிக்கப்பட்ட பிரிண்ட்"
+  },
+  "lighthouse-core/report/html/renderer/util.js | dropdownPrintSummary": {
+    "message": "பிரிண்ட் சுருக்கம்"
+  },
+  "lighthouse-core/report/html/renderer/util.js | dropdownSaveGist": {
+    "message": "Gistடாக சேமி"
+  },
+  "lighthouse-core/report/html/renderer/util.js | dropdownSaveHTML": {
+    "message": "HTMLலாக சேமி"
+  },
+  "lighthouse-core/report/html/renderer/util.js | dropdownSaveJSON": {
+    "message": "JSONனாக சேமி"
+  },
+  "lighthouse-core/report/html/renderer/util.js | dropdownViewer": {
+    "message": "வியூவரில் திற"
+  },
   "lighthouse-core/report/html/renderer/util.js | errorLabel": {
     "message": "பிழை!"
   },
   "lighthouse-core/report/html/renderer/util.js | errorMissingAuditInfo": {
     "message": "அறிக்கைப் பிழை: தணிக்கைத் தகவல் இல்லை"
+  },
+  "lighthouse-core/report/html/renderer/util.js | footerIssue": {
+    "message": "சிக்கலைப் புகார் செய்க"
   },
   "lighthouse-core/report/html/renderer/util.js | labDataTitle": {
     "message": "ஆய்வகத் தரவு"
@@ -1541,6 +1619,48 @@
   "lighthouse-core/report/html/renderer/util.js | passedAuditsGroupTitle": {
     "message": "தேர்ச்சி பெற்ற தணிக்கைகள்"
   },
+  "lighthouse-core/report/html/renderer/util.js | runtimeDesktopEmulation": {
+    "message": "மாதிரி இயக்கப்பட்ட டெஸ்க்டாப்"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeMobileEmulation": {
+    "message": "மாதிரி இயக்கப்பட்ட Moto G4"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeNoEmulation": {
+    "message": "மாதிரி இயக்கப்படவில்லை"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsBenchmark": {
+    "message": "CPU/நினைவகத் திறன்"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsCPUThrottling": {
+    "message": "CPU த்ராட்லிங்"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsChannel": {
+    "message": "இயங்கும் கருவி"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsDevice": {
+    "message": "சாதனம்"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsFetchTime": {
+    "message": "எடுக்கப்பட்ட நேரம்"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsNetworkThrottling": {
+    "message": "நெட்வொர்க் த்ராட்லிங்"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsTitle": {
+    "message": "இயக்க நேர அமைப்புகள்"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsUA": {
+    "message": "பயனர் ஏஜெண்ட் (ஹோஸ்ட்)"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsUANetwork": {
+    "message": "பயனர் ஏஜெண்ட் (நெட்வொர்க்)"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsUrl": {
+    "message": "URL"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeUnknown": {
+    "message": "தெரியவில்லை"
+  },
   "lighthouse-core/report/html/renderer/util.js | snippetCollapseButtonLabel": {
     "message": "துணுக்கைச் சுருக்கு"
   },
@@ -1549,6 +1669,9 @@
   },
   "lighthouse-core/report/html/renderer/util.js | thirdPartyResourcesLabel": {
     "message": "மூன்றாம் தரப்பு ஆதாரங்களைக் காட்டு"
+  },
+  "lighthouse-core/report/html/renderer/util.js | throttlingProvided": {
+    "message": "இயக்கச் சூழல் வழங்கியது"
   },
   "lighthouse-core/report/html/renderer/util.js | toplevelWarningsMessage": {
     "message": "Lighthouseஸின் இந்த இயக்கத்தைச் சில சிக்கல்கள் பாதிக்கின்றன:"
@@ -1610,9 +1733,6 @@
   "stack-packs/packs/magento.js | offscreen_images": {
     "message": "இணைய பிளாட்ஃபார்மின் [படங்களை மெதுவாக ஏற்றும்](https://web.dev/native-lazy-loading) அம்சத்தைப் பயன்படுத்த உங்கள் தயாரிப்பையும் கேட்டலாக் டெம்ப்ளேட்டுகளையும் மாற்றுவதைப் பரிசீலிக்கவும்."
   },
-  "stack-packs/packs/magento.js | time_to_first_byte": {
-    "message": "Magentoவின் [வார்னிஷ் ஒருங்கிணைப்பு](https://devdocs.magento.com/guides/v2.3/config-guide/varnish/config-varnish.html) அம்சத்தைப் பயன்படுத்தவும்."
-  },
   "stack-packs/packs/magento.js | unminified_css": {
     "message": "\"CSS கோப்புகளைச் சிறிதாக்குதல்\" என்ற விருப்பத்தேர்வை உங்கள் ஸ்டோரின் டெவெலப்பர் அமைப்புகளில் இயக்கவும். [மேலும் அறிக](https://devdocs.magento.com/guides/v2.3/performance-best-practices/configuration.html?itm_source=devdocs&itm_medium=search_page&itm_campaign=federated_search&itm_term=minify%20css%20files)."
   },
@@ -1640,9 +1760,6 @@
   "stack-packs/packs/react.js | redirects": {
     "message": "நீங்கள் ரியாக்ட் ரூட்டரைப் பயன்படுத்தினால் [ரூட் வழிசெலுத்தல்களுக்கு](https://reacttraining.com/react-router/web/api/Redirect) `<Redirect>` உறுப்பைப் பயன்படுத்துவதைக் குறைத்துக்கொள்ளவும்."
   },
-  "stack-packs/packs/react.js | time_to_first_byte": {
-    "message": "நீங்கள் சேவையகம் தரப்பாக இருந்து ரியாக்ட் கூறுகளை ரெண்டரிங் செய்பவராக இருந்தால் அனைத்தையும் ஒரே நேரத்தில் அல்லாமல் மார்க் அப்பின் வெவ்வேறு பகுதிகளைப் பெறவும் ஹைட்ரேட் செய்யவும் கிளையண்ட்டை அனுமதிப்பதற்கு `renderToNodeStream()` அல்லது `renderToStaticNodeStream()`ஐப் பயன்படுத்துவதைப் பரிசீலிக்கவும். [மேலும் அறிக](https://reactjs.org/docs/react-dom-server.html#rendertonodestream)."
-  },
   "stack-packs/packs/react.js | unminified_css": {
     "message": "உங்கள் பதிப்பு சிஸ்டம் CSS கோப்புகளை தானாகச் சிறிதாக்கினால் உங்கள் ஆப்ஸுக்கு தயாரிப்புப் பதிப்பை பயன்படுத்துவதை உறுதிப்படுத்திக்கொள்ளவும். ரியாக்ட் டெவெலப்பர் கருவிகள் நீட்டிப்பில் இதைப் பார்க்கலாம். [மேலும் அறிக](https://reactjs.org/docs/optimizing-performance.html#use-the-production-build)."
   },
@@ -1662,10 +1779,7 @@
     "message": "[lazy-load WordPress செருகுநிரலை](https://wordpress.org/plugins/search/lazy+load/) நிறுவி திரைக்கு வெளியிலுள்ள படங்களைத் தேவையான போது ஏற்றும் திறனைப் பெறலாம் அல்லது அந்தத் திறன் கொண்ட தீமிற்கு மாறலாம். [AMP செருகுநிரலையும்](https://wordpress.org/plugins/amp/) பயன்படுத்திப் பார்க்கவும்."
   },
   "stack-packs/packs/wordpress.js | render_blocking_resources": {
-    "message": "[முக்கியமான சொத்துகளை முன்னிலைப்படுத்தவோ](https://wordpress.org/plugins/search/critical+css/) [முக்கியத்துவம் குறைவான ஆதாரங்களைத் தவிர்க்கவோ](https://wordpress.org/plugins/search/defer+css+javascript/) உங்களுக்கு உதவக்கூடிய பல WordPress செருகுநிரல்கள் உள்ளன. இந்த செருகுநிரல்கள் வழங்கும் மேம்படுத்துதல்கள் உங்கள் தீமிலோ செருகுநிரலிலோ உள்ள அம்சத்தைப் பாதிக்கலாம். அதனால் நீங்கள் குறியீட்டில் சில மாற்றங்களை செய்ய வேண்டியிருக்கும்."
-  },
-  "stack-packs/packs/wordpress.js | time_to_first_byte": {
-    "message": "தீம்கள், செருகுநிரல்கள், சேவையக விவரக்குறிப்புகள் அனைத்தும் சேவையகத்தின் வேகத்தை நிர்ணயிக்கும். மேலும் மேம்படுத்தப்பட்ட தீமைக் கண்டறிந்து, மேம்படுத்தும் செருகுநிரலைக் கவனமாகத் தேர்ந்தெடுத்து மற்றும்/அல்லது சேவையகத்தை மேம்படுத்தவும்."
+    "message": "[முக்கியமான உடைமைகளை முன்னிலைப்படுத்தவோ](https://wordpress.org/plugins/search/critical+css/) [முக்கியத்துவம் குறைவான ஆதாரங்களைத் தவிர்க்கவோ](https://wordpress.org/plugins/search/defer+css+javascript/) உங்களுக்கு உதவக்கூடிய பல WordPress செருகுநிரல்கள் உள்ளன. இந்த செருகுநிரல்கள் வழங்கும் மேம்படுத்துதல்கள் உங்கள் தீமிலோ செருகுநிரலிலோ உள்ள அம்சத்தைப் பாதிக்கலாம். அதனால் நீங்கள் குறியீட்டில் சில மாற்றங்களை செய்ய வேண்டியிருக்கும்."
   },
   "stack-packs/packs/wordpress.js | total_byte_weight": {
     "message": "இடுகைப் பட்டியல்களில் முக்கியமான பகுதியை மட்டும் காட்டலாம் (உதாரணமாக மேலும் என்ற குறிச்சொல்லுடன்), பக்கத்தில் இடுகைகளின் எண்ணிக்கையைக் குறைக்கலாம், ஒரு பெரிய இடுகையைப் பல சின்ன பக்கங்களாகப் பிரிக்கலாம் அல்லது தேவையுள்ள போது மட்டும் கருத்துகளைச் செருகுநிரல்கள் மூலம் ஏற்றலாம்."

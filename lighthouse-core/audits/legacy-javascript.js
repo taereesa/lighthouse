@@ -17,9 +17,9 @@
 
 const Audit = require('./audit.js');
 const NetworkRecords = require('../computed/network-records.js');
-const MainResource = require('../computed/main-resource.js');
-const URL = require('../lib/url-shim.js');
+const JSBundles = require('../computed/js-bundles.js');
 const i18n = require('../lib/i18n/i18n.js');
+const thirdPartyWeb = require('../lib/third-party-web.js');
 
 const UIStrings = {
   /** Title of a Lighthouse audit that tells the user about legacy polyfills and transforms used on the page. This is displayed in a list of audit titles that Lighthouse generates. */
@@ -107,7 +107,7 @@ class LegacyJavascript extends Audit {
       scoreDisplayMode: Audit.SCORING_MODES.INFORMATIVE,
       description: str_(UIStrings.description),
       title: str_(UIStrings.title),
-      requiredArtifacts: ['devtoolsLogs', 'ScriptElements', 'URL'],
+      requiredArtifacts: ['devtoolsLogs', 'ScriptElements', 'SourceMaps', 'URL'],
     };
   }
 
@@ -148,9 +148,14 @@ class LegacyJavascript extends Audit {
       // TODO: perhaps this is the wrong place to check for a CDN polyfill. Remove?
       // expression += `|;e\\([^,]+,${qt(objectWithoutPrototype)},{${property}:`;
 
-      // Minified pattern.
+      // core-js@2 minified pattern.
       // $export($export.S,"Date",{now:function
       expression += `|\\$export\\([^,]+,${qt(objectWithoutPrototype)},{${property}:`;
+
+      // core-js@3 minified pattern.
+      // {target:"Array",proto:true},{fill:fill
+      // {target:"Array",proto:true,forced:!HAS_SPECIES_SUPPORT||!USES_TO_LENGTH},{filter:
+      expression += `|{target:${qt(objectWithoutPrototype)}\\S*},{${property}:`;
     } else {
       // WeakSet, etc.
       expression += `|function ${property}\\(`;
@@ -159,97 +164,116 @@ class LegacyJavascript extends Audit {
     return expression;
   }
 
+  static getPolyfillData() {
+    return [
+      /* eslint-disable max-len */
+      ['Array.prototype.fill', 'es6.array.fill'],
+      ['Array.prototype.filter', 'es6.array.filter'],
+      ['Array.prototype.find', 'es6.array.find'],
+      ['Array.prototype.findIndex', 'es6.array.find-index'],
+      ['Array.prototype.forEach', 'es6.array.for-each'],
+      ['Array.from', 'es6.array.from'],
+      ['Array.isArray', 'es6.array.is-array'],
+      ['Array.prototype.lastIndexOf', 'es6.array.last-index-of'],
+      ['Array.prototype.map', 'es6.array.map'],
+      ['Array.of', 'es6.array.of'],
+      ['Array.prototype.reduce', 'es6.array.reduce'],
+      ['Array.prototype.reduceRight', 'es6.array.reduce-right'],
+      ['Array.prototype.some', 'es6.array.some'],
+      ['Date.now', 'es6.date.now'],
+      ['Date.prototype.toISOString', 'es6.date.to-iso-string'],
+      ['Date.prototype.toJSON', 'es6.date.to-json'],
+      ['Date.prototype.toString', 'es6.date.to-string'],
+      ['Function.prototype.name', 'es6.function.name'],
+      ['Map', 'es6.map'],
+      ['Number.isInteger', 'es6.number.is-integer'],
+      ['Number.isSafeInteger', 'es6.number.is-safe-integer'],
+      ['Number.parseFloat', 'es6.number.parse-float'],
+      ['Number.parseInt', 'es6.number.parse-int'],
+      ['Object.assign', 'es6.object.assign'],
+      ['Object.create', 'es6.object.create'],
+      ['Object.defineProperties', 'es6.object.define-properties'],
+      ['Object.defineProperty', 'es6.object.define-property'],
+      ['Object.freeze', 'es6.object.freeze'],
+      ['Object.getOwnPropertyDescriptor', 'es6.object.get-own-property-descriptor'],
+      ['Object.getOwnPropertyNames', 'es6.object.get-own-property-names'],
+      ['Object.getPrototypeOf', 'es6.object.get-prototype-of'],
+      ['Object.isExtensible', 'es6.object.is-extensible'],
+      ['Object.isFrozen', 'es6.object.is-frozen'],
+      ['Object.isSealed', 'es6.object.is-sealed'],
+      ['Object.keys', 'es6.object.keys'],
+      ['Object.preventExtensions', 'es6.object.prevent-extensions'],
+      ['Object.seal', 'es6.object.seal'],
+      ['Object.setPrototypeOf', 'es6.object.set-prototype-of'],
+      ['Promise', 'es6.promise'],
+      ['Reflect.apply', 'es6.reflect.apply'],
+      ['Reflect.construct', 'es6.reflect.construct'],
+      ['Reflect.defineProperty', 'es6.reflect.define-property'],
+      ['Reflect.deleteProperty', 'es6.reflect.delete-property'],
+      ['Reflect.get', 'es6.reflect.get'],
+      ['Reflect.getOwnPropertyDescriptor', 'es6.reflect.get-own-property-descriptor'],
+      ['Reflect.getPrototypeOf', 'es6.reflect.get-prototype-of'],
+      ['Reflect.has', 'es6.reflect.has'],
+      ['Reflect.isExtensible', 'es6.reflect.is-extensible'],
+      ['Reflect.ownKeys', 'es6.reflect.own-keys'],
+      ['Reflect.preventExtensions', 'es6.reflect.prevent-extensions'],
+      ['Reflect.set', 'es6.reflect.set'],
+      ['Reflect.setPrototypeOf', 'es6.reflect.set-prototype-of'],
+      ['Set', 'es6.set'],
+      ['String.prototype.codePointAt', 'es6.string.code-point-at'],
+      ['String.prototype.endsWith', 'es6.string.ends-with'],
+      ['String.fromCodePoint', 'es6.string.from-code-point'],
+      ['String.prototype.includes', 'es6.string.includes'],
+      ['String.raw', 'es6.string.raw'],
+      ['String.prototype.repeat', 'es6.string.repeat'],
+      ['String.prototype.startsWith', 'es6.string.starts-with'],
+      ['String.prototype.trim', 'es6.string.trim'],
+      // These break the coreJs2/coreJs3 naming pattern so are set explicitly.
+      {name: 'ArrayBuffer', coreJs2Module: 'es6.typed.array-buffer', coreJs3Module: 'es.array-buffer.constructor'},
+      {name: 'DataView', coreJs2Module: 'es6.typed.data-view', coreJs3Module: 'es.data-view'},
+      ['Float32Array', 'es6.typed.float32-array'],
+      ['Float64Array', 'es6.typed.float64-array'],
+      ['Int16Array', 'es6.typed.int16-array'],
+      ['Int32Array', 'es6.typed.int32-array'],
+      ['Int8Array', 'es6.typed.int8-array'],
+      ['Uint16Array', 'es6.typed.uint16-array'],
+      ['Uint32Array', 'es6.typed.uint32-array'],
+      ['Uint8Array', 'es6.typed.uint8-array'],
+      ['Uint8ClampedArray', 'es6.typed.uint8-clamped-array'],
+      ['WeakMap', 'es6.weak-map'],
+      ['WeakSet', 'es6.weak-set'],
+      ['Array.prototype.includes', 'es7.array.includes'],
+      ['Object.entries', 'es7.object.entries'],
+      ['Object.getOwnPropertyDescriptors', 'es7.object.get-own-property-descriptors'],
+      ['Object.values', 'es7.object.values'],
+      ['String.prototype.padEnd', 'es7.string.pad-end'],
+      ['String.prototype.padStart', 'es7.string.pad-start'],
+      /* eslint-enable max-len */
+    ].map(data => {
+      if (!Array.isArray(data)) return data;
+
+      const [name, coreJs2Module] = data;
+      return {
+        name,
+        coreJs2Module,
+        coreJs3Module: coreJs2Module
+          .replace('es6.', 'es.')
+          .replace('es7.', 'es.')
+          .replace('typed.', 'typed-array.'),
+      };
+    });
+  }
+
   /**
    * @return {Pattern[]}
    */
   static getPolyfillPatterns() {
-    return [
-      'Array.fill',
-      'Array.from',
-      'Array.isArray',
-      'Array.of',
-      'Array.prototype.filter',
-      'Array.prototype.find',
-      'Array.prototype.findIndex',
-      'Array.prototype.forEach',
-      'Array.prototype.includes',
-      'Array.prototype.lastIndexOf',
-      'Array.prototype.map',
-      'Array.prototype.reduce',
-      'Array.prototype.reduceRight',
-      'Array.prototype.some',
-      'ArrayBuffer',
-      'DataView',
-      'Date.now',
-      'Date.prototype.toISOString',
-      'Date.prototype.toJSON',
-      'Date.prototype.toString',
-      'Float32Array',
-      'Float64Array',
-      'Function.prototype.name',
-      'Int16Array',
-      'Int32Array',
-      'Int8Array',
-      'Map',
-      'Number.isInteger',
-      'Number.isSafeInteger',
-      'Number.parseFloat',
-      'Number.parseInt',
-      'Object.assign',
-      'Object.create',
-      'Object.defineProperties',
-      'Object.defineProperty',
-      'Object.entries',
-      'Object.freeze',
-      'Object.getOwnPropertyDescriptor',
-      'Object.getOwnPropertyDescriptors',
-      'Object.getOwnPropertyNames',
-      'Object.getPrototypeOf',
-      'Object.isExtensible',
-      'Object.isFrozen',
-      'Object.isSealed',
-      'Object.keys',
-      'Object.preventExtensions',
-      'Object.seal',
-      'Object.setPrototypeOf',
-      'Object.values',
-      'Promise',
-      'Reflect.apply',
-      'Reflect.construct',
-      'Reflect.defineProperty',
-      'Reflect.deleteProperty',
-      'Reflect.get',
-      'Reflect.getOwnPropertyDescriptor',
-      'Reflect.getPrototypeOf',
-      'Reflect.has',
-      'Reflect.isExtensible',
-      'Reflect.ownKeys',
-      'Reflect.preventExtensions',
-      'Reflect.set',
-      'Reflect.setPrototypeOf',
-      'Set',
-      'String.fromCodePoint',
-      'String.prototype.codePointAt',
-      'String.prototype.endsWith',
-      'String.prototype.includes',
-      'String.prototype.padEnd',
-      'String.prototype.padStart',
-      'String.prototype.repeat',
-      'String.prototype.startsWith',
-      'String.prototype.trim',
-      'String.raw',
-      'Uint16Array',
-      'Uint32Array',
-      'Uint8Array',
-      'Uint8ClampedArray',
-      'WeakMap',
-      'WeakSet',
-    ].map(polyfillName => {
-      const parts = polyfillName.split('.');
+    return this.getPolyfillData().map(({name}) => {
+      const parts = name.split('.');
       const object = parts.length > 1 ? parts.slice(0, parts.length - 1).join('.') : null;
       const property = parts[parts.length - 1];
       return {
-        name: polyfillName,
+        name,
         expression: this.buildPolyfillExpression(object, property),
       };
     });
@@ -276,23 +300,47 @@ class LegacyJavascript extends Audit {
   }
 
   /**
-   * Returns a collection of match results grouped by script url and with a mapping
-   * to determine the order in which the matches were discovered.
+   * Returns a collection of match results grouped by script url.
    *
    * @param {CodePatternMatcher} matcher
    * @param {LH.GathererArtifacts['ScriptElements']} scripts
    * @param {LH.Artifacts.NetworkRequest[]} networkRecords
+   * @param {LH.Artifacts.Bundle[]} bundles
    * @return {Map<string, PatternMatchResult[]>}
    */
-  static detectCodePatternsAcrossScripts(matcher, scripts, networkRecords) {
+  static detectAcrossScripts(matcher, scripts, networkRecords, bundles) {
     /** @type {Map<string, PatternMatchResult[]>} */
     const urlToMatchResults = new Map();
+    const polyfillData = this.getPolyfillData();
 
     for (const {requestId, content} of Object.values(scripts)) {
       if (!content) continue;
       const networkRecord = networkRecords.find(record => record.requestId === requestId);
       if (!networkRecord) continue;
+
+      // Start with pattern matching against the downloaded script.
       const matches = matcher.match(content);
+
+      // If it's a bundle with source maps, add in the polyfill modules by name too.
+      const bundle = bundles.find(b => b.script.src === networkRecord.url);
+      if (bundle) {
+        for (const {coreJs2Module, coreJs3Module, name} of polyfillData) {
+          // Skip if the pattern matching found a match for this polyfill.
+          if (matches.some(m => m.name === name)) continue;
+
+          const source = bundle.rawMap.sources.find(source =>
+            source.endsWith(`${coreJs2Module}.js`) || source.endsWith(`${coreJs3Module}.js`));
+          if (!source) continue;
+
+          const mapping = bundle.map.mappings().find(m => m.sourceURL === source);
+          if (mapping) {
+            matches.push({name, line: mapping.lineNumber, column: mapping.columnNumber});
+          } else {
+            matches.push({name, line: 0, column: 0});
+          }
+        }
+      }
+
       if (!matches.length) continue;
       urlToMatchResults.set(networkRecord.url, matches);
     }
@@ -308,10 +356,7 @@ class LegacyJavascript extends Audit {
   static async audit(artifacts, context) {
     const devtoolsLog = artifacts.devtoolsLogs[LegacyJavascript.DEFAULT_PASS];
     const networkRecords = await NetworkRecords.request(devtoolsLog, context);
-    const mainResource = await MainResource.request({
-      URL: artifacts.URL,
-      devtoolsLog,
-    }, context);
+    const bundles = await JSBundles.request(artifacts, context);
 
     /** @typedef {{signal: string, location: LH.Audit.Details.SourceLocationValue}} SubRowItem */
     /** @type {Array<{url: string, subRows: LH.Audit.Details.TableSubRows}>} */
@@ -325,7 +370,7 @@ class LegacyJavascript extends Audit {
     ]);
 
     const urlToMatchResults =
-      this.detectCodePatternsAcrossScripts(matcher, artifacts.ScriptElements, networkRecords);
+      this.detectAcrossScripts(matcher, artifacts.ScriptElements, networkRecords, bundles);
     urlToMatchResults.forEach((matches, url) => {
       /** @type {typeof tableRows[number]} */
       const row = {
@@ -364,9 +409,9 @@ class LegacyJavascript extends Audit {
     const details = Audit.makeTableDetails(headings, tableRows);
 
     // Only fail if first party code has legacy code.
-    // TODO(cjamcl): Use third-party-web.
+    const mainDocumentEntity = thirdPartyWeb.getEntity(artifacts.URL.finalUrl);
     const foundSignalInFirstPartyCode = tableRows.some(row => {
-      return URL.rootDomainsMatch(row.url, mainResource.url);
+      return thirdPartyWeb.isFirstParty(row.url, mainDocumentEntity);
     });
     return {
       score: foundSignalInFirstPartyCode ? 0 : 1,

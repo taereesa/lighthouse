@@ -37,7 +37,7 @@ fi
 yarn now-build
 
 # Install LHCI
-npm install -g @lhci/cli@0.3.x
+npm install -g @lhci/cli@next
 # Collect our LHCI results.
 lhci collect --staticDistDir=./dist/now/english/
 # Upload the results to our canary server.

@@ -51,7 +51,7 @@ class ResourceSummary extends Audit {
     const headings = [
       {key: 'label', itemType: 'text', text: str_(i18n.UIStrings.columnResourceType)},
       {key: 'requestCount', itemType: 'numeric', text: str_(i18n.UIStrings.columnRequests)},
-      {key: 'size', itemType: 'bytes', text: str_(i18n.UIStrings.columnTransferSize)},
+      {key: 'transferSize', itemType: 'bytes', text: str_(i18n.UIStrings.columnTransferSize)},
     ];
 
 
@@ -76,14 +76,14 @@ class ResourceSummary extends Audit {
         resourceType: type,
         label: strMappings[type],
         requestCount: summary[type].count,
-        size: summary[type].size,
+        transferSize: summary[type].transferSize,
       };
     });
     // Force third-party to be last, descending by size otherwise
     const thirdPartyRow = rows.find(r => r.resourceType === 'third-party') || [];
     const otherRows = rows.filter(r => r.resourceType !== 'third-party')
       .sort((a, b) => {
-        return b.size - a.size;
+        return b.transferSize - a.transferSize;
       });
     const tableItems = otherRows.concat(thirdPartyRow);
 
@@ -94,7 +94,7 @@ class ResourceSummary extends Audit {
       score: 1,
       displayValue: str_(UIStrings.displayValue, {
         requestCount: summary.total.count,
-        byteCount: summary.total.size,
+        byteCount: summary.total.transferSize,
       }),
     };
   }

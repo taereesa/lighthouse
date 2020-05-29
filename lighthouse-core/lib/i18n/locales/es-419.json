@@ -141,10 +141,10 @@
     "message": "Si las listas de definiciones no están bien marcadas, es posible que los lectores de pantalla las lean de forma confusa o imprecisa. [Obtén más información](https://web.dev/definition-list/)."
   },
   "lighthouse-core/audits/accessibility/definition-list.js | failureTitle": {
-    "message": "Los elementos `<dl>` no contienen solo elementos `<script>` o `<template>`, o grupos de `<dt>` y `<dd>` ordenados correctamente."
+    "message": "Los elementos `<dl>` no contienen solo elementos `<script>`, `<template>` o `<div>`, o grupos de `<dt>` y `<dd>` ordenados correctamente."
   },
   "lighthouse-core/audits/accessibility/definition-list.js | title": {
-    "message": "Los elementos `<dl>` contienen solo elementos `<script>` o `<template>`, o grupos de `<dt>` y `<dd>` ordenados correctamente."
+    "message": "Los elementos `<dl>` contienen solo elementos `<script>`, `<template>` o `<div>`, o grupos de `<dt>` y `<dd>` ordenados correctamente."
   },
   "lighthouse-core/audits/accessibility/dlitem.js | description": {
     "message": "Los elementos de la lista de definiciones (`<dt>` y `<dd>`) deben incluirse en un elemento `<dl>` principal para garantizar que los lectores de pantalla los lean correctamente. [Obtén más información](https://web.dev/dlitem/)."
@@ -404,6 +404,12 @@
   "lighthouse-core/audits/bootup-time.js | title": {
     "message": "Tiempo de ejecución de JavaScript"
   },
+  "lighthouse-core/audits/byte-efficiency/duplicated-javascript.js | description": {
+    "message": "Quita de los paquetes los módulos de JavaScript que sean grandes y estén duplicados para reducir la cantidad de bytes que consume innecesariamente la actividad de red. "
+  },
+  "lighthouse-core/audits/byte-efficiency/duplicated-javascript.js | title": {
+    "message": "Quita los módulos duplicados de los paquetes de JavaScript"
+  },
   "lighthouse-core/audits/byte-efficiency/efficient-animated-content.js | description": {
     "message": "Los GIF de gran tamaño no son eficientes para mostrar contenido animado. En su lugar, puedes utilizar formatos de video MPEG4/WebM para animaciones y formatos PNG/WebP para imágenes estáticas a fin de ahorrar bytes de la red. [Más información](https://web.dev/efficient-animated-content)"
   },
@@ -453,7 +459,7 @@
     "message": "Quita los recursos CSS que no se usen"
   },
   "lighthouse-core/audits/byte-efficiency/unused-javascript.js | description": {
-    "message": "Quita el contenido JavaScript sin usar para reducir la cantidad de bytes que consume la actividad de red. [Obtén más información](https://developers.google.com/web/fundamentals/performance/optimizing-javascript/code-splitting)."
+    "message": "Quita el contenido JavaScript sin usar para reducir la cantidad de bytes que consume la actividad de red. [Obtén más información](https://web.dev/remove-unused-code/)."
   },
   "lighthouse-core/audits/byte-efficiency/unused-javascript.js | title": {
     "message": "Quita el código JavaScript sin usar"
@@ -545,6 +551,15 @@
   "lighthouse-core/audits/dobetterweb/appcache-manifest.js | title": {
     "message": "Evita la caché de aplicaciones"
   },
+  "lighthouse-core/audits/dobetterweb/charset.js | description": {
+    "message": "Se debe declarar la codificación de caracteres. Para eso, puede agregarse una etiqueta <meta> en los primeros 1024 bytes del HTML o en el encabezado de respuesta HTTP Content Type. [Más información](https://www.w3.org/International/questions/qa-html-encoding-declarations)."
+  },
+  "lighthouse-core/audits/dobetterweb/charset.js | failureTitle": {
+    "message": "Falta la declaración del charset o aparece demasiado tarde en el HTML"
+  },
+  "lighthouse-core/audits/dobetterweb/charset.js | title": {
+    "message": "Define el charset adecuadamente"
+  },
   "lighthouse-core/audits/dobetterweb/doctype.js | description": {
     "message": "Especificar un DOCTYPE evita que el navegador cambie al modo no estándar. [Obtén más información](https://web.dev/doctype)."
   },
@@ -565,9 +580,6 @@
   },
   "lighthouse-core/audits/dobetterweb/doctype.js | title": {
     "message": "La página tiene el DOCTYPE de HTML"
-  },
-  "lighthouse-core/audits/dobetterweb/dom-size.js | columnElement": {
-    "message": "Elemento"
   },
   "lighthouse-core/audits/dobetterweb/dom-size.js | columnStatistic": {
     "message": "Estadística"
@@ -595,6 +607,9 @@
   },
   "lighthouse-core/audits/dobetterweb/dom-size.js | title": {
     "message": "Evita un tamaño excesivo de DOM"
+  },
+  "lighthouse-core/audits/dobetterweb/external-anchors-use-rel-noopener.js | columnFailingAnchors": {
+    "message": "Anclas con errores"
   },
   "lighthouse-core/audits/dobetterweb/external-anchors-use-rel-noopener.js | description": {
     "message": "Agrega `rel=\"noopener\"` o `rel=\"noreferrer\"` a cualquier vínculo externo para mejorar el rendimiento y evitar vulnerabilidades de seguridad. [Obtén más información](https://web.dev/external-anchors-use-rel-noopener)."
@@ -630,7 +645,7 @@
     "message": "En el caso de usuarios con una conexión lenta, las secuencias de comandos externas que se incorporan dinámicamente a través de`document.write()` pueden demorar la carga de la página decenas de segundos. [Obtén más información](https://web.dev/no-document-write)."
   },
   "lighthouse-core/audits/dobetterweb/no-document-write.js | failureTitle": {
-    "message": "Usa `document.write()`"
+    "message": "Evita `document.write()`"
   },
   "lighthouse-core/audits/dobetterweb/no-document-write.js | title": {
     "message": "No usa `document.write()`"
@@ -752,6 +767,24 @@
   "lighthouse-core/audits/image-aspect-ratio.js | warningCompute": {
     "message": "La información sobre el tamaño de la imagen no es válida {url}"
   },
+  "lighthouse-core/audits/image-size-responsive.js | columnActual": {
+    "message": "Tamaño real"
+  },
+  "lighthouse-core/audits/image-size-responsive.js | columnDisplayed": {
+    "message": "Tamaño de visualización"
+  },
+  "lighthouse-core/audits/image-size-responsive.js | columnExpected": {
+    "message": "Tamaño esperado"
+  },
+  "lighthouse-core/audits/image-size-responsive.js | description": {
+    "message": "Para maximizar la claridad de la imagen, sus dimensiones naturales deben ser proporcionales al tamaño de la pantalla y a la proporción de píxeles. [Obtén más información](https://web.dev/image-size-responsive)."
+  },
+  "lighthouse-core/audits/image-size-responsive.js | failureTitle": {
+    "message": "Muestra imágenes con tamaño inapropiado"
+  },
+  "lighthouse-core/audits/image-size-responsive.js | title": {
+    "message": "Muestra imágenes con tamaño apropiado"
+  },
   "lighthouse-core/audits/installable-manifest.js | description": {
     "message": "Los navegadores pueden solicitar a los usuarios proactivamente que agreguen tu app a la pantalla principal, lo que es posible que genere un mayor compromiso. [Obtén más información](https://web.dev/installable-manifest)."
   },
@@ -775,6 +808,12 @@
   },
   "lighthouse-core/audits/is-on-https.js | title": {
     "message": "Usa HTTPS"
+  },
+  "lighthouse-core/audits/legacy-javascript.js | description": {
+    "message": "El complemento Polyfill y las transformaciones permiten que los navegadores heredados utilicen nuevas funciones de JavaScript. Sin embargo, la mayoría no es necesaria en los navegadores modernos. Para tus paquetes de JavaScript, adopta una estrategia moderna de implementación de scripts mediante la detección de funciones de módulo/no módulo a fin de reducir la cantidad de código que se envía a los navegadores modernos, al tiempo que se mantiene la compatibilidad con navegadores heredados. [Más información](https://philipwalton.com/articles/deploying-es2015-code-in-production-today/)"
+  },
+  "lighthouse-core/audits/legacy-javascript.js | title": {
+    "message": "JavaScript heredado"
   },
   "lighthouse-core/audits/load-fast-enough-for-pwa.js | description": {
     "message": "Si las páginas se cargan rápidamente en las redes móviles, el usuario disfrutará de una buena experiencia. [Obtén más información](https://web.dev/load-fast-enough-for-pwa)."
@@ -824,6 +863,18 @@
   "lighthouse-core/audits/manual/pwa-page-transitions.js | title": {
     "message": "No parece que se bloqueen las transiciones de la página en la red"
   },
+  "lighthouse-core/audits/maskable-icon.js | description": {
+    "message": "El uso de un ícono enmascarable garantiza que la imagen cubrirá toda la forma sin que se aplique el formato letterbox cuando se instale la app en un dispositivo. [Más información](https://web.dev/maskable-icon/)."
+  },
+  "lighthouse-core/audits/maskable-icon.js | failureTitle": {
+    "message": "El manifiesto no tiene un ícono enmascarable"
+  },
+  "lighthouse-core/audits/maskable-icon.js | title": {
+    "message": "El manifiesto tiene un ícono enmascarable"
+  },
+  "lighthouse-core/audits/metrics/cumulative-layout-shift.js | description": {
+    "message": "El Cambio de diseño acumulado mide el movimiento de los elementos visibles dentro del viewport. [Obtén más información](https://web.dev/cls)."
+  },
   "lighthouse-core/audits/metrics/estimated-input-latency.js | description": {
     "message": "La latencia de entrada estimada es el tiempo aproximado, en milisegundos, que tarda tu app en responder a las acciones de los usuarios durante el periodo de 5 s más activo de carga de la página. Si la latencia es superior a 50 ms, es posible que los usuarios piensen que tu app es lenta. [Obtén más información](https://web.dev/estimated-input-latency)."
   },
@@ -840,10 +891,7 @@
     "message": "El tiempo de carga indica cuánto tarda una página en ser totalmente interactiva. [Obtén más información](https://web.dev/interactive)."
   },
   "lighthouse-core/audits/metrics/largest-contentful-paint.js | description": {
-    "message": "La métrica \"Pintura más grande con contenido\" indica el momento en que se pinta el texto o imagen más grandes. [Obtén más información](https://web.dev/largest-contentful-paint)."
-  },
-  "lighthouse-core/audits/metrics/largest-contentful-paint.js | title": {
-    "message": "Pintura más grande con contenido"
+    "message": "La métrica \"Pintura más grande con contenido\" indica el momento en que se pinta el texto o imagen más grandes. [Obtén más información](https://web.dev/lighthouse-largest-contentful-paint)."
   },
   "lighthouse-core/audits/metrics/max-potential-fid.js | description": {
     "message": "El máximo retraso de primera entrada que podrían experimentar los usuarios es la duración de la tarea más larga. [Obtén más información](https://web.dev/lighthouse-max-potential-fid)."
@@ -1118,18 +1166,6 @@
   "lighthouse-core/audits/third-party-summary.js | title": {
     "message": "Minimiza el uso del código de terceros"
   },
-  "lighthouse-core/audits/time-to-first-byte.js | description": {
-    "message": "El tiempo hasta el primer byte indica el momento en el que el servidor envía una respuesta. [Obtén más información](https://web.dev/time-to-first-byte)."
-  },
-  "lighthouse-core/audits/time-to-first-byte.js | displayValue": {
-    "message": "El documento raíz tardó {timeInMs, number, milliseconds} ms"
-  },
-  "lighthouse-core/audits/time-to-first-byte.js | failureTitle": {
-    "message": "Reduce los tiempos de respuesta del servidor (TTFB)"
-  },
-  "lighthouse-core/audits/time-to-first-byte.js | title": {
-    "message": "La respuesta del servidor es lenta (TTFB)"
-  },
   "lighthouse-core/audits/timing-budget.js | columnMeasurement": {
     "message": "Medición"
   },
@@ -1141,12 +1177,6 @@
   },
   "lighthouse-core/audits/timing-budget.js | title": {
     "message": "Estimación de tiempo"
-  },
-  "lighthouse-core/audits/user-timings.js | columnDuration": {
-    "message": "Duración"
-  },
-  "lighthouse-core/audits/user-timings.js | columnStartTime": {
-    "message": "Hora de inicio"
   },
   "lighthouse-core/audits/user-timings.js | columnType": {
     "message": "Tipo"
@@ -1168,6 +1198,9 @@
   },
   "lighthouse-core/audits/uses-rel-preconnect.js | title": {
     "message": "Establece conexión previamente con los orígenes necesarios"
+  },
+  "lighthouse-core/audits/uses-rel-preconnect.js | tooManyPreconnectLinksWarning": {
+    "message": "Se encontraron más de 2 vínculos de preconexión Los vínculos de preconexión deben usarse con moderación y solo para los orígenes más importantes."
   },
   "lighthouse-core/audits/uses-rel-preload.js | crossoriginWarning": {
     "message": "Se encontró un elemento <link> de precarga para \"{preloadURL}\", pero el navegador no lo usó. Comprueba que el atributo `crossorigin` se esté usando correctamente."
@@ -1355,6 +1388,12 @@
   "lighthouse-core/config/default-config.js | seoMobileGroupTitle": {
     "message": "Optimizada para dispositivos móviles"
   },
+  "lighthouse-core/gather/gather-runner.js | warningRedirected": {
+    "message": "Es posible que la página no se cargue como se espera porque se redireccionó la URL de prueba ({requested}) a {final}. Como alternativa, prueba directamente la segunda URL."
+  },
+  "lighthouse-core/gather/gather-runner.js | warningTimeout": {
+    "message": "La página tardó demasiado en cargarse y no finalizó antes del límite de tiempo establecido. Es posible que los resultados estén incompletos."
+  },
   "lighthouse-core/lib/i18n/i18n.js | columnCacheTTL": {
     "message": "TTL en caché"
   },
@@ -1370,11 +1409,17 @@
   "lighthouse-core/lib/i18n/i18n.js | columnRequests": {
     "message": "Solicitudes"
   },
+  "lighthouse-core/lib/i18n/i18n.js | columnResourceSize": {
+    "message": "Tamaño del recurso"
+  },
   "lighthouse-core/lib/i18n/i18n.js | columnResourceType": {
     "message": "Tipo de recurso"
   },
   "lighthouse-core/lib/i18n/i18n.js | columnSize": {
     "message": "Tamaño"
+  },
+  "lighthouse-core/lib/i18n/i18n.js | columnSource": {
+    "message": "Fuente"
   },
   "lighthouse-core/lib/i18n/i18n.js | columnTimeSpent": {
     "message": "Tiempo de uso"
@@ -1390,6 +1435,9 @@
   },
   "lighthouse-core/lib/i18n/i18n.js | columnWastedMs": {
     "message": "Ahorros posibles"
+  },
+  "lighthouse-core/lib/i18n/i18n.js | cumulativeLayoutShiftMetric": {
+    "message": "Cambios de diseño acumulados"
   },
   "lighthouse-core/lib/i18n/i18n.js | displayValueByteSavings": {
     "message": "Ahorro posible de {wastedBytes, number, bytes} KB"
@@ -1420,6 +1468,9 @@
   },
   "lighthouse-core/lib/i18n/i18n.js | interactiveMetric": {
     "message": "Tiempo de carga"
+  },
+  "lighthouse-core/lib/i18n/i18n.js | largestContentfulPaintMetric": {
+    "message": "Pintura más grande con contenido"
   },
   "lighthouse-core/lib/i18n/i18n.js | maxPotentialFIDMetric": {
     "message": "Máximo retraso de primera entrada posible"
@@ -1514,11 +1565,38 @@
   "lighthouse-core/report/html/renderer/util.js | crcLongestDurationLabel": {
     "message": "Latencia de ruta crítica máxima:"
   },
+  "lighthouse-core/report/html/renderer/util.js | dropdownCopyJSON": {
+    "message": "Copiar JSON"
+  },
+  "lighthouse-core/report/html/renderer/util.js | dropdownDarkTheme": {
+    "message": "Activar o desactivar el Tema oscuro"
+  },
+  "lighthouse-core/report/html/renderer/util.js | dropdownPrintExpanded": {
+    "message": "Se expandió la impresión"
+  },
+  "lighthouse-core/report/html/renderer/util.js | dropdownPrintSummary": {
+    "message": "Resumen de impresión"
+  },
+  "lighthouse-core/report/html/renderer/util.js | dropdownSaveGist": {
+    "message": "Guardar como Gist"
+  },
+  "lighthouse-core/report/html/renderer/util.js | dropdownSaveHTML": {
+    "message": "Guardar como HTML"
+  },
+  "lighthouse-core/report/html/renderer/util.js | dropdownSaveJSON": {
+    "message": "Guardar como JSON"
+  },
+  "lighthouse-core/report/html/renderer/util.js | dropdownViewer": {
+    "message": "Abrir en el lector"
+  },
   "lighthouse-core/report/html/renderer/util.js | errorLabel": {
     "message": "Error"
   },
   "lighthouse-core/report/html/renderer/util.js | errorMissingAuditInfo": {
     "message": "Error del informe: No hay información de la auditoría"
+  },
+  "lighthouse-core/report/html/renderer/util.js | footerIssue": {
+    "message": "Informa sobre un problema"
   },
   "lighthouse-core/report/html/renderer/util.js | labDataTitle": {
     "message": "Datos de prueba"
@@ -1541,6 +1619,48 @@
   "lighthouse-core/report/html/renderer/util.js | passedAuditsGroupTitle": {
     "message": "Auditorías aprobadas"
   },
+  "lighthouse-core/report/html/renderer/util.js | runtimeDesktopEmulation": {
+    "message": "Escritorio emulado"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeMobileEmulation": {
+    "message": "Moto G4 emulado"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeNoEmulation": {
+    "message": "Sin emulación"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsBenchmark": {
+    "message": "Energía de la memoria/CPU"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsCPUThrottling": {
+    "message": "Limitación de la CPU"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsChannel": {
+    "message": "Canal"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsDevice": {
+    "message": "Dispositivo"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsFetchTime": {
+    "message": "Fecha de recuperación"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsNetworkThrottling": {
+    "message": "Limitación de la red"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsTitle": {
+    "message": "Configuración del tiempo de ejecución"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsUA": {
+    "message": "Usuario-agente (host)"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsUANetwork": {
+    "message": "Usuario-agente (red)"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsUrl": {
+    "message": "URL"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeUnknown": {
+    "message": "Desconocido"
+  },
   "lighthouse-core/report/html/renderer/util.js | snippetCollapseButtonLabel": {
     "message": "Contraer fragmento"
   },
@@ -1549,6 +1669,9 @@
   },
   "lighthouse-core/report/html/renderer/util.js | thirdPartyResourcesLabel": {
     "message": "Mostrar recursos de terceros"
+  },
+  "lighthouse-core/report/html/renderer/util.js | throttlingProvided": {
+    "message": "Proporcionado por el entorno"
   },
   "lighthouse-core/report/html/renderer/util.js | toplevelWarningsMessage": {
     "message": "Algunos problemas afectaron la ejecución de Lighthouse:"
@@ -1610,9 +1733,6 @@
   "stack-packs/packs/magento.js | offscreen_images": {
     "message": "Se recomienda modificar las plantillas de productos y catálogos para utilizar la función de [carga diferida](https://web.dev/native-lazy-loading) de la plataforma web."
   },
-  "stack-packs/packs/magento.js | time_to_first_byte": {
-    "message": "Utiliza la [integración de Varnish](https://devdocs.magento.com/guides/v2.3/config-guide/varnish/config-varnish.html) de Magento."
-  },
   "stack-packs/packs/magento.js | unminified_css": {
     "message": "Habilita la opción \"Minify CSS Files\" en las opciones de configuración para desarrolladores de la tienda. [Obtén más información](https://devdocs.magento.com/guides/v2.3/performance-best-practices/configuration.html?itm_source=devdocs&itm_medium=search_page&itm_campaign=federated_search&itm_term=minify%20css%20files)."
   },
@@ -1640,9 +1760,6 @@
   "stack-packs/packs/react.js | redirects": {
     "message": "Si utilizas React Router, minimiza el uso del componente de `<Redirect>` para las [navegaciones de ruta](https://reacttraining.com/react-router/web/api/Redirect)."
   },
-  "stack-packs/packs/react.js | time_to_first_byte": {
-    "message": "Si procesas en el servidor cualquier componente de React, se recomienda usar `renderToNodeStream()` o `renderToStaticNodeStream()` para permitir que el cliente reciba diferentes partes del lenguaje de marcado y las complete en lugar de recibir todas al mismo tiempo. [Obtén más información](https://reactjs.org/docs/react-dom-server.html#rendertonodestream)."
-  },
   "stack-packs/packs/react.js | unminified_css": {
     "message": "Si el sistema de compilación reduce los archivos CSS de forma automática, asegúrate de implementar la compilación de producción de tu aplicación. Puedes comprobarlo con la extensión de las Herramientas para desarrolladores de React. [Obtén más información](https://reactjs.org/docs/optimizing-performance.html#use-the-production-build)."
   },
@@ -1663,9 +1780,6 @@
   },
   "stack-packs/packs/wordpress.js | render_blocking_resources": {
     "message": "Existen varios complementos de WordPress que pueden ayudarte a [insertar elementos fundamentales](https://wordpress.org/plugins/search/critical+css/) o a [postergar recursos menos importantes](https://wordpress.org/plugins/search/defer+css+javascript/). Ten en cuenta que las optimizaciones que ofrecen estos complementos pueden interferir con funciones de tu tema o complementos, por lo que seguramente tengas que hacer cambios en el código."
-  },
-  "stack-packs/packs/wordpress.js | time_to_first_byte": {
-    "message": "Los temas, los complementos y las especificaciones del servidor afectan al tiempo de respuesta. Puedes buscar un tema más optimizado, seleccionar un complemento de optimización o actualizar tu servidor."
   },
   "stack-packs/packs/wordpress.js | total_byte_weight": {
     "message": "Puedes mostrar fragmentos en tus listas de entradas (por ejemplo, mediante la etiqueta \"<more>\"), reducir la cantidad de entradas que se muestran en cada página, dividir tus entradas más largas en múltiples páginas o usar un complemento para postergar la carga de los comentarios."

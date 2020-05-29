@@ -67,7 +67,7 @@ function getRequestWillBeSentEvent(networkRecord, index) {
       wallTime: 0,
       initiator: initiator || {type: 'other'},
       type: networkRecord.resourceType || 'Document',
-      frameId: `${idBase}.1`,
+      frameId: networkRecord.frameId || `${idBase}.1`,
       redirectResponse: networkRecord.redirectResponse,
     },
   };
@@ -106,7 +106,7 @@ function getResponseReceivedEvent(networkRecord, index) {
         timing,
         protocol: networkRecord.protocol || 'http/1.1',
       },
-      frameId: `${idBase}.1`,
+      frameId: networkRecord.frameId || `${idBase}.1`,
     },
   };
 }

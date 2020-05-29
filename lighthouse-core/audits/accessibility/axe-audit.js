@@ -50,7 +50,7 @@ class AxeAudit extends Audit {
     if (incompleteResult && incompleteResult.error) {
       return {
         score: null,
-        errorMessage: incompleteResult.error.message,
+        errorMessage: `axe-core Error: ${incompleteResult.error.message || 'Unknown error'}`,
       };
     }
 

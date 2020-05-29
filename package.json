@@ -1,6 +1,6 @@
 {
   "name": "lighthouse",
-  "version": "6.0.0-beta.0",
+  "version": "6.0.0",
   "description": "Lighthouse",
   "main": "./lighthouse-core/index.js",
   "bin": {
@@ -12,13 +12,13 @@
   },
   "scripts": {
     "build-all": "npm-run-posix-or-windows build-all:task",
-    "build-all:task": "(yarn build-cdt-lib & yarn build-extension & yarn build-devtools & yarn build-lr & yarn build-viewer & yarn build-smokehouse-bundle & wait) && yarn build-pack",
+    "build-all:task": "yarn build-cdt-lib && yarn build-devtools && (yarn build-extension & yarn build-lr & yarn build-viewer & yarn build-smokehouse-bundle & wait) && yarn build-pack",
     "build-all:task:windows": "yarn build-cdt-lib && yarn build-extension && yarn build-devtools && yarn build-lr && yarn build-viewer && yarn build-smokehouse-bundle",
     "build-cdt-lib": "node ./build/build-cdt-lib.js",
     "build-extension": "yarn build-extension-chrome && yarn build-extension-firefox",
     "build-extension-chrome": "node ./build/build-extension.js chrome",
     "build-extension-firefox": "node ./build/build-extension.js firefox",
-    "build-devtools": "yarn link && yarn link lighthouse && node ./build/build-bundle.js clients/devtools-entry.js dist/lighthouse-dt-bundle.js && node ./build/build-dt-report-resources.js",
+    "build-devtools": "(yarn unlink || true) && yarn link && yarn link lighthouse && node ./build/build-bundle.js clients/devtools-entry.js dist/lighthouse-dt-bundle.js && node ./build/build-dt-report-resources.js",
     "build-smokehouse-bundle": "node ./build/build-smokehouse-bundle.js",
     "build-lr": "node ./build/build-lightrider-bundles.js",
     "build-pack": "bash build/build-pack.sh",
@@ -69,7 +69,6 @@
     "update:sample-json": "yarn i18n:collect-strings && node ./lighthouse-cli -A=./lighthouse-core/test/results/artifacts --config-path=./lighthouse-core/test/results/sample-config.js --output=json --output-path=./lighthouse-core/test/results/sample_v2.json && node lighthouse-core/scripts/cleanup-LHR-for-diff.js ./lighthouse-core/test/results/sample_v2.json --only-remove-timing",
     "diff:sample-json": "yarn i18n:checks && bash lighthouse-core/scripts/assert-golden-lhr-unchanged.sh",
     "ultradumbBenchmark": "./lighthouse-core/scripts/benchmark.js",
-    "mixed-content": "./lighthouse-cli/index.js --chrome-flags='--headless' --preset=mixed-content",
     "minify-latest-run": "./lighthouse-core/scripts/lantern/minify-trace.js ./latest-run/defaultPass.trace.json ./latest-run/defaultPass.trace.min.json && ./lighthouse-core/scripts/lantern/minify-devtoolslog.js ./latest-run/defaultPass.devtoolslog.json ./latest-run/defaultPass.devtoolslog.min.json",
     "compile-proto": "protoc --python_out=./ ./proto/lighthouse-result.proto && mv ./proto/*_pb2.py ./proto/scripts || (echo \"❌ Install protobuf ≥ 3.7.1 to compile the proto file.\" && false)",
     "build-proto-roundtrip": "cd proto/scripts && PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=cpp PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION_VERSION=2 python json_roundtrip_via_proto.py",
@@ -120,7 +119,7 @@
     "cpy": "^7.0.1",
     "csv-validator": "^0.0.3",
     "cz-customizable": "^5.2.0",
-    "devtools-protocol": "0.0.739646",
+    "devtools-protocol": "0.0.770484",
     "eslint": "^4.19.1",
     "eslint-config-google": "^0.9.1",
     "eslint-plugin-local-rules": "0.1.0",
@@ -131,7 +130,7 @@
     "isomorphic-fetch": "^2.2.1",
     "jest": "^24.9.0",
     "jsdom": "^12.2.0",
-    "lighthouse-plugin-publisher-ads": "^0.4.3",
+    "lighthouse-plugin-publisher-ads": "^1.1.0-beta.0",
     "lodash.clonedeep": "^4.5.0",
     "npm-run-posix-or-windows": "^2.0.2",
     "nyc": "^13.3.0",
@@ -143,8 +142,8 @@
     "typescript": "3.8.3"
   },
   "dependencies": {
-    "axe-core": "3.5.1",
-    "chrome-launcher": "^0.12.0",
+    "axe-core": "3.5.3",
+    "chrome-launcher": "^0.13.2",
     "configstore": "^3.1.1",
     "cssstyle": "1.2.1",
     "details-element-polyfill": "^2.4.0",
@@ -169,11 +168,11 @@
     "robots-parser": "^2.0.1",
     "semver": "^5.3.0",
     "speedline-core": "1.4.2",
-    "third-party-web": "^0.11.0",
+    "third-party-web": "^0.11.1",
     "update-notifier": "^2.5.0",
     "ws": "3.3.2",
     "yargs": "3.32.0",
-    "yargs-parser": "7.0.0"
+    "yargs-parser": "^18.1.3"
   },
   "repository": "GoogleChrome/lighthouse",
   "keywords": [
@@ -193,7 +192,7 @@
     },
     {
       "path": "./dist/lightrider/lighthouse-lr-bundle.js",
-      "maxSize": "1.50 MB"
+      "maxSize": "1.60 MB"
     },
     {
       "path": "./dist/viewer/src/viewer.js",
@@ -201,7 +200,7 @@
     },
     {
       "path": "./dist/lighthouse-dt-bundle.js",
-      "maxSize": "460 kB"
+      "maxSize": "470 kB"
     },
     {
       "path": "./dist/lightrider/report-generator-bundle.js",

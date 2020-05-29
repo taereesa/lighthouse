@@ -60,8 +60,33 @@ describe('Accessibility: axe-audit', () => {
         },
       };
 
+      const {errorMessage} = FakeA11yAudit.audit(artifacts);
+      assert.equal(errorMessage, 'axe-core Error: Feature is not supported on your platform');
+    });
+
+    it('returns axe error message to the caller when errored without a message', () => {
+      class FakeA11yAudit extends AxeAudit {
+        static get meta() {
+          return {
+            id: 'fake-incomplete-error',
+            title: 'Example title',
+            requiredArtifacts: ['Accessibility'],
+          };
+        }
+      }
+      const artifacts = {
+        Accessibility: {
+          incomplete: [{
+            id: 'fake-incomplete-error',
+            nodes: [],
+            help: 'http://example.com/',
+            error: {},
+          }],
+        },
+      };
+
       const output = FakeA11yAudit.audit(artifacts);
-      assert.equal(output.errorMessage, 'Feature is not supported on your platform');
+      assert.equal(output.errorMessage, 'axe-core Error: Unknown error');
     });
 
     it('considers passing axe result as not applicable for informative audit', () => {

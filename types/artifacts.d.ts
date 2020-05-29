@@ -110,12 +110,14 @@ declare global {
       Fonts: Artifacts.Font[];
       /** Information on poorly sized font usage and the text affected by it. */
       FontSize: Artifacts.FontSize;
+      /** The issues surfaced in the devtools Issues panel */
+      InspectorIssues: Artifacts.InspectorIssues;
       /** The page's document body innerText if loaded with JavaScript disabled. */
       HTMLWithoutJavaScript: {bodyText: string, hasNoScript: boolean};
       /** Whether the page ended up on an HTTPS page after attempting to load the HTTP version. */
       HTTPRedirect: {value: boolean};
-      /** JS coverage information for code used during page load. */
-      JsUsage: Crdp.Profiler.ScriptCoverage[];
+      /** JS coverage information for code used during page load. Keyed by URL. */
+      JsUsage: Record<string, Crdp.Profiler.ScriptCoverage[]>;
       /** Parsed version of the page's Web App Manifest, or null if none found. */
       Manifest: Artifacts.Manifest | null;
       /** The URL loaded with interception */
@@ -140,6 +142,8 @@ declare global {
       TagsBlockingFirstPaint: Artifacts.TagBlockingFirstPaint[];
       /** Information about tap targets including their position and size. */
       TapTargets: Artifacts.TapTarget[];
+      /** Elements associated with metrics (ie: Largest Contentful Paint element). */
+      TraceElements: Artifacts.TraceElement[];
     }
 
     module Artifacts {
@@ -164,6 +168,8 @@ declare global {
           failureSummary?: string;
           nodeLabel?: string;
         }>;
+        // When rules error they set these properties
+        // https://github.com/dequelabs/axe-core/blob/eeff122c2de11dd690fbad0e50ba2fdb244b50e8/lib/core/base/audit.js#L684-L693
         error?: RuleExecutionError;
       }
 
@@ -270,7 +276,7 @@ declare global {
         /** An optional name of the generated code (the bundled code that was the result of this build process) that this source map is associated with. */
         file?: string
         /**
-         * An optional array of maps that are associated with an offset into the generated code. 
+         * An optional array of maps that are associated with an offset into the generated code.
          * `map` is optional because the spec defines that either `url` or `map` must be defined.
          * We explicitly only support `map` here.
         */
@@ -304,6 +310,7 @@ declare global {
         script: ScriptElement;
         map: TextSourceMap;
         sizes: {
+          // TODO(cjamcl): Rename to `sources`.
           files: Record<string, number>;
           unmappedBytes: number;
           totalBytes: number;
@@ -313,13 +320,22 @@ declare global {
       /** @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#Attributes */
       export interface AnchorElement {
         rel: string
+        /** The computed href property: https://www.w3.org/TR/DOM-Level-2-HTML/html.html#ID-88517319, use `rawHref` for the exact attribute value */
         href: string
+        /** The exact value of the href attribute value, as it is in the DOM */
+        rawHref: string
+        name?: string
         text: string
+        role: string
         target: string
         devtoolsNodePath: string
         selector: string
         nodeLabel: string
         outerHTML: string
+        onclick: string
+        listeners?: Array<{
+          type: Crdp.DOMDebugger.EventListener['type']
+        }>
       }
 
       export interface Font {
@@ -461,12 +477,24 @@ declare global {
         clientRects: Rect[];
       }
 
+      export interface TraceElement {
+        metricName: string;
+        selector: string;
+        nodeLabel?: string;
+        devtoolsNodePath: string;
+        snippet?: string;
+      }
+
       export interface ViewportDimensions {
         innerWidth: number;
         innerHeight: number;
         outerWidth: number;
         outerHeight: number;
         devicePixelRatio: number;
+      }
+
+      export interface InspectorIssues {
+        mixedContent: Crdp.Audits.MixedContentIssueDetails[];
       }
 
       // Computed artifact types below.
@@ -550,7 +578,6 @@ declare global {
         traceEnd: number;
         load?: number;
         domContentLoaded?: number;
-        cumulativeLayoutShift?: number;
       }
 
       export interface TraceOfTab {
@@ -624,7 +651,6 @@ declare global {
         observedNavigationStart: number;
         observedNavigationStartTs: number;
         observedCumulativeLayoutShift: number | undefined;
-        observedCumulativeLayoutShiftTs: number | undefined;
         observedFirstPaint: number | undefined;
         observedFirstPaintTs: number | undefined;
         observedFirstContentfulPaint: number;

@@ -28,8 +28,9 @@ const UIStrings = {
 
 const str_ = i18n.createMessageInstanceIdFn(__filename, UIStrings);
 
-const ALLOWABLE_OFFSCREEN_X = 100;
-const ALLOWABLE_OFFSCREEN_Y = 200;
+// See https://github.com/GoogleChrome/lighthouse/issues/10471 for discussion about the thresholds here.
+const ALLOWABLE_OFFSCREEN_IN_PX = 100;
+const ALLOWABLE_OFFSCREEN_BOTTOM_IN_VIEWPORTS = 3;
 
 const IGNORE_THRESHOLD_IN_BYTES = 2048;
 const IGNORE_THRESHOLD_IN_PERCENT = 75;
@@ -59,11 +60,13 @@ class OffscreenImages extends ByteEfficiencyAudit {
   static computeVisiblePixels(imageRect, viewportDimensions) {
     const innerWidth = viewportDimensions.innerWidth;
     const innerHeight = viewportDimensions.innerHeight;
+    const allowableOffscreenBottomInPx = ALLOWABLE_OFFSCREEN_BOTTOM_IN_VIEWPORTS *
+      viewportDimensions.innerHeight;
 
-    const top = Math.max(imageRect.top, -1 * ALLOWABLE_OFFSCREEN_Y);
-    const right = Math.min(imageRect.right, innerWidth + ALLOWABLE_OFFSCREEN_X);
-    const bottom = Math.min(imageRect.bottom, innerHeight + ALLOWABLE_OFFSCREEN_Y);
-    const left = Math.max(imageRect.left, -1 * ALLOWABLE_OFFSCREEN_X);
+    const top = Math.max(imageRect.top, -1 * ALLOWABLE_OFFSCREEN_IN_PX);
+    const right = Math.min(imageRect.right, innerWidth + ALLOWABLE_OFFSCREEN_IN_PX);
+    const bottom = Math.min(imageRect.bottom, innerHeight + allowableOffscreenBottomInPx);
+    const left = Math.max(imageRect.left, -1 * ALLOWABLE_OFFSCREEN_IN_PX);
 
     return Math.max(right - left, 0) * Math.max(bottom - top, 0);
   }

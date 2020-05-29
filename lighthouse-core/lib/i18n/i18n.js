@@ -82,6 +82,12 @@ const UIStrings = {
   columnSource: 'Source',
   /** Label for a column in a data table; entries will be how much a predetermined budget has been exeeded by. Depending on the context, this number could represent an excess in quantity or size of network requests, or, an excess in the duration of time that it takes for the page to load.*/
   columnOverBudget: 'Over Budget',
+  /** Label for a column in a data table; entries will be a representation of a DOM element. */
+  columnElement: 'Element',
+  /** Label for a column in a data table; entries will be the number of milliseconds since the page started loading. */
+  columnStartTime: 'Start Time',
+  /** Label for a column in a data table; entries will be the total number of milliseconds from the start time until the end time. */
+  columnDuration: 'Duration',
   /** Label for a row in a data table; entries will be the total number and byte size of all resources loaded by a web page. */
   totalResourceType: 'Total',
   /** Label for a row in a data table; entries will be the total number and byte size of all 'Document' resources loaded by a web page. */
@@ -116,6 +122,10 @@ const UIStrings = {
   maxPotentialFIDMetric: 'Max Potential First Input Delay',
   /** The name of the metric that summarizes how quickly the page looked visually complete. The name of this metric is largely abstract and can be loosely translated. Shown to users as the label for the numeric metric value. Ideally fits within a ~40 character limit. */
   speedIndexMetric: 'Speed Index',
+  /** The name of the metric that marks the time at which the largest text or image is painted by the browser. Shown to users as the label for the numeric metric value. Ideally fits within a ~40 character limit. */
+  largestContentfulPaintMetric: 'Largest Contentful Paint',
+  /** The name of the metric "Cumulative Layout Shift" that indicates how much the page changes its layout while it loads. If big segments of the page shift their location during load, the Cumulative Layout Shift will be higher. Shown to users as the label for the numeric metric value. Ideally fits within a ~40 character limit. */
+  cumulativeLayoutShiftMetric: 'Cumulative Layout Shift',
 };
 
 const formats = {

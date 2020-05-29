@@ -172,6 +172,78 @@ describe('Performance: uses-rel-preload audit', () => {
     });
   });
 
+  it(`should warn about failed preload attempts`, async () => {
+    const networkRecords = [
+      ...getMockNetworkRecords(),
+      {
+        requestId: '4',
+        startTime: 10,
+        isLinkPreload: true,
+        url: 'http://www.example.com/preload.css',
+        timing: defaultMainResource.timing,
+        priority: 'High',
+        initiator: {
+          type: 'parser',
+          url: defaultMainResourceUrl,
+        },
+      },
+      {
+        requestId: '5',
+        startTime: 15,
+        isLinkPreload: false,
+        url: 'http://www.example.com/preload.css',
+        timing: defaultMainResource.timing,
+        priority: 'High',
+        initiator: {
+          type: 'parser',
+          url: defaultMainResourceUrl,
+        },
+      },
+    ];
+
+    const artifacts = mockArtifacts(networkRecords, defaultMainResourceUrl);
+    const context = {settings: {}, computedCache: new Map()};
+    const result = await UsesRelPreload.audit(artifacts, context);
+    expect(result.warnings).toHaveLength(1);
+  });
+
+  it(`should not warn about failed preload attempts between frames`, async () => {
+    const networkRecords = [
+      ...getMockNetworkRecords(),
+      {
+        frameId: 'frameA',
+        requestId: '4',
+        startTime: 10,
+        isLinkPreload: true,
+        url: 'http://www.example.com/preload.css',
+        timing: defaultMainResource.timing,
+        priority: 'High',
+        initiator: {
+          type: 'parser',
+          url: defaultMainResourceUrl,
+        },
+      },
+      {
+        frameId: 'frameB',
+        requestId: '5',
+        startTime: 15,
+        isLinkPreload: false,
+        url: 'http://www.example.com/preload.css',
+        timing: defaultMainResource.timing,
+        priority: 'High',
+        initiator: {
+          type: 'parser',
+          url: defaultMainResourceUrl,
+        },
+      },
+    ];
+
+    const artifacts = mockArtifacts(networkRecords, defaultMainResourceUrl);
+    const context = {settings: {}, computedCache: new Map()};
+    const result = await UsesRelPreload.audit(artifacts, context);
+    expect(result.warnings).toBeUndefined();
+  });
+
   it(`shouldn't suggest preload for already preloaded records`, () => {
     const networkRecords = getMockNetworkRecords();
     networkRecords[2].isLinkPreload = true;
@@ -183,6 +255,16 @@ describe('Performance: uses-rel-preload audit', () => {
       assert.equal(output.details.overallSavingsMs, 0);
       assert.equal(output.details.items.length, 0);
     });
+  });
+
+  it(`shouldn't suggest preload for requests in other frames`, async () => {
+    const networkRecords = getMockNetworkRecords();
+    networkRecords[2].frameId = 'not a matching frame';
+
+    const artifacts = mockArtifacts(networkRecords, defaultMainResourceUrl);
+    const context = {settings: {}, computedCache: new Map()};
+    const result = await UsesRelPreload.audit(artifacts, context);
+    expect(result).toMatchObject({score: 1, details: {overallSavingsMs: 0, items: []}});
   });
 
   it(`shouldn't suggest preload for protocol data`, () => {

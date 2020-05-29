@@ -11,27 +11,26 @@ const MainResource = require('../computed/main-resource.js');
 
 const UIStrings = {
   /** Title of a diagnostic audit that provides detail on how long it took from starting a request to when the server started responding. This descriptive title is shown to users when the amount is acceptable and no user action is required. */
-  title: 'Server response times are low (TTFB)',
+  title: 'Initial server response time was short',
   /** Title of a diagnostic audit that provides detail on how long it took from starting a request to when the server started responding. This imperative title is shown to users when there is a significant amount of execution time that could be reduced. */
-  failureTitle: 'Reduce server response times (TTFB)',
+  failureTitle: 'Reduce initial server response time',
   /** Description of a Lighthouse audit that tells the user *why* they should reduce the amount of time it takes their server to start responding to requests. This is displayed after a user expands the section to see more. No character length limits. 'Learn More' becomes link text to additional documentation. */
-  description: 'Time To First Byte identifies the time at which your server sends a response.' +
-    ' [Learn more](https://web.dev/time-to-first-byte).',
-  /** Used to summarize the total Time to First Byte duration for the primary HTML response. The `{timeInMs}` placeholder will be replaced with the time duration, shown in milliseconds (e.g. 210 ms) */
+  description: 'Keep the server response time for the main document short because all other requests depend on it. [Learn more](https://web.dev/time-to-first-byte).',
+  /** Used to summarize the total Server Response Time duration for the primary HTML response. The `{timeInMs}` placeholder will be replaced with the time duration, shown in milliseconds (e.g. 210 ms) */
   displayValue: `Root document took {timeInMs, number, milliseconds}\xa0ms`,
 };
 
 const str_ = i18n.createMessageInstanceIdFn(__filename, UIStrings);
 
-const TTFB_THRESHOLD = 600;
+const RESPONSE_THRESHOLD = 600;
 
-class TTFBMetric extends Audit {
+class ServerResponseTime extends Audit {
   /**
    * @return {LH.Audit.Meta}
    */
   static get meta() {
     return {
-      id: 'time-to-first-byte',
+      id: 'server-response-time',
       title: str_(UIStrings.title),
       failureTitle: str_(UIStrings.failureTitle),
       description: str_(UIStrings.description),
@@ -42,7 +41,7 @@ class TTFBMetric extends Audit {
   /**
    * @param {LH.Artifacts.NetworkRequest} record
    */
-  static caclulateTTFB(record) {
+  static caclulateResponseTime(record) {
     const timing = record.timing;
     return timing ? timing.receiveHeadersEnd - timing.sendEnd : 0;
   }
@@ -56,32 +55,32 @@ class TTFBMetric extends Audit {
     const devtoolsLog = artifacts.devtoolsLogs[Audit.DEFAULT_PASS];
     const mainResource = await MainResource.request({devtoolsLog, URL: artifacts.URL}, context);
 
-    const ttfb = TTFBMetric.caclulateTTFB(mainResource);
-    const passed = ttfb < TTFB_THRESHOLD;
-    const displayValue = str_(UIStrings.displayValue, {timeInMs: ttfb});
+    const responseTime = ServerResponseTime.caclulateResponseTime(mainResource);
+    const passed = responseTime < RESPONSE_THRESHOLD;
+    const displayValue = str_(UIStrings.displayValue, {timeInMs: responseTime});
 
     /** @type {LH.Audit.Details.Opportunity} */
     const details = {
       type: 'opportunity',
-      overallSavingsMs: ttfb - TTFB_THRESHOLD,
+      overallSavingsMs: responseTime - RESPONSE_THRESHOLD,
       headings: [],
       items: [],
     };
 
     return {
-      numericValue: ttfb,
+      numericValue: responseTime,
       numericUnit: 'millisecond',
       score: Number(passed),
       displayValue,
       details,
       extendedInfo: {
         value: {
-          wastedMs: ttfb - TTFB_THRESHOLD,
+          wastedMs: responseTime - RESPONSE_THRESHOLD,
         },
       },
     };
   }
 }
 
-module.exports = TTFBMetric;
+module.exports = ServerResponseTime;
 module.exports.UIStrings = UIStrings;

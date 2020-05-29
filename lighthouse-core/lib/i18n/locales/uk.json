@@ -141,10 +141,10 @@
     "message": "Коли списки визначень мають неправильну розмітку, програми зчитування з екрана можуть генерувати незрозумілі або неточні дані. [Докладніше](https://web.dev/definition-list/)."
   },
   "lighthouse-core/audits/accessibility/definition-list.js | failureTitle": {
-    "message": "Списки визначення `<dl>` містять не лише належно впорядковані групи `<dt>` і `<dd>` чи елементи `<script>` або `<template>`."
+    "message": "Списки визначення `<dl>` містять не лише належно впорядковані групи `<dt>` і `<dd>` чи елементи `<script>`, `<template>` або `<div>`."
   },
   "lighthouse-core/audits/accessibility/definition-list.js | title": {
-    "message": "Списки визначення `<dl>` містять лише належно впорядковані групи `<dt>` та `<dd>` чи елементи `<script>` або `<template>`."
+    "message": "Списки визначення `<dl>` містять лише належно впорядковані групи `<dt>` та `<dd>` чи елементи `<script>`, `<template>` або `<div>`."
   },
   "lighthouse-core/audits/accessibility/dlitem.js | description": {
     "message": "Щоб програми зчитування з екрана правильно озвучували елементи списку визначень (`<dt>` і `<dd>`), елементи має бути згруповано в батьківському елементі `<dl>`. [Докладніше](https://web.dev/dlitem/)."
@@ -404,6 +404,12 @@
   "lighthouse-core/audits/bootup-time.js | title": {
     "message": "Час виконання JavaScript"
   },
+  "lighthouse-core/audits/byte-efficiency/duplicated-javascript.js | description": {
+    "message": "Видаліть великі копії модулів JavaScript із пакетів, щоб зменшити кількість непотрібних байтів під час активності в мережі. "
+  },
+  "lighthouse-core/audits/byte-efficiency/duplicated-javascript.js | title": {
+    "message": "Видаліть копії модулів у пакетах JavaScript"
+  },
   "lighthouse-core/audits/byte-efficiency/efficient-animated-content.js | description": {
     "message": "Великі файли GIF неефективні для передавання анімованого вмісту. Щоб заощадити мережевий трафік даних, радимо замість формату GIF використовувати MPEG4 або WebM для анімацій і PNG чи WebP для статичних зображень. [Докладніше](https://web.dev/efficient-animated-content)"
   },
@@ -453,7 +459,7 @@
     "message": "Видаліть вміст CSS, який не використовується"
   },
   "lighthouse-core/audits/byte-efficiency/unused-javascript.js | description": {
-    "message": "Видаліть файли JavaScript, які ви не використовуєте, щоб зменшити кількість байтів під час активності в мережі. [Докладніше](https://developers.google.com/web/fundamentals/performance/optimizing-javascript/code-splitting)."
+    "message": "Видаліть файли JavaScript, які ви не використовуєте, щоб зменшити кількість байтів під час активності в мережі. [Докладніше](https://web.dev/remove-unused-code/)."
   },
   "lighthouse-core/audits/byte-efficiency/unused-javascript.js | title": {
     "message": "Вилучіть файли JavaScript, які ви не використовуєте"
@@ -545,6 +551,15 @@
   "lighthouse-core/audits/dobetterweb/appcache-manifest.js | title": {
     "message": "Уникає кешу додатка"
   },
+  "lighthouse-core/audits/dobetterweb/charset.js | description": {
+    "message": "Декларація кодування символів обов'язкова. Це можна зробити за допомогою тегу <meta> в перших 1024 байтах HTML або в заголовку відповіді HTTP-контенту. [Докладніше](https://www.w3.org/International/questions/qa-html-encoding-declarations)."
+  },
+  "lighthouse-core/audits/dobetterweb/charset.js | failureTitle": {
+    "message": "Декларація набору символів відсутня або виникає запізно в HTML"
+  },
+  "lighthouse-core/audits/dobetterweb/charset.js | title": {
+    "message": "Належно визначає набір символів"
+  },
   "lighthouse-core/audits/dobetterweb/doctype.js | description": {
     "message": "Якщо вказати елемент doctype, веб-переглядач не перейде в режим сумісності. [Докладніше](https://web.dev/doctype)."
   },
@@ -565,9 +580,6 @@
   },
   "lighthouse-core/audits/dobetterweb/doctype.js | title": {
     "message": "Сторінка має елемент HTML doctype"
-  },
-  "lighthouse-core/audits/dobetterweb/dom-size.js | columnElement": {
-    "message": "Елемент"
   },
   "lighthouse-core/audits/dobetterweb/dom-size.js | columnStatistic": {
     "message": "Статистика"
@@ -595,6 +607,9 @@
   },
   "lighthouse-core/audits/dobetterweb/dom-size.js | title": {
     "message": "Уникається надмірний розмір DOM"
+  },
+  "lighthouse-core/audits/dobetterweb/external-anchors-use-rel-noopener.js | columnFailingAnchors": {
+    "message": "Відхилені прив'язки"
   },
   "lighthouse-core/audits/dobetterweb/external-anchors-use-rel-noopener.js | description": {
     "message": "Додайте `rel=\"noopener\"` або `rel=\"noreferrer\"` до зовнішніх посилань, щоб покращити ефективність і підвищити їх захищеність. [Докладніше](https://web.dev/external-anchors-use-rel-noopener)."
@@ -630,7 +645,7 @@
     "message": "Зовнішні сценарії, динамічно вставлені методом `document.write()`, можуть затримувати завантаження сторінки на десятки секунд для користувачів із повільним з'єднанням. [Докладніше](https://web.dev/no-document-write)."
   },
   "lighthouse-core/audits/dobetterweb/no-document-write.js | failureTitle": {
-    "message": "Використовує `document.write()`"
+    "message": "Уникайте `document.write()`"
   },
   "lighthouse-core/audits/dobetterweb/no-document-write.js | title": {
     "message": "Уникає `document.write()`"
@@ -752,6 +767,24 @@
   "lighthouse-core/audits/image-aspect-ratio.js | warningCompute": {
     "message": "Недійсна інформація про розмір зображення {url}"
   },
+  "lighthouse-core/audits/image-size-responsive.js | columnActual": {
+    "message": "Дійсний розмір"
+  },
+  "lighthouse-core/audits/image-size-responsive.js | columnDisplayed": {
+    "message": "Показаний розмір"
+  },
+  "lighthouse-core/audits/image-size-responsive.js | columnExpected": {
+    "message": "Очікуваний розмір"
+  },
+  "lighthouse-core/audits/image-size-responsive.js | description": {
+    "message": "Для максимальної чіткості зображення співвідношення його сторін має бути пропорційним до розмірів і роздільної здатності екрана. [Докладніше](https://web.dev/image-size-responsive)."
+  },
+  "lighthouse-core/audits/image-size-responsive.js | failureTitle": {
+    "message": "Показує зображення неправильного розміру"
+  },
+  "lighthouse-core/audits/image-size-responsive.js | title": {
+    "message": "Показує зображення правильного розміру"
+  },
   "lighthouse-core/audits/installable-manifest.js | description": {
     "message": "Веб-переглядачі можуть активно заохочувати користувачів установити ваш додаток на головний екран, що сприятиме кращій взаємодії. [Докладніше](https://web.dev/installable-manifest)."
   },
@@ -775,6 +808,12 @@
   },
   "lighthouse-core/audits/is-on-https.js | title": {
     "message": "Використовує протокол HTTPS"
+  },
+  "lighthouse-core/audits/legacy-javascript.js | description": {
+    "message": "Поліфіли та перетворення дають змогу застарілим веб-переглядачам використовувати нові функції JavaScript. Однак багато з них не потрібні для сучасних веб-переглядачів. Для пакетів JavaScript прийміть сучасну стратегію введення скрипту в дію за допомогою виявлення модульних/немодульних функцій, щоб зменшити обсяг коду, що надсилається сучасним веб-переглядачам зі збереженням підтримки застарілих. [Докладніше](https://philipwalton.com/articles/deploying-es2015-code-in-production-today/)"
+  },
+  "lighthouse-core/audits/legacy-javascript.js | title": {
+    "message": "Застарілий JavaScript"
   },
   "lighthouse-core/audits/load-fast-enough-for-pwa.js | description": {
     "message": "Якщо сторінка швидко завантажується в мобільній мережі, це покращує враження користувачів мобільних пристроїв. [Докладніше](https://web.dev/load-fast-enough-for-pwa)."
@@ -824,6 +863,18 @@
   "lighthouse-core/audits/manual/pwa-page-transitions.js | title": {
     "message": "Схоже, перехід між сторінками не блокує мережу"
   },
+  "lighthouse-core/audits/maskable-icon.js | description": {
+    "message": "Маскувальний значок гарантує, що зображення заповнює всю форму, не перетворюючись на леттербокс під час встановлення додатка на пристрої. [Докладніше](https://web.dev/maskable-icon/)."
+  },
+  "lighthouse-core/audits/maskable-icon.js | failureTitle": {
+    "message": "Маніфест не має маскувального значка"
+  },
+  "lighthouse-core/audits/maskable-icon.js | title": {
+    "message": "Маніфест має маскувальний значок"
+  },
+  "lighthouse-core/audits/metrics/cumulative-layout-shift.js | description": {
+    "message": "Сукупне зміщення макета вимірює рух видимих елементів у межах області перегляду. [Докладніше](https://web.dev/cls)."
+  },
   "lighthouse-core/audits/metrics/estimated-input-latency.js | description": {
     "message": "Приблизна затримка введення показує, скільки часу в мілісекундах додаток відповідає на ввід користувача під час п'ятисекундного періоду завантаження сторінки. Якщо затримка перевищує 50 мс, користувачі можуть вважати ваш додаток повільним. [Докладніше](https://web.dev/estimated-input-latency)."
   },
@@ -840,10 +891,7 @@
     "message": "Час до повного завантаження – це період часу, через який сторінка стане повністю інтерактивною. [Докладніше](https://web.dev/interactive)."
   },
   "lighthouse-core/audits/metrics/largest-contentful-paint.js | description": {
-    "message": "Найбільша візуалізація контенту показує, коли з'являється найбільший текст чи зображення. [Докладніше](https://web.dev/largest-contentful-paint)"
-  },
-  "lighthouse-core/audits/metrics/largest-contentful-paint.js | title": {
-    "message": "Найбільша візуалізація контенту"
+    "message": "Найбільша візуалізація контенту показує, коли з'являється найбільший текст чи зображення. [Докладніше](https://web.dev/lighthouse-largest-contentful-paint)"
   },
   "lighthouse-core/audits/metrics/max-potential-fid.js | description": {
     "message": "Максимальна потенційна затримка відповіді на першу дію – це тривалість найдовшого завдання. [Докладніше](https://web.dev/lighthouse-max-potential-fid)."
@@ -1118,18 +1166,6 @@
   "lighthouse-core/audits/third-party-summary.js | title": {
     "message": "Зменште використання стороннього коду"
   },
-  "lighthouse-core/audits/time-to-first-byte.js | description": {
-    "message": "Час до першого байта визначає швидкість реакції сервера. [Докладніше](https://web.dev/time-to-first-byte)."
-  },
-  "lighthouse-core/audits/time-to-first-byte.js | displayValue": {
-    "message": "Кореневий документ відповів через {timeInMs, number, milliseconds} мс"
-  },
-  "lighthouse-core/audits/time-to-first-byte.js | failureTitle": {
-    "message": "Зменште час відповіді сервера (TTFB)"
-  },
-  "lighthouse-core/audits/time-to-first-byte.js | title": {
-    "message": "Сервер довго відповідає (TTFB)"
-  },
   "lighthouse-core/audits/timing-budget.js | columnMeasurement": {
     "message": "Значення"
   },
@@ -1141,12 +1177,6 @@
   },
   "lighthouse-core/audits/timing-budget.js | title": {
     "message": "Обмеження часу"
-  },
-  "lighthouse-core/audits/user-timings.js | columnDuration": {
-    "message": "Тривалість"
-  },
-  "lighthouse-core/audits/user-timings.js | columnStartTime": {
-    "message": "Час початку"
   },
   "lighthouse-core/audits/user-timings.js | columnType": {
     "message": "Тип"
@@ -1168,6 +1198,9 @@
   },
   "lighthouse-core/audits/uses-rel-preconnect.js | title": {
     "message": "Попередньо під’єднуйтеся до потрібних джерел"
+  },
+  "lighthouse-core/audits/uses-rel-preconnect.js | tooManyPreconnectLinksWarning": {
+    "message": "Знайдено принаймні 2 посилання для попереднього з'єднання. Посилання для попереднього з'єднання потрібно використовувати ощадливо й лише для найважливіших джерел."
   },
   "lighthouse-core/audits/uses-rel-preload.js | crossoriginWarning": {
     "message": "Для {preloadURL} знайдено посилання для попереднього завантаження <link>, але веб-переглядач його не використав. Переконайтеся, що ви правильно використовуєте атрибут `crossorigin`."
@@ -1355,6 +1388,12 @@
   "lighthouse-core/config/default-config.js | seoMobileGroupTitle": {
     "message": "Для мобільних пристроїв"
   },
+  "lighthouse-core/gather/gather-runner.js | warningRedirected": {
+    "message": "Ця сторінка може не завантажуватися належним чином, оскільки тестову URL-адресу ({requested}) було переспрямовано на {final}. Спробуйте перейти безпосередньо на другу URL-адресу."
+  },
+  "lighthouse-core/gather/gather-runner.js | warningTimeout": {
+    "message": "Сторінка завантажувалася занадто повільно, щоб показати всі результати в межах визначеного часу, тому вони можуть бути неповними."
+  },
   "lighthouse-core/lib/i18n/i18n.js | columnCacheTTL": {
     "message": "TTL кешу"
   },
@@ -1370,11 +1409,17 @@
   "lighthouse-core/lib/i18n/i18n.js | columnRequests": {
     "message": "Запити"
   },
+  "lighthouse-core/lib/i18n/i18n.js | columnResourceSize": {
+    "message": "Розмір ресурсу"
+  },
   "lighthouse-core/lib/i18n/i18n.js | columnResourceType": {
     "message": "Тип ресурсу"
   },
   "lighthouse-core/lib/i18n/i18n.js | columnSize": {
     "message": "Розмір"
+  },
+  "lighthouse-core/lib/i18n/i18n.js | columnSource": {
+    "message": "Джерело"
   },
   "lighthouse-core/lib/i18n/i18n.js | columnTimeSpent": {
     "message": "Витрачений час"
@@ -1390,6 +1435,9 @@
   },
   "lighthouse-core/lib/i18n/i18n.js | columnWastedMs": {
     "message": "Потенційне заощадження"
+  },
+  "lighthouse-core/lib/i18n/i18n.js | cumulativeLayoutShiftMetric": {
+    "message": "Сукупний зсув макета"
   },
   "lighthouse-core/lib/i18n/i18n.js | displayValueByteSavings": {
     "message": "Потенційне заощадження – {wastedBytes, number, bytes} КБ"
@@ -1420,6 +1468,9 @@
   },
   "lighthouse-core/lib/i18n/i18n.js | interactiveMetric": {
     "message": "Час до повної взаємодії"
+  },
+  "lighthouse-core/lib/i18n/i18n.js | largestContentfulPaintMetric": {
+    "message": "Найбільша візуалізація контенту"
   },
   "lighthouse-core/lib/i18n/i18n.js | maxPotentialFIDMetric": {
     "message": "Максимальна потенційна затримка відповіді на першу дію"
@@ -1514,11 +1565,38 @@
   "lighthouse-core/report/html/renderer/util.js | crcLongestDurationLabel": {
     "message": "Максимальна критична затримка шляху:"
   },
+  "lighthouse-core/report/html/renderer/util.js | dropdownCopyJSON": {
+    "message": "Копіювати JSON"
+  },
+  "lighthouse-core/report/html/renderer/util.js | dropdownDarkTheme": {
+    "message": "Увімкнути або вимкнути темну тему"
+  },
+  "lighthouse-core/report/html/renderer/util.js | dropdownPrintExpanded": {
+    "message": "Розгорнути вікно друку"
+  },
+  "lighthouse-core/report/html/renderer/util.js | dropdownPrintSummary": {
+    "message": "Друкувати підсумок"
+  },
+  "lighthouse-core/report/html/renderer/util.js | dropdownSaveGist": {
+    "message": "Зберегти як Gist"
+  },
+  "lighthouse-core/report/html/renderer/util.js | dropdownSaveHTML": {
+    "message": "Зберегти як HTML"
+  },
+  "lighthouse-core/report/html/renderer/util.js | dropdownSaveJSON": {
+    "message": "Зберегти як JSON"
+  },
+  "lighthouse-core/report/html/renderer/util.js | dropdownViewer": {
+    "message": "Відкрити в засобі перегляду"
+  },
   "lighthouse-core/report/html/renderer/util.js | errorLabel": {
     "message": "Помилка."
   },
   "lighthouse-core/report/html/renderer/util.js | errorMissingAuditInfo": {
     "message": "Повідомлення про помилку: немає інформації про перевірку"
+  },
+  "lighthouse-core/report/html/renderer/util.js | footerIssue": {
+    "message": "Повідомити про проблему"
   },
   "lighthouse-core/report/html/renderer/util.js | labDataTitle": {
     "message": "Дані тестів"
@@ -1541,6 +1619,48 @@
   "lighthouse-core/report/html/renderer/util.js | passedAuditsGroupTitle": {
     "message": "Виконані перевірки"
   },
+  "lighthouse-core/report/html/renderer/util.js | runtimeDesktopEmulation": {
+    "message": "Емульований комп'ютер"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeMobileEmulation": {
+    "message": "Емульований пристрій Moto G4"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeNoEmulation": {
+    "message": "Без емуляції"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsBenchmark": {
+    "message": "Споживання ЦП/пам'яті"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsCPUThrottling": {
+    "message": "Обмеження пропускної спроможності ЦП"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsChannel": {
+    "message": "Канал"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsDevice": {
+    "message": "Пристрій"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsFetchTime": {
+    "message": "Час отримання"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsNetworkThrottling": {
+    "message": "Зменшення пропускної спроможності мережі"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsTitle": {
+    "message": "Налаштування часу виконання"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsUA": {
+    "message": "Агент користувача (хост)"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsUANetwork": {
+    "message": "Агент користувача (мережа)"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeSettingsUrl": {
+    "message": "URL-адреса"
+  },
+  "lighthouse-core/report/html/renderer/util.js | runtimeUnknown": {
+    "message": "Невідомо"
+  },
   "lighthouse-core/report/html/renderer/util.js | snippetCollapseButtonLabel": {
     "message": "Згорнути фрагмент"
   },
@@ -1549,6 +1669,9 @@
   },
   "lighthouse-core/report/html/renderer/util.js | thirdPartyResourcesLabel": {
     "message": "Показати сторонні ресурси"
+  },
+  "lighthouse-core/report/html/renderer/util.js | throttlingProvided": {
+    "message": "Надано середовищем"
   },
   "lighthouse-core/report/html/renderer/util.js | toplevelWarningsMessage": {
     "message": "Під час запуску Lighthouse виникли перелічені нижче проблеми."
@@ -1610,9 +1733,6 @@
   "stack-packs/packs/magento.js | offscreen_images": {
     "message": "Можете змінити шаблони свого продукту й каталогу, щоб скористатися функцією веб-платформи для [відкладеного завантаження](https://web.dev/native-lazy-loading)."
   },
-  "stack-packs/packs/magento.js | time_to_first_byte": {
-    "message": "Скористайтесь [інтеграцією Varnish](https://devdocs.magento.com/guides/v2.3/config-guide/varnish/config-varnish.html) від Magento."
-  },
   "stack-packs/packs/magento.js | unminified_css": {
     "message": "Увімкніть опцію \"Зменшувати файли CSS\" у налаштуваннях розробника в магазині. [Докладніше](https://devdocs.magento.com/guides/v2.3/performance-best-practices/configuration.html?itm_source=devdocs&itm_medium=search_page&itm_campaign=federated_search&itm_term=minify%20css%20files)."
   },
@@ -1640,9 +1760,6 @@
   "stack-packs/packs/react.js | redirects": {
     "message": "Якщо ви користуєтеся React Router, зменште використання компонента `<Redirect>` для [навігації за маршрутом](https://reacttraining.com/react-router/web/api/Redirect)."
   },
-  "stack-packs/packs/react.js | time_to_first_byte": {
-    "message": "Якщо ви обробляєте компоненти React на сервері, можете застосувати `renderToNodeStream()` або `renderToStaticNodeStream()`, щоб дозволити клієнту отримувати та вмикати не всю розмітку відразу, а її різні частини. [Докладніше](https://reactjs.org/docs/react-dom-server.html#rendertonodestream)."
-  },
   "stack-packs/packs/react.js | unminified_css": {
     "message": "Якщо ваша система складання автоматично зменшує файли CSS, переконайтеся, що ви вводите в дію робочу версію додатка. Це можна перевірити за допомогою розширення Інструменти розробника React. [Докладніше](https://reactjs.org/docs/optimizing-performance.html#use-the-production-build)."
   },
@@ -1663,9 +1780,6 @@
   },
   "stack-packs/packs/wordpress.js | render_blocking_resources": {
     "message": "Існує багато плагінів WordPress, які можуть допомогти [вбудувати важливі об'єкти](https://wordpress.org/plugins/search/critical+css/) або [відкласти менш важливі ресурси](https://wordpress.org/plugins/search/defer+css+javascript/). Зауважте, що така оптимізація може порушити функції теми або плагінів, тож доведеться змінити код."
-  },
-  "stack-packs/packs/wordpress.js | time_to_first_byte": {
-    "message": "Теми, плагіни й характеристики сервера впливають на час відповіді. Спробуйте знайти більш оптимізовану тему, підібрати плагін для оптимізації та/або оновити сервер."
   },
   "stack-packs/packs/wordpress.js | total_byte_weight": {
     "message": "Спробуйте показувати витяги в списках дописів (через тег \"більше\"), зменшити кількість показаних публікацій на сторінці, розділити довгі дописи на кілька сторінок або скористатися плагіном, щоб відкласти завантаження коментарів."

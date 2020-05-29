@@ -27,23 +27,41 @@ class TotalBlockingTime extends Audit {
       title: str_(i18n.UIStrings.totalBlockingTimeMetric),
       description: str_(UIStrings.description),
       scoreDisplayMode: Audit.SCORING_MODES.NUMERIC,
-      requiredArtifacts: ['traces', 'devtoolsLogs'],
+      requiredArtifacts: ['traces', 'devtoolsLogs', 'TestedAsMobileDevice'],
     };
   }
 
   /**
-   * @return {LH.Audit.ScoreOptions}
+   * @return {{mobile: {scoring: LH.Audit.ScoreOptions}, desktop: {scoring: LH.Audit.ScoreOptions}}}
    */
   static get defaultOptions() {
     return {
-      // According to a cluster telemetry run over top 10k sites on mobile, 5th percentile was 0ms,
-      // 25th percentile was 270ms and median was 895ms. These numbers include 404 pages. Picking
-      // thresholds according to our 25/75-th rule will be quite harsh scoring (a single 350ms task)
-      // after FCP will yield a score of .5. The following coefficients are semi-arbitrarily picked
-      // to give 600ms jank a score of .5 and 100ms jank a score of .999. We can tweak these numbers
-      // in the future. See https://www.desmos.com/calculator/a7ib75kq3g
-      scoreMedian: 600,
-      scorePODR: 200,
+      mobile: {
+        // According to a cluster telemetry run over top 10k sites on mobile, 5th percentile was 0ms,
+        // 25th percentile was 270ms and median was 895ms. These numbers include 404 pages. Picking
+        // thresholds according to our 25/75-th rule will be quite harsh scoring (a single 350ms task)
+        // after FCP will yield a score of .5. The following coefficients are semi-arbitrarily picked
+        // to give 600ms jank a score of .5 and 100ms jank a score of .999. We can tweak these numbers
+        // in the future. See https://www.desmos.com/calculator/bbsv8fedg5
+        scoring: {
+          p10: 287,
+          median: 600,
+        },
+      },
+      desktop: {
+        // Chosen in HTTP Archive desktop results to approximate curve easing described above.
+        // SELECT
+        //   APPROX_QUANTILES(tbtValue, 100)[OFFSET(40)] AS p40_tbt,
+        //   APPROX_QUANTILES(tbtValue, 100)[OFFSET(60)] AS p60_tbt
+        // FROM (
+        //   SELECT CAST(JSON_EXTRACT_SCALAR(payload, '$._TotalBlockingTime') AS NUMERIC) AS tbtValue
+        //   FROM `httparchive.pages.2020_04_01_desktop`
+        // )
+        scoring: {
+          p10: 150,
+          median: 350,
+        },
+      },
     };
   }
 
@@ -65,11 +83,13 @@ class TotalBlockingTime extends Audit {
     const metricComputationData = {trace, devtoolsLog, settings: context.settings};
     const metricResult = await ComputedTBT.request(metricComputationData, context);
 
+    const isDesktop = artifacts.TestedAsMobileDevice === false;
+    const options = isDesktop ? context.options.desktop : context.options.mobile;
+
     return {
       score: Audit.computeLogNormalScore(
-        metricResult.timing,
-        context.options.scorePODR,
-        context.options.scoreMedian
+        options.scoring,
+        metricResult.timing
       ),
       numericValue: metricResult.timing,
       numericUnit: 'millisecond',

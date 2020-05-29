@@ -1161,8 +1161,21 @@ describe('Config', () => {
       };
       const extendedConfig = new Config(extended);
 
+      // When gatherers have instance properties that are bind()'d, they'll not match.
+      // Gatherers in each config will still be compared via the constructor on .implementation.
+      // https://github.com/GoogleChrome/lighthouse/pull/10090#discussion_r382864319
+      function deleteInstancesForTest(config) {
+        for (const pass of config.passes) {
+          for (const gatherer of pass.gatherers) {
+            delete gatherer.instance;
+          }
+        }
+      }
+      deleteInstancesForTest(extendedConfig);
+      deleteInstancesForTest(config);
+
       assert.equal(config.passes.length, 1, 'did not filter config');
-      assert.deepStrictEqual(config, extendedConfig, 'had mutations');
+      expect(config).toEqual(extendedConfig); // ensure we didn't have mutations
     });
 
     it('should filter out other passes if passed Performance', () => {

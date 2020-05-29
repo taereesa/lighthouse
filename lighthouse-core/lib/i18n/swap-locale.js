@@ -22,12 +22,12 @@ const i18n = require('./i18n.js');
     "lighthouse-core/audits/metrics/first-contentful-paint.js | title": [
       "audits[first-contentful-paint].title"
     ],
-    "lighthouse-core/audits/time-to-first-byte.js | displayValue": [
+    "lighthouse-core/audits/server-response-time.js | displayValue": [
       {
         "values": {
           "timeInMs": 570.5630000000001
         },
-        "path": "audits[time-to-first-byte].displayValue"
+        "path": "audits[server-response-time].displayValue"
       }
     ],
     "lighthouse-core/lib/i18n/i18n.js | columnTimeSpent": [

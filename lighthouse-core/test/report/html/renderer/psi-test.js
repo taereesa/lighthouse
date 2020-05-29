@@ -34,7 +34,7 @@ describe('DOM', () => {
   let document;
   beforeAll(() => {
     global.Util = Util;
-    global.Util.i18n = new I18n('en', {...Util.UIStrings});
+    global.I18n = I18n;
 
     global.DOM = DOM;
     global.CategoryRenderer = CategoryRenderer;
@@ -51,7 +51,7 @@ describe('DOM', () => {
   });
 
   afterAll(() => {
-    global.Util.i18n = undefined;
+    global.I18n = undefined;
     global.Util = undefined;
     global.DOM = undefined;
     global.CategoryRenderer = undefined;

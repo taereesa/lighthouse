@@ -85,18 +85,11 @@ describe('CLI bin', function() {
     });
 
     it('should load the config from the preset', async () => {
-      cliFlags = {...cliFlags, preset: 'mixed-content'};
-      const actualConfig = require('../../../lighthouse-core/config/mixed-content-config.js');
+      cliFlags = {...cliFlags, preset: 'experimental'};
+      const actualConfig = require('../../../lighthouse-core/config/experimental-config.js');
       await bin.begin();
 
       expect(getRunLighthouseArgs()[2]).toEqual(actualConfig);
-    });
-
-    it('should add headless when using mixed content', async () => {
-      cliFlags = {...cliFlags, preset: 'mixed-content'};
-      await bin.begin();
-
-      expect(getRunLighthouseArgs()[1].chromeFlags).toContain('--headless');
     });
   });
 
