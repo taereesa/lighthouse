@@ -52,5 +52,8 @@ read -n 1 -r unused_variable
 
 echo "✅   Test the viewer. Open http://localhost:8000"
 echo "    - Works with v4 report? https://gist.github.com/patrickhulce/7251f9eba409f385e4c0424515fe8009"
+echo "    - Works with v5 report? https://gist.github.com/paulirish/6093e41b9b50c8d642a7e6bbc784e32f"
+echo "    - Works with v6 report? https://gist.github.com/paulirish/94722e917a507feb5371ad51be6c3334"
+echo "    - Current production viewer (https://googlechrome.github.io/lighthouse/viewer/) has forward compat with next major LHR?"
 echo "${TXT_DIM}Press any key to complete the test script...${TXT_RESET}"
 read -n 1 -r unused_variable
