@@ -50,6 +50,16 @@ class I18n {
   }
 
   /**
+   * @param {number} size
+   * @param {number=} granularity Controls how coarse the displayed value is, defaults to 0.1
+   * @return {string}
+   */
+  formatBytes(size, granularity = 1) {
+    const kbs = this._numberFormatter.format(Math.round(size / granularity) * granularity);
+    return `${kbs}${NBSP2}bytes`;
+  }
+
+  /**
    * @param {number} ms
    * @param {number=} granularity Controls how coarse the displayed value is, defaults to 10
    * @return {string}
