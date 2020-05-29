@@ -199,9 +199,6 @@ module.exports = [
       },
     },
   },
-];
-
-module.exports = [
   {
     lhr: {
       requestedUrl: 'http://localhost:10200/perf/trace-elements.html?missing',
@@ -215,8 +212,7 @@ module.exports = [
               {
                 node: {
                   type: 'node',
-                  nodeLabel: 'img',
-                  selector: 'body > div#late-content > img',
+                  selector: 'body',
                 },
               },
             ],
@@ -233,4 +229,5 @@ module.exports = [
         },
       },
     },
-  }];
+  },
+];
