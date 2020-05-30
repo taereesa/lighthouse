@@ -16,7 +16,7 @@
 /** @typedef {{name: string, line: number, column: number}} PatternMatchResult */
 
 const ByteEfficiencyAudit = require('./byte-efficiency-audit.js');
-const JSBundles = require('../../computed/js-bundles.js');
+const JsBundles = require('../../computed/js-bundles.js');
 const i18n = require('../../lib/i18n/i18n.js');
 const thirdPartyWeb = require('../../lib/third-party-web.js');
 
@@ -353,14 +353,31 @@ class LegacyJavascript extends ByteEfficiencyAudit {
   static estimateWastedBytes(matches) {
     const polyfillSignals = matches.filter(m => !m.name.startsWith('@')).map(m => m.name);
     const transformSignals = matches.filter(m => m.name.startsWith('@')).map(m => m.name);
-    console.log({polyfillSignals, transformSignals});
 
     // experimenting.
-    const POLYFILL_USE_GRAPH = false;
+    const POLYFILL_USE_GRAPH = true;
 
     let estimatedWastedBytesFromPolyfills = 0;
     if (POLYFILL_USE_GRAPH) {
       // TODO
+      const graph = require('./polyfill-graph-data.json');
+      const modulesSeen = new Set();
+      for (const polyfillSignal of polyfillSignals) {
+        // @ts-ignore: lacking index type.
+        const modules = graph.dependencies[polyfillSignal];
+        for (const module of modules) {
+          modulesSeen.add(module);
+        }
+      }
+
+      if (polyfillSignals.length > 0) estimatedWastedBytesFromPolyfills += graph.baseSize;
+      estimatedWastedBytesFromPolyfills += graph.baseSize;
+      estimatedWastedBytesFromPolyfills += [...modulesSeen].reduce((acc, module) => {
+        return acc + graph.moduleSizes[module];
+      }, 0);
+      // Not needed?
+      estimatedWastedBytesFromPolyfills =
+        Math.min(estimatedWastedBytesFromPolyfills, graph.maxSize);
     } else {
       const typedArrayPolyfills = [
         'Float32Array',
@@ -374,18 +391,19 @@ class LegacyJavascript extends ByteEfficiencyAudit {
         'Uint8ClampedArray',
       ];
       const typedArrayCount = typedArrayPolyfills.filter(p => polyfillSignals.includes(p)).length;
-  
+
       const POLYFILL_MAX_WASTE = 175764;
       const POLYFILL_TYPED_WASTE = 40 * 1000; // ~60KiB, minus the base 20.
       const POLYFILL_BASE_SIZE = 20 * 1000;
-  
+
       if (typedArrayCount > 0) estimatedWastedBytesFromPolyfills += POLYFILL_TYPED_WASTE;
       if (polyfillSignals.length > 0) estimatedWastedBytesFromPolyfills += POLYFILL_BASE_SIZE;
       // Linear estimation of non-typed polyfills (and minus one to exclude the base size above).
       estimatedWastedBytesFromPolyfills += (polyfillSignals.length - typedArrayCount - 1)
         * (POLYFILL_MAX_WASTE - POLYFILL_TYPED_WASTE - POLYFILL_BASE_SIZE)
         / (this.getPolyfillData().length - typedArrayPolyfills.length - 1);
-      estimatedWastedBytesFromPolyfills = Math.min(estimatedWastedBytesFromPolyfills, POLYFILL_MAX_WASTE);
+      estimatedWastedBytesFromPolyfills =
+        Math.min(estimatedWastedBytesFromPolyfills, POLYFILL_MAX_WASTE);
     }
 
     const estimatedWastedBytesFromTransforms = 0;
@@ -404,7 +422,7 @@ class LegacyJavascript extends ByteEfficiencyAudit {
    */
   static async audit_(artifacts, networkRecords, context) {
     const mainDocumentEntity = thirdPartyWeb.getEntity(artifacts.URL.finalUrl);
-    const bundles = await JSBundles.request(artifacts, context);
+    const bundles = await JsBundles.request(artifacts, context);
 
     /**
      * @typedef {LH.Audit.ByteEfficiencyItem & {signals: string[], locations: LH.Audit.Details.SourceLocationValue[]}} Item

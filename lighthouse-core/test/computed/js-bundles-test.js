@@ -7,7 +7,7 @@
 
 /* eslint-env jest */
 const fs = require('fs');
-const JSBundles = require('../../computed/js-bundles.js');
+const JsBundles = require('../../computed/js-bundles.js');
 
 function load(name) {
   const mapJson = fs.readFileSync(`${__dirname}/../fixtures/source-maps/${name}.js.map`, 'utf-8');
@@ -15,7 +15,7 @@ function load(name) {
   return {map: JSON.parse(mapJson), content};
 }
 
-describe('JSBundles computed artifact', () => {
+describe('JsBundles computed artifact', () => {
   it('collates script element and source map', async () => {
     const artifacts = {
       SourceMaps: [{
@@ -24,7 +24,7 @@ describe('JSBundles computed artifact', () => {
       ScriptElements: [{src: 'https://www.example.com/app.js', content: ''}],
     };
     const context = {computedCache: new Map()};
-    const results = await JSBundles.request(artifacts, context);
+    const results = await JsBundles.request(artifacts, context);
     expect(results).toHaveLength(1);
     const result = results[0];
     expect(result.rawMap).toBe(artifacts.SourceMaps[0].map);
@@ -40,7 +40,7 @@ describe('JSBundles computed artifact', () => {
       ScriptElements: [{src: 'https://example.com/foo.min.js', content}],
     };
     const context = {computedCache: new Map()};
-    const results = await JSBundles.request(artifacts, context);
+    const results = await JsBundles.request(artifacts, context);
 
     expect(results).toHaveLength(1);
     const result = results[0];
@@ -87,7 +87,7 @@ describe('JSBundles computed artifact', () => {
       ScriptElements: [{src: 'https://example.com/foo.min.js', content}],
     };
     const context = {computedCache: new Map()};
-    const results = await JSBundles.request(artifacts, context);
+    const results = await JsBundles.request(artifacts, context);
 
     expect(results).toHaveLength(1);
     const result = results[0];
@@ -129,7 +129,7 @@ describe('JSBundles computed artifact', () => {
       ScriptElements: [{src: 'https://squoosh.app/main-app.js', content}],
     };
     const context = {computedCache: new Map()};
-    const results = await JSBundles.request(artifacts, context);
+    const results = await JsBundles.request(artifacts, context);
 
     expect(results).toHaveLength(1);
     const result = results[0];
@@ -251,7 +251,7 @@ describe('JSBundles computed artifact', () => {
         ScriptElements: [{src: 'https://example.com/foo.min.js', content}],
       };
       const context = {computedCache: new Map()};
-      const results = await JSBundles.request(artifacts, context);
+      const results = await JsBundles.request(artifacts, context);
       const result = results[0];
       const entry = result.map.findEntry(0, 644);
       return {sizes: result.sizes, entry};

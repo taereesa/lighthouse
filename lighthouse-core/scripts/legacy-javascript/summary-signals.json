@@ -1,9 +1,6 @@
 {
-  "totalSignals": 489,
-  "variantsMissingSignals": [
-    "core-js-2-preset-env-esmodules/true",
-    "core-js-3-preset-env-esmodules/true"
-  ],
+  "totalSignals": 480,
+  "variantsMissingSignals": [],
   "variants": [
     {
       "name": "all-legacy-polyfills/all-legacy-polyfills-core-js-2",
@@ -334,14 +331,6 @@
       "signals": "String.prototype.padStart"
     },
     {
-      "name": "core-js-2-preset-env-esmodules/false",
-      "signals": "@babel/plugin-transform-classes, @babel/plugin-transform-regenerator, @babel/plugin-transform-spread"
-    },
-    {
-      "name": "core-js-2-preset-env-esmodules/true",
-      "signals": ""
-    },
-    {
       "name": "core-js-3-only-polyfill/es-array-buffer-constructor",
       "signals": "ArrayBuffer, DataView, WeakMap"
     },
@@ -660,26 +649,6 @@
     {
       "name": "core-js-3-only-polyfill/es-weak-set",
       "signals": "WeakMap, WeakSet"
-    },
-    {
-      "name": "core-js-3-preset-env-esmodules/false",
-      "signals": "@babel/plugin-transform-classes, @babel/plugin-transform-regenerator, @babel/plugin-transform-spread"
-    },
-    {
-      "name": "core-js-3-preset-env-esmodules/true",
-      "signals": ""
-    },
-    {
-      "name": "only-plugin/-babel-plugin-transform-classes",
-      "signals": "@babel/plugin-transform-classes"
-    },
-    {
-      "name": "only-plugin/-babel-plugin-transform-regenerator",
-      "signals": "@babel/plugin-transform-regenerator"
-    },
-    {
-      "name": "only-plugin/-babel-plugin-transform-spread",
-      "signals": "@babel/plugin-transform-spread"
     }
   ]
 }

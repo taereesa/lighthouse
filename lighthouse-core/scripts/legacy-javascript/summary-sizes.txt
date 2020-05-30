@@ -84,10 +84,6 @@ core-js-2-only-polyfill
    6087        es6-date-to-string/main.bundle.min.js
    3504        es6-function-name/main.bundle.min.js
 
-core-js-2-preset-env-esmodules
-  2857         false/main.bundle.min.js
-  1352         true/main.bundle.min.js
-
 core-js-3-only-polyfill
   62423        es-typed-array-uint8-clamped-array/main.bundle.min.js
   62403        es-typed-array-float64-array/main.bundle.min.js
@@ -169,12 +165,3 @@ core-js-3-only-polyfill
   19625        es-date-now/main.bundle.min.js
   10443        es-date-to-string/main.bundle.min.js
    4488        es-function-name/main.bundle.min.js
-
-core-js-3-preset-env-esmodules
-  2857         false/main.bundle.min.js
-  1352         true/main.bundle.min.js
-
-only-plugin
-  1750         -babel-plugin-transform-spread/main.bundle.min.js
-   871         -babel-plugin-transform-regenerator/main.bundle.min.js
-   858         -babel-plugin-transform-classes/main.bundle.min.js
