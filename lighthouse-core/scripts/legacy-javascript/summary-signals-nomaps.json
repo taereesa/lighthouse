@@ -1,5 +1,5 @@
 {
-  "totalSignals": 439,
+  "totalSignals": 448,
   "variantsMissingSignals": [
     "core-js-2-only-polyfill/es6-array-filter",
     "core-js-2-only-polyfill/es6-array-map",
@@ -20,7 +20,9 @@
     "core-js-2-only-polyfill/es6-object-seal",
     "core-js-2-only-polyfill/es6-reflect-define-property",
     "core-js-2-only-polyfill/es6-string-trim",
-    "core-js-3-only-polyfill/es-function-name"
+    "core-js-2-preset-env-esmodules/true",
+    "core-js-3-only-polyfill/es-function-name",
+    "core-js-3-preset-env-esmodules/true"
   ],
   "variants": [
     {
@@ -352,6 +354,14 @@
       "signals": "String.prototype.padStart"
     },
     {
+      "name": "core-js-2-preset-env-esmodules/false",
+      "signals": "@babel/plugin-transform-classes, @babel/plugin-transform-regenerator, @babel/plugin-transform-spread"
+    },
+    {
+      "name": "core-js-2-preset-env-esmodules/true",
+      "signals": ""
+    },
+    {
       "name": "core-js-3-only-polyfill/es-array-buffer-constructor",
       "signals": "ArrayBuffer, DataView, WeakMap"
     },
@@ -670,6 +680,26 @@
     {
       "name": "core-js-3-only-polyfill/es-weak-set",
       "signals": "WeakMap, WeakSet"
+    },
+    {
+      "name": "core-js-3-preset-env-esmodules/false",
+      "signals": "@babel/plugin-transform-classes, @babel/plugin-transform-regenerator, @babel/plugin-transform-spread"
+    },
+    {
+      "name": "core-js-3-preset-env-esmodules/true",
+      "signals": ""
+    },
+    {
+      "name": "only-plugin/-babel-plugin-transform-classes",
+      "signals": "@babel/plugin-transform-classes"
+    },
+    {
+      "name": "only-plugin/-babel-plugin-transform-regenerator",
+      "signals": "@babel/plugin-transform-regenerator"
+    },
+    {
+      "name": "only-plugin/-babel-plugin-transform-spread",
+      "signals": "@babel/plugin-transform-spread"
     }
   ]
 }
