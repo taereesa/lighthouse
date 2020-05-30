@@ -121,8 +121,8 @@ class UnusedJavaScript extends ByteEfficiencyAudit {
           .filter(d => d.unused >= bundleSourceUnusedThreshold);
 
         const commonSourcePrefix = commonPrefix([...bundle.map._sourceInfos.keys()]);
-        item.subRows = {
-          type: 'subrows',
+        item.subItems = {
+          type: 'subitems',
           items: topUnusedSourceSizes.map(({source, unused, total}) => {
             return {
               source: trimCommonPrefix(source, commonSourcePrefix),
@@ -140,9 +140,9 @@ class UnusedJavaScript extends ByteEfficiencyAudit {
       items,
       headings: [
         /* eslint-disable max-len */
-        {key: 'url', valueType: 'url', subRows: {key: 'source', valueType: 'code'}, label: str_(i18n.UIStrings.columnURL)},
-        {key: 'totalBytes', valueType: 'bytes', subRows: {key: 'sourceBytes'}, label: str_(i18n.UIStrings.columnTransferSize)},
-        {key: 'wastedBytes', valueType: 'bytes', subRows: {key: 'sourceWastedBytes'}, label: str_(i18n.UIStrings.columnWastedBytes)},
+        {key: 'url', valueType: 'url', subHeading: {key: 'source', valueType: 'code'}, label: str_(i18n.UIStrings.columnURL)},
+        {key: 'totalBytes', valueType: 'bytes', subHeading: {key: 'sourceBytes'}, label: str_(i18n.UIStrings.columnTransferSize)},
+        {key: 'wastedBytes', valueType: 'bytes', subHeading: {key: 'sourceWastedBytes'}, label: str_(i18n.UIStrings.columnWastedBytes)},
         /* eslint-enable max-len */
       ],
     };

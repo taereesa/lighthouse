@@ -315,21 +315,21 @@ class DetailsRenderer {
    * @return {LH.Audit.Details.OpportunityColumnHeading}
    */
   _getCanonicalizedHeading(heading) {
-    let subRows;
-    if (heading.subRows) {
+    let subHeading;
+    if (heading.subHeading) {
       // @ts-ignore: It's ok that there is no text.
-      subRows = this._getCanonicalizedHeading(heading.subRows);
-      if (!subRows.key) {
+      subHeading = this._getCanonicalizedHeading(heading.subHeading);
+      if (!subHeading.key) {
         // eslint-disable-next-line no-console
         console.warn('key should not be null');
       }
-      subRows = {...subRows, key: subRows.key || ''};
+      subHeading = {...subHeading, key: subHeading.key || ''};
     }
 
     return {
       key: heading.key,
       valueType: heading.itemType,
-      subRows,
+      subHeading,
       label: heading.text,
       displayUnit: heading.displayUnit,
       granularity: heading.granularity,
@@ -377,27 +377,27 @@ class DetailsRenderer {
 
     // A single details item can expand into multiple table rows. These additional table rows
     // are called sub-rows.
-    if (!item.subRows) return fragment;
+    if (!item.subItems) return fragment;
 
-    const subRowHeadings = [];
+    const subHeadings = [];
     for (const heading of headings) {
-      if (!heading.subRows) {
-        subRowHeadings.push(null);
+      if (!heading.subHeading) {
+        subHeadings.push(null);
         continue;
       }
 
-      subRowHeadings.push({
-        key: heading.subRows.key,
-        valueType: heading.subRows.valueType || heading.valueType,
-        granularity: heading.subRows.granularity || heading.granularity,
-        displayUnit: heading.subRows.displayUnit || heading.displayUnit,
+      subHeadings.push({
+        key: heading.subHeading.key,
+        valueType: heading.subHeading.valueType || heading.valueType,
+        granularity: heading.subHeading.granularity || heading.granularity,
+        displayUnit: heading.subHeading.displayUnit || heading.displayUnit,
         label: '',
       });
     }
-    if (!subRowHeadings.some(Boolean)) return fragment;
+    if (!subHeadings.some(Boolean)) return fragment;
 
-    for (const subRowItem of item.subRows.items) {
-      const rowEl = this._renderTableRow(subRowItem, subRowHeadings);
+    for (const subItem of item.subItems.items) {
+      const rowEl = this._renderTableRow(subItem, subHeadings);
       rowEl.classList.add('lh-sub-row');
       fragment.append(rowEl);
     }

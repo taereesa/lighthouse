@@ -105,7 +105,7 @@ describe('LegacyJavaScript audit', () => {
     const result = await LegacyJavascript.audit(artifacts, {computedCache: new Map()});
     assert.equal(result.score, 0);
     assert.equal(result.extendedInfo.signalCount, 1);
-    expect(result.details.items[0].subRows.items[0].signal).toEqual('String.prototype.repeat');
+    expect(result.details.items[0].subItems.items[0].signal).toEqual('String.prototype.repeat');
   });
 
   it('fails code with multiple legacy polyfills', async () => {

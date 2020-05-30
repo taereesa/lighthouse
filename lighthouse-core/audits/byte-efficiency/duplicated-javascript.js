@@ -101,7 +101,7 @@ class DuplicatedJavascript extends ByteEfficiencyAudit {
   /**
    * This audit highlights JavaScript modules that appear to be duplicated across all resources,
    * either within the same bundle or between different bundles. Each details item returned is
-   * a module with subrows for each resource that includes it. The wastedBytes for the details
+   * a module with subItems for each resource that includes it. The wastedBytes for the details
    * item is the number of bytes occupied by the sum of all but the largest copy of the module.
    * wastedBytesByUrl attributes the cost of the bytes to a specific resource, for use by lantern.
    * @param {LH.Artifacts} artifacts
@@ -132,13 +132,13 @@ class DuplicatedJavascript extends ByteEfficiencyAudit {
       // is not present. Instead, size is used as a heuristic for latest version. This makes the
       // audit conserative in its estimation.
 
-      const subRowItems = [];
+      const subItems = [];
 
       let wastedBytesTotal = 0;
       for (let i = 0; i < sourceDatas.length; i++) {
         const sourceData = sourceDatas[i];
         const url = sourceData.scriptUrl;
-        subRowItems.push({
+        subItems.push({
           url,
           sourceBytes: sourceData.size,
         });
@@ -149,8 +149,8 @@ class DuplicatedJavascript extends ByteEfficiencyAudit {
 
       if (wastedBytesTotal <= ignoreThresholdInBytes) {
         overflowWastedBytes += wastedBytesTotal;
-        for (const subRowItem of subRowItems) {
-          overflowUrls.add(subRowItem.url);
+        for (const subItem of subItems) {
+          overflowUrls.add(subItem.url);
         }
         continue;
       }
@@ -162,9 +162,9 @@ class DuplicatedJavascript extends ByteEfficiencyAudit {
         url: '',
         // Not needed, but keeps typescript happy.
         totalBytes: 0,
-        subRows: {
-          type: 'subrows',
-          items: subRowItems,
+        subItems: {
+          type: 'subitems',
+          items: subItems,
         },
       });
     }
@@ -175,8 +175,8 @@ class DuplicatedJavascript extends ByteEfficiencyAudit {
         wastedBytes: overflowWastedBytes,
         url: '',
         totalBytes: 0,
-        subRows: {
-          type: 'subrows',
+        subItems: {
+          type: 'subitems',
           items: Array.from(overflowUrls).map(url => ({url})),
         },
       });
@@ -209,8 +209,8 @@ class DuplicatedJavascript extends ByteEfficiencyAudit {
     /** @type {LH.Audit.Details.OpportunityColumnHeading[]} */
     const headings = [
       /* eslint-disable max-len */
-      {key: 'source', valueType: 'code', subRows: {key: 'url', valueType: 'url'}, label: str_(i18n.UIStrings.columnSource)},
-      {key: '_', valueType: 'bytes', subRows: {key: 'sourceBytes'}, granularity: 0.05, label: str_(i18n.UIStrings.columnSize)},
+      {key: 'source', valueType: 'code', subHeading: {key: 'url', valueType: 'url'}, label: str_(i18n.UIStrings.columnSource)},
+      {key: '_', valueType: 'bytes', subHeading: {key: 'sourceBytes'}, granularity: 0.05, label: str_(i18n.UIStrings.columnSize)},
       {key: 'wastedBytes', valueType: 'bytes', granularity: 0.05, label: str_(i18n.UIStrings.columnWastedBytes)},
       /* eslint-enable max-len */
     ];

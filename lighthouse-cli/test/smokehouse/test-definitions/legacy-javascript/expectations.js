@@ -19,7 +19,7 @@ module.exports = [
             items: [
               {
                 url: 'http://localhost:10200/legacy-javascript.js',
-                subRows: [
+                subItems: [
                   {signal: '@babel/plugin-transform-classes'},
                   {signal: '@babel/plugin-transform-regenerator'},
                   {signal: '@babel/plugin-transform-spread'},
@@ -27,7 +27,7 @@ module.exports = [
               },
               {
                 url: 'http://localhost:10200/legacy-javascript.html',
-                subRows: [
+                subItems: [
                   {signal: 'String.prototype.includes'},
                 ],
               },

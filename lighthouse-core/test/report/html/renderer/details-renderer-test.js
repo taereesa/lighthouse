@@ -570,10 +570,10 @@ describe('DetailsRenderer', () => {
       assert.equal(urlEl.textContent, 'https://example.com');
     });
 
-    describe('subRows', () => {
-      function makeSubrows(items) {
+    describe('subitems', () => {
+      function makeSubitems(items) {
         return {
-          type: 'subrows',
+          type: 'subitems',
           items,
         };
       }
@@ -581,11 +581,11 @@ describe('DetailsRenderer', () => {
       it('renders', () => {
         const details = {
           type: 'table',
-          headings: [{key: 'url', itemType: 'url', subRows: {key: 'source', itemType: 'code'}}],
+          headings: [{key: 'url', itemType: 'url', subHeading: {key: 'source', itemType: 'code'}}],
           items: [
             {
               url: 'https://www.example.com',
-              subRows: makeSubrows([
+              subItems: makeSubitems([
                 {source: 'a'},
                 {source: 'b'},
                 {source: 'c'},
@@ -609,8 +609,8 @@ describe('DetailsRenderer', () => {
         assert.equal(codeEl.textContent, 'https://www.example.com');
 
         // The sub-rows contain a 'code' item type.
-        for (let i = 0; i < details.items[0].subRows.items; i++) {
-          const source = details.items[0].subRows.items[i].source;
+        for (let i = 0; i < details.items[0].subItems.items; i++) {
+          const source = details.items[0].subItems.items[i].source;
           rowEl = rowEls[i + 1];
           columnEl = rowEl.querySelector('td.lh-table-column--code');
           assert.ok(rowEl.classList.contains('lh-sub-row'));
@@ -622,11 +622,11 @@ describe('DetailsRenderer', () => {
       it('renders, uses heading properties as fallback', () => {
         const details = {
           type: 'table',
-          headings: [{key: 'url', itemType: 'url', subRows: {key: 'source'}}],
+          headings: [{key: 'url', itemType: 'url', subHeading: {key: 'source'}}],
           items: [
             {
               url: 'https://www.example.com',
-              subRows: makeSubrows([
+              subItems: makeSubitems([
                 {source: 'https://www.a.com'},
                 {source: {type: 'code', value: 'https://www.b.com'}},
                 {source: 'https://www.c.com'},
@@ -649,8 +649,8 @@ describe('DetailsRenderer', () => {
         assert.equal(codeEl.textContent, 'https://www.example.com');
 
         // The sub-rows contain a 'url' item type, except for the second one, which is 'code'.
-        for (let i = 0; i < details.items[0].subRows.items.length; i++) {
-          const source = details.items[0].subRows.items[i].source;
+        for (let i = 0; i < details.items[0].subItems.items.length; i++) {
+          const source = details.items[0].subItems.items[i].source;
           rowEl = rowEls[i + 1];
           assert.ok(rowEl.classList.contains('lh-sub-row'));
           columnEl = rowEl.querySelector('td');

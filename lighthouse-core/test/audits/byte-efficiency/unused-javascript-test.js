@@ -126,7 +126,7 @@ describe('UnusedJavaScript audit', () => {
     expect(result.items).toMatchInlineSnapshot(`
       Array [
         Object {
-          "subRows": Object {
+          "subItems": Object {
             "items": Array [
               Object {
                 "source": "(unmapped)",
@@ -154,7 +154,7 @@ describe('UnusedJavaScript audit', () => {
                 "sourceWastedBytes": 256,
               },
             ],
-            "type": "subrows",
+            "type": "subitems",
           },
           "totalBytes": 83748,
           "url": "https://squoosh.app/main-app.js",

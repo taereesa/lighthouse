@@ -44,7 +44,7 @@ describe('DuplicatedJavascript computed artifact', () => {
         "items": Array [
           Object {
             "source": "Other",
-            "subRows": Object {
+            "subItems": Object {
               "items": Array [
                 Object {
                   "url": "https://example.com/foo1.min.js",
@@ -53,7 +53,7 @@ describe('DuplicatedJavascript computed artifact', () => {
                   "url": "https://example.com/foo2.min.js",
                 },
               ],
-              "type": "subrows",
+              "type": "subitems",
             },
             "totalBytes": 0,
             "url": "",
@@ -90,7 +90,7 @@ describe('DuplicatedJavascript computed artifact', () => {
         "items": Array [
           Object {
             "source": "Control/assets/js/vendor/ng/select/select.js",
-            "subRows": Object {
+            "subItems": Object {
               "items": Array [
                 Object {
                   "sourceBytes": 48513,
@@ -101,7 +101,7 @@ describe('DuplicatedJavascript computed artifact', () => {
                   "url": "https://example.com/coursehero-bundle-2.js",
                 },
               ],
-              "type": "subrows",
+              "type": "subitems",
             },
             "totalBytes": 0,
             "url": "",
@@ -109,7 +109,7 @@ describe('DuplicatedJavascript computed artifact', () => {
           },
           Object {
             "source": "Control/assets/js/vendor/ng/select/angular-sanitize.js",
-            "subRows": Object {
+            "subItems": Object {
               "items": Array [
                 Object {
                   "sourceBytes": 9135,
@@ -120,7 +120,7 @@ describe('DuplicatedJavascript computed artifact', () => {
                   "url": "https://example.com/coursehero-bundle-2.js",
                 },
               ],
-              "type": "subrows",
+              "type": "subitems",
             },
             "totalBytes": 0,
             "url": "",
@@ -128,7 +128,7 @@ describe('DuplicatedJavascript computed artifact', () => {
           },
           Object {
             "source": "node_modules/@babel/runtime",
-            "subRows": Object {
+            "subItems": Object {
               "items": Array [
                 Object {
                   "sourceBytes": 5467,
@@ -139,7 +139,7 @@ describe('DuplicatedJavascript computed artifact', () => {
                   "url": "https://example.com/coursehero-bundle-2.js",
                 },
               ],
-              "type": "subrows",
+              "type": "subitems",
             },
             "totalBytes": 0,
             "url": "",
@@ -147,7 +147,7 @@ describe('DuplicatedJavascript computed artifact', () => {
           },
           Object {
             "source": "js/src/utils/service/amplitude-service.ts",
-            "subRows": Object {
+            "subItems": Object {
               "items": Array [
                 Object {
                   "sourceBytes": 1348,
@@ -158,7 +158,7 @@ describe('DuplicatedJavascript computed artifact', () => {
                   "url": "https://example.com/coursehero-bundle-2.js",
                 },
               ],
-              "type": "subrows",
+              "type": "subitems",
             },
             "totalBytes": 0,
             "url": "",
@@ -166,7 +166,7 @@ describe('DuplicatedJavascript computed artifact', () => {
           },
           Object {
             "source": "js/src/search/results/store/filter-store.ts",
-            "subRows": Object {
+            "subItems": Object {
               "items": Array [
                 Object {
                   "sourceBytes": 12717,
@@ -177,7 +177,7 @@ describe('DuplicatedJavascript computed artifact', () => {
                   "url": "https://example.com/coursehero-bundle-2.js",
                 },
               ],
-              "type": "subrows",
+              "type": "subitems",
             },
             "totalBytes": 0,
             "url": "",
@@ -185,7 +185,7 @@ describe('DuplicatedJavascript computed artifact', () => {
           },
           Object {
             "source": "js/src/search/results/view/filter/autocomplete-list.tsx",
-            "subRows": Object {
+            "subItems": Object {
               "items": Array [
                 Object {
                   "sourceBytes": 1143,
@@ -196,7 +196,7 @@ describe('DuplicatedJavascript computed artifact', () => {
                   "url": "https://example.com/coursehero-bundle-1.js",
                 },
               ],
-              "type": "subrows",
+              "type": "subitems",
             },
             "totalBytes": 0,
             "url": "",
@@ -204,7 +204,7 @@ describe('DuplicatedJavascript computed artifact', () => {
           },
           Object {
             "source": "js/src/search/results/view/filter/autocomplete-filter.tsx",
-            "subRows": Object {
+            "subItems": Object {
               "items": Array [
                 Object {
                   "sourceBytes": 3823,
@@ -215,7 +215,7 @@ describe('DuplicatedJavascript computed artifact', () => {
                   "url": "https://example.com/coursehero-bundle-2.js",
                 },
               ],
-              "type": "subrows",
+              "type": "subitems",
             },
             "totalBytes": 0,
             "url": "",
@@ -223,7 +223,7 @@ describe('DuplicatedJavascript computed artifact', () => {
           },
           Object {
             "source": "js/src/search/results/view/filter/autocomplete-filter-with-icon.tsx",
-            "subRows": Object {
+            "subItems": Object {
               "items": Array [
                 Object {
                   "sourceBytes": 2696,
@@ -234,7 +234,7 @@ describe('DuplicatedJavascript computed artifact', () => {
                   "url": "https://example.com/coursehero-bundle-2.js",
                 },
               ],
-              "type": "subrows",
+              "type": "subitems",
             },
             "totalBytes": 0,
             "url": "",
@@ -242,7 +242,7 @@ describe('DuplicatedJavascript computed artifact', () => {
           },
           Object {
             "source": "js/src/common/component/school-search.tsx",
-            "subRows": Object {
+            "subItems": Object {
               "items": Array [
                 Object {
                   "sourceBytes": 5840,
@@ -253,7 +253,7 @@ describe('DuplicatedJavascript computed artifact', () => {
                   "url": "https://example.com/coursehero-bundle-1.js",
                 },
               ],
-              "type": "subrows",
+              "type": "subitems",
             },
             "totalBytes": 0,
             "url": "",
@@ -261,7 +261,7 @@ describe('DuplicatedJavascript computed artifact', () => {
           },
           Object {
             "source": "js/src/common/component/search/abstract-taxonomy-search.tsx",
-            "subRows": Object {
+            "subItems": Object {
               "items": Array [
                 Object {
                   "sourceBytes": 3103,
@@ -272,7 +272,7 @@ describe('DuplicatedJavascript computed artifact', () => {
                   "url": "https://example.com/coursehero-bundle-2.js",
                 },
               ],
-              "type": "subrows",
+              "type": "subitems",
             },
             "totalBytes": 0,
             "url": "",
@@ -280,7 +280,7 @@ describe('DuplicatedJavascript computed artifact', () => {
           },
           Object {
             "source": "node_modules/lodash-es",
-            "subRows": Object {
+            "subItems": Object {
               "items": Array [
                 Object {
                   "sourceBytes": 1751,
@@ -291,7 +291,7 @@ describe('DuplicatedJavascript computed artifact', () => {
                   "url": "https://example.com/coursehero-bundle-1.js",
                 },
               ],
-              "type": "subrows",
+              "type": "subitems",
             },
             "totalBytes": 0,
             "url": "",
@@ -299,7 +299,7 @@ describe('DuplicatedJavascript computed artifact', () => {
           },
           Object {
             "source": "Other",
-            "subRows": Object {
+            "subItems": Object {
               "items": Array [
                 Object {
                   "url": "https://example.com/coursehero-bundle-1.js",
@@ -308,7 +308,7 @@ describe('DuplicatedJavascript computed artifact', () => {
                   "url": "https://example.com/coursehero-bundle-2.js",
                 },
               ],
-              "type": "subrows",
+              "type": "subitems",
             },
             "totalBytes": 0,
             "url": "",

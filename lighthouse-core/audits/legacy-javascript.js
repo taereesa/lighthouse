@@ -358,8 +358,8 @@ class LegacyJavascript extends Audit {
     const networkRecords = await NetworkRecords.request(devtoolsLog, context);
     const bundles = await JSBundles.request(artifacts, context);
 
-    /** @typedef {{signal: string, location: LH.Audit.Details.SourceLocationValue}} SubRowItem */
-    /** @type {Array<{url: string, subRows: LH.Audit.Details.TableSubRows}>} */
+    /** @typedef {{signal: string, location: LH.Audit.Details.SourceLocationValue}} SubItem */
+    /** @type {Array<{url: string, subItems: LH.Audit.Details.TableSubItems}>} */
     const tableRows = [];
     let signalCount = 0;
 
@@ -375,15 +375,15 @@ class LegacyJavascript extends Audit {
       /** @type {typeof tableRows[number]} */
       const row = {
         url,
-        subRows: {
-          type: 'subrows',
+        subItems: {
+          type: 'subitems',
           items: [],
         },
       };
       for (const match of matches) {
         const {name, line, column} = match;
-        /** @type {SubRowItem} */
-        const subRowItem = {
+        /** @type {SubItem} */
+        const subItem = {
           signal: name,
           location: {
             type: 'source-location',
@@ -393,17 +393,17 @@ class LegacyJavascript extends Audit {
             urlProvider: 'network',
           },
         };
-        row.subRows.items.push(subRowItem);
+        row.subItems.items.push(subItem);
       }
       tableRows.push(row);
-      signalCount += row.subRows.items.length;
+      signalCount += row.subItems.items.length;
     });
 
     /** @type {LH.Audit.Details.Table['headings']} */
     const headings = [
       /* eslint-disable max-len */
-      {key: 'url', itemType: 'url', subRows: {key: 'location', itemType: 'source-location'}, text: str_(i18n.UIStrings.columnURL)},
-      {key: null, itemType: 'code', subRows: {key: 'signal'}, text: ''},
+      {key: 'url', itemType: 'url', subHeading: {key: 'location', itemType: 'source-location'}, text: str_(i18n.UIStrings.columnURL)},
+      {key: null, itemType: 'code', subHeading: {key: 'signal'}, text: ''},
       /* eslint-enable max-len */
     ];
     const details = Audit.makeTableDetails(headings, tableRows);

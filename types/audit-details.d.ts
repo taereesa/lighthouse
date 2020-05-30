@@ -73,8 +73,8 @@ declare global {
       }
 
       /** A table item for rows that are nested within a top-level TableItem (row). */
-      export interface TableSubRows {
-        type: 'subrows';
+      export interface TableSubItems {
+        type: 'subitems';
         items: TableItem[];
       }
 
@@ -91,7 +91,7 @@ declare global {
       type ItemValueType = 'bytes' | 'code' | 'link' | 'ms' | 'multi' | 'node' | 'source-location' | 'numeric' | 'text' | 'thumbnail' | 'timespanMs' | 'url';
 
       /** Possible types of values found within table items. */
-      type ItemValue = string | number | boolean | DebugData | NodeValue | SourceLocationValue | LinkValue | UrlValue | CodeValue | TableSubRows;
+      type ItemValue = string | number | boolean | DebugData | NodeValue | SourceLocationValue | LinkValue | UrlValue | CodeValue | TableSubItems;
 
       // TODO: drop TableColumnHeading, rename OpportunityColumnHeading to TableColumnHeading and
       // use that for all table-like audit details.
@@ -99,7 +99,7 @@ declare global {
       export interface TableColumnHeading {
         /**
          * The name of the property within items being described.
-         * If null, subRows must be defined, and the first sub-row will be empty.
+         * If null, subHeading must be defined, and the first sub-row will be empty.
          */
         key: string|null;
         /** Readable text label of the field. */
@@ -114,7 +114,7 @@ declare global {
          * Optional - defines an inner table of values that correspond to this column.
          * Key is required - if other properties are not provided, the value for the heading is used.
          */
-        subRows?: {key: string, itemType?: ItemValueType, displayUnit?: string, granularity?: number};
+        subHeading?: {key: string, itemType?: ItemValueType, displayUnit?: string, granularity?: number};
 
         displayUnit?: string;
         granularity?: number;
@@ -122,14 +122,14 @@ declare global {
 
       export interface TableItem {
         debugData?: DebugData;
-        subRows?: TableSubRows;
+        subItems?: TableSubItems;
         [p: string]: undefined | ItemValue;
       }
 
       export interface OpportunityColumnHeading {
         /**
          * The name of the property within items being described.
-         * If null, subRows must be defined, and the first sub-row will be empty.
+         * If null, subHeading must be defined, and the first sub-row will be empty.
          */
         key: string|null;
         /** Readable text label of the field. */
@@ -144,7 +144,7 @@ declare global {
          * Optional - defines an inner table of values that correspond to this column.
          * Key is required - if other properties are not provided, the value for the heading is used.
          */
-        subRows?: {key: string, valueType?: ItemValueType, displayUnit?: string, granularity?: number};
+        subHeading?: {key: string, valueType?: ItemValueType, displayUnit?: string, granularity?: number};
 
         // NOTE: not used by opportunity details, but used in the renderer until table/opportunity unification.
         displayUnit?: string;
