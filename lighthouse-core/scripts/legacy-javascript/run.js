@@ -136,11 +136,6 @@ function getLegacyJavascriptResults(code, map, {sourceMaps}) {
     {url: scriptUrl, requestId: '1000.2'},
   ];
   const devtoolsLogs = networkRecordsToDevtoolsLog(networkRecords);
-  // const jsRequestWillBeSentEvent = devtoolsLogs.find(e =>
-  //   e.method === 'Network.requestWillBeSent' && e.params.request.url === scriptUrl);
-  // if (!jsRequestWillBeSentEvent) throw new Error('jsRequestWillBeSentEvent is undefined');
-  // // @ts-ignore - the log event is not narrowed to 'Network.requestWillBeSent' event from find
-  // const jsRequestId = jsRequestWillBeSentEvent.params.requestId;
 
   /** @type {Pick<LH.Artifacts, 'devtoolsLogs'|'URL'|'ScriptElements'|'SourceMaps'>} */
   const artifacts = {
