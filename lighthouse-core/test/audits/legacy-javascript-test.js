@@ -196,8 +196,12 @@ describe('LegacyJavaScript audit', () => {
     const artifacts = createArtifacts([script]);
 
     const result = await LegacyJavascript.audit(artifacts, {computedCache: new Map()});
-    expect(result.details.items[0].signals).toEqual(['String.prototype.repeat']);
-    expect(result.details.items[0].locations).toMatchObject([{line: 0, column: 0}]);
+    expect(result.details.items[0].subItems.items).toMatchObject([
+      {
+        signal: 'String.prototype.repeat',
+        location: {line: 0, column: 0},
+      },
+    ]);
   });
 
   it('uses location from pattern matching over source map', async () => {
@@ -215,8 +219,12 @@ describe('LegacyJavaScript audit', () => {
     const artifacts = createArtifacts([script]);
 
     const result = await LegacyJavascript.audit(artifacts, {computedCache: new Map()});
-    expect(result.details.items[0].signals).toEqual(['String.prototype.repeat']);
-    expect(result.details.items[0].locations).toMatchObject([{line: 1, column: 0}]);
+    expect(result.details.items[0].subItems.items).toMatchObject([
+      {
+        signal: 'String.prototype.repeat',
+        location: {line: 1, column: 0},
+      },
+    ]);
   });
 });
 
