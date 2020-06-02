@@ -608,12 +608,12 @@ describe('DetailsRenderer', () => {
         assert.ok(codeEl.classList.contains('lh-text__url'));
         assert.equal(codeEl.textContent, 'https://www.example.com');
 
-        // The sub-rows contain a 'code' item type.
+        // The subItems contain a 'code' item type.
         for (let i = 0; i < details.items[0].subItems.items; i++) {
           const source = details.items[0].subItems.items[i].source;
           rowEl = rowEls[i + 1];
           columnEl = rowEl.querySelector('td.lh-table-column--code');
-          assert.ok(rowEl.classList.contains('lh-sub-row'));
+          assert.ok(rowEl.classList.contains('lh-sub-item-row'));
           assert.ok(columnEl.firstChild.classList.contains('lh-code'));
           assert.equal(rowEl.textContent, source);
         }
@@ -652,7 +652,7 @@ describe('DetailsRenderer', () => {
         for (let i = 0; i < details.items[0].subItems.items.length; i++) {
           const source = details.items[0].subItems.items[i].source;
           rowEl = rowEls[i + 1];
-          assert.ok(rowEl.classList.contains('lh-sub-row'));
+          assert.ok(rowEl.classList.contains('lh-sub-item-row'));
           columnEl = rowEl.querySelector('td');
           if (typeof source === 'string') {
             assert.ok(columnEl.firstChild.classList.contains('lh-text__url'));

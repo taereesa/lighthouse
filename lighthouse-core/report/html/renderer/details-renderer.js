@@ -377,14 +377,19 @@ class DetailsRenderer {
     const rowElem = this._dom.createElement('tr');
 
     for (const heading of headings) {
-      const value = heading && heading.key && item[heading.key];
+      // Empty cell if no heading or heading key for this column.
+      if (!heading || !heading.key) {
+        this._dom.createChildOf(rowElem, 'td', 'lh-table-column--empty');
+        continue;
+      }
 
+      const value = item[heading.key];
       let valueElement;
-      if (heading && heading.key !== null && value !== undefined && value !== null) {
+      if (value !== undefined && value !== null) {
         valueElement = this._renderTableValue(value, heading);
       }
 
-      if (heading && valueElement) {
+      if (valueElement) {
         const classes = `lh-table-column--${heading.valueType}`;
         this._dom.createChildOf(rowElem, 'td', classes).appendChild(valueElement);
       } else {
@@ -400,7 +405,8 @@ class DetailsRenderer {
   }
 
   /**
-   * Renders one or more rows from a details table item.
+   * Renders one or more rows from a details table item. A single table item can
+   * expand into multiple rows, if there is a subHeading.
    * @param {LH.Audit.Details.OpportunityItem | LH.Audit.Details.TableItem} item
    * @param {LH.Audit.Details.OpportunityColumnHeading[]} headings
    */
@@ -408,8 +414,6 @@ class DetailsRenderer {
     const fragment = this._dom.createFragment();
     fragment.append(this._renderTableRow(item, headings));
 
-    // A single details item can expand into multiple table rows. These additional table rows
-    // are called sub-rows.
     if (!item.subItems) return fragment;
 
     const subHeadings = headings.map(this._getDerivedSubHeading);
@@ -417,7 +421,7 @@ class DetailsRenderer {
 
     for (const subItem of item.subItems.items) {
       const rowEl = this._renderTableRow(subItem, subHeadings);
-      rowEl.classList.add('lh-sub-row');
+      rowEl.classList.add('lh-sub-item-row');
       fragment.append(rowEl);
     }
 

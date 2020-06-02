@@ -1442,12 +1442,12 @@
   text-decoration: underline dotted #999;
 }
 
-.lh-sub-row {
+.lh-sub-item-row {
   margin-left: 20px;
   margin-bottom: 0;
   color: var(--color-gray-700);
 }
-.lh-sub-row td {
+.lh-sub-item-row td {
   padding-top: 4px;
   padding-bottom: 4px;
   padding-left: 20px;
