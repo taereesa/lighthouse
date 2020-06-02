@@ -13,15 +13,14 @@ function stall(ms) {
 }
 
 /** Render large number of elements to fill up the backend node cache. */
-function rerender(iterations) {
-  const rerender_ = (i, resolve) => {
+async function rerender(iterations) {
+  const waitForAnimationFrame = () => new Promise(r => requestAnimationFrame(r))
+
+  for (let i = 0; i < iterations; i++) {
     const filler = `<div>Filler element</div>`.repeat(4000);
     document.body.innerHTML = `<div id="div-${i}">${i} left</div>${filler}`;
-    if (i === 0) resolve();
-    if (i > 0) requestAnimationFrame(() => rerender_(i - 1, resolve));
-  };
-
-  return new Promise(resolve => rerender_(iterations, resolve));
+    await waitForAnimationFrame()
+  }
 }
 
 // largest-contentful-paint-element: add the largest element later in page load

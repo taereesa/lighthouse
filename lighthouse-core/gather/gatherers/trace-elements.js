@@ -110,21 +110,6 @@ class TraceElements extends Gatherer {
   }
 
   /**
-   * @param {LH.Gatherer.PassContext['driver']} driver
-   * @param {number} backendNodeId
-   * @return {Promise<string|undefined>}
-   */
-  async resolveNodeId(driver, backendNodeId) {
-    try {
-      const resolveNodeResponse = await driver.sendCommand('DOM.resolveNode', {backendNodeId});
-      return resolveNodeResponse.object.objectId;
-    } catch (err) {
-      if (/No node.*found/.test(err.message)) return undefined;
-      throw err;
-    }
-  }
-
-  /**
    * @param {LH.Gatherer.PassContext} passContext
    * @param {LH.Gatherer.LoadData} loadData
    * @return {Promise<LH.Artifacts['TraceElements']>}
@@ -150,7 +135,7 @@ class TraceElements extends Gatherer {
     for (let i = 0; i < backendNodeIds.length; i++) {
       const metricName =
         lcpNodeId === backendNodeIds[i] ? 'largest-contentful-paint' : 'cumulative-layout-shift';
-      const objectId = await this.resolveNodeId(driver, backendNodeIds[i]);
+      const objectId = await driver.resolveNodeIdToObjectId(backendNodeIds[i]);
       if (!objectId) continue;
       const response = await driver.sendCommand('Runtime.callFunctionOn', {
         objectId,

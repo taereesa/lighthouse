@@ -1218,6 +1218,41 @@ class Driver {
   }
 
   /**
+   * @param {number} backendNodeId
+   * @return {Promise<string|undefined>}
+   */
+  async resolveNodeIdToObjectId(backendNodeId) {
+    try {
+      const resolveNodeResponse = await this.sendCommand('DOM.resolveNode', {backendNodeId});
+      return resolveNodeResponse.object.objectId;
+    } catch (err) {
+      if (/No node.*found/.test(err.message)) return undefined;
+      throw err;
+    }
+  }
+
+  /**
+   * @param {string} devtoolsNodePath
+   * @return {Promise<string|undefined>}
+   */
+  async resolveDevtoolsNodePathToObjectId(devtoolsNodePath) {
+    try {
+      const {nodeId} = await this.sendCommand('DOM.pushNodeByPathToFrontend', {
+        path: devtoolsNodePath,
+      });
+
+      const {object: {objectId}} = await this.sendCommand('DOM.resolveNode', {
+        nodeId,
+      });
+
+      return objectId;
+    } catch (err) {
+      if (/No node.*found/.test(err.message)) return undefined;
+      throw err;
+    }
+  }
+
+  /**
    * @param {{x: number, y: number}} position
    * @return {Promise<void>}
    */

@@ -89,23 +89,8 @@ function collectAnchorElements() {
  * @return {Promise<Array<{type: string}>>}
  */
 async function getEventListeners(driver, devtoolsNodePath) {
-  /** @type {number|undefined} */
-  let nodeId;
-  try {
-    const response = await driver.sendCommand('DOM.pushNodeByPathToFrontend', {
-      path: devtoolsNodePath,
-    });
-
-    nodeId = response.nodeId;
-  } catch (err) {
-    if (/No node.*found/.test(err.message)) return [];
-    throw err;
-  }
-
-  if (nodeId === undefined) return [];
-  const {object: {objectId = ''}} = await driver.sendCommand('DOM.resolveNode', {
-    nodeId,
-  });
+  const objectId = await driver.resolveDevtoolsNodePathToObjectId(devtoolsNodePath);
+  if (!objectId) return [];
 
   const response = await driver.sendCommand('DOMDebugger.getEventListeners', {
     objectId,

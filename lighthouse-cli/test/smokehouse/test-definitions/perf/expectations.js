@@ -206,7 +206,6 @@ module.exports = [
       audits: {
         'largest-contentful-paint-element': {
           score: null,
-          displayValue: '1 element found',
           details: {
             items: [
               {
@@ -222,9 +221,7 @@ module.exports = [
           score: null,
           scoreDisplayMode: 'notApplicable',
           details: {
-            items: {
-              length: 0,
-            },
+            items: [],
           },
         },
       },
