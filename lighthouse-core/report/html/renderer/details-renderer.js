@@ -410,7 +410,7 @@ class DetailsRenderer {
    * @param {LH.Audit.Details.OpportunityItem | LH.Audit.Details.TableItem} item
    * @param {LH.Audit.Details.OpportunityColumnHeading[]} headings
    */
-  _renderTableItemRows(item, headings) {
+  _renderTableRowsFromItem(item, headings) {
     const fragment = this._dom.createFragment();
     fragment.append(this._renderTableRow(item, headings));
 
@@ -452,7 +452,7 @@ class DetailsRenderer {
     const tbodyElem = this._dom.createChildOf(tableElem, 'tbody');
     let even = true;
     for (const item of details.items) {
-      const rowsFragment = this._renderTableItemRows(item, headings);
+      const rowsFragment = this._renderTableRowsFromItem(item, headings);
       for (const rowEl of this._dom.findAll('tr', rowsFragment)) {
         // For zebra striping.
         rowEl.classList.add(even ? 'lh-row--even' : 'lh-row--odd');
