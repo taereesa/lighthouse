@@ -99,7 +99,9 @@ declare global {
       export interface TableColumnHeading {
         /**
          * The name of the property within items being described.
-         * If null, subHeading must be defined, and the first subItem row will be empty.
+         * If null, subHeading must be defined, and the first table row in this column for
+         * every item will be empty.
+         * See legacy-javascript for an example.
          */
         key: string|null;
         /** Readable text label of the field. */
@@ -128,8 +130,10 @@ declare global {
 
       export interface OpportunityColumnHeading {
         /**
-         * The name of the property within items being described.
-         * If null, subHeading must be defined, and the first subItem row will be empty.
+        * The name of the property within items being described.
+         * If null, subHeading must be defined, and the first table row in this column for
+         * every item will be empty.
+         * See legacy-javascript for an example.
          */
         key: string|null;
         /** Readable text label of the field. */
