@@ -317,13 +317,7 @@ class DetailsRenderer {
   _getCanonicalizedHeading(heading) {
     let subHeading;
     if (heading.subHeading) {
-      // @ts-ignore: It's ok that there is no text.
-      subHeading = this._getCanonicalizedHeading(heading.subHeading);
-      if (!subHeading.key) {
-        // eslint-disable-next-line no-console
-        console.warn('key should not be null');
-      }
-      subHeading = {...subHeading, key: subHeading.key || ''};
+      subHeading = this._getCanonicalizedSubHeading(heading.subHeading, heading);
     }
 
     return {
@@ -333,6 +327,45 @@ class DetailsRenderer {
       label: heading.text,
       displayUnit: heading.displayUnit,
       granularity: heading.granularity,
+    };
+  }
+
+  /**
+   * @param {Exclude<LH.Audit.Details.TableColumnHeading['subHeading'], undefined>} subHeading
+   * @param {LH.Audit.Details.TableColumnHeading} parentHeading
+   * @return {LH.Audit.Details.OpportunityColumnHeading['subHeading']}
+   */
+  _getCanonicalizedSubHeading(subHeading, parentHeading) {
+    // Low-friction way to prevent commiting a falsy key (which is never allowed for
+    // a subHeading) from passing in CI.
+    if (!subHeading.key) {
+      // eslint-disable-next-line no-console
+      console.warn('key should not be null');
+    }
+
+    return {
+      key: subHeading.key || '',
+      valueType: subHeading.itemType || parentHeading.itemType,
+      granularity: subHeading.granularity || parentHeading.granularity,
+      displayUnit: subHeading.displayUnit || parentHeading.displayUnit,
+    };
+  }
+
+  /**
+   * Returns a new heading where the values are defined first by `heading.subHeading`,
+   * and secondly by `heading`. If there is no subHeading, returns null, which will
+   * be rendered as an empty column.
+   * @param {LH.Audit.Details.OpportunityColumnHeading} heading
+   * @return {LH.Audit.Details.OpportunityColumnHeading | null}
+   */
+  _getDerivedSubHeading(heading) {
+    if (!heading.subHeading) return null;
+    return {
+      key: heading.subHeading.key || '',
+      valueType: heading.subHeading.valueType || heading.valueType,
+      granularity: heading.subHeading.granularity || heading.granularity,
+      displayUnit: heading.subHeading.displayUnit || heading.displayUnit,
+      label: '',
     };
   }
 
@@ -379,21 +412,7 @@ class DetailsRenderer {
     // are called sub-rows.
     if (!item.subItems) return fragment;
 
-    const subHeadings = [];
-    for (const heading of headings) {
-      if (!heading.subHeading) {
-        subHeadings.push(null);
-        continue;
-      }
-
-      subHeadings.push({
-        key: heading.subHeading.key,
-        valueType: heading.subHeading.valueType || heading.valueType,
-        granularity: heading.subHeading.granularity || heading.granularity,
-        displayUnit: heading.subHeading.displayUnit || heading.displayUnit,
-        label: '',
-      });
-    }
+    const subHeadings = headings.map(this._getDerivedSubHeading);
     if (!subHeadings.some(Boolean)) return fragment;
 
     for (const subItem of item.subItems.items) {
